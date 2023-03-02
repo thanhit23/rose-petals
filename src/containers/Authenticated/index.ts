@@ -6,14 +6,14 @@ import saga from './saga';
 import { sendRequestToken, redirectLogin } from './actions';
 
 interface Props {
-  auth: {}
-  children: JSX.Element
-  onSendRequestToken: (token: string) => void
-  notToken: () => void
+  auth: object;
+  children: JSX.Element;
+  onSendRequestToken: (token: string) => void;
+  notToken: () => void;
 }
 
 interface States {
-  global: { auth: {} }
+  global: { auth: object };
 }
 
 function Authenticated({ auth, children, onSendRequestToken, notToken }: Props) {
@@ -40,6 +40,7 @@ const mapStateToProps = (state: States) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => {
+  console.log(dispatch);
   return {
     onSendRequestToken: bindActionCreators(sendRequestToken, dispatch),
     notToken: bindActionCreators(redirectLogin, dispatch),

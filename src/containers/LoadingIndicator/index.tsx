@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import Loadings from '../../components/Loading';
 import { Props, States } from './types';
 
-
 function Loading({ showLoading }: Props) {
   return showLoading ? <Loadings /> : <></>;
 }

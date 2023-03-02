@@ -1,4 +1,5 @@
 {
+  "Components.Login.btn.login": "Login",
   "Components.NotFound.title": "Not Found",
   "Components.NotFound.button": "Back to home page"
 }

@@ -1,14 +1,20 @@
 import { FormattedMessage } from 'react-intl';
 import { VALUE_MIN_LENGTH, VALUE_MAX_LENGTH } from './constants';
 
-interface Messages {}
+interface Messages {
+  id: string;
+  defaultMessage: string;
+}
 
-export const required = (messages: Messages) => ({
-  required: {
-    value: true,
-    message: <FormattedMessage {...messages} />,
-  },
-});
+export const required = (messages: Messages) => {
+  console.log(messages, 'messages');
+  return {
+    required: {
+      value: true,
+      message: <FormattedMessage {...messages} />,
+    },
+  };
+};
 
 export const minLength = (messages: Messages) => ({
   minLength: {

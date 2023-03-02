@@ -16,7 +16,14 @@ import getInjectors from './sagaInjectors';
  *   - constants.ONCE_TILL_UNMOUNT — behaves like 'RESTART_ON_REMOUNT' but never runs it again.
  *
  */
-export default ({ key, saga, mode }: any) => (WrappedComponent: any) => {
+interface InjectSagaTypes {
+  key: string;
+  saga: () => void;
+  mode?: string;
+}
+
+export default ({ key, saga, mode }: InjectSagaTypes) =>
+  (WrappedComponent: any) => {
     class InjectSaga extends React.Component {
       static WrappedComponent = WrappedComponent;
 
@@ -24,18 +31,12 @@ export default ({ key, saga, mode }: any) => (WrappedComponent: any) => {
       static contextType = ReactReduxContext;
 
       // eslint-disable-next-line react/static-property-placement
-      static displayName = `withSaga(${
-        WrappedComponent.displayName || WrappedComponent.name || 'Component'
-      })`;
+      static displayName = `withSaga(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
       injectors: {
-        injectSaga: (
-          key: any,
-          descriptor: { [key: string]: any; } | undefined,
-          args?: any
-        ) => void
-        ejectSaga: (key: any) => void
-      }
+        injectSaga: (key: any, descriptor: { [key: string]: any } | undefined, args?: any) => void;
+        ejectSaga: (key: any) => void;
+      };
 
       constructor(props: any, context: any) {
         super(props, context);
@@ -50,7 +51,7 @@ export default ({ key, saga, mode }: any) => (WrappedComponent: any) => {
       }
 
       render() {
-        return <WrappedComponent {...this.props} />
+        return <WrappedComponent {...this.props} />;
       }
     }
 

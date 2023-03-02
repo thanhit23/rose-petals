@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { map } from 'lodash';
 
-import {
-  UNAUTHORIZED,
-  LOGOUT_REQUEST,
-  BASE_URL,
-  SERVER_ERROR,
-} from './constants';
+import { UNAUTHORIZED, LOGOUT_REQUEST, BASE_URL, SERVER_ERROR } from './constants';
 import { LOGIN_FAILED } from '../containers/Login/constants';
 import store from '../store';
 
@@ -16,13 +11,10 @@ class Service {
     this.instance = axios.create({
       baseURL: BASE_URL,
     });
-    this.instance.interceptors.response.use(
-      this.handleSuccess,
-      this.handleError,
-    );
+    this.instance.interceptors.response.use(this.handleSuccess, this.handleError);
   }
 
-  setHeaderDefault = (headers: {}) => {
+  setHeaderDefault = (headers: object) => {
     map(headers, (value: string, key: string) => {
       this.instance.defaults.headers.common[key] = value;
     });
@@ -32,9 +24,9 @@ class Service {
     this.setHeaderDefault({ Authorization: `Bearer ${token}` });
   };
 
-  handleSuccess = (res: {}) => res;
+  handleSuccess = (res: object) => res;
 
-  handleError = (err: { response: { status: number, data: { message: string } }}) => {
+  handleError = (err: { response: { status: number; data: { message: string } } }) => {
     const {
       response: { status, data },
     } = err;
@@ -59,13 +51,13 @@ class Service {
     return { data };
   };
 
-  get = (url: string, params: {} = {}) => this.instance.get(url, { params });
+  get = (url: string, params: object = {}) => this.instance.get(url, { params });
 
-  post = (url: string, body: {}) => this.instance.post(url, body);
+  post = (url: string, body: object) => this.instance.post(url, body);
 
-  patch = (url: string, body: {}) => this.instance.patch(url, body);
+  patch = (url: string, body: object) => this.instance.patch(url, body);
 
-  put = (url: string, body: {}) => this.instance.put(url, body);
+  put = (url: string, body: object) => this.instance.put(url, body);
 
   delete = (url: string, id: string) => this.instance.delete(url, id);
 }
