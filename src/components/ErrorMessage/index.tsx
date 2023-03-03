@@ -4,9 +4,17 @@ interface ErrorMessageType {
   };
 }
 
+import { styled } from '@mui/joy/styles';
+import { red } from '@mui/material/colors';
+
+const Span = styled('span')(() => ({
+  color: red[500],
+  fontSize: 14,
+}));
+
 function ErrorMessage({ name }: ErrorMessageType) {
   if (name) {
-    return <span className="text-[#d1373a] text-[14px]">{name.message}</span>;
+    return <Span>{name.message}</Span>;
   }
 
   return <></>;

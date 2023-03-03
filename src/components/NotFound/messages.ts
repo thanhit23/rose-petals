@@ -8,7 +8,7 @@ export default defineMessages({
     defaultMessage: 'Not Found',
   },
   button: {
-    id: `${scope}.button`,
+    id: `${scope}.button.back-to-home`,
     defaultMessage: 'Back to home page',
   },
 });

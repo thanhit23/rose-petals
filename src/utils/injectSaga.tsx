@@ -34,8 +34,8 @@ export default ({ key, saga, mode }: InjectSagaTypes) =>
       static displayName = `withSaga(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
       injectors: {
-        injectSaga: (key: any, descriptor: { [key: string]: any } | undefined, args?: any) => void;
-        ejectSaga: (key: any) => void;
+        injectSaga: (key: string, descriptor: { [key: string]: any } | undefined, args?: any) => void;
+        ejectSaga: (key: string) => void;
       };
 
       constructor(props: any, context: any) {

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { useEffect } from 'react';
+
 import injectSaga from '../../utils/injectSaga';
 import saga from './saga';
 import { sendRequestToken, redirectLogin } from './actions';
@@ -27,7 +28,9 @@ function Authenticated({ auth, children, onSendRequestToken, notToken }: Props) 
     }
   }, []);
 
-  if (token && auth) return children;
+  if (token && auth) {
+    return children;
+  }
 }
 
 const mapStateToProps = (state: States) => {
@@ -39,13 +42,10 @@ const mapStateToProps = (state: States) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  console.log(dispatch);
-  return {
-    onSendRequestToken: bindActionCreators(sendRequestToken, dispatch),
-    notToken: bindActionCreators(redirectLogin, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: any) => ({
+  onSendRequestToken: bindActionCreators(sendRequestToken, dispatch),
+  notToken: bindActionCreators(redirectLogin, dispatch),
+});
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withSaga = injectSaga({ key: 'authenticated', saga });
 

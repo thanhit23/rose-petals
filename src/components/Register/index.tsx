@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,44 +13,20 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { FormattedMessage } from 'react-intl';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import Copyright from '../../components/Copyright';
+import Copyright from '../Copyright';
 import ErrorMessage from '../ErrorMessage';
-
-import messages from './messages';
-// import { FormattedMessage } from 'react-intl';
-// import { useIntl } from 'react-intl';
 
 const theme = createTheme();
 
 interface UserSubmitForm {
-  email: string;
-  password: string;
+  firstName: string;
 }
 
-import { setLocale } from 'yup';
-
-setLocale({
-  string: {
-    email: 'day la email custom',
-    min: '345678 ${min}',
-    max: '345678 ${min}',
-  },
-  mixed: {
-    required: 'cai nay can phai nhap',
-  },
-  number: {
-    min: '345678 ${min}',
-  },
-});
-
-export default function SignIn() {
-  // const intl = useIntl();
-  // intl.formatMessage({ id: 'messageID' })
-  const loginValidationSchema = Yup.object().shape({
+export default function SignUp() {
+  const validationSchema = Yup.object().shape({
     email: Yup.string().required().email(),
 
     password: Yup.string().required().min(6).max(40),
@@ -61,10 +37,10 @@ export default function SignIn() {
     formState: { errors },
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
-    resolver: yupResolver(loginValidationSchema),
+    resolver: yupResolver(validationSchema),
   });
 
-  const { email, password } = errors;
+  const { firstName } = errors;
 
   const onSubmit = (data: object) => {
     console.log(data);
@@ -86,53 +62,66 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            <FormattedMessage {...messages.title} />
+            Sign up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(data => onSubmit(data))} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label={<FormattedMessage {...messages.labelEmail} />}
-              autoComplete="email"
-              autoFocus
-              {...register('email')}
-            />
-            <ErrorMessage name={email} />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label={<FormattedMessage {...messages.labelPassword} />}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              {...register('password')}
-            />
-            <ErrorMessage name={password} />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label={<FormattedMessage {...messages.rememberMe} />}
-            />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              <FormattedMessage {...messages.title} />
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  <FormattedMessage {...messages.forgotPassword} />
-                </Link>
+          <Box component="form" noValidate onSubmit={handleSubmit(data => onSubmit(data))} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  {...register('firstName')}
+                />
+                <ErrorMessage name={firstName} />
               </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField required fullWidth id="email" label="Email Address" name="email" autoComplete="email" />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/register" variant="body2">
-                  <FormattedMessage {...messages.notAccount} />
+                <Link href="#" variant="body2">
+                  Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
