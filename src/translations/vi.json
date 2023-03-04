@@ -1,3 +1,5 @@
 {
-
+  "Components.Login.btn.login": "Đăng Nhập",
+  "Components.NotFound.title": "Không Tìm Thấy",
+  "Components.NotFound.button": "Trở Lại Trang Chủ"
 }

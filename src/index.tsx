@@ -1,31 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import App from './containers/App';
 import reportWebVitals from './reportWebVitals';
-import viMessages from './translations/vi.json';
-import enMessages from './translations/en.json';
+import LanguageProvider from './containers/LanguageProvider';
+
 import store from './store';
 
-const messages = {
-  en: enMessages,
-  vi: viMessages,
-};
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const queryClient = new QueryClient();
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const showDevtools = () => process.env.NODE_ENV === 'development';
 
 root.render(
-  <Provider store={store}>
-    <IntlProvider locale="en" defaultLocale="en" messages={messages.en}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </IntlProvider>
-  </Provider>,
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <LanguageProvider>
+        <BrowserRouter>
+          {showDevtools() && <ReactQueryDevtools initialIsOpen={false} />}
+          <App />
+        </BrowserRouter>
+      </LanguageProvider>
+    </Provider>
+  </QueryClientProvider>,
 );
 
 reportWebVitals();

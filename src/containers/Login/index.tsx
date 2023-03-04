@@ -1,23 +1,19 @@
-import React from 'react';
+import { useQuery } from 'react-query';
+import LoginPage from '../../components/Login';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function Login() {
+  const getStudent = (data: object) => {
+    console.log(data);
+  };
+  const handleSubmit = (data: object) => {
+    const { isLoading } = useQuery({
+      queryKey: ['login', data],
+      queryFn: () => getStudent(data),
+    });
+    console.log(isLoading);
+  };
+
+  return <LoginPage onSubmit={handleSubmit} />;
 }
 
-export default App;
+export default Login;

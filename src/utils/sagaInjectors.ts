@@ -7,24 +7,18 @@ import { DAEMON, ONCE_TILL_UNMOUNT, RESTART_ON_REMOUNT } from './constants';
 const allowedModes = [RESTART_ON_REMOUNT, DAEMON, ONCE_TILL_UNMOUNT];
 
 const checkKey = (key: any) =>
-  invariant(
-    isString(key) && !isEmpty(key),
-    '(app/utils...) injectSaga: Expected `key` to be a non empty string',
-  );
+  invariant(isString(key) && !isEmpty(key), '(app/utils...) injectSaga: Expected `key` to be a non empty string');
 
-const checkDescriptor = (descriptor: any) => {
+const checkDescriptor = (descriptor: object) => {
   const shape = {
     saga: isFunction,
     mode: (mode: any) => isString(mode) && allowedModes.includes(mode),
   };
-  invariant(
-    conformsTo(descriptor, shape),
-    '(app/utils...) injectSaga: Expected a valid saga descriptor',
-  );
+  invariant(conformsTo(descriptor, shape), '(app/utils...) injectSaga: Expected a valid saga descriptor');
 };
 
 export function injectSagaFactory(store: any, isValid: any) {
-  return function injectSaga(key: any, descriptor : {[key: string]: any} = {}, args: any) {
+  return function injectSaga(key: any, descriptor: { [key: string]: any } = {}, args: any) {
     if (!isValid) checkStore(store);
 
     const newDescriptor = {
@@ -47,10 +41,7 @@ export function injectSagaFactory(store: any, isValid: any) {
       }
     }
 
-    if (
-      !hasSaga ||
-      (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)
-    ) {
+    if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)) {
       store.injectedSagas[key] = {
         ...newDescriptor,
         task: store.runSaga(saga, args),

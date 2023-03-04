@@ -1,25 +1,18 @@
-import {
-  CHECK_TOKEN_REQUEST,
-  CHECK_TOKEN_SUCCESS,
-  CHECK_TOKEN_FAILED,
-  REDIRECT_LOGIN,
-} from './constants';
+import { CHECK_TOKEN_REQUEST, CHECK_TOKEN_SUCCESS, CHECK_TOKEN_FAILED, REDIRECT_LOGIN } from './constants';
 import { SET_AUTHENTICATION } from './constants';
 
-export const sendRequestToken = (token: string) => {
-  return {
-    type: CHECK_TOKEN_REQUEST,
-    payload: {
-      token,
-    },
-  };
-};
+export const sendRequestToken = (token: string) => ({
+  type: CHECK_TOKEN_REQUEST,
+  payload: {
+    token,
+  },
+});
 
 export const redirectLogin = () => ({
   type: REDIRECT_LOGIN,
 });
 
-export const setAuth = (user: {}) => ({
+export const setAuth = (user: object) => ({
   type: SET_AUTHENTICATION,
   payload: {
     user,

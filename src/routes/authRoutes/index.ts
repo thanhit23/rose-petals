@@ -2,7 +2,7 @@ import HomePage from '../../containers/HomePage';
 
 export default [
   {
-    path: '/aaaaa',
+    path: '/',
     component: HomePage,
     exact: true,
     index: true,

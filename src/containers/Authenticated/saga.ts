@@ -5,20 +5,19 @@ import { setAuth, checkTokenSuccess, checkTokenFailed } from './actions';
 import { AxiosResponse } from 'axios';
 
 interface Props {
-  type: string,
+  type: string;
   payload: {
-    token: string
-  }
+    token: string;
+  };
 }
 interface ApiResponse {
-  data: object,
-  status: number
+  data: object;
+  status: number;
 }
 function* sendReqToken({ payload: { token } }: Props) {
   yield call(setHeader, token);
   const res: AxiosResponse<ApiResponse> = yield call(isMe);
-  console.log(res, '');
-  
+
   const {
     data: { data, status },
   } = res;
