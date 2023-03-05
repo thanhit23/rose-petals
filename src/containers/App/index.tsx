@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import routes from '../../routes';
 import LoadingIndicator from '../LoadingIndicator';
+import './style.css';
 
 function App() {
   const theme = createTheme();
