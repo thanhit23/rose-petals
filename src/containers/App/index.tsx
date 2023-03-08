@@ -7,7 +7,17 @@ import LoadingIndicator from '../LoadingIndicator';
 import './style.css';
 
 function App() {
-  const theme = createTheme();
+  const theme = createTheme({
+    components: {
+      MuiContainer: {
+        styleOverrides: {
+          maxWidthLg: {
+            maxWidth: '1280px !important',
+          },
+        },
+      },
+    },
+  });
 
   return (
     <ThemeProvider theme={theme}>
