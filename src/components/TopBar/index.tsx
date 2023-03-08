@@ -25,6 +25,7 @@ function TopBar() {
         </Box>
         <Box sx={{ display: 'flex' }}>
           <DropDown
+            buttonIcon
             menuItem={[{ title: 'EN' }, { title: 'DE' }]}
             btnSx={styles.dropDownBtn}
             buttonText={
@@ -42,7 +43,7 @@ function TopBar() {
                 <FormattedMessage {...messages.language} />
               </Box>
             }
-            buttonIcon={<KeyboardArrowDownOutlined sx={{ fontSize: '0.875rem' }} />}
+            buttonIconSx={{ fontSize: '0.875rem' }}
           />
           <Box sx={styles.boxLink}>
             <Link href="#" sx={styles.linkSocialNetwork}>

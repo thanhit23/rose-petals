@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
-import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 import messages from './messages';
 import DropDown from '../../DropDown';
@@ -11,7 +10,7 @@ function CategoryMenu() {
   const listMenuItems = [
     { title: 'All Categories' },
     { title: 'Car' },
-    { title: 'clothes' },
+    { title: 'Clothes' },
     { title: 'Electronics' },
     { title: 'Laptop' },
     { title: 'Desktop' },
@@ -23,11 +22,11 @@ function CategoryMenu() {
     <Stack direction="row" spacing={2}>
       <div>
         <DropDown
+          buttonIcon
           sxItem={{ px: '30px' }}
           menuItem={listMenuItems}
           btnSx={styles.categoryBtn}
           buttonText={<FormattedMessage {...messages.button} />}
-          buttonIcon={<KeyboardArrowDownOutlined fontSize="small" />}
         />
       </div>
     </Stack>
