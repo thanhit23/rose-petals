@@ -27,10 +27,8 @@ export default ({ key, saga, mode }: InjectSagaTypes) =>
     class InjectSaga extends React.Component {
       static WrappedComponent = WrappedComponent;
 
-      // eslint-disable-next-line react/static-property-placement
       static contextType = ReactReduxContext;
 
-      // eslint-disable-next-line react/static-property-placement
       static displayName = `withSaga(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
       injectors: {

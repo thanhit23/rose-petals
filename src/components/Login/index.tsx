@@ -1,35 +1,24 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormattedMessage } from 'react-intl';
 
-import Copyright from '../../components/Copyright';
 import ErrorMessage from '../ErrorMessage';
 import { SignInTypes, UserSubmitForm } from './types';
 
 import messages from './messages';
-// import { FormattedMessage } from 'react-intl';
-// import { useIntl } from 'react-intl';
-
-const theme = createTheme();
 
 export default function SignIn({ onSubmit }: SignInTypes) {
-  // const intl = useIntl();
-  // intl.formatMessage({ id: 'messageID' })
   const loginValidationSchema = Yup.object().shape({
     email: Yup.string().required().email(),
 
@@ -51,69 +40,142 @@ export default function SignIn({ onSubmit }: SignInTypes) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Avatar sx={{ m: 1, backgroundColor: 'secondary.main' }}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography
+        component="h1"
+        variant="h5"
+        sx={{
+          marginBottom: '32px',
+          marginTop: '8px',
+          fontSize: '16px',
+          fontWeight: '700',
+          lineHeight: '1.5',
+          textAlign: 'center',
+          textTransform: 'none',
+          whiteSpace: 'normal',
+        }}
+      >
+        <FormattedMessage {...messages.title} />
+      </Typography>
+      <Box component="form" onSubmit={handleSubmit(data => handleSubmitForm(data))} noValidate sx={{ width: '100%' }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label={<FormattedMessage {...messages.labelEmail} />}
+          autoComplete="email"
+          autoFocus
           sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            mt: 0,
+            '& div > fieldset': {
+              borderColor: () => email && '#e94560',
+            },
+          }}
+          {...register('email')}
+        />
+        <ErrorMessage name={email} />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          label={<FormattedMessage {...messages.labelPassword} />}
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          sx={{
+            '& div > fieldset': {
+              borderColor: () => password && '#e94560',
+            },
+          }}
+          {...register('password')}
+        />
+        <ErrorMessage name={password} />
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label={<FormattedMessage {...messages.rememberMe} />}
+          sx={{ display: 'flex' }}
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 2,
+            backgroundColor: '#d23f57',
+            boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
+            '&:hover': { backgroundColor: '#e3364e', boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px' },
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            <FormattedMessage {...messages.title} />
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit(data => handleSubmitForm(data))} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label={<FormattedMessage {...messages.labelEmail} />}
-              autoComplete="email"
-              autoFocus
-              {...register('email')}
-            />
-            <ErrorMessage name={email} />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label={<FormattedMessage {...messages.labelPassword} />}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              {...register('password')}
-            />
-            <ErrorMessage name={password} />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label={<FormattedMessage {...messages.rememberMe} />}
-            />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              <FormattedMessage {...messages.title} />
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  <FormattedMessage {...messages.forgotPassword} />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  <FormattedMessage {...messages.notAccount} />
-                </Link>
-              </Grid>
-            </Grid>
+          <FormattedMessage {...messages.btnSubmit} />
+        </Button>
+        <Box
+          sx={{
+            display: 'flex',
+            webkitBoxPack: 'center',
+            justifyContent: 'center',
+            webkitBoxAlign: 'center',
+            alignItems: 'center',
+            marginTop: '1.25rem',
+          }}
+        >
+          <Box sx={{ color: '#2b3445' }}>
+            <FormattedMessage {...messages.notAccount} />
           </Box>
+          <Link
+            href="#"
+            variant="body2"
+            sx={{
+              color: '#2b3445',
+              fontWeight: 600,
+              lineHeight: 1.5,
+              marginLeft: '8px',
+              borderBottom: '1px solid rgb(43, 52, 69)',
+              textDecoration: 'none',
+            }}
+          >
+            <FormattedMessage {...messages.signUp} />
+          </Link>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+        <Box
+          sx={{
+            display: 'flex',
+            webkitBoxPack: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgb(243, 245, 249)',
+            borderRadius: '4px',
+            paddingTop: '20px',
+            paddingBottom: '20px',
+            marginTop: '1.25rem',
+          }}
+        >
+          <FormattedMessage {...messages.forgotPassword} />
+          <Link
+            href="/register"
+            variant="body2"
+            sx={{
+              color: '#2b3445',
+              fontWeight: 600,
+              lineHeight: 1.5,
+              marginLeft: '8px',
+              borderBottom: '1px solid rgb(43, 52, 69)',
+              textDecoration: 'none',
+            }}
+          >
+            <FormattedMessage {...messages.resetIt} />
+          </Link>
+        </Box>
+      </Box>
+    </Box>
   );
 }

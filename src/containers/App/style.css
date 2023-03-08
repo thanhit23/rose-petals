@@ -1,0 +1,71 @@
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+}
+
+*,*::before,*::after {
+    box-sizing: inherit;
+}
+
+strong,b {
+    font-weight: 700;
+}
+
+body {
+    margin: 0;
+    color: #2B3445;
+    font-size: 14px;
+    font-family: Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #F6F9FC;
+    height: 1000px;
+}
+
+@media print {
+    body {
+        background-color: #fff;
+    }
+}
+
+body::backdrop {
+    background-color: #F6F9FC;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+p {
+    line-height: 1.75;
+}
+
+button {
+    font-family: Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    font-size: 14px;
+}
+
+.MuiRating-sizeSmall {
+    font-size: 20px;
+}
+
+a {
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#nprogress .bar {
+    overflow: hidden;
+    height: 3px!important;
+    z-index: 99999999!important;
+    background: #D23F57!important;
+}

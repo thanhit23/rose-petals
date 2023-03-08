@@ -1,5 +1,16 @@
 {
-  "Components.Login.btn.login": "Login",
+  "Components.Login.title": "Welcome To Rose Petal",
+  "Components.Login.rememberMe": "Remember me",
+  "Components.Login.label.password": "Password",
+  "Components.Login.label.email": "Email Address",
+  "Components.Login.forgotPassword": "Forgot password?",
+  "Components.Login.resetIt": "Reset It",
+  "Components.Login.notAccount": "Don't have an account?",
+  "Components.Login.signUp": "Sign Up",
+  "Components.Login.button.submit": "Login",
+  "Components.Header.Category.button": "All Categories",
+  "Components.Header.Cart.button.checkoutNow": "Checkout Now",
+  "Components.Header.Cart.button.outlined": "Outlined",
   "Components.NotFound.title": "Not Found",
   "Components.NotFound.button.back-to-home": "Back to home page"
 }
