@@ -8,7 +8,7 @@ const boxHeader = {
 const boxHeaderScroll = {
   left: 0,
   right: 0,
-  zIndex: 1500,
+  zIndex: 1200,
   position: 'fixed',
   top: 0,
   boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',

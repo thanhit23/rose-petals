@@ -1,57 +1,45 @@
+import React, { useState, useRef, useEffect } from 'react';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
 import Popper from '@mui/material/Popper';
-import React, { useState } from 'react';
 import ButtonBase from '@mui/material/ButtonBase';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
-import { Image } from '@mui/icons-material';
 
-interface DropDownTypes {
-  buttonIconFirst?: JSX.Element;
-  buttonText: JSX.Element;
-  buttonIcon?: boolean;
-  buttonIconSx?: object;
-  btnSx: object;
-  menuItem: Array<any>;
-  sxItem?: object;
-}
+import { DropDownTypes } from './types';
+import styles from './styles';
 
 function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);
-
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const anchorRef = useRef<HTMLButtonElement>(null);
+  const prevOpen = useRef(open);
 
   const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
   const handleClose = (event: Event | React.SyntheticEvent) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-      return;
-    }
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) return;
 
     setOpen(false);
   };
 
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    } else if (event.key === 'Escape') {
-      setOpen(false);
-    }
-  }
-
-  const prevOpen = React.useRef(open);
-
-  React.useEffect(() => {
-    if (prevOpen.current && !open) {
-      anchorRef.current?.focus();
-    }
+  useEffect(() => {
+    if (prevOpen.current && !open) anchorRef.current?.focus();
 
     prevOpen.current = open;
   }, [open]);
+
+  const renderIcon = () => (
+    <KeyboardArrowDownOutlined
+      sx={{
+        ...buttonIconSx,
+        transition: 'all 250ms ease-in-out',
+        transform: () => (open ? 'rotate(0deg)' : 'rotate(-90deg)'),
+      }}
+      fontSize="small"
+    />
+  );
 
   return (
     <>
@@ -67,7 +55,7 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
       >
         {buttonIconFirst}
         {buttonText}
-        {buttonIcon && <KeyboardArrowDownOutlined sx={{ ...buttonIconSx }} fontSize="small" />}
+        {buttonIcon && renderIcon()}
       </ButtonBase>
       <Popper
         open={open}
@@ -87,18 +75,17 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="composition-menu"
-                  aria-labelledby="composition-button"
-                  onKeyDown={handleListKeyDown}
-                >
+                <Box>
                   {menuItem.map(({ title }: { title: string }, key: number) => (
-                    <MenuItem sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
-                      {title}
-                    </MenuItem>
+                    <Box sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
+                      <Link href="#" sx={styles.linkMenuItem}>
+                        <Box component="span" sx={styles.boxItem}>
+                          {title}
+                        </Box>
+                      </Link>
+                    </Box>
                   ))}
-                </MenuList>
+                </Box>
               </ClickAwayListener>
             </Paper>
           </Grow>
