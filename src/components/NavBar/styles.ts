@@ -1,3 +1,8 @@
+const containerNavbar = {
+  display: 'flex',
+  justifyContent: 'space-between',
+};
+
 const paper = {
   display: 'flex',
   height: '60px',
@@ -28,7 +33,20 @@ const categoryBtn = {
   padding: '6px 8px',
 };
 
+const boxListCategories = {
+  display: 'flex',
+  gap: '32px',
+};
+
+const boxCategoryItem = {
+  display: 'flex',
+  alignItems: 'center',
+};
+
 export default {
+  boxListCategories,
+  containerNavbar,
+  boxCategoryItem,
   categoryBtn,
   boxBtn,
   paper,

@@ -69,8 +69,30 @@ const outlineInputSearchIcon = {
   marginRight: '6px',
 };
 
+const boxContainerCategoryDropdown = {
+  cursor: 'pointer',
+  position: 'relative',
+};
+
+const boxWrapperCategoryDropdown = {
+  display: 'flex',
+  color: 'rgb(125, 135, 156)',
+  webkitBoxAlign: 'center',
+  alignItems: 'center',
+  marginLeft: '16px',
+};
+
+const btnCategoryDropdown = {
+  fontSize: '0.875rem',
+  lineHeight: 1.75,
+  padding: '6px 8px',
+};
+
 export default {
+  boxContainerCategoryDropdown,
+  boxWrapperCategoryDropdown,
   outlineInputSearchIcon,
+  btnCategoryDropdown,
   boxWrapperHeader,
   boxHeaderScroll,
   containerHeader,

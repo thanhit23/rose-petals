@@ -13,6 +13,9 @@ import CartButton from './Cart';
 import CategoryMenu from './CategoryMenu';
 
 import styles from './styles';
+import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import DropDown from '../NavBar/Dropdown';
+import { listMenuItems } from '../NavBar';
 
 function Header() {
   const useOutlinedInputStyles = makeStyles(() => ({
@@ -30,7 +33,7 @@ function Header() {
   }));
   const outlinedInputClasses = useOutlinedInputStyles();
 
-  const [show, setShow] = React.useState(true);
+  const [showHeader, setShowHeader] = React.useState(true);
   const [showInit, setShowInit] = React.useState({});
 
   React.useEffect(() => {
@@ -40,22 +43,34 @@ function Header() {
     function handleScroll() {
       const newScrollPosition = window.scrollY;
       newScrollPosition >= scrollPositionInit ? setShowInit({ top: '-80px' }) : setShowInit({});
-      newScrollPosition <= scrollPosition && setShow(true);
-      scrollPosition < newScrollPosition && setShow(false);
+      newScrollPosition <= scrollPosition && setShowHeader(true);
+      scrollPosition < newScrollPosition && setShowHeader(false);
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
   }, []);
 
   return (
-    <Box component="div">
-      <Box sx={() => (show ? { ...styles.boxHeader, ...showInit } : styles.boxHeaderScroll)}>
+    <Box component="div" sx={() => (!showHeader ? { height: '80px' } : {})}>
+      <Box sx={() => (showHeader ? { ...styles.boxHeader, ...showInit } : styles.boxHeaderScroll)}>
         <Box sx={styles.boxWrapperHeader}>
           <Container maxWidth="lg" sx={styles.containerHeader}>
             <Box sx={styles.boxLogo}>
               <Link href="#">
                 <img width="60" height="60" src={logo} alt="asdasdas" />
               </Link>
+              {!showHeader && (
+                <Box sx={styles.boxContainerCategoryDropdown}>
+                  <Box sx={styles.boxWrapperCategoryDropdown}>
+                    <DropDown
+                      btnSx={styles.btnCategoryDropdown}
+                      buttonIcon
+                      menuItem={listMenuItems}
+                      buttonIconFirst={<GridViewRoundedIcon fontSize="small" />}
+                    />
+                  </Box>
+                </Box>
+              )}
             </Box>
             <Box sx={styles.boxWrapperFrom}>
               <Box sx={styles.boxFromControl}>
