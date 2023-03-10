@@ -7,7 +7,6 @@ import Popper from '@mui/material/Popper';
 import React, { useState } from 'react';
 import ButtonBase from '@mui/material/ButtonBase';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
-import { Image } from '@mui/icons-material';
 
 interface DropDownTypes {
   buttonIconFirst?: JSX.Element;
