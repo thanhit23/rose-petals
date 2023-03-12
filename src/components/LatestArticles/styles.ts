@@ -9,11 +9,11 @@ const boxTitle = {
   whiteSpace: 'normal',
 };
 
-const containerBestSell = {
+const containerFeatureProducts = {
   marginTop: '64px',
 };
 
 export default {
-  containerBestSell,
+  containerFeatureProducts,
   boxTitle,
 };

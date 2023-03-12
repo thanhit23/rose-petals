@@ -15,12 +15,12 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Divider from '@mui/material/Divider';
 
 import styles from './styles';
-import messages from '../messages';
-import { ProductDetailTypes } from './types';
+import messages from './messages';
+import { DetailTypes } from './types';
 
 import 'react-slideshow-image/dist/styles.css';
 
-function ProductDetail({ openModal, handleCloseModal }: ProductDetailTypes) {
+function Detail({ openModal, handleCloseModal }: DetailTypes) {
   const [quantity, setQuantity] = useState(0);
 
   const handleClose = () => handleCloseModal();
@@ -87,7 +87,7 @@ function ProductDetail({ openModal, handleCloseModal }: ProductDetailTypes) {
                   Silver High Neck Sweater
                 </Box>
                 <Box component="p" sx={styles.boxCategory}>
-                  CATEGORY: Cosmetic
+                  <FormattedMessage {...messages.category} />: Cosmetic
                 </Box>
                 <Box component="h1" sx={styles.boxPrice}>
                   $210.00
@@ -117,7 +117,7 @@ function ProductDetail({ openModal, handleCloseModal }: ProductDetailTypes) {
                   </Box>
                 ) : (
                   <ButtonBase sx={styles.boxAddToCart} onClick={handleReduce}>
-                    Add To Cart
+                    <FormattedMessage {...messages.addToCart} />
                   </ButtonBase>
                 )}
               </Grid>
@@ -132,4 +132,4 @@ function ProductDetail({ openModal, handleCloseModal }: ProductDetailTypes) {
   );
 }
 
-export default ProductDetail;
+export default Detail;

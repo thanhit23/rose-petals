@@ -1,4 +1,4 @@
-export interface ProductDetailTypes {
+export interface DetailTypes {
   openModal: boolean;
   handleCloseModal: () => void;
 }

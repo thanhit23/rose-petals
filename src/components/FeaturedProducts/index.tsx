@@ -1,22 +1,20 @@
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import { FormattedMessage } from 'react-intl';
 
-import ProductItem from '../ProductItem';
 import SlideProduct from '../SlideProduct';
+import ProductItem from '../ProductItem';
 import messages from './messages';
 import styles from './styles';
 
-import 'react-slideshow-image/dist/styles.css';
-
-function BestSellingProduct() {
+function FeaturedProducts() {
   return (
-    <Container maxWidth="lg" sx={styles.containerBestSell}>
+    <Container maxWidth="lg" sx={styles.containerFeatureProducts}>
       <Box component="h2" sx={styles.boxTitle}>
         <FormattedMessage {...messages.title} />
       </Box>
       <Box>
-        <SlideProduct slidesToShow={4}>
+        <SlideProduct slidesToShow={5}>
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
@@ -24,6 +22,7 @@ function BestSellingProduct() {
             star={4}
             review={1000}
             thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
+            widthHeightImg="227px"
           />
           <ProductItem
             category="Women's Fashion"
@@ -32,6 +31,7 @@ function BestSellingProduct() {
             star={4}
             review={1000}
             thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
+            widthHeightImg="227px"
           />
           <ProductItem
             category="Women's Fashion"
@@ -40,6 +40,7 @@ function BestSellingProduct() {
             star={4}
             review={1000}
             thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
+            widthHeightImg="227px"
           />
           <ProductItem
             category="Women's Fashion"
@@ -48,6 +49,7 @@ function BestSellingProduct() {
             star={4}
             review={1000}
             thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
+            widthHeightImg="227px"
           />
           <ProductItem
             category="Women's Fashion"
@@ -56,6 +58,7 @@ function BestSellingProduct() {
             star={4}
             review={1000}
             thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
+            widthHeightImg="227px"
           />
           <ProductItem
             category="Women's Fashion"
@@ -64,38 +67,7 @@ function BestSellingProduct() {
             star={4}
             review={1000}
             thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
-          />
-          <ProductItem
-            category="Women's Fashion"
-            name="Gray Overcoat Women"
-            price={110.0}
-            star={4}
-            review={1000}
-            thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
-          />
-          <ProductItem
-            category="Women's Fashion"
-            name="Gray Overcoat Women"
-            price={110.0}
-            star={4}
-            review={1000}
-            thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
-          />
-          <ProductItem
-            category="Women's Fashion"
-            name="Gray Overcoat Women"
-            price={110.0}
-            star={4}
-            review={1000}
-            thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
-          />
-          <ProductItem
-            category="Women's Fashion"
-            name="Gray Overcoat Women"
-            price={110.0}
-            star={4}
-            review={1000}
-            thumbnail="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F20.GrayOvercoatWomen.png&w=3840&q=75"
+            widthHeightImg="227px"
           />
         </SlideProduct>
       </Box>
@@ -103,4 +75,4 @@ function BestSellingProduct() {
   );
 }
 
-export default BestSellingProduct;
+export default FeaturedProducts;

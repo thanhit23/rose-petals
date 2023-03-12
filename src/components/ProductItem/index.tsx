@@ -3,18 +3,17 @@ import { FormattedMessage } from 'react-intl';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Rating from '@mui/material/Rating';
-import Divider from '@mui/material/Divider';
 import ButtonBase from '@mui/material/ButtonBase';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import styles from './styles';
-import { ItemSellTypes } from './types';
 import messages from './messages';
-import ProductDetail from './ProductDetail';
+import ProductDetail from './Detail';
+import { ItemSellTypes } from './types';
 
-function ProductItem({ thumbnail, category, name, price, review, star }: ItemSellTypes) {
+function ProductItem({ thumbnail, category, name, price, review, star, widthHeightImg = null }: ItemSellTypes) {
   const [loved, setLoved] = useState(false);
   const [ModalProductDetail, setModalProductDetail] = useState(false);
 
@@ -26,9 +25,27 @@ function ProductItem({ thumbnail, category, name, price, review, star }: ItemSel
       <Box width="calc(100% - 1.125rem)" margin="auto">
         <Box sx={styles.boxWrapperProduct}>
           <Link href="#">
-            <Box sx={styles.boxWrapperItem}>
+            <Box
+              sx={() => {
+                if (widthHeightImg) {
+                  return { ...styles.boxComponentImg, height: widthHeightImg };
+                }
+                return styles.boxWrapperItem;
+              }}
+            >
               <Box>
-                <Box className="img-product" component="img" sx={styles.boxComponentImg} alt="" src={thumbnail} />
+                <Box
+                  className="img-product"
+                  component="img"
+                  sx={() => {
+                    if (widthHeightImg) {
+                      return { ...styles.boxComponentImg, width: widthHeightImg, height: widthHeightImg };
+                    }
+                    return styles.boxComponentImg;
+                  }}
+                  alt=""
+                  src={thumbnail}
+                />
               </Box>
             </Box>
           </Link>
