@@ -14,6 +14,7 @@ import BestSellingProduct from '../BestSellingProduct';
 import BestSellingCategories from '../BestSellingCategories';
 import MultipleOptionProduct from '../MultipleOptionProduct';
 import EventNotificationBanner from '../EventNotificationBanner';
+import FooterComponent from '../Footer';
 
 export default function SignUp() {
   return (
@@ -35,6 +36,9 @@ export default function SignUp() {
           <MultipleOptionProduct />
         </Box>
       </div>
+      <footer>
+        <FooterComponent />
+      </footer>
     </>
   );
 }

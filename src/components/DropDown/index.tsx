@@ -8,15 +8,7 @@ import React, { useState } from 'react';
 import ButtonBase from '@mui/material/ButtonBase';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 
-interface DropDownTypes {
-  buttonIconFirst?: JSX.Element;
-  buttonText: JSX.Element;
-  buttonIcon?: boolean;
-  buttonIconSx?: object;
-  btnSx: object;
-  menuItem: Array<any>;
-  sxItem?: object;
-}
+import { DropDownTypes } from './types';
 
 function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);

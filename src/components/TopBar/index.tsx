@@ -5,7 +5,6 @@ import Chip from '@mui/material/Chip';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 import Link from '@mui/material/Link';
 import { FormattedMessage } from 'react-intl';
 

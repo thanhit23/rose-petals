@@ -7,4 +7,8 @@ export default defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Latest Articles',
   },
+  readMore: {
+    id: `${scope}.readMore`,
+    defaultMessage: 'Read More',
+  },
 });

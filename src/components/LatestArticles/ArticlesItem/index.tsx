@@ -5,11 +5,13 @@ import Link from '@mui/material/Link';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import styles from './styles';
+import { FormattedMessage } from 'react-intl';
+import messages from '../messages';
 
 function ArticleItem() {
   return (
     <Grid item xs={4}>
-      <Paper elevation={1}>
+      <Paper sx={styles.paper}>
         <Box sx={styles.paperBoxImg}>
           <Box overflow="hidden" width="100%">
             <Box
@@ -35,7 +37,7 @@ function ArticleItem() {
           </Box>
           <Link href="#" sx={styles.linkDefault}>
             <Box component="span" sx={styles.linkReadMore}>
-              Read More
+              <FormattedMessage {...messages.readMore} />
               <ArrowForwardIcon sx={styles.iconReadMore} />
             </Box>
           </Link>
