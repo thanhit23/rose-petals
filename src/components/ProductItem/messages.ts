@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.BestSellingProduct.ProductItem';
+export const scope = 'Components.ProductItem';
 
 export default defineMessages({
   btnQuickView: {

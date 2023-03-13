@@ -5,4 +5,5 @@ export interface ItemSellTypes {
   price: number;
   review: number;
   star: number;
+  widthHeightImg?: string | null;
 }

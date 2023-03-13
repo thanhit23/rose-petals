@@ -1,19 +1,19 @@
+const container = {
+  paddingTop: '80px',
+  paddingBottom: '80px',
+};
+
 const boxTitle = {
-  marginBottom: '32px',
+  marginBottom: '24px',
   marginTop: 0,
-  fontSize: '25px',
+  fontSize: '20px',
   fontWeight: 700,
   lineHeight: 1.5,
-  textAlign: 'center',
   textTransform: 'none',
   whiteSpace: 'normal',
 };
 
-const containerBestSell = {
-  marginTop: '64px',
-};
-
 export default {
-  containerBestSell,
+  container,
   boxTitle,
 };
