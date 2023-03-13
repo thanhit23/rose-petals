@@ -7,6 +7,10 @@ const paperBoxImg = {
   position: 'relative',
 };
 
+const paper = {
+  boxShadow: '0px 4px 16px rgb(43 52 69 / 10%)',
+};
+
 const boxImg = {
   width: '100%',
   objectFit: 'cover',
@@ -112,4 +116,5 @@ export default {
   linkDefault,
   boxTime,
   boxImg,
+  paper,
 };
