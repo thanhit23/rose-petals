@@ -54,6 +54,15 @@ const boxLink = {
   gap: '12px',
 };
 
+const boxLanguage = {
+  fontSize: '12px',
+  marginLeft: '0.5rem',
+  fontWeight: 600,
+  lineHeight: 1.5,
+  textTransform: 'none',
+  whiteSpace: 'normal',
+};
+
 const linkSocialNetwork = { color: 'inherit', display: 'flex' };
 
 const iconSocialNetwork = { fontSize: '16px' };
@@ -62,6 +71,7 @@ export default {
   linkSocialNetwork,
   iconSocialNetwork,
   containerTopBar,
+  boxLanguage,
   dropDownBtn,
   boxExpress,
   boxTopBar,

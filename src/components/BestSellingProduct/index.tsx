@@ -20,6 +20,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -28,6 +29,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -36,6 +38,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -44,6 +47,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -52,6 +56,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -60,6 +65,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -68,6 +74,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -76,6 +83,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -84,6 +92,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}
@@ -92,6 +101,7 @@ function BestSellingProduct() {
           <ProductItem
             category="Women's Fashion"
             name="Gray Overcoat Women"
+            slug="gray-overcoat-women"
             price={110.0}
             star={4}
             review={1000}

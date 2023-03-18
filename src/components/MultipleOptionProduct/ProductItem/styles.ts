@@ -20,12 +20,8 @@ const img = {
   transition: '0.3s',
 };
 
-const linkTitle = {
-  position: 'relative',
-  transition: 'color 150ms ease-in-out',
-  color: 'inherit',
-  textDecoration: 'none',
-  '&:hover > p': {
+const boxLinkHover = {
+  '&:hover > a > p': {
     color: '#D23F57!important',
   },
 };
@@ -50,8 +46,8 @@ const boxPrice = {
 const rating = { fontSize: '14px' };
 
 export default {
+  boxLinkHover,
   boxProduct,
-  linkTitle,
   boxTitle,
   boxPrice,
   boxImg,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import ButtonBase from '@mui/material/ButtonBase';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -10,10 +10,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import styles from './styles';
 import messages from './messages';
-import ProductDetail from './Detail';
+import QuickView from '../QuickView';
 import { ItemSellTypes } from './types';
 
-function ProductItem({ thumbnail, category, name, price, review, star, widthHeightImg = null }: ItemSellTypes) {
+function ProductItem({ thumbnail, category, name, slug, price, review, star, widthHeightImg = null }: ItemSellTypes) {
   const [loved, setLoved] = useState(false);
   const [ModalProductDetail, setModalProductDetail] = useState(false);
 
@@ -24,7 +24,7 @@ function ProductItem({ thumbnail, category, name, price, review, star, widthHeig
     <Box position="unset">
       <Box width="calc(100% - 1.125rem)" margin="auto">
         <Box sx={styles.boxWrapperProduct}>
-          <Link href="#">
+          <Link to={`/product/${slug}`}>
             <Box
               sx={() => {
                 if (widthHeightImg) {
@@ -58,7 +58,7 @@ function ProductItem({ thumbnail, category, name, price, review, star, widthHeig
           <ButtonBase className="product-view-action" sx={styles.btnQuickView} onClick={openModalProduct}>
             <FormattedMessage {...messages.btnQuickView} />
           </ButtonBase>
-          <ProductDetail openModal={ModalProductDetail} handleCloseModal={handleCloseModal} />
+          <QuickView openModal={ModalProductDetail} handleCloseModal={handleCloseModal} />
         </Box>
         <Box padding="8px" textAlign="center">
           <Box component="small" sx={styles.boxCategory}>

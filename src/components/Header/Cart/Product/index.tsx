@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Avatar from '@mui/material/Avatar';
 import ButtonBase from '@mui/material/ButtonBase';
 import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';
 
 import styles from './styles';
 
@@ -30,14 +30,14 @@ function Product() {
           -
         </Button>
       </Box>
-      <Link href="/#">
+      <Link to="/#">
         <Avatar
           src="https://bazar-react.vercel.app/assets/images/products/Fashion/Clothes/1.SilverHighNeckSweater.png"
           sx={styles.avatar}
         />
       </Link>
       <Box sx={styles.boxInformationProduct}>
-        <Link sx={styles.linkNameProduct}>
+        <Link to="/login" style={styles.linkNameProduct}>
           <Box component="h5" sx={styles.boxNameProduct}>
             Silver High Neck Sweater
           </Box>

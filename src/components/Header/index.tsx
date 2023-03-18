@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import SearchIcon from '@mui/icons-material/Search';
@@ -56,7 +56,7 @@ function Header() {
         <Box sx={styles.boxWrapperHeader}>
           <Container maxWidth="lg" sx={styles.containerHeader}>
             <Box sx={styles.boxLogo}>
-              <Link href="#">
+              <Link to="#">
                 <img width="60" height="60" src={logo} alt="asdasdas" />
               </Link>
               {!showHeader && (
