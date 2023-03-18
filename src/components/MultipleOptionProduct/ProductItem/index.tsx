@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 
 import styles from './styles';
@@ -11,13 +11,21 @@ function ProductItem({ srcImg, name, price, star }: ProductItemTypes) {
 
   return (
     <Box sx={styles.boxProduct}>
-      <Link href="#">
+      <Link to="#">
         <Box sx={styles.boxImg}>
           <Box component="img" src={srcImg} sx={styles.img} className="img-product" />
         </Box>
       </Link>
-      <Box>
-        <Link href="#" sx={styles.linkTitle}>
+      <Box sx={styles.boxLinkHover}>
+        <Link
+          to="#"
+          style={{
+            position: 'relative',
+            transition: 'color 150ms ease-in-out',
+            color: 'inherit',
+            textDecoration: 'none',
+          }}
+        >
           <Box component="p" sx={styles.boxTitle}>
             {name}
           </Box>

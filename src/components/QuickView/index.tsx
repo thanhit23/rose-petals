@@ -20,19 +20,19 @@ import { DetailTypes } from './types';
 
 import 'react-slideshow-image/dist/styles.css';
 
-function Detail({ openModal, handleCloseModal }: DetailTypes) {
+function QuickView({ openModal, handleCloseModal }: DetailTypes) {
   const [quantity, setQuantity] = useState(0);
 
   const handleClose = () => handleCloseModal();
 
   const handleIncrease = () => {
-    if (quantity === 0) return;
-    setQuantity(quantity - 1);
+    if (quantity === 10) return;
+    setQuantity(quantity + 1);
   };
 
   const handleReduce = () => {
-    if (quantity === 10) return;
-    setQuantity(quantity + 1);
+    if (quantity === 0) return;
+    setQuantity(quantity - 1);
   };
 
   return (
@@ -105,18 +105,18 @@ function Detail({ openModal, handleCloseModal }: DetailTypes) {
                 <Divider sx={styles.divider} />
                 {quantity ? (
                   <Box sx={styles.boxQuantity}>
-                    <ButtonBase sx={styles.boxIncreaseReduce} onClick={handleIncrease}>
+                    <ButtonBase sx={styles.boxIncreaseReduce} onClick={handleReduce}>
                       <RemoveIcon />
                     </ButtonBase>
                     <Box component="h3" sx={styles.quantity}>
                       {quantity}
                     </Box>
-                    <ButtonBase sx={styles.boxIncreaseReduce} onClick={handleReduce}>
+                    <ButtonBase sx={styles.boxIncreaseReduce} onClick={handleIncrease}>
                       <AddIcon />
                     </ButtonBase>
                   </Box>
                 ) : (
-                  <ButtonBase sx={styles.boxAddToCart} onClick={handleReduce}>
+                  <ButtonBase sx={styles.boxAddToCart} onClick={handleIncrease}>
                     <FormattedMessage {...messages.addToCart} />
                   </ButtonBase>
                 )}
@@ -132,4 +132,4 @@ function Detail({ openModal, handleCloseModal }: DetailTypes) {
   );
 }
 
-export default Detail;
+export default QuickView;

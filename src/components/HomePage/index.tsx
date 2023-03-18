@@ -2,9 +2,6 @@ import React from 'react';
 import Box from '@mui/material/Box';
 
 import Event from '../Event';
-import Header from '../Header';
-import TopBar from '../TopBar';
-import NavBar from '../NavBar';
 import SlideShow from '../Slide';
 import Service from '../Service';
 import ListBrand from '../ListBrand';
@@ -14,15 +11,12 @@ import BestSellingProduct from '../BestSellingProduct';
 import BestSellingCategories from '../BestSellingCategories';
 import MultipleOptionProduct from '../MultipleOptionProduct';
 import EventNotificationBanner from '../EventNotificationBanner';
-import FooterComponent from '../Footer';
+import LayoutMain from '../LayoutMain';
 
-export default function SignUp() {
+export default function HomePage() {
   return (
     <>
-      <TopBar />
-      <Header />
-      <div className="section-after-sticky">
-        <NavBar />
+      <LayoutMain>
         <Box bgcolor="#fff">
           <SlideShow />
           <Service />
@@ -35,10 +29,7 @@ export default function SignUp() {
           <ListBrand />
           <MultipleOptionProduct />
         </Box>
-      </div>
-      <footer>
-        <FooterComponent />
-      </footer>
+      </LayoutMain>
     </>
   );
 }

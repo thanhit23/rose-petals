@@ -4,9 +4,14 @@ import Box from '@mui/material/Box';
 import { ItemTypes } from './types';
 import styles from './styles';
 
-function Item({ icon, title, description, viewBox }: ItemTypes) {
+function Item({ icon, title, description, viewBox, last = false }: ItemTypes) {
   return (
-    <Box sx={styles.boxItem}>
+    <Box
+      sx={() => {
+        if (last) return { ...styles.boxItem, borderRight: 'inherit' };
+        return styles.boxItem;
+      }}
+    >
       <SvgIcon component="svg" viewBox={viewBox} sx={styles.svgIcon}>
         {icon}
       </SvgIcon>

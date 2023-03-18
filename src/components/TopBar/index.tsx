@@ -5,7 +5,7 @@ import Chip from '@mui/material/Chip';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import DropDown from '../DropDown';
@@ -28,30 +28,20 @@ function TopBar() {
             menuItem={[{ title: 'EN' }, { title: 'DE' }]}
             btnSx={styles.dropDownBtn}
             buttonText={
-              <Box
-                component="span"
-                sx={{
-                  fontSize: '12px',
-                  marginLeft: '0.5rem',
-                  fontWeight: 600,
-                  lineHeight: 1.5,
-                  textTransform: 'none',
-                  whiteSpace: 'normal',
-                }}
-              >
+              <Box component="span" sx={styles.boxLanguage}>
                 <FormattedMessage {...messages.language} />
               </Box>
             }
             buttonIconSx={{ fontSize: '0.875rem' }}
           />
           <Box sx={styles.boxLink}>
-            <Link href="#" sx={styles.linkSocialNetwork}>
+            <Link to="#" style={styles.linkSocialNetwork}>
               <TwitterIcon sx={styles.iconSocialNetwork} />
             </Link>
-            <Link href="#" sx={styles.linkSocialNetwork}>
+            <Link to="#" style={styles.linkSocialNetwork}>
               <FacebookIcon sx={styles.iconSocialNetwork} />
             </Link>
-            <Link href="#" sx={styles.linkSocialNetwork}>
+            <Link to="#" style={styles.linkSocialNetwork}>
               <InstagramIcon sx={styles.iconSocialNetwork} />
             </Link>
           </Box>

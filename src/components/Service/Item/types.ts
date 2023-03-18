@@ -3,4 +3,5 @@ export interface ItemTypes {
   title: JSX.Element;
   description: JSX.Element;
   viewBox: string;
+  last?: boolean;
 }

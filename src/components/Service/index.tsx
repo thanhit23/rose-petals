@@ -34,6 +34,7 @@ function Service() {
           description={<FormattedMessage {...messages.paymentDescription} />}
           icon={icons.payment}
           viewBox="0 0 42 43"
+          last
         />
       </Box>
     </Container>

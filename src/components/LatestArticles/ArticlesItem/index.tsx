@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import styles from './styles';
@@ -27,7 +27,7 @@ function ArticleItem() {
           </Box>
         </Box>
         <Box sx={styles.boxInformation}>
-          <Link href="#" sx={styles.linkDefault}>
+          <Link to="#" style={styles.linkDefault}>
             <Box component="h4" sx={styles.linkOffCoupon}>
               30% Off Coupon for Black Friday
             </Box>
@@ -35,7 +35,7 @@ function ArticleItem() {
           <Box component="p" sx={styles.boxDescription}>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit.…
           </Box>
-          <Link href="#" sx={styles.linkDefault}>
+          <Link to="#" style={styles.linkDefault}>
             <Box component="span" sx={styles.linkReadMore}>
               <FormattedMessage {...messages.readMore} />
               <ArrowForwardIcon sx={styles.iconReadMore} />

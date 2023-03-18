@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import styles from './styles';
@@ -29,7 +29,7 @@ function Event() {
                 <FormattedMessage {...messages.forMensTime} />
               </Box>
               <Divider sx={styles.divider} />
-              <Link href="#">
+              <Link to="#">
                 <Box component="span" sx={styles.linkShop}>
                   <FormattedMessage {...messages.btnShopNow} />
                 </Box>
@@ -57,7 +57,7 @@ function Event() {
                   <FormattedMessage {...messages.blackFridaySale} />
                 </Box>
               </Box>
-              <Link href="#" sx={styles.linkShopBlackFriday}>
+              <Link to="#" style={styles.linkShopBlackFriday}>
                 <Button variant="outlined" sx={styles.btnShopBlackFriday}>
                   <FormattedMessage {...messages.btnShopNow} />
                 </Button>
@@ -81,7 +81,7 @@ function Event() {
                 <FormattedMessage {...messages.forWomenSale} />
               </Box>
               <Divider sx={styles.divider} />
-              <Link href="#">
+              <Link to="#">
                 <Box component="span" sx={styles.linkShop}>
                   <FormattedMessage {...messages.btnShopNow} />
                 </Box>

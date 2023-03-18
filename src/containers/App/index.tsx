@@ -17,6 +17,11 @@ function App() {
         },
       },
     },
+    palette: {
+      primary: {
+        main: '#D23F57',
+      },
+    },
   });
 
   return (

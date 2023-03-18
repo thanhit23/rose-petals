@@ -5,7 +5,7 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Popper from '@mui/material/Popper';
 import ButtonBase from '@mui/material/ButtonBase';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 import { DropDownTypes } from './types';
@@ -78,7 +78,7 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
                 <Box>
                   {menuItem.map(({ title }: { title: string }, key: number) => (
                     <Box sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
-                      <Link href="#" sx={styles.linkMenuItem}>
+                      <Link to="#" style={styles.linkMenuItem}>
                         <Box component="span" sx={styles.boxItem}>
                           {title}
                         </Box>
