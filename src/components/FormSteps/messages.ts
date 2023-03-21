@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.BreadBarCartPage';
+export const scope = 'Components.FormSteps';
 
 export default defineMessages({
   cart: {

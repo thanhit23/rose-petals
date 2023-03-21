@@ -1,18 +1,17 @@
-import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import { HTMLAttributes } from 'react';
 
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Autocomplete from '@mui/material/Autocomplete';
-import MenuItem from '@mui/material/MenuItem';
-import Paper from '@mui/material/Paper';
+import FormControl from '@mui/material/FormControl';
+import Autocomplete, { AutocompleteRenderInputParams } from '@mui/material/Autocomplete';
 
 import styles from './styles';
+import messages from './messages';
+import { CountryType } from './types';
 
-function BillingInformation() {
-  const allCountry = [
+function AutocompleteCountry() {
+  const allCountry: readonly CountryType[] = [
     { label: 'Afghanistan', code: 'AF' },
     { label: 'Åland Islands', code: 'AX' },
     { label: 'Albania', code: 'AL' },
@@ -257,80 +256,45 @@ function BillingInformation() {
     { label: 'Zambia', code: 'ZM' },
     { label: 'Zimbabwe', code: 'ZW' },
   ];
-  const currencies = [
-    {
-      value: 'USD',
-      label: 'Chicago',
-    },
-    {
-      value: 'EUR',
-      label: 'New york',
-    },
-  ];
+
+  const urlFlag = 'https://flagcdn.com';
+
+  const renderOptions = (props: HTMLAttributes<HTMLLIElement>, { label, code }: CountryType) => (
+    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+      <img
+        loading="lazy"
+        width="20"
+        src={`${urlFlag}/w20/${code.toLowerCase()}.png`}
+        srcSet={`${urlFlag}/w40/${code.toLowerCase()}.png 2x`}
+        alt=""
+      />
+      {label} ({code})
+    </Box>
+  );
+
+  const renderInput = (params: AutocompleteRenderInputParams) => (
+    <TextField
+      {...params}
+      label={<FormattedMessage {...messages.labelCountry} />}
+      size="small"
+      sx={styles.textFieldCountry}
+    />
+  );
 
   return (
-    <Paper sx={styles.paperBilling}>
-      <Box sx={styles.boxWrapTotalPrice}>
-        <Box component="span" sx={styles.boxTotal}>
-          Total:
-        </Box>
-        <Box component="span" sx={styles.boxPrice}>
-          $460.00
-        </Box>
-      </Box>
-      <Divider sx={styles.divider} />
-      <Box sx={styles.boxTitleComment}>
-        <Box component="span" sx={styles.boxAdditionalComments}>
-          Additional Comments
-        </Box>
-        <Box component="span" sx={styles.boxNote}>
-          Note
-        </Box>
-      </Box>
-      <FormControl fullWidth sx={styles.formControlComment}>
-        <TextField multiline rows={6} variant="outlined" sx={styles.textFieldComment} />
-      </FormControl>
-      <Divider sx={styles.divider} />
-      <TextField
-        fullWidth
-        label="Voucher"
-        variant="outlined"
-        size="small"
-        placeholder="Voucher"
-        sx={styles.textFieldVoucher}
-      />
-      <Button variant="outlined" sx={styles.btnApplyVoucher}>
-        Apply Voucher
-      </Button>
-      <Divider sx={styles.divider} />
-      <Box component="span" sx={styles.boxShippingEstimates}>
-        Shipping Estimates
-      </Box>
+    <FormControl fullWidth sx={styles.formControl}>
       <Autocomplete
-        disablePortal
         fullWidth
         size="small"
+        defaultValue={{ label: 'United States', code: 'US' }}
         options={allCountry}
-        renderInput={params => <TextField {...params} label="Country" size="small" sx={styles.textFieldVoucher} />}
+        autoHighlight
+        getOptionLabel={({ label }) => label}
+        renderOption={(props, option) => renderOptions(props, option)}
+        renderInput={params => renderInput(params)}
       />
-      <TextField select fullWidth label="State" defaultValue="EUR" size="small" sx={styles.textFieldState}>
-        {currencies.map(option => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-      <TextField label="Zip Code" variant="outlined" fullWidth size="small" sx={styles.textFieldZipCode} />
-      <Button fullWidth size="medium" variant="outlined" sx={styles.btnCalculateShipping}>
-        Calculate Shipping
-      </Button>
-      <Link to="/checkout">
-        <Button fullWidth variant="contained" size="medium" sx={styles.btnCheckoutNow}>
-          Checkout Now
-        </Button>
-      </Link>
-    </Paper>
+    </FormControl>
   );
 }
 
-export default BillingInformation;
+export default AutocompleteCountry;

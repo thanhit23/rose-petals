@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.HomePage.NavBar';
+export const scope = 'Components.Home.NavBar';
 
 export default defineMessages({
   buttonCategories: {

@@ -1,3 +1,6 @@
+const fontFamily =
+  'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif';
+
 const paperBilling = {
   color: 'rgb(43, 52, 69)',
   boxShadow: 'rgba(3, 0, 71, 0.09) 0px 1px 3px',
@@ -72,12 +75,10 @@ const textFieldComment = {
 const textFieldVoucher = {
   '& > label': {
     fontSize: '14px',
-    lineHeight: '1.258rem',
-    fontFamily:
-      'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
+    fontFamily,
   },
   '& > div > input': {
-    height: '1.258rem',
+    fontSize: '14px',
   },
 };
 
@@ -87,8 +88,7 @@ const btnApplyVoucher = {
   minHeight: '0px',
   fontWeight: '600',
   textTransform: 'capitalize',
-  fontFamily:
-    '"Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+  fontFamily,
   marginTop: '16px',
   marginBottom: '32px',
   letterSpacing: 'inherit',
@@ -104,12 +104,10 @@ const boxShippingEstimates = {
 };
 
 const textFieldState = {
-  marginTop: '16px',
   '& > div > div': {
     padding: '7.07px 14px',
     fontSize: '14px',
-    fontFamily:
-      'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
+    fontFamily,
     letterSpacing: 'initial',
   },
 };
@@ -118,14 +116,11 @@ const textFieldZipCode = {
   marginTop: '16px',
   '& > label': {
     fontSize: '14px',
-    fontFamily:
-      'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
+    fontFamily,
   },
   '& > div > input': {
-    height: '1.258rem',
     fontSize: '14px',
-    fontFamily:
-      'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
+    fontFamily,
     letterSpacing: 'initial',
   },
 };
@@ -138,7 +133,7 @@ const btnCalculateShipping = {
   marginTop: '16px',
   marginBottom: '16px',
   letterSpacing: 'inherit',
-  fontFamily: 'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,sans-serif',
+  fontFamily,
 };
 
 const btnCheckoutNow = {
@@ -147,7 +142,7 @@ const btnCheckoutNow = {
   fontWeight: '600',
   textTransform: 'capitalize',
   letterSpacing: 'inherit',
-  fontFamily: 'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,sans-serif',
+  fontFamily,
 };
 
 export default {

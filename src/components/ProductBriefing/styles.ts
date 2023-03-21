@@ -1,3 +1,5 @@
+import { styles } from '../common';
+
 const boxImgItem = {
   display: 'flex',
   WebkitBoxPack: 'center',
@@ -177,8 +179,7 @@ const btnAddCart = {
   lineHeight: '1.75',
   padding: '6px 1.75rem',
   borderRadius: '4px',
-  fontFamily:
-    '"Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+  fontFamily: styles.fontFamilyDefault,
   '&:hover': {
     textDecoration: 'none',
     backgroundColor: 'rgb(227, 54, 78)',
