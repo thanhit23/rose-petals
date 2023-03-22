@@ -13,7 +13,7 @@ import MultipleOptionProduct from '../MultipleOptionProduct';
 import EventNotificationBanner from '../EventNotificationBanner';
 import LayoutMain from '../LayoutMain';
 
-export default function HomePage() {
+export default function Home() {
   return (
     <>
       <LayoutMain>
