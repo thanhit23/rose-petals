@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { Link } from 'react-router-dom';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import styles from './styles';
-import { FormattedMessage } from 'react-intl';
 import messages from '../messages';
 
 function ArticleItem() {

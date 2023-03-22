@@ -1,6 +1,7 @@
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import { FormattedMessage } from 'react-intl';
+
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 import Item from './Item';
 import icons from './icons';

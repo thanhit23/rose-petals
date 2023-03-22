@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
-import { FormattedMessage } from 'react-intl';
 
 import styles from './styles';
 import messages from './messages';

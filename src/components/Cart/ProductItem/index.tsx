@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
+
+import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import RemoveIcon from '@mui/icons-material/Remove';
 
-import { formatPrice } from '../../../helpers';
 import styles from './styles';
+import { formatPrice } from '../../../helpers';
 
 function ProductItem() {
   const [quantity, setQuantity] = useState(1);

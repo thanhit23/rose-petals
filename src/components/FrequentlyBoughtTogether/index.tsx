@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
-import { FormattedMessage } from 'react-intl';
 
 import styles from './styles';
 import messages from './messages';

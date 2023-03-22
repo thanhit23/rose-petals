@@ -1,10 +1,11 @@
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import { FormattedMessage } from 'react-intl';
 
-import ItemSell from './ItemSell';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+
 import styles from './styles';
+import ItemSell from './ItemSell';
 import messages from './messages';
 
 function BestSellingCategories() {

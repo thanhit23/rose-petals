@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { Slide } from 'react-slideshow-image';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
+import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Divider from '@mui/material/Divider';
+import AddIcon from '@mui/icons-material/Add';
+import ButtonBase from '@mui/material/ButtonBase';
 import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import { Slide } from 'react-slideshow-image';
-import Rating from '@mui/material/Rating';
-import { FormattedMessage } from 'react-intl';
-import ButtonBase from '@mui/material/ButtonBase';
-import Divider from '@mui/material/Divider';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import styles from './styles';
 import messages from './messages';
 import { DetailTypes } from './types';
-
 import 'react-slideshow-image/dist/styles.css';
 
 function QuickView({ openModal, handleCloseModal }: DetailTypes) {

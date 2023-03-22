@@ -1,10 +1,11 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
 
 import styles from './styles';
 

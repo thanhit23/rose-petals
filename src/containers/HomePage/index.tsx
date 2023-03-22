@@ -1,4 +1,5 @@
 import HomeComponent from '../../components/Home';
+
 function Home() {
   return <HomeComponent />;
 }

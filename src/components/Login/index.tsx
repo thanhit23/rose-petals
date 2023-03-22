@@ -1,5 +1,10 @@
 import React from 'react';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { FormattedMessage } from 'react-intl';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -8,14 +13,9 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { FormattedMessage } from 'react-intl';
 
 import ErrorMessage from '../ErrorMessage';
 import { SignInTypes, UserSubmitForm } from './types';
-
 import messages from './messages';
 import styles from './styles';
 

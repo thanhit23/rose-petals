@@ -1,9 +1,9 @@
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 import LayoutMain from '../LayoutMain';
-import BreadBarCartPage from '../FormSteps';
 import ProductItem from './ProductItem';
+import BreadBarCartPage from '../FormSteps';
 import BillingInformation from './BillingInformation';
 
 function CartPage() {

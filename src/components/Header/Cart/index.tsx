@@ -1,18 +1,19 @@
-import * as React from 'react';
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { FormattedMessage } from 'react-intl';
+import CloseIcon from '@mui/icons-material/Close';
 import ButtonBase from '@mui/material/ButtonBase';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
+import styles from './styles';
 import Product from './Product';
 import messages from './messages';
-import styles from './styles';
 
 export default function CartButton() {
   const [open, setOpen] = React.useState(false);

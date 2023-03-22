@@ -1,16 +1,17 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Chip from '@mui/material/Chip';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import DropDown from '../DropDown';
-import messages from './messages';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import Container from '@mui/material/Container';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+
 import styles from './styles';
+import messages from './messages';
+import DropDown from '../DropDown';
 
 function TopBar() {
   return (

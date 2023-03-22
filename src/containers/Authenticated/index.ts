@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import { useEffect } from 'react';
 
-import injectSaga from '../../utils/injectSaga';
 import saga from './saga';
+import injectSaga from '../../utils/injectSaga';
 import { sendRequestToken, redirectLogin } from './actions';
 
 interface Props {

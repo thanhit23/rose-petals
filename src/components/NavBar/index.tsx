@@ -1,14 +1,15 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import ButtonBase from '@mui/material/ButtonBase';
-import { FormattedMessage } from 'react-intl';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 
+import styles from './styles';
 import DropDown from './Dropdown';
 import messages from './messages';
-import styles from './styles';
 
 export const listMenuItems = [
   { title: 'All Categories' },

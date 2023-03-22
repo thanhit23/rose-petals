@@ -1,11 +1,12 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
-import { useForm } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { FormattedMessage } from 'react-intl';
+import TextField from '@mui/material/TextField';
 
 import styles from './styles';
 import messages from './messages';

@@ -2,16 +2,16 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
 
-import AutocompleteCountry from '../../AutocompleteCountry';
 import styles from './styles';
 import messages from './messages';
+import AutocompleteCountry from '../../AutocompleteCountry';
 
 function BillingInformation() {
   const currencies = [
