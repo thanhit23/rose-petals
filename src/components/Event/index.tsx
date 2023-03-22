@@ -1,10 +1,11 @@
-import Grid from '@mui/material/Grid';
+import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 
 import styles from './styles';
 import messages from './messages';

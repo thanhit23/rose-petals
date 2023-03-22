@@ -1,11 +1,12 @@
+import React, { useState } from 'react';
+
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Popper from '@mui/material/Popper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
-import Popper from '@mui/material/Popper';
-import React, { useState } from 'react';
 import ButtonBase from '@mui/material/ButtonBase';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 import { DropDownTypes } from './types';

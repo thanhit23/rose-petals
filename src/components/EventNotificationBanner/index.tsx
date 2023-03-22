@@ -1,6 +1,7 @@
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
-import { FormattedMessage } from 'react-intl';
 
 import styles from './styles';
 import messages from './messages';

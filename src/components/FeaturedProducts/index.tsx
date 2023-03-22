@@ -1,11 +1,12 @@
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import { FormattedMessage } from 'react-intl';
 
-import SlideProduct from '../SlideProduct';
-import ProductItem from '../ProductItem';
-import messages from './messages';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+
 import styles from './styles';
+import messages from './messages';
+import ProductItem from '../ProductItem';
+import SlideProduct from '../SlideProduct';
 
 function FeaturedProducts() {
   return (

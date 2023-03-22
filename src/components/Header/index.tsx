@@ -1,21 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import SearchIcon from '@mui/icons-material/Search';
 import { makeStyles } from '@material-ui/core/styles';
-
-import logo from '../../resources/images/logo.png';
-import UserButton from './UserButton';
-import CartButton from './Cart';
-import CategoryMenu from './CategoryMenu';
+import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 
 import styles from './styles';
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import CartButton from './Cart';
+import UserButton from './UserButton';
+import CategoryMenu from './CategoryMenu';
 import DropDown from '../NavBar/Dropdown';
 import { listMenuItems } from '../NavBar';
+import logo from '../../resources/images/logo.png';
 
 function Header() {
   const useOutlinedInputStyles = makeStyles(() => ({

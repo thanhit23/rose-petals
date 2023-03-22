@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+
+import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import ButtonBase from '@mui/material/ButtonBase';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 import styles from './styles';
 import messages from './messages';

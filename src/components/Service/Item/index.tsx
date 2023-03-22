@@ -1,8 +1,8 @@
-import SvgIcon from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
+import SvgIcon from '@mui/material/SvgIcon';
 
-import { ItemTypes } from './types';
 import styles from './styles';
+import { ItemTypes } from './types';
 
 function Item({ icon, title, description, viewBox, last = false }: ItemTypes) {
   return (

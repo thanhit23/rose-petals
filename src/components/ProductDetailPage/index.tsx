@@ -1,16 +1,17 @@
 import React from 'react';
-import Container from '@mui/material/Container';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Container from '@mui/material/Container';
+
+import Review from './Review';
 import TabPanel from './TabPanel';
 import LayoutMain from '../LayoutMain';
-import ProductBriefing from '../ProductBriefing';
 import Description from './Description';
-import Review from './Review';
-import FrequentlyBoughtTogether from '../FrequentlyBoughtTogether';
+import ProductBriefing from '../ProductBriefing';
 import AvailableAtShop from '../AvailableAtShop';
 import RelatedProducts from '../RelatedProducts';
+import FrequentlyBoughtTogether from '../FrequentlyBoughtTogether';
 
 import styles from './styles';
 

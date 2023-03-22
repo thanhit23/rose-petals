@@ -1,10 +1,11 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import Stack from '@mui/material/Stack';
 
+import styles from './style';
 import messages from './messages';
 import DropDown from '../../DropDown';
-import styles from './style';
 
 function CategoryMenu() {
   const listMenuItems = [

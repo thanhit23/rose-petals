@@ -1,6 +1,7 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import { FormattedMessage } from 'react-intl';
+
+import Box from '@mui/material/Box';
 
 import styles from './styles';
 import messages from '../messages';

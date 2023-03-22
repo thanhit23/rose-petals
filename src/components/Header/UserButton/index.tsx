@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
+
 import Paper from '@mui/material/Paper';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+
 import Login from '../../../containers/Login';
 import styles from './styles';
 
