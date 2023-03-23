@@ -1,11 +1,11 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.ProductDetailPage.Review';
+export const scope = 'Components.ProductReview';
 
 export default defineMessages({
   writeAReview: {
     id: `${scope}.writeAReview`,
-    defaultMessage: 'Write a Review for this product',
+    defaultMessage: 'Write a ProductReview for this product',
   },
   yourRating: {
     id: `${scope}.yourRating`,
@@ -13,7 +13,7 @@ export default defineMessages({
   },
   yourReview: {
     id: `${scope}.yourReview`,
-    defaultMessage: 'Your Review',
+    defaultMessage: 'Your ProductReview',
   },
   btnSubmit: {
     id: `${scope}.btnSubmit`,

@@ -10,10 +10,10 @@ import TextField from '@mui/material/TextField';
 
 import styles from './styles';
 import messages from './messages';
-import ErrorMessage from '../../ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
 import { ReviewSubmitForm, ReviewTypes } from './types';
 
-function Review({ onSubmit }: ReviewTypes) {
+function ProductReview({ onSubmit }: ReviewTypes) {
   const [value, setValue] = React.useState<number | null>(0);
 
   const {
@@ -157,4 +157,4 @@ function Review({ onSubmit }: ReviewTypes) {
   );
 }
 
-export default Review;
+export default ProductReview;

@@ -17,6 +17,6 @@ export default defineMessages({
   },
   review: {
     id: `${scope}.review`,
-    defaultMessage: '4. Review',
+    defaultMessage: '4. ProductReview',
   },
 });

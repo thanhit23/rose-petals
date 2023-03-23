@@ -10,7 +10,7 @@ import SlideProduct from '../SlideProduct';
 
 import 'react-slideshow-image/dist/styles.css';
 
-function BestSellingProduct() {
+function BestSellingProducts() {
   return (
     <Container maxWidth="lg" sx={styles.containerBestSell}>
       <Box component="h2" sx={styles.boxTitle}>
@@ -114,4 +114,4 @@ function BestSellingProduct() {
   );
 }
 
-export default BestSellingProduct;
+export default BestSellingProducts;

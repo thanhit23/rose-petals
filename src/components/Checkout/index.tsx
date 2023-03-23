@@ -15,7 +15,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 import LayoutMain from '../LayoutMain';
 import BreadBarCartPage from '../FormSteps';
-import BillingInformation from './BillingInformation';
+import PricingDetails from '../PricingDetails';
 import AutocompleteCountry from '../AutocompleteCountry';
 
 import styles from './styles';
@@ -122,8 +122,8 @@ function Checkout() {
               </Grid>
             </form>
           </Grid>
-          <Grid item xs={12} md={4} lg={4}>
-            <BillingInformation />
+          <Grid item xs={12} md={4} lg={4} sx={{ transition: 'all 250ms' }}>
+            <PricingDetails />
           </Grid>
         </Grid>
       </Container>

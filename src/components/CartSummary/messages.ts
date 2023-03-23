@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.Cart.BillingInformation';
+export const scope = 'Components.CartSummary';
 
 export default defineMessages({
   total: {

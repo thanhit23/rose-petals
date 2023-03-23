@@ -5,6 +5,7 @@ export const initialState = {
   loading: {
     showLoading: false,
   },
+  isShowLoginModal: false,
 };
 
 const appReducer = (state = initialState, action: { type: string }) =>

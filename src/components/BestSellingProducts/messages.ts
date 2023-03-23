@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.BestSellingProduct';
+export const scope = 'Components.BestSellingProducts';
 
 export default defineMessages({
   title: {

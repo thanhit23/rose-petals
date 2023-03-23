@@ -10,9 +10,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 import styles from './styles';
-import { formatPrice } from '../../../helpers';
+import { formatPrice } from '../../helpers';
 
-function ProductItem() {
+function CartProductListItem() {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
@@ -64,4 +64,4 @@ function ProductItem() {
   );
 }
 
-export default ProductItem;
+export default CartProductListItem;

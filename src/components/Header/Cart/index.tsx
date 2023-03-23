@@ -53,11 +53,11 @@ export default function CartButton() {
               <Product />
             </Box>
             <Box sx={{ padding: '20px' }}>
-              <Button href="/login" variant="contained" sx={styles.btnCheckoutNow}>
+              <Button href="/checkout" variant="contained" sx={styles.btnCheckoutNow}>
                 <FormattedMessage {...messages.btnCheckoutNow} />
               </Button>
-              <Button href="/login" variant="outlined" sx={styles.btnOutlined}>
-                <FormattedMessage {...messages.btnOutlined} />
+              <Button href="/cart" variant="outlined" sx={styles.btnOutlined}>
+                <FormattedMessage {...messages.btnViewCart} />
               </Button>
             </Box>
           </Box>

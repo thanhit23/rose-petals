@@ -4,9 +4,9 @@ import { FormattedMessage } from 'react-intl';
 import Box from '@mui/material/Box';
 
 import styles from './styles';
-import messages from '../messages';
+import messages from './messages';
 
-function Description() {
+function ProductDescription() {
   return (
     <Box>
       <Box component="h3" sx={styles.specification}>
@@ -20,4 +20,4 @@ function Description() {
   );
 }
 
-export default Description;
+export default ProductDescription;

@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.ProductDetailPage.FrequentlyBoughtTogether';
+export const scope = 'Components.ProductDetail.FrequentlyBoughtTogether';
 
 export default defineMessages({
   title: {

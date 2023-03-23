@@ -1,4 +1,4 @@
-import { styles } from '../../common';
+import { styles } from '../common';
 
 const paper = {
   color: 'rgb(43, 52, 69)',

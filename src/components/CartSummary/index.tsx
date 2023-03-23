@@ -11,9 +11,9 @@ import FormControl from '@mui/material/FormControl';
 
 import styles from './styles';
 import messages from './messages';
-import AutocompleteCountry from '../../AutocompleteCountry';
+import AutocompleteCountry from '../AutocompleteCountry';
 
-function BillingInformation() {
+function CartSummary() {
   const currencies = [
     {
       value: 'USD',
@@ -97,4 +97,4 @@ function BillingInformation() {
   );
 }
 
-export default BillingInformation;
+export default CartSummary;

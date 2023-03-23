@@ -1,6 +1,4 @@
-const containerProductDetail = {
-  margin: '32px auto',
-};
+import { styles } from '../common';
 
 const tab = {
   minHeight: '0',
@@ -13,12 +11,10 @@ const tabItem = {
   minHeight: '40px',
   fontWeight: '600',
   textTransform: 'capitalize',
-  fontFamily:
-    'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
+  fontFamily: styles.fontFamilyDefault,
 };
 
 export default {
-  containerProductDetail,
   tabItem,
   tab,
 };

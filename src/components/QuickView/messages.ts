@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.ProductItem.QuickView';
+export const scope = 'Components.CartProductListItem.QuickView';
 
 export default defineMessages({
   category: {

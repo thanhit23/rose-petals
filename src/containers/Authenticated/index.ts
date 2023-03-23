@@ -1,36 +1,29 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 
 import saga from './saga';
+import { States, Props } from './types';
 import injectSaga from '../../utils/injectSaga';
 import { sendRequestToken, redirectLogin } from './actions';
-
-interface Props {
-  auth: object;
-  children: JSX.Element;
-  onSendRequestToken: (token: string) => void;
-  notToken: () => void;
-}
-
-interface States {
-  global: { auth: object };
-}
 
 function Authenticated({ auth, children, onSendRequestToken, notToken }: Props) {
   const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    if (token) {
-      onSendRequestToken(token);
-    } else {
-      notToken();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (token) {
+  //     onSendRequestToken(token);
+  //   } else {
+  //     notToken();
+  //   }
+  // }, []);
+  console.log(onSendRequestToken);
+  console.log(notToken);
+  console.log(token);
+  console.log(auth);
 
-  if (token && auth) {
-    return children;
-  }
+  // if (token && auth) return children;
+  return children;
 }
 
 const mapStateToProps = (state: States) => {

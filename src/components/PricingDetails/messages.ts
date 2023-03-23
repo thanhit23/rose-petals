@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.Checkout.BillingInformation';
+export const scope = 'Components.PricingDetails';
 
 export default defineMessages({
   subtotal: {
