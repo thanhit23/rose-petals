@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import styles from './styles';
 import messages from './messages';
 
-function PricingDetails() {
+function PricingDetail() {
   return (
     <Paper sx={styles.paper}>
       <Box sx={styles.boxCalculate}>
@@ -54,4 +54,4 @@ function PricingDetails() {
   );
 }
 
-export default PricingDetails;
+export default PricingDetail;

@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.PricingDetails';
+export const scope = 'Components.PaymentSummary';
 
 export default defineMessages({
   subtotal: {
@@ -18,9 +18,5 @@ export default defineMessages({
   discount: {
     id: `${scope}.discount`,
     defaultMessage: 'Discount:',
-  },
-  btnApplyVoucher: {
-    id: `${scope}.button.ApplyVoucher`,
-    defaultMessage: 'Apply Voucher',
   },
 });
