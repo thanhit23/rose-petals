@@ -1,10 +1,10 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.ProductDetail.AvailableAtShop';
+export const scope = 'Components.BestSellingProducts';
 
 export default defineMessages({
   title: {
     id: `${scope}.title`,
-    defaultMessage: 'Also Available at',
+    defaultMessage: 'Best Selling Product',
   },
 });

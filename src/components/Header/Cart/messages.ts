@@ -11,8 +11,8 @@ export default defineMessages({
     id: `${scope}.button.checkoutNow`,
     defaultMessage: 'Checkout Now',
   },
-  btnOutlined: {
-    id: `${scope}.button.outlined`,
-    defaultMessage: 'Outlined',
+  btnViewCart: {
+    id: `${scope}.button.viewCart`,
+    defaultMessage: 'View Cart',
   },
 });
