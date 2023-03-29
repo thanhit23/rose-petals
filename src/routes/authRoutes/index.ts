@@ -1,10 +1,12 @@
-import HomePage from '../../containers/HomePage';
 import Cart from '../../containers/Cart';
-import Checkout from '../../containers/Checkout';
-import ProductDetail from '../../containers/ProductDetail';
-import Payment from '../../containers/Payment';
 import Order from '../../containers/Order';
-import OrderDetail from '../../containers/OrderDetail';
+import Profile from '../../containers/Profile';
+import Payment from '../../containers/Payment';
+import Checkout from '../../containers/Checkout';
+import HomePage from '../../containers/HomePage';
+import ProfileEdit from '../../containers/Profile/Edit';
+import OrderDetail from '../../containers/Order/Detail';
+import ProductDetail from '../../containers/ProductDetail';
 
 export default [
   { path: '/user', component: HomePage, exact: true, index: true },
@@ -14,4 +16,6 @@ export default [
   { path: '/payment', component: Payment, index: true },
   { path: '/order', component: Order, index: true },
   { path: '/order/:id', component: OrderDetail, index: true },
+  { path: '/profile', component: Profile, index: true },
+  { path: '/profile/:id', component: ProfileEdit, index: true },
 ];

@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 
 import styles from './styles';
 import messages from './messages';
+import MuiTextField from '../MuiTextField';
 import AutocompleteCountry from '../AutocompleteCountry';
 
 function CartSummary() {
@@ -48,14 +49,7 @@ function CartSummary() {
         <TextField multiline rows={6} variant="outlined" sx={styles.textFieldComment} />
       </FormControl>
       <Divider sx={styles.divider} />
-      <TextField
-        fullWidth
-        label={<FormattedMessage {...messages.labelVoucher} />}
-        variant="outlined"
-        size="small"
-        placeholder="Voucher"
-        sx={styles.textFieldVoucher}
-      />
+      <MuiTextField label={<FormattedMessage {...messages.labelVoucher} />} message={messages.labelVoucher} />
       <Button variant="outlined" sx={styles.btnApplyVoucher}>
         <FormattedMessage {...messages.btnApplyVoucher} />
       </Button>
@@ -78,11 +72,9 @@ function CartSummary() {
           </MenuItem>
         ))}
       </TextField>
-      <TextField
+      <MuiTextField
         label={<FormattedMessage {...messages.labelZipCode} />}
-        variant="outlined"
-        fullWidth
-        size="small"
+        message={messages.labelZipCode}
         sx={styles.textFieldZipCode}
       />
       <Button fullWidth size="medium" variant="outlined" sx={styles.btnCalculateShipping}>

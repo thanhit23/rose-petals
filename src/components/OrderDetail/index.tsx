@@ -6,12 +6,13 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import SvgIcon from '@mui/material/SvgIcon';
-import Typography from '@mui/material/Typography';
 import DoneIcon from '@mui/icons-material/Done';
+import Typography from '@mui/material/Typography';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 import styles from './styles';
 import messages from './messages';
+import HeaderHoldUser from '../HeaderHoldUser';
 import { container, shipping, delivery } from './icons';
 import OrderSummaryDetails from '../OrderSummaryDetails';
 
@@ -26,19 +27,11 @@ function OrderDetail() {
 
   return (
     <Grid item xs={12} lg={9}>
-      <Box sx={styles.containerTitle}>
-        <Box sx={styles.wrapperTitle}>
-          <Box sx={styles.boxTitle}>
-            <ShoppingBagIcon fontSize="medium" />
-            <Box component="h2" sx={styles.title}>
-              <FormattedMessage {...messages.title} />
-            </Box>
-          </Box>
-          <Button variant="contained" sx={styles.btnOrderAgain}>
-            <FormattedMessage {...messages.orderAgain} />
-          </Button>
-        </Box>
-      </Box>
+      <HeaderHoldUser
+        icon={<ShoppingBagIcon fontSize="medium" />}
+        title={<FormattedMessage {...messages.title} />}
+        button={<FormattedMessage {...messages.orderAgain} />}
+      />
       <Paper elevation={1} sx={styles.paperFormStep}>
         <Box sx={styles.boxFormStep}>
           <Box position="relative">
