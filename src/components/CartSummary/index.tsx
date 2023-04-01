@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 
 import styles from './styles';
 import messages from './messages';
-import MuiTextField from '../MuiTextField';
+import MuiTextField from '../TextField';
 import AutocompleteCountry from '../AutocompleteCountry';
 
 function CartSummary() {

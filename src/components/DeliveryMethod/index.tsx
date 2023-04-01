@@ -8,12 +8,11 @@ import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import styles from './styles';
 import messages from './messages';
-import MuiTextField from '../MuiTextField';
+import TextField from '../TextField';
 
 function DeliveryMethod() {
   const [selectedValue, setSelectedValue] = useState(1);
@@ -29,16 +28,16 @@ function DeliveryMethod() {
           <Box marginBottom="24px">
             <Gird container spacing={{ xs: 3 }}>
               <Gird item xs={12} sm={6}>
-                <MuiTextField label={<FormattedMessage {...messages.cardNumber} />} sx={styles.textField} />
+                <TextField label={<FormattedMessage {...messages.cardNumber} />} sx={styles.textField} />
               </Gird>
               <Gird item xs={12} sm={6}>
-                <MuiTextField label={<FormattedMessage {...messages.expDate} />} sx={styles.textField} />
+                <TextField label={<FormattedMessage {...messages.expDate} />} sx={styles.textField} />
               </Gird>
               <Gird item xs={12} sm={6}>
-                <MuiTextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
+                <TextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
               </Gird>
               <Gird item xs={12} sm={6}>
-                <MuiTextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
+                <TextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
               </Gird>
             </Gird>
           </Box>
@@ -58,13 +57,7 @@ function DeliveryMethod() {
           <form>
             <Box sx={styles.boxPayWithPaypal}>
               <Box sx={styles.boxTextFieldPaypalEmail}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  sx={styles.textField}
-                  label={<FormattedMessage {...messages.paypalEmail} />}
-                />
+                <TextField label={<FormattedMessage {...messages.paypalEmail} />} sx={styles.textField} />
               </Box>
               <Button variant="outlined" sx={{ ...styles.btnSubmit, marginBottom: 0 }}>
                 <FormattedMessage {...messages.btnSubmit} />
@@ -136,7 +129,7 @@ function DeliveryMethod() {
           </Link>
         </Gird>
         <Gird item xs={12} sm={6}>
-          <Link to="/checkout">
+          <Link to="/order">
             <Button variant="contained" sx={styles.btnReview}>
               <FormattedMessage {...messages.btnReview} />
             </Button>

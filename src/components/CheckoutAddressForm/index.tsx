@@ -101,9 +101,11 @@ function CheckoutAddressForm() {
           </Link>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Button variant="contained" sx={styles.btnProceedToPayment}>
-            <FormattedMessage {...messages.btnProceedToPayment} />
-          </Button>
+          <Link to="/payment">
+            <Button variant="contained" sx={styles.btnProceedToPayment}>
+              <FormattedMessage {...messages.btnProceedToPayment} />
+            </Button>
+          </Link>
         </Grid>
       </Grid>
     </form>
