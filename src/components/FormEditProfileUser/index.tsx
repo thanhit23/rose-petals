@@ -14,10 +14,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import styles from './styles';
 import messages from './messages';
-import MuiTextField from '../MuiTextField';
+import MuiTextField from '../TextField';
 import HeaderHoldUser from '../HeaderHoldUser';
 import { useForm } from 'react-hook-form';
 import { UserSubmitForm } from './types';
+import ErrorMessage from '../ErrorMessage';
 
 function FormEditProfileUser() {
   const {
@@ -35,8 +36,6 @@ function FormEditProfileUser() {
   });
 
   const { email, firstName, lastName, phoneNumber } = errors;
-
-  console.log(email, phoneNumber, lastName, firstName);
 
   const handleSubmitForm = (data: object) => {
     console.log(data);
@@ -69,6 +68,7 @@ function FormEditProfileUser() {
                   message={messages.labelFirstName}
                   validate={register('firstName')}
                 />
+                <ErrorMessage name={firstName} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiTextField
@@ -76,6 +76,7 @@ function FormEditProfileUser() {
                   message={messages.labelLastName}
                   validate={register('lastName')}
                 />
+                <ErrorMessage name={lastName} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiTextField
@@ -84,6 +85,7 @@ function FormEditProfileUser() {
                   message={messages.labelEmail}
                   validate={register('email')}
                 />
+                <ErrorMessage name={email} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiTextField
@@ -91,6 +93,7 @@ function FormEditProfileUser() {
                   message={messages.labelPhone}
                   validate={register('phoneNumber')}
                 />
+                <ErrorMessage name={phoneNumber} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
