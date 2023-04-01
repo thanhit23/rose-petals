@@ -22,7 +22,6 @@ import styles from './styles';
 export default function SignIn({ onSubmit }: SignInTypes) {
   const loginValidationSchema = Yup.object().shape({
     email: Yup.string().required().email(),
-
     password: Yup.string().required().min(6).max(40),
   });
   const {
