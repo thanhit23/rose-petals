@@ -11,6 +11,10 @@ export default defineMessages({
     id: `${scope}.expDate`,
     defaultMessage: 'Exp Date',
   },
+  placeholderExpDate: {
+    id: `${scope}.placeholderExpDate`,
+    defaultMessage: 'MM/DD',
+  },
   nameOnCard: {
     id: `${scope}.nameOnCard`,
     defaultMessage: 'Name On Card',

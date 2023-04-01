@@ -13,6 +13,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 import styles from './styles';
 import messages from './messages';
+import MuiTextField from '../MuiTextField';
 
 function DeliveryMethod() {
   const [selectedValue, setSelectedValue] = useState(1);
@@ -28,41 +29,16 @@ function DeliveryMethod() {
           <Box marginBottom="24px">
             <Gird container spacing={{ xs: 3 }}>
               <Gird item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  sx={styles.textField}
-                  label={<FormattedMessage {...messages.cardNumber} />}
-                />
+                <MuiTextField label={<FormattedMessage {...messages.cardNumber} />} sx={styles.textField} />
               </Gird>
               <Gird item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  placeholder="MM/DD"
-                  sx={styles.textField}
-                  label={<FormattedMessage {...messages.expDate} />}
-                />
+                <MuiTextField label={<FormattedMessage {...messages.expDate} />} sx={styles.textField} />
               </Gird>
               <Gird item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  sx={styles.textField}
-                  label={<FormattedMessage {...messages.nameOnCard} />}
-                />
+                <MuiTextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
               </Gird>
               <Gird item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  sx={styles.textField}
-                  label={<FormattedMessage {...messages.nameOnCard} />}
-                />
+                <MuiTextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
               </Gird>
             </Gird>
           </Box>

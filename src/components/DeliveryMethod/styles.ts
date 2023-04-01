@@ -3,12 +3,6 @@ import { styles } from '../common';
 const textField = {
   '& > label': {
     color: '#373F50',
-    letterSpacing: 'inherit',
-    fontSize: '14px',
-    fontFamily: styles.fontFamilyDefault,
-  },
-  '& > div > input': {
-    fontSize: '14px',
   },
 };
 

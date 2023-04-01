@@ -1,5 +1,4 @@
-const fontFamily =
-  'Open Sans,Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif';
+import { styles } from '../common';
 
 const paperBilling = {
   color: 'rgb(43, 52, 69)',
@@ -72,23 +71,13 @@ const textFieldComment = {
   },
 };
 
-const textFieldVoucher = {
-  '& > label': {
-    fontSize: '14px',
-    fontFamily,
-  },
-  '& > div > input': {
-    fontSize: '14px',
-  },
-};
-
 const btnApplyVoucher = {
   width: '100%',
   minWidth: '0px',
   minHeight: '0px',
   fontWeight: '600',
   textTransform: 'capitalize',
-  fontFamily,
+  fontFamily: styles.fontFamilyDefault,
   marginTop: '16px',
   marginBottom: '32px',
   letterSpacing: 'inherit',
@@ -107,22 +96,14 @@ const textFieldState = {
   '& > div > div': {
     padding: '7.07px 14px',
     fontSize: '14px',
-    fontFamily,
+    fontFamily: styles.fontFamilyDefault,
+
     letterSpacing: 'initial',
   },
 };
 
 const textFieldZipCode = {
   marginTop: '16px',
-  '& > label': {
-    fontSize: '14px',
-    fontFamily,
-  },
-  '& > div > input': {
-    fontSize: '14px',
-    fontFamily,
-    letterSpacing: 'initial',
-  },
 };
 
 const btnCalculateShipping = {
@@ -133,7 +114,7 @@ const btnCalculateShipping = {
   marginTop: '16px',
   marginBottom: '16px',
   letterSpacing: 'inherit',
-  fontFamily,
+  fontFamily: styles.fontFamilyDefault,
 };
 
 const btnCheckoutNow = {
@@ -142,7 +123,7 @@ const btnCheckoutNow = {
   fontWeight: '600',
   textTransform: 'capitalize',
   letterSpacing: 'inherit',
-  fontFamily,
+  fontFamily: styles.fontFamilyDefault,
 };
 
 export default {
@@ -151,7 +132,6 @@ export default {
   btnCalculateShipping,
   formControlComment,
   boxWrapTotalPrice,
-  textFieldVoucher,
   textFieldComment,
   textFieldZipCode,
   btnApplyVoucher,
