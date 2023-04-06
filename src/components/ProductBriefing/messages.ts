@@ -5,6 +5,6 @@ export const scope = 'Components.ProductBriefing';
 export default defineMessages({
   btnAddCart: {
     id: `${scope}.btnAddCart`,
-    defaultMessage: 'Add To Cart',
+    defaultMessage: 'Add To SideBarCart',
   },
 });

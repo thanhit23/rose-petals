@@ -4,7 +4,7 @@ import Header from '../Header';
 import TopBar from '../TopBar';
 import NavBar from '../NavBar';
 import Footer from '../Footer';
-
+import NavigateBar from '../NavigateBar';
 import { LayoutMainType } from './types';
 
 export default function LayoutMain({ children }: LayoutMainType) {
@@ -16,6 +16,7 @@ export default function LayoutMain({ children }: LayoutMainType) {
         <NavBar />
         {children}
       </div>
+      <NavigateBar />
       <Footer />
     </>
   );

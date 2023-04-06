@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 
 import styles from './styles';
-import CartButton from './Cart';
+import SideBarCart from '../SideBarCart';
 import UserButton from './UserButton';
 import CategoryMenu from './CategoryMenu';
 import DropDown from '../NavBar/Dropdown';
@@ -88,9 +88,22 @@ function Header() {
                 </FormControl>
               </Box>
             </Box>
-            <Box display="flex" gap="12px">
+            <Box display={{ xs: 'none', lg: 'flex' }} gap="12px">
               <UserButton />
-              <CartButton />
+              <SideBarCart />
+            </Box>
+            <Box sx={styles.headerMobile}>
+              <Box
+                sx={{
+                  display: {
+                    md: 'none',
+                  },
+                }}
+              >
+                <Link to="#">
+                  <img width="60" height="60" src={logo} alt="asdasdas" />
+                </Link>
+              </Box>
             </Box>
           </Container>
         </Box>
