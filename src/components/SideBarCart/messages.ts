@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.Header.Cart';
+export const scope = 'Components.Header.SideBarCart';
 
 export default defineMessages({
   itemTitle: {
@@ -13,6 +13,6 @@ export default defineMessages({
   },
   btnViewCart: {
     id: `${scope}.button.viewCart`,
-    defaultMessage: 'View Cart',
+    defaultMessage: 'View SideBarCart',
   },
 });

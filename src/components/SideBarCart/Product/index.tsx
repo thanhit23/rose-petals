@@ -12,9 +12,13 @@ import styles from './styles';
 function Product() {
   const [counter, setCounter] = React.useState(0);
 
-  const handleIncrement = () => setCounter(counter + 1);
+  const handleIncrement = () => {
+    if (counter < 10) setCounter(counter + 1);
+  };
 
-  const handleDecrement = () => setCounter(counter - 1);
+  const handleDecrement = () => {
+    if (counter > 0) setCounter(counter - 1);
+  };
 
   const handleClose = () => {
     console.log('asasd');

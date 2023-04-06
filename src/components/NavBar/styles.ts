@@ -4,7 +4,10 @@ const containerNavbar = {
 };
 
 const paper = {
-  display: 'flex',
+  display: {
+    xs: 'none',
+    lg: 'flex',
+  },
   height: '60px',
   alignItems: 'center',
   boxShadow: 'none',

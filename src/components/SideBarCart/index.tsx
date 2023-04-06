@@ -15,7 +15,7 @@ import styles from './styles';
 import Product from './Product';
 import messages from './messages';
 
-export default function CartButton() {
+export default function SideBarCart() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

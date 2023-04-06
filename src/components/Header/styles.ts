@@ -33,15 +33,35 @@ const containerHeader = {
 };
 
 const boxLogo = {
-  display: 'flex',
+  display: {
+    xs: 'none',
+    lg: 'flex',
+  },
   marginRight: '16px',
   minWidth: '170px',
   alignItems: 'center',
 };
 
 const boxWrapperFrom = {
-  display: 'flex',
+  display: {
+    xs: 'none',
+    lg: 'flex',
+  },
   flex: '1 1 0',
+};
+
+const headerMobile = {
+  display: {
+    xs: 'flex',
+    sm: 'flex',
+    md: 'flex',
+    lg: 'none',
+    xl: 'none',
+  },
+  justifyContent: 'space-between',
+  WebkitBoxAlign: 'center',
+  alignItems: 'center',
+  width: '100%',
 };
 
 const boxFromControl = {
@@ -98,6 +118,7 @@ export default {
   containerHeader,
   boxFromControl,
   boxWrapperFrom,
+  headerMobile,
   outlineInput,
   boxHeader,
   boxLogo,
