@@ -10,6 +10,9 @@ import AddAddress from '../../containers/Address/Add';
 import EditAddress from '../../containers/Address/Edit';
 import OrderDetail from '../../containers/Order/Detail';
 import ProductDetail from '../../containers/ProductDetail';
+import PaymentMethod from '../../containers/PaymentMethod';
+import PaymentMethodAdd from '../../containers/PaymentMethod/Add';
+import PaymentMethodEdit from '../../containers/PaymentMethod/Edit';
 
 export default [
   { path: '/user', component: HomePage, exact: true, index: true },
@@ -24,4 +27,7 @@ export default [
   { path: '/address', component: Address, index: true },
   { path: '/address/add', component: AddAddress, index: true },
   { path: '/address/:id', component: EditAddress, index: true },
+  { path: '/payment-methods', component: PaymentMethod, index: true },
+  { path: '/payment-method/:id', component: PaymentMethodEdit, index: true },
+  { path: '/payment-method/add', component: PaymentMethodAdd, index: true },
 ];

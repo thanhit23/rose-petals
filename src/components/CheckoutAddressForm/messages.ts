@@ -41,7 +41,7 @@ export default defineMessages({
   },
   btnBackToCart: {
     id: `${scope}.btnBackToCart`,
-    defaultMessage: 'Back to SideBarCart',
+    defaultMessage: 'Back to Cart',
   },
   btnProceedToPayment: {
     id: `${scope}.btnProceedToPayment`,

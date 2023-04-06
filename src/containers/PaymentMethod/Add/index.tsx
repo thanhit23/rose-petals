@@ -1,21 +1,16 @@
 import { FormattedMessage } from 'react-intl';
 
 import Grid from '@mui/material/Grid';
-import { Place } from '@mui/icons-material';
 import Container from '@mui/material/Container';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 
-import messages from './messages';
 import LayoutMain from '../../../components/LayoutMain';
 import SideBarUser from '../../../components/SideBarUser';
-import FormAddress from '../../../components/FormAddress';
 import HeaderHoldUser from '../../../components/HeaderHoldUser';
+import messages from './messages';
+import FormPaymentMethod from '../../../components/FormPaymentMethod';
 
-function AddressEdit() {
-  const defaultValue = {
-    name: 'Office',
-    addressLine: '497 Erdman Passage, New Zoietown',
-    phone: '(213) 840-9416',
-  };
+function PaymentMethodAdd() {
   return (
     <LayoutMain>
       <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
@@ -23,12 +18,12 @@ function AddressEdit() {
           <SideBarUser />
           <Grid item xs={12} lg={9}>
             <HeaderHoldUser
-              path="/address"
-              icon={<Place fontSize="medium" />}
-              title={<FormattedMessage {...messages.title} />}
-              button={<FormattedMessage {...messages.btnBackAddress} />}
+              path="/payment-methods"
+              icon={<CreditCardIcon fontSize="medium" />}
+              title={<FormattedMessage {...messages.addPayment} />}
+              button={<FormattedMessage {...messages.btnBackPayment} />}
             />
-            <FormAddress defaultValue={defaultValue} />
+            <FormPaymentMethod />
           </Grid>
         </Grid>
       </Container>
@@ -36,4 +31,4 @@ function AddressEdit() {
   );
 }
 
-export default AddressEdit;
+export default PaymentMethodAdd;

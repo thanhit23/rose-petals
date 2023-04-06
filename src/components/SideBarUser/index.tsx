@@ -26,83 +26,83 @@ function SideBarUser() {
     return styles.unActive;
   };
 
+  const barItemsTop = [
+    {
+      path: '/order',
+      icon: <ShoppingBagOutlinedIcon fontSize="small" />,
+      title: <FormattedMessage {...messages.orders} />,
+      quantity: 5,
+    },
+    {
+      path: '/wish-list',
+      icon: <FavoriteBorderIcon fontSize="small" />,
+      title: <FormattedMessage {...messages.wishlist} />,
+      quantity: 19,
+    },
+    {
+      path: '/support-tickers',
+      icon: (
+        <SvgIcon component="svg" viewBox="0 0 64 64" fontSize="small">
+          {supportTicked}
+        </SvgIcon>
+      ),
+      title: <FormattedMessage {...messages.supportTickers} />,
+      quantity: 1,
+    },
+  ];
+
+  const barItemsBottom = [
+    {
+      path: '/profile',
+      icon: <PersonIcon fontSize="small" />,
+      title: <FormattedMessage {...messages.ProfileInfo} />,
+      quantity: 3,
+    },
+    {
+      path: '/address',
+      icon: <PlaceIcon fontSize="small" />,
+      title: <FormattedMessage {...messages.addresses} />,
+      quantity: 16,
+    },
+    {
+      path: '/payment-methods',
+      icon: <CreditCardIcon fontSize="small" />,
+      title: <FormattedMessage {...messages.paymentMethods} />,
+      quantity: 1,
+    },
+  ];
+
   return (
     <Grid item xs={12} lg={3}>
       <Paper sx={styles.paperContainer}>
         <Typography sx={styles.typographyTitle}>
           <FormattedMessage {...messages.dashboard} />
         </Typography>
-        <Link to="/order">
-          <Box sx={{ ...styles.boxItem, ...activeItem('/order') }}>
-            <Box sx={styles.boxTitle}>
-              <ShoppingBagOutlinedIcon fontSize="small" />
-              <Box component="span">
-                <FormattedMessage {...messages.orders} />
+        {barItemsTop.map(({ path, icon, title, quantity }, i) => (
+          <Link key={i} to={path}>
+            <Box sx={{ ...styles.boxItem, ...activeItem(path) }}>
+              <Box sx={styles.boxTitle}>
+                {icon}
+                <Box component="span">{title}</Box>
               </Box>
+              <Box component="span">{quantity}</Box>
             </Box>
-            <Box component="span">5</Box>
-          </Box>
-        </Link>
-        <Link to="/wish-list">
-          <Box sx={{ ...styles.boxItem, ...activeItem('/wish-list') }}>
-            <Box sx={styles.boxTitle}>
-              <FavoriteBorderIcon fontSize="small" />
-              <Box component="span">
-                <FormattedMessage {...messages.wishlist} />
-              </Box>
-            </Box>
-            <Box component="span">19</Box>
-          </Box>
-        </Link>
-        <Link to="/support-tickers">
-          <Box sx={{ ...styles.boxItem, ...activeItem('/support-tickers') }}>
-            <Box sx={styles.boxTitle}>
-              <SvgIcon component="svg" viewBox="0 0 64 64" fontSize="small">
-                {supportTicked}
-              </SvgIcon>
-              <Box component="span">
-                <FormattedMessage {...messages.supportTickers} />
-              </Box>
-            </Box>
-            <Box component="span">1</Box>
-          </Box>
-        </Link>
+          </Link>
+        ))}
         <Typography sx={styles.typographyTitle}>
           <FormattedMessage {...messages.accountSetting} />
         </Typography>
-        <Link to="/profile">
-          <Box sx={{ ...styles.boxItem, ...activeItem('/profile') }}>
-            <Box sx={styles.boxTitle}>
-              <PersonIcon fontSize="small" />
-              <Box component="span">
-                <FormattedMessage {...messages.ProfileInfo} />
+        {barItemsBottom.map(({ path, icon, title, quantity }, i) => (
+          <Link key={i} to={path}>
+            <Box sx={{ ...styles.boxItem, ...activeItem(path) }}>
+              <Box sx={styles.boxTitle}>
+                {icon}
+                <Box component="span">{title}</Box>
               </Box>
+              <Box component="span">{quantity}</Box>
             </Box>
-            <Box component="span">3</Box>
-          </Box>
-        </Link>
-        <Link to="/address">
-          <Box sx={{ ...styles.boxItem, ...activeItem('/address') }}>
-            <Box sx={styles.boxTitle}>
-              <PlaceIcon fontSize="small" />
-              <Box component="span">
-                <FormattedMessage {...messages.addresses} />
-              </Box>
-            </Box>
-            <Box component="span">16</Box>
-          </Box>
-        </Link>
-        <Link to="/payment-method">
-          <Box sx={{ ...styles.boxItem, ...activeItem('/payment-method') }}>
-            <Box sx={styles.boxTitle}>
-              <CreditCardIcon fontSize="small" />
-              <Box component="span">
-                <FormattedMessage {...messages.paymentMethods} />
-              </Box>
-            </Box>
-            <Box component="span">1</Box>
-          </Box>
-        </Link>
+          </Link>
+        ))}
       </Paper>
     </Grid>
   );

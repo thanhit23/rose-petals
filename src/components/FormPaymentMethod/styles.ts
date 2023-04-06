@@ -9,7 +9,7 @@ const paperForm = {
   padding: '1.5rem 1.75rem',
 };
 
-const btnSaveChanges = {
+const btnSaveChange = {
   fontFamily: styles.fontFamilyDefault,
   letterSpacing: 'inherit',
   boxShadow: '0px 4px 16px rgba(43, 52, 69, 0.1)',
@@ -17,6 +17,10 @@ const btnSaveChanges = {
   minHeight: '0',
   fontWeight: '600',
   textTransform: 'capitalize',
+  '&:hover': {
+    backgroundColor: 'rgb(227, 54, 78)',
+    boxShadow: 'rgba(3, 0, 71, 0.01) 0px 0px 28px',
+  },
 };
 
 const labelError = {
@@ -26,7 +30,7 @@ const labelError = {
 };
 
 export default {
-  btnSaveChanges,
+  btnSaveChange,
   labelError,
   paperForm,
 };

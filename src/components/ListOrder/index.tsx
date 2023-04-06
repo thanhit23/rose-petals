@@ -1,12 +1,13 @@
+import { FormattedMessage } from 'react-intl';
+
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 import styles from './styles';
-import ItemOrder from '../ItemOrder';
-import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import ItemOrder from '../ItemOrder';
 
 function ListOrder() {
   return (

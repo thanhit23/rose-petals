@@ -5,7 +5,7 @@ export const scope = 'Components.ProductReview';
 export default defineMessages({
   writeAReview: {
     id: `${scope}.writeAReview`,
-    defaultMessage: 'Write a ProductReview for this product',
+    defaultMessage: 'Write a review for this product',
   },
   yourRating: {
     id: `${scope}.yourRating`,
@@ -13,7 +13,7 @@ export default defineMessages({
   },
   yourReview: {
     id: `${scope}.yourReview`,
-    defaultMessage: 'Your ProductReview',
+    defaultMessage: 'Your Review',
   },
   btnSubmit: {
     id: `${scope}.btnSubmit`,

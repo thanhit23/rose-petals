@@ -13,6 +13,6 @@ export default defineMessages({
   },
   btnViewCart: {
     id: `${scope}.button.viewCart`,
-    defaultMessage: 'View SideBarCart',
+    defaultMessage: 'View Cart',
   },
 });
