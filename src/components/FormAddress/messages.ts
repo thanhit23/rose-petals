@@ -1,11 +1,11 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.AddressAdd';
+export const scope = 'Components.FormAddress';
 
 export default defineMessages({
   title: {
     id: `${scope}.title`,
-    defaultMessage: 'Edit Address',
+    defaultMessage: 'Add Address',
   },
   btnBackAddress: {
     id: `${scope}.button.backAddress`,
