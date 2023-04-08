@@ -1,8 +1,8 @@
+import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Pagination from '@mui/material/Pagination';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 import styles from './styles';
@@ -48,9 +48,6 @@ function ListOrder() {
       <ItemOrder />
       <ItemOrder />
       <ItemOrder />
-      <Box sx={styles.boxPagination}>
-        <Pagination count={5} variant="outlined" color="primary" />
-      </Box>
     </>
   );
 }

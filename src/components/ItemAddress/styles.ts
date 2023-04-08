@@ -55,18 +55,8 @@ const actions = {
   flex: '1 1 0px',
 };
 
-const boxPagination = {
-  display: 'flex',
-  marginTop: '40px',
-  justifyContent: 'center',
-  '& > nav > ul > li > button': {
-    fontFamily: styles.fontFamilyDefault,
-  },
-};
-
 export default {
   paperItemAddress,
-  boxPagination,
   addressDetail,
   phoneNumber,
   address,

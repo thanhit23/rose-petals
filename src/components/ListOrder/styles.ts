@@ -60,20 +60,10 @@ const headerItemLast = {
   margin: 0,
 };
 
-const boxPagination = {
-  display: 'flex',
-  marginTop: '40px',
-  justifyContent: 'center',
-  '& > nav > ul > li > button': {
-    fontFamily: styles.fontFamilyDefault,
-  },
-};
-
 export default {
   paperHeaderList,
   headerItemLast,
   containerTitle,
-  boxPagination,
   wrapperTitle,
   headerItem,
   boxTitle,
