@@ -10,9 +10,11 @@ import AddAddress from '../../containers/Address/Add';
 import EditAddress from '../../containers/Address/Edit';
 import OrderDetail from '../../containers/Order/Detail';
 import ProductDetail from '../../containers/ProductDetail';
+import SupportTicket from '../../containers/SupportTicket';
 import PaymentMethod from '../../containers/PaymentMethod';
 import PaymentMethodAdd from '../../containers/PaymentMethod/Add';
 import PaymentMethodEdit from '../../containers/PaymentMethod/Edit';
+import DetailSupportTicket from '../../containers/SupportTicket/Detail';
 
 export default [
   { path: '/user', component: HomePage, exact: true, index: true },
@@ -30,4 +32,6 @@ export default [
   { path: '/payment-methods', component: PaymentMethod, index: true },
   { path: '/payment-method/:id', component: PaymentMethodEdit, index: true },
   { path: '/payment-method/add', component: PaymentMethodAdd, index: true },
+  { path: '/support-tickets', component: SupportTicket, index: true },
+  { path: '/support-ticket/:id', component: DetailSupportTicket, index: true },
 ];

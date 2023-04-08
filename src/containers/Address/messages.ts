@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.ListAddress';
+export const scope = 'Containers.Address';
 
 export default defineMessages({
   title: {

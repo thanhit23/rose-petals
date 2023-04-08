@@ -1,9 +1,16 @@
+import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import { Place } from '@mui/icons-material';
 
+import messages from './messages';
 import LayoutMain from '../../components/LayoutMain';
+import Pagination from '../../components/Pagination';
 import SideBarUser from '../../components/SideBarUser';
-import ListAddress from '../../components/ListAddress';
+import ItemAddress from '../../components/ItemAddress';
+import HeaderHoldUser from '../../components/HeaderHoldUser';
 
 function Address() {
   const listAddress = [
@@ -39,12 +46,25 @@ function Address() {
     },
   ];
 
+  const handleChangePage = (value: number) => {
+    console.log(value);
+  };
+
   return (
     <LayoutMain>
       <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
         <Grid container spacing={{ xs: 3 }}>
           <SideBarUser />
-          <ListAddress listAddress={listAddress} />
+          <Grid item xs={12} lg={9}>
+            <HeaderHoldUser
+              path="/address/add"
+              icon={<Place fontSize="medium" />}
+              title={<FormattedMessage {...messages.title} />}
+              button={<FormattedMessage {...messages.btnAddAddress} />}
+            />
+            <ItemAddress listAddress={listAddress} />
+            <Pagination count={5} onChange={handleChangePage} />
+          </Grid>
         </Grid>
       </Container>
     </LayoutMain>

@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.ListPaymentMethod';
+export const scope = 'Containers.ListPaymentMethod';
 
 export default defineMessages({
   paymentMethods: {

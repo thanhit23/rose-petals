@@ -16,11 +16,15 @@ function HeaderHoldUser({ icon, title, button, path = '/' }: HeaderHoldUserType)
             {title}
           </Box>
         </Box>
-        <Link to={path}>
-          <Button variant="contained" sx={styles.btnOrderAgain}>
-            {button}
-          </Button>
-        </Link>
+        {button ? (
+          <Link to={path}>
+            <Button variant="contained" sx={styles.btnOrderAgain}>
+              {button}
+            </Button>
+          </Link>
+        ) : (
+          ''
+        )}
       </Box>
     </Box>
   );

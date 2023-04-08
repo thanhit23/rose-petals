@@ -40,13 +40,13 @@ function SideBarUser() {
       quantity: 19,
     },
     {
-      path: '/support-tickers',
+      path: '/support-tickets',
       icon: (
         <SvgIcon component="svg" viewBox="0 0 64 64" fontSize="small">
           {supportTicked}
         </SvgIcon>
       ),
-      title: <FormattedMessage {...messages.supportTickers} />,
+      title: <FormattedMessage {...messages.supportTickets} />,
       quantity: 1,
     },
   ];
