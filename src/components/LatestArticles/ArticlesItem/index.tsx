@@ -8,35 +8,32 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import styles from './styles';
 import messages from '../messages';
+import { ArticleItemProps } from '../types';
 
-function ArticleItem() {
+function ArticleItem({ article: { title, image, description, date, path } }: ArticleItemProps) {
   return (
     <Grid item xs={4}>
       <Paper sx={styles.paper}>
         <Box sx={styles.paperBoxImg}>
           <Box overflow="hidden" width="100%">
-            <Box
-              component="img"
-              src="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fblogs%2Fblog-1.jpg&w=3840&q=75"
-              sx={styles.boxImg}
-            />
+            <Box component="img" src={image} sx={styles.boxImg} />
           </Box>
           <Box sx={styles.boxTime}>
             <Box component="p" sx={styles.boxComponentTime}>
-              21 SEP
+              {date}
             </Box>
           </Box>
         </Box>
         <Box sx={styles.boxInformation}>
           <Link to="#" style={styles.linkDefault}>
             <Box component="h4" sx={styles.linkOffCoupon}>
-              30% Off Coupon for Black Friday
+              {title}
             </Box>
           </Link>
           <Box component="p" sx={styles.boxDescription}>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit.…
+            {description}
           </Box>
-          <Link to="#" style={styles.linkDefault}>
+          <Link to={path} style={styles.linkDefault}>
             <Box component="span" sx={styles.linkReadMore}>
               <FormattedMessage {...messages.readMore} />
               <ArrowForwardIcon sx={styles.iconReadMore} />
