@@ -76,9 +76,9 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <Box>
-                  {menuItem.map(({ title }: { title: string }, key: number) => (
+                  {menuItem.map(({ title, path }: { title: string; path: string }, key: number) => (
                     <Box sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
-                      <Link to="#" style={styles.linkMenuItem}>
+                      <Link to={path} style={styles.linkMenuItem}>
                         <Box component="span" sx={styles.boxItem}>
                           {title}
                         </Box>

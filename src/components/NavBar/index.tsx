@@ -12,14 +12,14 @@ import DropDown from './Dropdown';
 import messages from './messages';
 
 export const listMenuItems = [
-  { title: 'All Categories' },
-  { title: 'Car' },
-  { title: 'Clothes' },
-  { title: 'Electronics' },
-  { title: 'Laptop' },
-  { title: 'Desktop' },
-  { title: 'Camera' },
-  { title: 'Toys' },
+  { title: 'All Categories', path: '/product/search/all' },
+  { title: 'Car', path: '/product/search/cart' },
+  { title: 'Clothes', path: '/product/search/clothes' },
+  { title: 'Electronics', path: '/product/search/electronics' },
+  { title: 'Laptop', path: '/product/search/laptop' },
+  { title: 'Desktop', path: '/product/search/desktop' },
+  { title: 'Camera', path: '/product/search/camera' },
+  { title: 'Toys', path: '/product/search/toys' },
 ];
 
 function NavBar() {
