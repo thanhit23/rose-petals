@@ -1,85 +1,80 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
-import ButtonBase from '@mui/material/ButtonBase';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import IconButton from '@mui/material/IconButton';
+import { RemoveRedEye, FavoriteBorder, Add, Remove } from '@mui/icons-material';
 
 import styles from './styles';
-import messages from './messages';
-import QuickView from '../QuickView';
-import { ItemSellTypes } from './types';
+import { Props } from './types';
 
-function ProductItem({ thumbnail, category, name, slug, price, review, star, widthHeightImg = null }: ItemSellTypes) {
-  const [loved, setLoved] = useState(false);
-  const [ModalProductDetail, setModalProductDetail] = useState(false);
+function ProductItem({ product }: Props) {
+  const [quantity, setQuantity] = useState(0);
+  console.log(product);
+  const handleReduce = () => {
+    if (quantity === 0) return;
+    setQuantity(quantity - 1);
+  };
 
-  const openModalProduct = () => setModalProductDetail(true);
-  const handleCloseModal = () => setModalProductDetail(false);
+  const handleIncrease = () => {
+    if (quantity === 10) return;
+    setQuantity(quantity + 1);
+  };
 
   return (
-    <Box position="unset">
-      <Box width="calc(100% - 1.125rem)" margin="auto">
-        <Box sx={styles.boxWrapperProduct}>
-          <Link to={`/product/${slug}`}>
+    <Grid item xs={12} sm={6} lg={4}>
+      <Paper sx={styles.paperProduct}>
+        <Box sx={styles.boxImage}>
+          <Box className="hover-box" sx={styles.hoverBox}>
+            <IconButton aria-label="delete">
+              <RemoveRedEye fontSize="small" sx={styles.colorIcon} />
+            </IconButton>
+            <IconButton aria-label="delete">
+              <FavoriteBorder fontSize="small" sx={styles.colorIcon} />
+            </IconButton>
+          </Box>
+          <Link to="/">
             <Box
-              sx={() => {
-                if (widthHeightImg) {
-                  return { ...styles.boxComponentImg, height: widthHeightImg };
-                }
-                return styles.boxWrapperItem;
-              }}
-            >
-              <Box>
-                <Box
-                  className="img-product"
-                  component="img"
-                  sx={() => {
-                    if (widthHeightImg) {
-                      return { ...styles.boxComponentImg, width: widthHeightImg, height: widthHeightImg };
-                    }
-                    return styles.boxComponentImg;
-                  }}
-                  alt=""
-                  src={thumbnail}
-                />
+              component="img"
+              width="100%"
+              src="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FAccessories%2F7.PoliceGrayEyeglasses.png&w=3840&q=75"
+            />
+          </Link>
+        </Box>
+        <Box p="1rem">
+          <Box display="flex">
+            <Box sx={styles.wrapContentProduct}>
+              <Link to="/">
+                <Box className="title" component="h3" sx={styles.boxTitle}>
+                  Police Gray Eyeglasses
+                </Box>
+              </Link>
+              <Rating name="read-only" value={4} readOnly sx={{ fontSize: '1.25rem' }} />
+              <Box sx={styles.boxPrice}>
+                <Box fontWeight={600} color="#D23F57">
+                  $187.00
+                </Box>
               </Box>
             </Box>
-          </Link>
-          <ButtonBase className="product-actions" sx={styles.btnAddCart}>
-            <AddShoppingCartIcon sx={styles.icon} />
-          </ButtonBase>
-          <ButtonBase className="product-actions" sx={styles.btnFavorite} onClick={() => setLoved(!loved)}>
-            {!loved ? <FavoriteBorderIcon sx={styles.icon} /> : <FavoriteIcon sx={styles.iconFavorite} />}
-          </ButtonBase>
-          <ButtonBase className="product-view-action" sx={styles.btnQuickView} onClick={openModalProduct}>
-            <FormattedMessage {...messages.btnQuickView} />
-          </ButtonBase>
-          <QuickView openModal={ModalProductDetail} handleCloseModal={handleCloseModal} />
-        </Box>
-        <Box padding="8px" textAlign="center">
-          <Box component="small" sx={styles.boxCategory}>
-            {category}
-          </Box>
-          <Box component="p" sx={styles.boxProductName}>
-            {name}
-          </Box>
-          <Box component="h4" sx={styles.boxPrice}>
-            ${price}
-          </Box>
-          <Box sx={styles.boxWrapperRatingReview}>
-            <Rating name="read-only" value={star} readOnly sx={styles.rating} />
-            <Box component="small" sx={styles.review}>
-              ({review} <FormattedMessage {...messages.review} />)
+            <Box sx={styles.boxAddCart}>
+              <Button variant="outlined" sx={styles.btnIcon} onClick={handleIncrease}>
+                <Add fontSize="small" />
+              </Button>
+              <Box fontWeight={600} color="#2b3445">
+                {quantity}
+              </Box>
+              <Button variant="outlined" sx={styles.btnIcon} onClick={handleReduce}>
+                <Remove fontSize="small" />
+              </Button>
             </Box>
           </Box>
         </Box>
-      </Box>
-    </Box>
+      </Paper>
+    </Grid>
   );
 }
 

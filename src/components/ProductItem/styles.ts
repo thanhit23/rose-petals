@@ -1,151 +1,101 @@
-const boxWrapperProduct = {
-  maxHeight: '300px',
-  cursor: 'pointer',
-  overflow: 'hidden',
-  position: 'relative',
-  backgroundColor: '#E3E9EF',
-  '&:hover > .product-view-action': {
+const paperProduct = {
+  '&:hover > div > .hover-box': {
     opacity: 1,
-  },
-  '&:hover > .product-actions': {
-    right: '10px',
-  },
-  '&:hover > a > div > div > .img-product': {
-    transform: 'scale(1.12)',
+    right: '15px',
   },
 };
 
-const boxWrapperItem = {
+const boxImage = {
+  textAlign: 'center',
   position: 'relative',
+  display: 'inline-block',
+};
+
+const boxQuantityPaginationProduct = {
+  marginTop: '32px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  '> span': {
+    lineHeight: '1.5',
+    color: '#7D879C',
+    textTransform: 'none',
+    whiteSpace: 'normal',
+  },
+  '> div': {
+    marginTop: 0,
+  },
+};
+
+const hoverBox = {
+  zIndex: '2',
+  top: '7px',
+  opacity: '0',
+  right: '0',
+  display: 'flex',
   cursor: 'pointer',
-  overflow: 'hidden',
-  borderRadius: '4px',
-  height: '290px',
-};
-
-const boxComponentImg = {
-  width: '290px',
-  height: '290px',
-  transition: 'all 0.3s',
-  objectFit: 'cover',
-};
-
-const btnQuickView = {
-  fontSize: '0.9375rem',
-  lineHeight: 1.75,
-  minWidth: 0,
-  minHeight: 0,
-  fontWeight: 600,
-  textTransform: 'capitalize',
-  color: '#fff',
-  backgroundColor: '#222',
-  boxShadow: '0px 4px 16px rgb(43 52 69 / 10%)',
-  width: '100%',
-  padding: '0.6rem 2.5rem',
-  left: 0,
-  bottom: 0,
-  opacity: 0,
-  borderRadius: 0,
   position: 'absolute',
-  transition: 'all 0.3s',
+  flexDirection: 'column',
+  transition: 'all 0.3s ease-in-out',
 };
 
-const btnAddCart = {
-  top: '10px',
-  right: '-40px',
-  position: 'absolute',
-  transition: 'right 0.3s .1s',
-  padding: '8px',
-  borderRadius: '50%',
-  '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+const colorIcon = { color: '#00000042' };
+
+const wrapContentProduct = {
+  flex: '1 1 0',
+  minWidth: '0px',
+  marginRight: '8px',
+  '& .title': {
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
 };
 
-const btnFavorite = {
-  top: '45px',
-  right: '-40px',
-  position: 'absolute',
-  transition: 'right 0.3s .2s',
-  padding: '8px',
-  borderRadius: '50%',
-  '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
-  },
-};
-
-const icon = {
-  fontSize: '1.25rem',
-  color: 'rgba(0, 0, 0, 0.26)',
-};
-
-const iconFavorite = {
-  fontSize: '1.25rem',
-  color: '#d23f57',
-};
-
-const boxCategory = {
-  fontSize: ' 12px',
-  lineHeight: 1.5,
-  color: '#AEB4BE',
-  textTransform: 'none',
-  whiteSpace: 'normal',
-};
-
-const boxProductName = {
-  textTransform: 'none',
-  whiteSpace: 'normal',
-  marginBottom: 0,
-  marginTop: 0,
+const boxTitle = {
+  marginBottom: '8px',
+  marginTop: '0px',
   fontSize: '14px',
-  fontWeight: 700,
+  fontWeight: '600',
+  lineHeight: '1.5',
+  color: '#373F50',
+  textTransform: 'none',
 };
 
 const boxPrice = {
-  lineHeight: 1.5,
-  textTransform: 'none',
-  whiteSpace: 'normal',
-  marginBottom: 0,
-  marginTop: 0,
-  fontSize: '17px',
-  fontWeight: 700,
-  paddingTop: '4px',
-  paddingBottom: '4px',
-};
-
-const boxWrapperRatingReview = {
   display: 'flex',
-  justifyContent: 'center',
   alignItems: 'center',
   gap: '8px',
+  marginTop: '4px',
 };
 
-const rating = {
-  fontSize: '16px',
+const boxAddCart = {
+  display: 'flex',
+  width: '30px',
+  WebkitBoxAlign: 'center',
+  alignItems: 'center',
+  flexDirection: 'column-reverse',
+  WebkitBoxPack: 'justify',
+  justifyContent: 'space-between',
 };
 
-const review = {
-  fontSize: '12px',
-  lineHeight: 1.5,
-  fontWeight: 600,
-  color: '#AEB4BE',
-  textTransform: 'none',
-  whiteSpace: 'normal',
+const btnIcon = {
+  minWidth: '0',
+  minHeight: '0',
+  fontWeight: '600',
+  textTransform: 'capitalize',
+  padding: '3px',
 };
 
 export default {
-  boxWrapperRatingReview,
-  boxWrapperProduct,
-  boxComponentImg,
-  boxProductName,
-  boxWrapperItem,
-  btnQuickView,
-  iconFavorite,
-  boxCategory,
-  btnFavorite,
-  btnAddCart,
+  boxQuantityPaginationProduct,
+  wrapContentProduct,
+  paperProduct,
+  boxAddCart,
+  colorIcon,
+  hoverBox,
+  boxImage,
+  boxTitle,
   boxPrice,
-  rating,
-  review,
-  icon,
+  btnIcon,
 };

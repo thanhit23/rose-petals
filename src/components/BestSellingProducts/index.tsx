@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 
 import styles from './styles';
 import messages from './messages';
-import ProductItem from '../ProductItem';
+import ProductItem from '../ProductItemQuickView';
 import SlideProduct from '../SlideProduct';
 
 import 'react-slideshow-image/dist/styles.css';

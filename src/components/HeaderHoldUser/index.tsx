@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import styles from './styles';
 import { HeaderHoldUserType } from './types';
 
-function HeaderHoldUser({ icon, title, button, path = '/' }: HeaderHoldUserType) {
+function HeaderHoldUser({ icon, title, button, path = '#' }: HeaderHoldUserType) {
   return (
     <Box sx={styles.containerTitle}>
       <Box sx={styles.wrapperTitle}>
