@@ -20,11 +20,7 @@ function SupportTicket() {
         <Grid container spacing={{ xs: 3 }}>
           <SideBarUser />
           <Grid item xs={12} lg={9}>
-            <HeaderHoldUser
-              path="/support-tickets"
-              icon={renderIconSupport}
-              title={<FormattedMessage {...messages.title} />}
-            />
+            <HeaderHoldUser icon={renderIconSupport} title={<FormattedMessage {...messages.title} />} />
             <SupportTicketItem />
           </Grid>
         </Grid>

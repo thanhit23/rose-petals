@@ -4,6 +4,7 @@ import Profile from '../../containers/Profile';
 import Address from '../../containers/Address';
 import Payment from '../../containers/Payment';
 import Checkout from '../../containers/Checkout';
+import WishList from '../../containers/WishList';
 import HomePage from '../../containers/HomePage';
 import ProfileEdit from '../../containers/Profile/Edit';
 import AddAddress from '../../containers/Address/Add';
@@ -34,4 +35,5 @@ export default [
   { path: '/payment-method/add', component: PaymentMethodAdd, index: true },
   { path: '/support-tickets', component: SupportTicket, index: true },
   { path: '/support-ticket/:id', component: DetailSupportTicket, index: true },
+  { path: '/wish-list', component: WishList, index: true },
 ];

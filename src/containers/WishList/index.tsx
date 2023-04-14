@@ -1,27 +1,32 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import SortBar from '../../components/SortBar';
+import messages from './messages';
 import LayoutMain from '../../components/LayoutMain';
-import FilterPanel from '../../components/FilterPanel';
+import SideBarUser from '../../components/SideBarUser';
 import ProductItem from '../../components/ProductItem';
-import styles from '../../components/ProductItem/styles';
-import Box from '@mui/material/Box';
+import HeaderHoldUser from '../../components/HeaderHoldUser';
 import Pagination from '../../components/Pagination';
 
-function ProductSearch() {
+function WishList() {
   const handleProductSearch = () => {
     console.log('asdasdasd');
   };
   return (
     <LayoutMain>
-      <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
-        <SortBar />
+      <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
         <Grid container spacing={{ xs: 3 }}>
-          <FilterPanel />
-          <Grid item xs={12} md={9}>
+          <SideBarUser />
+          <Grid item xs={12} lg={9}>
+            <HeaderHoldUser
+              icon={<FavoriteIcon />}
+              title={<FormattedMessage {...messages.wishList} />}
+              button={<FormattedMessage {...messages.btnAddAllToCart} />}
+            />
             <Grid container spacing={{ xs: 3 }}>
               <ProductItem product={{}} />
               <ProductItem product={{}} />
@@ -29,14 +34,8 @@ function ProductSearch() {
               <ProductItem product={{}} />
               <ProductItem product={{}} />
               <ProductItem product={{}} />
-              <ProductItem product={{}} />
-              <ProductItem product={{}} />
-              <ProductItem product={{}} />
             </Grid>
-            <Box sx={styles.boxQuantityPaginationProduct}>
-              <Box component="span">Showing 1-9 of 1.3k Products</Box>
-              <Pagination count={10} onChange={handleProductSearch} />
-            </Box>
+            <Pagination count={10} onChange={handleProductSearch} />
           </Grid>
         </Grid>
       </Container>
@@ -44,4 +43,4 @@ function ProductSearch() {
   );
 }
 
-export default ProductSearch;
+export default WishList;
