@@ -1,46 +1,74 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://book-store-mauve.vercel.app">
+    <img src="/public/logo.png" alt="Logo" width="80" height="80">
+  </a>
+  <h3 align="center">Rose Petals</h3>
+  <p align="center">
+    E-commerce Website
+    <br/>
+    <a href="https://rose-petals.vercel.app"><strong>View »</strong></a>
+  </p>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+[![Mui](https://raw.githubusercontent.com/mui/material-ui/master/docs/public/static/logo.svg)](https://mui.com/)
+[![Css](https://camo.githubusercontent.com/dbc04597e794ef93a1c4fe4faf5baf73e8dba35e3be5bcccd97fc9edec5bc55d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4353532d3135373262363f7374796c653d666f722d7468652d6261646765266c6162656c436f6c6f723d626c61636b266c6f676f3d63737333266c6f676f436f6c6f723d313537326236)](https://react.dev)
+[![HTML](https://camo.githubusercontent.com/670f208bd19f87f733d0dcacb56c49387354d0bf1c8f303c99aa2d2a1c55d290/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d48544d4c2d4533344632363f7374796c653d666f722d7468652d6261646765266c6162656c436f6c6f723d626c61636b266c6f676f3d68746d6c35266c6f676f436f6c6f723d453334463236)](https://react.dev)
+[![React](https://camo.githubusercontent.com/268ac512e333b69600eb9773a8f80b7a251f4d6149642a50a551d4798183d621/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f52656163742d3230323332413f7374796c653d666f722d7468652d6261646765266c6f676f3d7265616374266c6f676f436f6c6f723d363144414642)](https://react.dev)
+[![Redux](https://camo.githubusercontent.com/9bb2580411576db130fee2e51a0d2f6187563d00eff4ff80b5aba8b97de5fbd2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f72656475782d3736344142432e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d7265647578266c6f676f436f6c6f723d666666)](https://redux.js.org/)
+[![Redux](https://camo.githubusercontent.com/ee71fcc1aa3d059265517741dffc4161922fd744377e7a5f07c43381d0aa9aac/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f747970657363726970742d2532333030374143432e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d74797065736372697074266c6f676f436f6c6f723d7768697465)](https://www.typescriptlang.org/)
 
-In the project directory, you can run:
+<!-- GETTING STARTED -->
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To get a local copy up and running follow these simple example steps.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+This is an example of how to list things you need to use the software and how to install them.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* npm
+  ```sh
+  npm install npm@latest
+  ```
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/thanhit23/rose-petals.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Set the environment variables:
+    ```sh
+    cp .env.example .env.development
+    ```
+    ```dotenv
+    API_BASE_URL=
+    ```
+4. Run project
+   ```sh
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src\
+  |-component
+  |-container
+  |-helper
+  |-hook
+  |-layouts
+  |-middleware
+  |-routes
+  |-service
+  |-translate
+  |-utils
+```
