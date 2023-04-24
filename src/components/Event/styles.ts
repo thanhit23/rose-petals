@@ -135,6 +135,9 @@ const btnShopBlackFriday = {
   textTransform: 'capitalize',
   borderRadius: '8px',
   padding: '0.6rem 2.5rem',
+  '&:hover': {
+    border: '1px solid #4E97FD',
+  },
 };
 
 export default {
