@@ -15,14 +15,29 @@ import { Props } from './types';
 function ProductItem({ product }: Props) {
   const [quantity, setQuantity] = useState(0);
   console.log(product);
-  const handleReduce = () => {
+  const handleReduce = (): void => {
     if (quantity === 0) return;
     setQuantity(quantity - 1);
   };
 
-  const handleIncrease = () => {
+  const handleIncrease = (): void => {
     if (quantity === 10) return;
     setQuantity(quantity + 1);
+  };
+
+  const renderReduce = () => {
+    if (quantity) {
+      return (
+        <>
+          <Box fontWeight={600} color="#2b3445">
+            {quantity}
+          </Box>
+          <Button variant="outlined" sx={styles.btnIcon} onClick={handleReduce}>
+            <Remove fontSize="small" />
+          </Button>
+        </>
+      );
+    }
   };
 
   return (
@@ -64,12 +79,7 @@ function ProductItem({ product }: Props) {
               <Button variant="outlined" sx={styles.btnIcon} onClick={handleIncrease}>
                 <Add fontSize="small" />
               </Button>
-              <Box fontWeight={600} color="#2b3445">
-                {quantity}
-              </Box>
-              <Button variant="outlined" sx={styles.btnIcon} onClick={handleReduce}>
-                <Remove fontSize="small" />
-              </Button>
+              {renderReduce()}
             </Box>
           </Box>
         </Box>

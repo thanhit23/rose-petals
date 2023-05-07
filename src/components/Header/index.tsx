@@ -56,8 +56,8 @@ function Header() {
         <Box sx={styles.boxWrapperHeader}>
           <Container maxWidth="lg" sx={styles.containerHeader}>
             <Box sx={styles.boxLogo}>
-              <Link to="#">
-                <img width="60" height="60" src={logo} alt="asdasdas" />
+              <Link to="/">
+                <img width="60" height="60" src={logo} alt="logo" />
               </Link>
               {!showHeader && (
                 <Box sx={styles.boxContainerCategoryDropdown}>

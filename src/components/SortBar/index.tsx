@@ -13,7 +13,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import styles from './styles';
 import messages from './messages';
 
-function SortBar() {
+function SortBar({ changeView, viewList }: { changeView: (isView: boolean) => void; viewList: boolean }) {
   const { slug = '' } = useParams();
   const [age, setAge] = React.useState('Relevance');
 
@@ -64,11 +64,11 @@ function SortBar() {
           <Box component="p" sx={styles.boxView}>
             <FormattedMessage {...messages.view} />
           </Box>
-          <IconButton aria-label="apps">
-            <Apps fontSize="small" sx={{ color: '#D23F57' }} />
+          <IconButton aria-label="apps" onClick={() => changeView(false)}>
+            <Apps fontSize="small" sx={{ color: () => (!viewList ? '#D23F57' : '') }} />
           </IconButton>
-          <IconButton aria-label="view-list">
-            <ViewList fontSize="small" />
+          <IconButton aria-label="view-list" onClick={() => changeView(true)}>
+            <ViewList fontSize="small" sx={{ color: () => (viewList ? '#D23F57' : '') }} />
           </IconButton>
         </Box>
       </Box>
