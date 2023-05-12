@@ -36,6 +36,8 @@ const linkSingUp = {
   textDecoration: 'none',
 };
 
+const boxPassword = { position: 'relative' };
+
 const boxForGotPassword = {
   display: 'flex',
   webkitBoxPack: 'center',
@@ -65,11 +67,33 @@ const boxFooterLogin = {
   marginTop: '1.25rem',
 };
 
+const iconBtnShowPassword = {
+  padding: '5px',
+  position: 'absolute',
+  top: '50%',
+  right: '10px',
+  transform: 'translateY(-50%)',
+};
+
+const visibilityOffIcon = {
+  color: '#dae1e7',
+  fontSize: '1.25rem',
+};
+
+const visibilityIcon = {
+  color: '#7d879c',
+  fontSize: '1.25rem',
+};
+
 export default {
+  iconBtnShowPassword,
   boxForGotPassword,
+  visibilityOffIcon,
   formControlLabel,
   boxFooterLogin,
+  visibilityIcon,
   linkRegister,
+  boxPassword,
   linkSingUp,
   typography,
   boxAvatar,

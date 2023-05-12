@@ -1,8 +1,10 @@
-import RegisterPage from '../../components/Register';
-import Paper from '@mui/material/Paper';
+import Login from '../Login';
 import { Box } from '@mui/material';
+import Paper from '@mui/material/Paper';
 
-function Register() {
+function SignIn() {
+  console.log('asdasdasd-----SignIn');
+
   return (
     <Box
       sx={{
@@ -25,10 +27,10 @@ function Register() {
           padding: '2rem 3rem',
         }}
       >
-        <RegisterPage />
+        <Login />
       </Paper>
     </Box>
   );
 }
 
-export default Register;
+export default SignIn;

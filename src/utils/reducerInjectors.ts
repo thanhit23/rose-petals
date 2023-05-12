@@ -12,14 +12,11 @@ export function injectReducerFactory(store: any, isValid: any) {
       isString(key) && !isEmpty(key) && isFunction(reducer),
       '(app/utils...) injectReducer: Expected `reducer` to be a reducer function',
     );
-    if (
-      Reflect.has(store.injectedReducers, key) &&
-      store.injectedReducers[key] === reducer
-    ) {
+    if (Reflect.has(store.injectedReducers, key) && store.injectedReducers[key] === reducer) {
       return;
     }
 
-    store.injectedReducers[key] = reducer; // eslint-disable-line no-param-reassign
+    store.injectedReducers[key] = reducer;
     store.replaceReducer(createReducer(store.injectedReducers));
   };
 }

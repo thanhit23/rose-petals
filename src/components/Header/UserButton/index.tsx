@@ -5,10 +5,10 @@ import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-import Login from '../../../containers/Login';
 import styles from './styles';
+import Login from '../../../containers/Login';
 
-export default function BasicModal() {
+function UserButton() {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
 
@@ -50,3 +50,5 @@ export default function BasicModal() {
     </div>
   );
 }
+
+export default UserButton;

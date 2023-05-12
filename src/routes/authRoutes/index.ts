@@ -10,7 +10,6 @@ import ProfileEdit from '../../containers/Profile/Edit';
 import AddAddress from '../../containers/Address/Add';
 import EditAddress from '../../containers/Address/Edit';
 import OrderDetail from '../../containers/Order/Detail';
-import ProductDetail from '../../containers/ProductDetail';
 import SupportTicket from '../../containers/SupportTicket';
 import PaymentMethod from '../../containers/PaymentMethod';
 import PaymentMethodAdd from '../../containers/PaymentMethod/Add';
@@ -21,7 +20,6 @@ export default [
   { path: '/user', component: HomePage, exact: true, index: true },
   { path: '/cart', component: Cart, index: true },
   { path: '/checkout', component: Checkout, index: true },
-  { path: '/product/:slug', component: ProductDetail, index: true },
   { path: '/payment', component: Payment, index: true },
   { path: '/order', component: Order, index: true },
   { path: '/order/:id', component: OrderDetail, index: true },

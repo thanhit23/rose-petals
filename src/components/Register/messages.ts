@@ -3,13 +3,13 @@ import { defineMessages } from 'react-intl';
 export const scope = 'Components.Login';
 
 export default defineMessages({
-  title: {
-    id: `${scope}.title`,
+  signIn: {
+    id: `${scope}.signIn`,
     defaultMessage: 'Sign in',
   },
-  rememberMe: {
-    id: `${scope}.rememberMe`,
-    defaultMessage: 'Remember me',
+  btnSignUp: {
+    id: `${scope}.btnSignUp`,
+    defaultMessage: 'Sign Up',
   },
   labelEmail: {
     id: `${scope}.label.email`,
@@ -23,8 +23,8 @@ export default defineMessages({
     id: `${scope}.forgotPassword`,
     defaultMessage: 'Forgot password?',
   },
-  notAccount: {
-    id: `${scope}.notAccount`,
-    defaultMessage: "Don't have an account? Sign Up",
+  hasAccount: {
+    id: `${scope}.hasAccount`,
+    defaultMessage: 'Already have an account?',
   },
 });

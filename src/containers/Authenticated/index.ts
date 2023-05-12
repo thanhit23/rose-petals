@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 
@@ -10,20 +10,15 @@ import { sendRequestToken, redirectLogin } from './actions';
 function Authenticated({ auth, children, onSendRequestToken, notToken }: Props) {
   const token = localStorage.getItem('token');
 
-  // useEffect(() => {
-  //   if (token) {
-  //     onSendRequestToken(token);
-  //   } else {
-  //     notToken();
-  //   }
-  // }, []);
-  console.log(onSendRequestToken);
-  console.log(notToken);
-  console.log(token);
-  console.log(auth);
+  useEffect(() => {
+    if (token) {
+      onSendRequestToken(token);
+    } else {
+      notToken();
+    }
+  }, []);
 
-  // if (token && auth) return children;
-  return children;
+  if (token && auth) return children;
 }
 
 const mapStateToProps = (state: States) => {
