@@ -1,15 +1,19 @@
 import React from 'react';
 
+import Box from '@mui/material/Box';
+
+import styles from './styles';
+
 function Loading() {
   return (
-    <div className="z-[100] a fixed z-[1000] top-0 w-full h-full flex justify-center items-center bg-[rgba(0,0,0,0.1)]">
-      <div className="lds-ring">
+    <Box sx={styles.wrapLoading}>
+      <div className="lds-ellipsis">
         <div />
         <div />
         <div />
         <div />
       </div>
-    </div>
+    </Box>
   );
 }
 

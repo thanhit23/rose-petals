@@ -4,5 +4,5 @@ export interface UserSubmitForm {
 }
 
 export interface SignInTypes {
-  onSubmit: (data: object) => void;
+  loginForm: JSX.Element;
 }

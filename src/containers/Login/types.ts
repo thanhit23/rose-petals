@@ -2,7 +2,6 @@ import { LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
 
 export interface Props {
   onLoginSuccess: (data: object) => void;
-  onLoginFailed: (message: string) => void;
 }
 
 export interface TData {
