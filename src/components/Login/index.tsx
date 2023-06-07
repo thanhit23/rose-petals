@@ -8,9 +8,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import styles from './styles';
 import messages from './messages';
-import { SignInTypes } from './types';
+import LoginForm from '../../containers/Login/LoginForm';
 
-export default function Login({ loginForm }: SignInTypes) {
+export default function Login() {
   return (
     <Box sx={styles.boxAvatar}>
       <Avatar sx={styles.avatar}>
@@ -19,7 +19,7 @@ export default function Login({ loginForm }: SignInTypes) {
       <Typography component="h1" variant="h5" sx={styles.typography}>
         <FormattedMessage {...messages.title} />
       </Typography>
-      {loginForm}
+      <LoginForm />
     </Box>
   );
 }

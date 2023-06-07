@@ -16,3 +16,8 @@ export interface LoginSuccessAction {
 export interface LoginFailedAction {
   type: typeof LOGIN_FAILED;
 }
+
+export interface UserSubmitForm {
+  email: string;
+  password: string;
+}
