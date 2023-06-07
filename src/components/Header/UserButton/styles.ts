@@ -19,7 +19,6 @@ const paperLogin = {
   boxSizing: 'border-box',
   overflow: 'hidden',
   borderRadius: '8px',
-  width: '500px',
   padding: '2rem 3rem',
 };
 

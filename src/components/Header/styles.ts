@@ -26,6 +26,7 @@ const boxWrapperHeader = {
 };
 
 const containerHeader = {
+  position: 'relative',
   display: 'flex',
   gap: '2px',
   height: '100%',
@@ -33,9 +34,10 @@ const containerHeader = {
 };
 
 const boxLogo = {
-  display: {
-    xs: 'none',
-    lg: 'flex',
+  display: 'flex',
+  flex: {
+    xs: 1,
+    md: 'none',
   },
   marginRight: '16px',
   minWidth: '170px',
@@ -43,21 +45,15 @@ const boxLogo = {
 };
 
 const boxWrapperFrom = {
-  display: {
-    xs: 'none',
-    lg: 'flex',
-  },
+  display: 'flex',
   flex: '1 1 0',
+  overflow: 'hidden',
+  transition: 'height 350ms',
+  alignItems: 'center',
 };
 
 const headerMobile = {
-  display: {
-    xs: 'flex',
-    sm: 'flex',
-    md: 'flex',
-    lg: 'none',
-    xl: 'none',
-  },
+  display: 'flex',
   justifyContent: 'space-between',
   WebkitBoxAlign: 'center',
   alignItems: 'center',
@@ -108,6 +104,26 @@ const btnCategoryDropdown = {
   padding: '6px 8px',
 };
 
+const btnSearch = {
+  borderRadius: '50%',
+  minWidth: 'auto',
+  color: '#0000008a',
+  padding: '10px',
+  backgroundColor: '#F3F5F9',
+  '&:hover': {
+    backgroundColor: '#0000000a',
+  },
+};
+
+const boxModalSearch = {
+  display: 'flex',
+  gap: '10px',
+  padding: '10px 30px',
+  backgroundColor: '#fff',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+};
+
 export default {
   boxContainerCategoryDropdown,
   boxWrapperCategoryDropdown,
@@ -120,6 +136,8 @@ export default {
   boxWrapperFrom,
   headerMobile,
   outlineInput,
+  boxModalSearch,
   boxHeader,
+  btnSearch,
   boxLogo,
 };

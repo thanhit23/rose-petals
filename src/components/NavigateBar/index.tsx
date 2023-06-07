@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
 import SvgIcon from '@mui/material/SvgIcon';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import GridViewIcon from '@mui/icons-material/GridView';
 
 import styles from './styles';
 import { home } from './icons';
@@ -22,7 +24,7 @@ function NavigateBar() {
       </Box>
       <Box component={Link} to="/" sx={styles.linkPage}>
         <SvgIcon fontSize="small" viewBox="0 0 24 24">
-          {home}
+          <GridViewIcon />
         </SvgIcon>
         <FormattedMessage {...messages.category} />
       </Box>
@@ -34,7 +36,7 @@ function NavigateBar() {
       </Box>
       <Box component={Link} to="/profile" sx={styles.linkPage}>
         <SvgIcon fontSize="small" viewBox="0 0 24 24">
-          {home}
+          <PersonOutlineIcon color="action" />
         </SvgIcon>
         <FormattedMessage {...messages.profile} />
       </Box>

@@ -6,8 +6,11 @@ import NavBar from '../NavBar';
 import Footer from '../Footer';
 import NavigateBar from '../NavigateBar';
 import { LayoutMainType } from './types';
+import useResponsive from '../../hook/useResponsive';
 
 export default function LayoutMain({ children }: LayoutMainType) {
+  const isDesktop = useResponsive('up', 'md');
+
   return (
     <>
       <TopBar />
@@ -16,7 +19,7 @@ export default function LayoutMain({ children }: LayoutMainType) {
         <NavBar />
         {children}
       </div>
-      <NavigateBar />
+      {!isDesktop && <NavigateBar />}
       <Footer />
     </>
   );
