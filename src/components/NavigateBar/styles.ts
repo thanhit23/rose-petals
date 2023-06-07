@@ -1,10 +1,7 @@
 import { styles } from '../common';
+
 const boxNavigate = {
-  display: {
-    xs: 'flex',
-    sm: 'flex',
-    md: 'none',
-  },
+  display: 'flex',
   width: '100vw',
   left: '0',
   right: '0',
