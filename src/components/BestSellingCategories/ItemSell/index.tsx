@@ -6,9 +6,9 @@ import { ItemSellTypes } from './types';
 
 function ItemSell({ srcImg, title }: ItemSellTypes) {
   return (
-    <Grid item xs={3}>
+    <Grid item xs={12} sm={6} md={3}>
       <Box sx={styles.boxWrapperItem}>
-        <Box>
+        <Box height="100%">
           <Box component="img" sx={styles.boxComponentImg} alt="The house from the offer." src={srcImg} />
         </Box>
         <Box sx={styles.boxWrapperTitle}>
