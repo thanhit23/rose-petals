@@ -1,9 +1,14 @@
 const boxItem = {
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: {
+    md: 'center',
+    xs: 'flex-start',
+  },
   alignItems: 'center',
   gap: '16px',
-  borderRight: '1px solid #DAE1E7',
+  borderRight: {
+    md: '1px solid #DAE1E7',
+  },
 };
 
 const svgIcon = {
