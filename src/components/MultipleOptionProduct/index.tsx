@@ -98,7 +98,7 @@ function MultipleOptionProduct() {
   return (
     <Container maxWidth="lg" sx={styles.container}>
       <Grid container spacing={3}>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} lg={3}>
           <Box component="h3" sx={styles.boxTitle}>
             <FormattedMessage {...messages.saleProducts} />
           </Box>
@@ -106,7 +106,7 @@ function MultipleOptionProduct() {
             <ProductItem key={i} name={name} price={price} srcImg={srcImg} star={star} />
           ))}
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} lg={3}>
           <Box component="h3" sx={styles.boxTitle}>
             <FormattedMessage {...messages.latestProducts} />
           </Box>
@@ -114,7 +114,7 @@ function MultipleOptionProduct() {
             <ProductItem key={i} name={name} price={price} srcImg={srcImg} star={star} />
           ))}
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} lg={3}>
           <Box component="h3" sx={styles.boxTitle}>
             <FormattedMessage {...messages.bestWeek} />
           </Box>
@@ -122,7 +122,7 @@ function MultipleOptionProduct() {
             <ProductItem key={i} name={name} price={price} srcImg={srcImg} star={star} />
           ))}
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} lg={3}>
           <Box component="h3" sx={styles.boxTitle}>
             <FormattedMessage {...messages.popularProducts} />
           </Box>

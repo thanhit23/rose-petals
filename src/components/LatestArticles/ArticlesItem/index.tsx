@@ -12,7 +12,7 @@ import { ArticleItemProps } from '../types';
 
 function ArticleItem({ article: { title, image, description, date, path } }: ArticleItemProps) {
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12} md={4}>
       <Paper sx={styles.paper}>
         <Box sx={styles.paperBoxImg}>
           <Box overflow="hidden" width="100%">

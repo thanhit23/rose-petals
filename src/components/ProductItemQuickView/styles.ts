@@ -20,12 +20,11 @@ const boxWrapperItem = {
   cursor: 'pointer',
   overflow: 'hidden',
   borderRadius: '4px',
-  height: '290px',
 };
 
 const boxComponentImg = {
-  width: '290px',
-  height: '290px',
+  width: '100%',
+  height: '100%',
   transition: 'all 0.3s',
   objectFit: 'cover',
 };
