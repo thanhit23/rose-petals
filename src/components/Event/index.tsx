@@ -14,7 +14,7 @@ function Event() {
   return (
     <Container sx={styles.containerEvent}>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Box sx={styles.boxItem}>
             <Box
               width="100%"
@@ -38,7 +38,7 @@ function Event() {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Box sx={styles.boxItem}>
             <Box
               width="100%"
@@ -66,7 +66,7 @@ function Event() {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Box sx={styles.boxItem}>
             <Box
               width="100%"
