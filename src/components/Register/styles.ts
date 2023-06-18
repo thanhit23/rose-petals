@@ -35,16 +35,6 @@ const linkRegister = {
   textDecoration: 'none',
 };
 
-const btnSubmit = {
-  mt: 3,
-  mb: 2,
-  boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
-  '&:hover': {
-    backgroundColor: '#e3364e',
-    boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
-  },
-};
-
 const boxFooterLogin = {
   display: 'flex',
   webkitBoxPack: 'center',
@@ -59,7 +49,6 @@ export default {
   boxFooterLogin,
   linkRegister,
   linkSingUp,
-  btnSubmit,
   boxWrap,
   avatar,
 };
