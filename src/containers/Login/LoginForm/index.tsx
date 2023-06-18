@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
 import { bindActionCreators, compose, Dispatch } from 'redux';
 
 import Box from '@mui/material/Box';
@@ -21,11 +21,10 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import styles from './styles';
 import messages from './messages';
 import reducer from '../../App/reducer';
-import { Props, TData } from '../types';
 import { login as loginService } from '../services';
 import TextField from '../../../components/TextField';
+import { Props, TData, UserSubmitForm } from '../types';
 import ErrorMessage from '../../../components/ErrorMessage';
-import { UserSubmitForm } from '../../../components/Login/types';
 import injectReducer, { TypeDefaultInjectors } from '../../../utils/injectReducer';
 import { loginSuccess as loginSuccessAction, loginFailed as loginFailedAction } from '../actions';
 
@@ -38,7 +37,6 @@ function LoginForm({ onLoginSuccess }: Props) {
       if (status) {
         onLoginSuccess(data);
       } else {
-        reset();
         setError('root.afterSubmit', {
           message,
         });
@@ -52,7 +50,6 @@ function LoginForm({ onLoginSuccess }: Props) {
   });
 
   const {
-    reset,
     register,
     setError,
     handleSubmit,

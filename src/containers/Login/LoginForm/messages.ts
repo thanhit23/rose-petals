@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Container.Login.Form';
+export const scope = 'Containers.Login.Form';
 
 export default defineMessages({
   rememberMe: {

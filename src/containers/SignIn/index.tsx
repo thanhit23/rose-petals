@@ -1,10 +1,9 @@
-import Login from '../Login';
 import { Box } from '@mui/material';
 import Paper from '@mui/material/Paper';
 
-function SignIn() {
-  console.log('asdasdasd-----SignIn');
+import Login from '../Login';
 
+function SignIn() {
   return (
     <Box
       sx={{
