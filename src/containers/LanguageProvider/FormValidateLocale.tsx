@@ -1,5 +1,6 @@
-import { setLocale } from 'yup';
 import { useIntl } from 'react-intl';
+
+import { setLocale } from 'yup';
 
 import message from './messages';
 

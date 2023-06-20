@@ -1,15 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
+import Box from '@mui/material/Box';
+import ButtonBase from '@mui/material/ButtonBase';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Popper from '@mui/material/Popper';
-import ButtonBase from '@mui/material/ButtonBase';
-import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
-import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 
-import { DropDownTypes } from './types';
 import styles from './styles';
+import { DropDownTypes } from './types';
 
 function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);

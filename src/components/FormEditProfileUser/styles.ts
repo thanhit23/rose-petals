@@ -1,4 +1,5 @@
 import { styles } from '../common';
+
 const paperAvatar = {
   color: 'rgb(43, 52, 69)',
   boxShadow: 'rgba(3, 0, 71, 0.09) 0px 1px 3px',

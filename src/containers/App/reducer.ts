@@ -1,6 +1,7 @@
 import produce from 'immer';
-import { LOGIN_SUCCESS } from '../Login/constants';
+
 import { SHOW_LOADING } from '../LoadingIndicator/constants';
+import { LOGIN_SUCCESS } from '../Login/constants';
 
 export const initialState = {
   auth: null,

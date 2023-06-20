@@ -2,17 +2,17 @@ import React from 'react';
 
 import Box from '@mui/material/Box';
 
-import Event from '../../components/Event';
-import SlideShow from '../../components/Slide';
-import Service from '../../components/Service';
-import ListBrand from '../../components/ListBrand';
-import LayoutMain from '../../components/LayoutMain';
-import LatestArticles from '../../components/LatestArticles';
-import FeaturedProducts from '../../components/FeaturedProducts';
-import BestSellingProducts from '../../components/BestSellingProducts';
-import MultipleOptionProduct from '../../components/MultipleOptionProduct';
-import BestSellingCategories from '../../components/BestSellingCategories';
-import EventNotificationBanner from '../../components/EventNotificationBanner';
+import BestSellingCategories from 'src/components/BestSellingCategories';
+import BestSellingProducts from 'src/components/BestSellingProducts';
+import Event from 'src/components/Event';
+import EventNotificationBanner from 'src/components/EventNotificationBanner';
+import FeaturedProducts from 'src/components/FeaturedProducts';
+import LatestArticles from 'src/components/LatestArticles';
+import LayoutMain from 'src/components/LayoutMain';
+import ListBrand from 'src/components/ListBrand';
+import MultipleOptionProduct from 'src/components/MultipleOptionProduct';
+import Service from 'src/components/Service';
+import SlideShow from 'src/components/Slide';
 
 function Home() {
   return (

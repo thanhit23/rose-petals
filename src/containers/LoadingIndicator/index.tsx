@@ -1,9 +1,10 @@
-import { compose } from 'redux';
 import { connect } from 'react-redux';
-// types
+
+import { compose } from 'redux';
+
+import Loadings from 'src/components/Loading';
+
 import { Props, States } from './types';
-// component
-import Loadings from '../../components/Loading';
 
 function Loading({ showLoading }: Props) {
   return showLoading ? <Loadings /> : <></>;

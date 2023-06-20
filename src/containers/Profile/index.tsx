@@ -1,9 +1,9 @@
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import LayoutMain from '../../components/LayoutMain';
-import UserProfile from '../../components/UserProfile';
-import SideBarUser from '../../components/SideBarUser';
+import LayoutMain from 'src/components/LayoutMain';
+import SideBarUser from 'src/components/SideBarUser';
+import UserProfile from 'src/components/UserProfile';
 
 function Profile() {
   return (

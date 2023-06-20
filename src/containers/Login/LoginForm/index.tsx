@@ -1,32 +1,33 @@
-import * as Yup from 'yup';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
-import { useMutation } from '@tanstack/react-query';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { yupResolver } from '@hookform/resolvers/yup';
-import { bindActionCreators, compose, Dispatch } from 'redux';
-
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Alert from '@mui/material/Alert';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import LoadingButton from '@mui/lab/LoadingButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import LoadingButton from '@mui/lab/LoadingButton';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import { useMutation } from '@tanstack/react-query';
+import { Dispatch, bindActionCreators, compose } from 'redux';
+import * as Yup from 'yup';
 
-import styles from './styles';
-import messages from './messages';
+import ErrorMessage from 'src/components/ErrorMessage';
+import TextField from 'src/components/TextField';
+import injectReducer, { TypeDefaultInjectors } from 'src/utils/injectReducer';
+
 import reducer from '../../App/reducer';
+import { loginFailed as loginFailedAction, loginSuccess as loginSuccessAction } from '../actions';
 import { login as loginService } from '../services';
-import TextField from '../../../components/TextField';
 import { Props, TData, UserSubmitForm } from '../types';
-import ErrorMessage from '../../../components/ErrorMessage';
-import injectReducer, { TypeDefaultInjectors } from '../../../utils/injectReducer';
-import { loginSuccess as loginSuccessAction, loginFailed as loginFailedAction } from '../actions';
+import messages from './messages';
+import styles from './styles';
 
 function LoginForm({ onLoginSuccess }: Props) {
   const [isPassword, setIsPassword] = useState(true);

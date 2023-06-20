@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
-import Box from '@mui/material/Box';
-import Badge from '@mui/material/Badge';
-import SvgIcon from '@mui/material/SvgIcon';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import GridViewIcon from '@mui/icons-material/GridView';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import Badge from '@mui/material/Badge';
+import Box from '@mui/material/Box';
+import SvgIcon from '@mui/material/SvgIcon';
 
-import styles from './styles';
 import { home } from './icons';
 import messages from './messages';
+import styles from './styles';
 
 function NavigateBar() {
   return (

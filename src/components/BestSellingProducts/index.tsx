@@ -1,14 +1,13 @@
 import { FormattedMessage } from 'react-intl';
+import 'react-slideshow-image/dist/styles.css';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import styles from './styles';
-import messages from './messages';
 import ProductItem from '../ProductItemQuickView';
 import SlideProduct from '../SlideProduct';
-
-import 'react-slideshow-image/dist/styles.css';
+import messages from './messages';
+import styles from './styles';
 
 function BestSellingProducts() {
   return (

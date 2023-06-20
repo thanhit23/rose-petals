@@ -1,14 +1,16 @@
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-
-import LayoutMain from '../../components/LayoutMain';
-import SideBarUser from '../../components/SideBarUser';
-import HeaderHoldUser from '../../components/HeaderHoldUser';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { FormattedMessage } from 'react-intl';
+
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
+import HeaderHoldUser from 'src/components/HeaderHoldUser';
+import ItemPaymentMethod from 'src/components/ItemPaymentMethod';
+import LayoutMain from 'src/components/LayoutMain';
+import Pagination from 'src/components/Pagination';
+import SideBarUser from 'src/components/SideBarUser';
+
 import messages from './messages';
-import ItemPaymentMethod from '../../components/ItemPaymentMethod';
-import Pagination from '../../components/Pagination';
 
 function PaymentMethod() {
   const handleChangePage = (value: number) => {

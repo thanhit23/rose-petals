@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
+import { Delete, Edit } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import { Delete, Edit } from '@mui/icons-material';
 
 import styles from './styles';
 import { Props } from './types';

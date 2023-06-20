@@ -1,10 +1,10 @@
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import LayoutMain from '../../components/LayoutMain';
-import CartSummary from '../../components/CartSummary';
-import BreadBarCartPage from '../../components/FormSteps';
-import CartProductListItem from '../../components/CartProductListItem';
+import CartProductListItem from 'src/components/CartProductListItem';
+import CartSummary from 'src/components/CartSummary';
+import BreadBarCartPage from 'src/components/FormSteps';
+import LayoutMain from 'src/components/LayoutMain';
 
 function Cart() {
   return (

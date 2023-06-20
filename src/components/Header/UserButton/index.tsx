@@ -1,12 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import Paper from '@mui/material/Paper';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Paper from '@mui/material/Paper';
+
+import Login from 'src/containers/Login';
 
 import styles from './styles';
-import Login from '../../../containers/Login';
 
 function UserButton() {
   const [open, setOpen] = useState(false);

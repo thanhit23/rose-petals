@@ -1,20 +1,20 @@
 import { FormattedMessage } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
 
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PersonIcon from '@mui/icons-material/Person';
+import PlaceIcon from '@mui/icons-material/Place';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import { SvgIcon } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { SvgIcon } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import PlaceIcon from '@mui/icons-material/Place';
-import PersonIcon from '@mui/icons-material/Person';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
-import styles from './styles';
-import messages from './messages';
 import { supportTicked } from './icons';
+import messages from './messages';
+import styles from './styles';
 
 function SideBarUser() {
   const { pathname } = useLocation();

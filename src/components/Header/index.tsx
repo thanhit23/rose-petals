@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Container from '@mui/material/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import SearchIcon from '@mui/icons-material/Search';
+import { IconButton, Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
 
-import { makeStyles } from '@material-ui/core/styles';
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-
-import styles from './styles';
-import SideBarCart from '../SideBarCart';
-import UserButton from './UserButton';
-import CategoryMenu from './CategoryMenu';
-import DropDown from '../NavBar/Dropdown';
-import { listMenuItems } from '../NavBar';
-import logo from '../../resources/images/logo.png';
 import useResponsive from '../../hook/useResponsive';
-import { IconButton, Modal } from '@mui/material';
+import logo from '../../resources/images/logo.png';
+import { listMenuItems } from '../NavBar';
+import DropDown from '../NavBar/Dropdown';
+import SideBarCart from '../SideBarCart';
+import CategoryMenu from './CategoryMenu';
+import UserButton from './UserButton';
+import styles from './styles';
 
 function Header() {
   const isDesktop = useResponsive('up', 'md');

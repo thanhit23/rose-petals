@@ -1,14 +1,15 @@
 import { FormattedMessage } from 'react-intl';
 
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
+import FormPaymentMethod from 'src/components/FormPaymentMethod';
+import HeaderHoldUser from 'src/components/HeaderHoldUser';
+import LayoutMain from 'src/components/LayoutMain';
+import SideBarUser from 'src/components/SideBarUser';
 
 import messages from './messages';
-import LayoutMain from '../../../components/LayoutMain';
-import SideBarUser from '../../../components/SideBarUser';
-import HeaderHoldUser from '../../../components/HeaderHoldUser';
-import FormPaymentMethod from '../../../components/FormPaymentMethod';
 
 function PaymentMethodEdit() {
   const defaultValue = {

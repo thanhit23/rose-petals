@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import styled from 'styled-components';
-import SvgIcon from '@mui/material/SvgIcon';
-import Container from '@mui/material/Container';
 import ButtonBase from '@mui/material/ButtonBase';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import SvgIcon from '@mui/material/SvgIcon';
+import styled from 'styled-components';
 
 import icons from './icons';
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 const LinkStyles = styled(Link)`
   display: block;

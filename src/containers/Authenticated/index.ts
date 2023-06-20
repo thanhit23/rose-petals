@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+
 import { bindActionCreators, compose } from 'redux';
 
+import injectSaga from 'src/utils/injectSaga';
+
+import { redirectLogin, sendRequestToken } from './actions';
 import saga from './saga';
-import { States, Props } from './types';
-import injectSaga from '../../utils/injectSaga';
-import { sendRequestToken, redirectLogin } from './actions';
+import { Props, States } from './types';
 
 function Authenticated({ auth, children, onSendRequestToken, notToken }: Props) {
   const token = localStorage.getItem('token');

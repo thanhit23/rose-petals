@@ -1,10 +1,10 @@
+import { AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
+
+import { checkTokenFailed, checkTokenSuccess, setAuth } from './actions';
 import { CHECK_TOKEN_REQUEST } from './constants';
 import { isMe, setHeader } from './service';
-import { setAuth, checkTokenSuccess, checkTokenFailed } from './actions';
-import { AxiosResponse } from 'axios';
-
-import { PropsSendReqToken, ApiResponse } from './types';
+import { ApiResponse, PropsSendReqToken } from './types';
 
 function* sendReqToken({ payload: { token } }: PropsSendReqToken) {
   yield call(setHeader, token);

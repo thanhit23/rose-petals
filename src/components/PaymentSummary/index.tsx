@@ -2,11 +2,11 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function PaymentSummary() {
   return (

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 
 const loadable = (importFunc: any, { fallback = null }: { fallback: any }) => {
   const LazyComponent = lazy(importFunc);
@@ -8,6 +8,6 @@ const loadable = (importFunc: any, { fallback = null }: { fallback: any }) => {
       <LazyComponent {...props} />
     </Suspense>
   );
-}
+};
 
-export default loadable
+export default loadable;

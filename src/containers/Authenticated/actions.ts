@@ -1,4 +1,4 @@
-import { CHECK_TOKEN_REQUEST, CHECK_TOKEN_SUCCESS, CHECK_TOKEN_FAILED, REDIRECT_LOGIN } from './constants';
+import { CHECK_TOKEN_FAILED, CHECK_TOKEN_REQUEST, CHECK_TOKEN_SUCCESS, REDIRECT_LOGIN } from './constants';
 import { SET_AUTHENTICATION } from './constants';
 
 export const sendRequestToken = (token: string) => ({

@@ -1,15 +1,15 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Container from '@mui/material/Container';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 
-import styles from './styles';
 import DropDown from './Dropdown';
 import messages from './messages';
-import { Link } from 'react-router-dom';
+import styles from './styles';
 
 export const listMenuItems = [
   { title: 'All Categories', path: '/product/search/all' },

@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
+import { FavoriteBorder } from '@mui/icons-material';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import { FavoriteBorder } from '@mui/icons-material';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function ProductViewInList() {
   return (

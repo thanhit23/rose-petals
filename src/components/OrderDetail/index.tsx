@@ -1,20 +1,20 @@
 import { FormattedMessage } from 'react-intl';
 
+import DoneIcon from '@mui/icons-material/Done';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
 import SvgIcon from '@mui/material/SvgIcon';
-import DoneIcon from '@mui/icons-material/Done';
 import Typography from '@mui/material/Typography';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
-import styles from './styles';
-import messages from './messages';
 import HeaderHoldUser from '../HeaderHoldUser';
-import { container, shipping, delivery } from './icons';
 import OrderSummaryDetails from '../OrderSummaryDetails';
+import { container, delivery, shipping } from './icons';
+import messages from './messages';
+import styles from './styles';
 
 function OrderDetail() {
   const renderTick = () => (

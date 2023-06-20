@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Gird from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Gird from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
 
-import styles from './styles';
-import messages from './messages';
 import TextField from '../TextField';
+import messages from './messages';
+import styles from './styles';
 
 function DeliveryMethod() {
   const [selectedValue, setSelectedValue] = useState(1);

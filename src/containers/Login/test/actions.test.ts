@@ -1,6 +1,5 @@
-import { LOGIN_SUCCESS, LOGIN_FAILED } from '../constants';
-
 import { loginFailed, loginSuccess } from '../actions';
+import { LOGIN_FAILED, LOGIN_SUCCESS } from '../constants';
 
 describe('Login Actions', () => {
   describe('loginSuccess', () => {

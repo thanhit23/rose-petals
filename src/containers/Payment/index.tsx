@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Gird from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Gird from '@mui/material/Grid';
 
-import FormSteps from '../../components/FormSteps';
-import LayoutMain from '../../components/LayoutMain';
-import DeliveryMethod from '../../components/DeliveryMethod';
-import PaymentSummary from '../../components/PaymentSummary';
+import DeliveryMethod from 'src/components/DeliveryMethod';
+import FormSteps from 'src/components/FormSteps';
+import LayoutMain from 'src/components/LayoutMain';
+import PaymentSummary from 'src/components/PaymentSummary';
 
 function Payment() {
   return (

@@ -1,14 +1,15 @@
 import { FormattedMessage } from 'react-intl';
 
-import Grid from '@mui/material/Grid';
 import { Place } from '@mui/icons-material';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
+import FormAddress from 'src/components/FormAddress';
+import HeaderHoldUser from 'src/components/HeaderHoldUser';
+import LayoutMain from 'src/components/LayoutMain';
+import SideBarUser from 'src/components/SideBarUser';
 
 import messages from './messages';
-import LayoutMain from '../../../components/LayoutMain';
-import SideBarUser from '../../../components/SideBarUser';
-import FormAddress from '../../../components/FormAddress';
-import HeaderHoldUser from '../../../components/HeaderHoldUser';
 
 function AddressAdd() {
   return (

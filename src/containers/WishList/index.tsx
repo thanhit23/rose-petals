@@ -1,16 +1,17 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
+import HeaderHoldUser from 'src/components/HeaderHoldUser';
+import LayoutMain from 'src/components/LayoutMain';
+import Pagination from 'src/components/Pagination';
+import ProductItem from 'src/components/ProductItem';
+import SideBarUser from 'src/components/SideBarUser';
 
 import messages from './messages';
-import LayoutMain from '../../components/LayoutMain';
-import SideBarUser from '../../components/SideBarUser';
-import ProductItem from '../../components/ProductItem';
-import HeaderHoldUser from '../../components/HeaderHoldUser';
-import Pagination from '../../components/Pagination';
 
 function WishList() {
   const handleProductSearch = () => {

@@ -1,12 +1,12 @@
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import styles from './styles';
 import ItemSell from './ItemSell';
 import messages from './messages';
+import styles from './styles';
 
 function BestSellingCategories() {
   return (

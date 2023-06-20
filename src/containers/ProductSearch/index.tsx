@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import SortBar from '../../components/SortBar';
-import Pagination from '../../components/Pagination';
-import LayoutMain from '../../components/LayoutMain';
-import FilterPanel from '../../components/FilterPanel';
-import ProductItem from '../../components/ProductItem';
-import styles from '../../components/ProductItem/styles';
-import ProductViewInList from '../../components/ProductViewInList';
+import FilterPanel from 'src/components/FilterPanel';
+import LayoutMain from 'src/components/LayoutMain';
+import Pagination from 'src/components/Pagination';
+import ProductItem from 'src/components/ProductItem';
+import styles from 'src/components/ProductItem/styles';
+import ProductViewInList from 'src/components/ProductViewInList';
+import SortBar from 'src/components/SortBar';
 
 function ProductSearch() {
   const [viewList, setViewList] = useState(false);

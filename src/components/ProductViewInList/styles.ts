@@ -1,4 +1,5 @@
 import { styles } from '../common';
+
 const paper = {
   backgroundColor: 'rgb(255, 255, 255)',
   color: 'rgb(43, 52, 69)',

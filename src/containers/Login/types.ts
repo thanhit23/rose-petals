@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
+import { LOGIN_FAILED, LOGIN_SUCCESS } from './constants';
 
 export interface Props {
   onLoginSuccess: (data: object) => void;
