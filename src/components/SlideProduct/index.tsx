@@ -1,13 +1,13 @@
 import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 import styles from './styles';
 import { SlideProductsType } from './types';
-import 'react-slideshow-image/dist/styles.css';
 
 function SlideProduct({ children, autoplay = false, slidesToShow = 4, arrows = true }: SlideProductsType) {
   return (

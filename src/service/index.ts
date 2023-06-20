@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { map } from 'lodash';
 
-import { UNAUTHORIZED, LOGOUT_REQUEST, BASE_URL, SERVER_ERROR } from './constants';
-import { LOGIN_FAILED } from '../containers/Login/constants';
+import { LOGIN_FAILED } from 'src/containers/Login/constants';
+
 import store from '../store';
+import { BASE_URL, LOGOUT_REQUEST, SERVER_ERROR, UNAUTHORIZED } from './constants';
 
 class Service {
   instance: any;

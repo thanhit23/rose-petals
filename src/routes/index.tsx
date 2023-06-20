@@ -1,6 +1,7 @@
-import Authenticated from '../containers/Authenticated';
-import publicRoutes from './publicRoutes';
+import Authenticated from 'src/containers/Authenticated';
+
 import authRoutes from './authRoutes';
+import publicRoutes from './publicRoutes';
 
 const publicRoute = publicRoutes.map(({ path, element }) => ({ path, element }));
 

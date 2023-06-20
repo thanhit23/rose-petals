@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Header from '../Header';
-import TopBar from '../TopBar';
-import NavBar from '../NavBar';
-import Footer from '../Footer';
-import NavigateBar from '../NavigateBar';
-import { LayoutMainType } from './types';
 import useResponsive from '../../hook/useResponsive';
+import Footer from '../Footer';
+import Header from '../Header';
+import NavBar from '../NavBar';
+import NavigateBar from '../NavigateBar';
+import TopBar from '../TopBar';
+import { LayoutMainType } from './types';
 
 export default function LayoutMain({ children }: LayoutMainType) {
   const isDesktop = useResponsive('up', 'md');

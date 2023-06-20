@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function Event() {
   return (

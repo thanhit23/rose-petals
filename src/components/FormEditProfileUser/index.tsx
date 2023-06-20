@@ -1,24 +1,24 @@
+import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import PersonIcon from '@mui/icons-material/Person';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
+import PersonIcon from '@mui/icons-material/Person';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
-import styles from './styles';
-import messages from './messages';
-import MuiTextField from '../TextField';
-import HeaderHoldUser from '../HeaderHoldUser';
-import { useForm } from 'react-hook-form';
-import { UserSubmitForm } from './types';
 import ErrorMessage from '../ErrorMessage';
+import HeaderHoldUser from '../HeaderHoldUser';
+import MuiTextField from '../TextField';
+import messages from './messages';
+import styles from './styles';
+import { UserSubmitForm } from './types';
 
 function FormEditProfileUser() {
   const {

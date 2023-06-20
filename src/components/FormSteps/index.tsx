@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 import { BreadBarCartPageTypes } from './types';
 
 function FormSteps({ activeIndexPage }: BreadBarCartPageTypes) {

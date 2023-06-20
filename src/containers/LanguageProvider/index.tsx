@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 
-import viMessages from '../../translations/vi.json';
 import enMessages from '../../translations/en.json';
+import viMessages from '../../translations/vi.json';
 import { FormValidateLocale } from './FormValidateLocale';
 
 interface LanguageProviderTypes {

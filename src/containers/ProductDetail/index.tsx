@@ -2,12 +2,12 @@ import React from 'react';
 
 import Container from '@mui/material/Container';
 
-import LayoutMain from '../../components/LayoutMain';
-import ProductBriefing from '../../components/ProductBriefing';
-import AvailableAtShop from '../../components/AvailableAtShop';
-import RelatedProducts from '../../components/RelatedProducts';
-import DetailReviewTabbedPane from '../../components/DetailReviewTabbedPane';
-import FrequentlyBoughtTogether from '../../components/FrequentlyBoughtTogether';
+import AvailableAtShop from 'src/components/AvailableAtShop';
+import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
+import FrequentlyBoughtTogether from 'src/components/FrequentlyBoughtTogether';
+import LayoutMain from 'src/components/LayoutMain';
+import ProductBriefing from 'src/components/ProductBriefing';
+import RelatedProducts from 'src/components/RelatedProducts';
 
 function ProductDetail() {
   const handleSubmitReview = (data: object) => {

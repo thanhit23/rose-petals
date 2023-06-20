@@ -1,9 +1,9 @@
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import LayoutMain from '../../../components/LayoutMain';
-import SideBarUser from '../../../components/SideBarUser';
-import FormEditProfileUser from '../../../components/FormEditProfileUser';
+import FormEditProfileUser from 'src/components/FormEditProfileUser';
+import LayoutMain from 'src/components/LayoutMain';
+import SideBarUser from 'src/components/SideBarUser';
 
 function Profile() {
   return (

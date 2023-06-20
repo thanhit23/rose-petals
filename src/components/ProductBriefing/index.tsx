@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function ProductBriefing() {
   const [srcImg, setSrcImg] = useState('');
@@ -44,18 +44,9 @@ function ProductBriefing() {
                 key={index}
                 sx={() => ({
                   ...styles.boxImgItem,
-                  marginLeft: () => {
-                    if (!index) return 'auto';
-                    return 0;
-                  },
-                  marginRight: () => {
-                    if (index === imgItem.length - 1) return 'auto';
-                    return '10px';
-                  },
-                  borderColor: () => {
-                    if (i === srcImg) return '#d23f57';
-                    return '#dae1e7';
-                  },
+                  marginLeft: () => (!index ? 'auto' : 0),
+                  marginRight: () => (index === imgItem.length - 1 ? 'auto' : '10px'),
+                  borderColor: () => (i === srcImg ? '#d23f57' : '#dae1e7'),
                 })}
                 onClick={() => setSrcImg(i)}
               >

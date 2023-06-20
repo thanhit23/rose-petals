@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 
-import styles from './styles';
 import SlideProduct from '../SlideProduct';
+import styles from './styles';
 
 function ListBrand() {
   return (

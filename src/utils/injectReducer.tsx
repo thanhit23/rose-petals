@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from 'react';
-import hoistNonReactStatics from 'hoist-non-react-statics';
+import React, { useContext, useEffect } from 'react';
 import { ReactReduxContext } from 'react-redux';
+
+import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import getInjectors from './reducerInjectors';
 

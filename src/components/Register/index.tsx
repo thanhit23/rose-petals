@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
-import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-import styles from './styles';
+import RegisterForm from 'src/containers/Register/RegisterForm';
+
 import messages from './messages';
-import RegisterForm from '../../containers/Register/RegisterForm';
+import styles from './styles';
 
 export default function Register() {
   return (

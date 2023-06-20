@@ -1,14 +1,14 @@
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function PricingDetail() {
   return (

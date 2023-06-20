@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
-import ButtonBase from '@mui/material/ButtonBase';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Box from '@mui/material/Box';
+import ButtonBase from '@mui/material/ButtonBase';
+import Rating from '@mui/material/Rating';
 
-import styles from './styles';
-import messages from './messages';
 import QuickView from '../QuickView';
+import messages from './messages';
+import styles from './styles';
 import { ItemSellTypes } from './types';
 
 function ProductItemQuickView({

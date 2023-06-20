@@ -1,9 +1,9 @@
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import LayoutMain from '../../../components/LayoutMain';
-import SideBarUser from '../../../components/SideBarUser';
-import OrderDetailComponent from '../../../components/OrderDetail';
+import LayoutMain from 'src/components/LayoutMain';
+import OrderDetailComponent from 'src/components/OrderDetail';
+import SideBarUser from 'src/components/SideBarUser';
 
 function OrderDetail() {
   return (

@@ -1,10 +1,10 @@
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import LayoutMain from '../../components/LayoutMain';
-import BreadBarCartPage from '../../components/FormSteps';
-import PricingDetail from '../../components/PricingDetail';
-import CheckoutAddressForm from '../../components/CheckoutAddressForm';
+import CheckoutAddressForm from 'src/components/CheckoutAddressForm';
+import BreadBarCartPage from 'src/components/FormSteps';
+import LayoutMain from 'src/components/LayoutMain';
+import PricingDetail from 'src/components/PricingDetail';
 
 function Checkout() {
   return (

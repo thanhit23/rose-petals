@@ -1,15 +1,17 @@
-import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import styles from './styles';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import TextField from '../TextField';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import ErrorMessage from '../ErrorMessage';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import * as Yup from 'yup';
+
+import ErrorMessage from '../ErrorMessage';
+import TextField from '../TextField';
+import messages from './messages';
+import styles from './styles';
 import { SubmitForm } from './types';
 
 function FormPaymentMethod({ defaultValue = {} }: { defaultValue?: object }) {

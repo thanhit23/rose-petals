@@ -1,19 +1,19 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Badge from '@mui/material/Badge';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import CloseIcon from '@mui/icons-material/Close';
-import ButtonBase from '@mui/material/ButtonBase';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import Badge from '@mui/material/Badge';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ButtonBase from '@mui/material/ButtonBase';
+import Divider from '@mui/material/Divider';
+import Modal from '@mui/material/Modal';
+import Paper from '@mui/material/Paper';
 
-import styles from './styles';
 import Product from './Product';
 import messages from './messages';
+import styles from './styles';
 
 export default function SideBarCart() {
   const [open, setOpen] = React.useState(false);

@@ -1,4 +1,5 @@
 import { styles } from '../common';
+
 const wrapPaper = {
   boxShadow: '0px 1px 3px rgba(3, 0, 71, 0.09)',
   borderRadius: '8px',

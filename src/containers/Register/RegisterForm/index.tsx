@@ -1,25 +1,26 @@
-import * as Yup from 'yup';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useMutation } from '@tanstack/react-query';
-
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Alert from '@mui/material/Alert';
-import Checkbox from '@mui/material/Checkbox';
 import LoadingButton from '@mui/lab/LoadingButton';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import { useMutation } from '@tanstack/react-query';
+import * as Yup from 'yup';
 
+import ErrorMessage from 'src/components/ErrorMessage';
+import TextField from 'src/components/TextField';
+
+import { TData } from '../../Login/types';
+import { register as registerService } from '../services';
 import styles from '../styles';
 import messages from './messages';
 import { UserSubmitForm } from './types';
-import { TData } from '../../Login/types';
-import TextField from '../../../components/TextField';
-import { register as registerService } from '../services';
-import ErrorMessage from '../../../components/ErrorMessage';
 
 function RegisterForm() {
   const navigate = useNavigate();

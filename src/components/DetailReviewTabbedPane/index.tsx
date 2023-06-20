@@ -3,10 +3,10 @@ import React from 'react';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 
-import styles from './styles';
+import Description from '../ProductDescription';
 import Review from '../ProductReview';
 import TabPanel from '../TabPanelProduct';
-import Description from '../ProductDescription';
+import styles from './styles';
 import { DetailReviewTabbedPaneType } from './types';
 
 function DetailReviewTabbedPane({ handleSubmitReview }: DetailReviewTabbedPaneType) {

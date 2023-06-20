@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import routes from '../../routes';
 import LoadingIndicator from '../LoadingIndicator';

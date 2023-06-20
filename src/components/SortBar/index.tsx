@@ -1,17 +1,17 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { useParams } from 'react-router-dom';
 
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import FormControl from '@mui/material/FormControl';
 import { Apps, ViewList } from '@mui/icons-material';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function SortBar({ changeView, viewList }: { changeView: (isView: boolean) => void; viewList: boolean }) {
   const { slug = '' } = useParams();

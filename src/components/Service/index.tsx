@@ -5,8 +5,8 @@ import Container from '@mui/material/Container';
 
 import Item from './Item';
 import icons from './icons';
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function Service() {
   return (

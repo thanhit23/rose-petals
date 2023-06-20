@@ -1,4 +1,4 @@
-import { CHECK_TOKEN_FAILED, REDIRECT_LOGIN } from '../containers/Authenticated/constants';
+import { CHECK_TOKEN_FAILED, REDIRECT_LOGIN } from 'src/containers/Authenticated/constants';
 
 const middlewareStorage =
   (store: { getState: () => void }) => (next: (action: object) => void) => (action: { type: string }) => {

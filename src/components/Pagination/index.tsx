@@ -1,8 +1,9 @@
-import Box from '@mui/material/Box';
+import * as React from 'react';
+
 import { Pagination as MuiPagination } from '@mui/material';
+import Box from '@mui/material/Box';
 
 import styles from './styles';
-import * as React from 'react';
 
 function Pagination({ count, onChange }: { count: number; onChange: (page: number) => void }) {
   const handleChange = (e: React.ChangeEvent<unknown>, value: number) => {

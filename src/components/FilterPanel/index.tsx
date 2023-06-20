@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import Divider from '@mui/material/Divider';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
-import Divider from '@mui/material/Divider';
-import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function FilterPanel() {
   const [openDropdown, setOpenDropdown] = useState(false);

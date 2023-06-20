@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-import styles from './styles';
 import messages from '../messages';
 import { ArticleItemProps } from '../types';
+import styles from './styles';
 
 function ArticleItem({ article: { title, image, description, date, path } }: ArticleItemProps) {
   return (

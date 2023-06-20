@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 
-import ListOrder from '../../components/ListOrder';
-import LayoutMain from '../../components/LayoutMain';
-import Pagination from '../../components/Pagination';
-import SideBarUser from '../../components/SideBarUser';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
+import LayoutMain from 'src/components/LayoutMain';
+import ListOrder from 'src/components/ListOrder';
+import Pagination from 'src/components/Pagination';
+import SideBarUser from 'src/components/SideBarUser';
 
 function Order() {
   const handleChangePage = (value: number) => {

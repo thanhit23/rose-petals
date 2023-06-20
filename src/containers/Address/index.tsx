@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import { Place } from '@mui/icons-material';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+
+import HeaderHoldUser from 'src/components/HeaderHoldUser';
+import ItemAddress from 'src/components/ItemAddress';
+import LayoutMain from 'src/components/LayoutMain';
+import Pagination from 'src/components/Pagination';
+import SideBarUser from 'src/components/SideBarUser';
 
 import messages from './messages';
-import LayoutMain from '../../components/LayoutMain';
-import Pagination from '../../components/Pagination';
-import SideBarUser from '../../components/SideBarUser';
-import ItemAddress from '../../components/ItemAddress';
-import HeaderHoldUser from '../../components/HeaderHoldUser';
 
 function Address() {
   const listAddress = [

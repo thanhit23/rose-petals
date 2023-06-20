@@ -1,11 +1,11 @@
 import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import Default from './Default';
 import styles from './styles';
-import 'react-slideshow-image/dist/styles.css';
 
 function SlideShow() {
   const renderDotted = () => (

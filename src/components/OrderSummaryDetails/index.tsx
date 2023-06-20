@@ -1,13 +1,13 @@
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function OrderSummaryDetails() {
   return (

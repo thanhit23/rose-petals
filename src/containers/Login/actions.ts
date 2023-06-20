@@ -1,13 +1,11 @@
-import { LOGIN_SUCCESS, LOGIN_FAILED } from './constants';
-import { LoginSuccessAction, LoginFailedAction } from './types';
+import { LOGIN_FAILED, LOGIN_SUCCESS } from './constants';
+import { LoginFailedAction, LoginSuccessAction } from './types';
 
-export const loginSuccess = (data: object) =>
-  <LoginSuccessAction>{
-    type: LOGIN_SUCCESS,
-    payload: { data },
-  };
+export const loginSuccess = (data: object): LoginSuccessAction => ({
+  type: LOGIN_SUCCESS,
+  payload: { data },
+});
 
-export const loginFailed = () =>
-  <LoginFailedAction>{
-    type: LOGIN_FAILED,
-  };
+export const loginFailed = (): LoginFailedAction => ({
+  type: LOGIN_FAILED,
+});

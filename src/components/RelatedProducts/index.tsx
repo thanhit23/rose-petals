@@ -2,20 +2,20 @@ import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
+import AddIcon from '@mui/icons-material/Add';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import RemoveIcon from '@mui/icons-material/Remove';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Rating from '@mui/material/Rating';
-import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
-import RemoveIcon from '@mui/icons-material/Remove';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import Paper from '@mui/material/Paper';
+import Rating from '@mui/material/Rating';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function RelatedProducts() {
   const [quantity, setQuantity] = useState(0);

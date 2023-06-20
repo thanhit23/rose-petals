@@ -1,9 +1,9 @@
-import LoginPage from '../../containers/SignIn';
-import Register from '../../containers/Register';
-import NotFound from '../../components/NotFound';
-import HomePage from '../../containers/HomePage';
-import ProductDetail from '../../containers/ProductDetail';
-import ProductSearch from '../../containers/ProductSearch';
+import NotFound from 'src/components/NotFound';
+import HomePage from 'src/containers/HomePage';
+import ProductDetail from 'src/containers/ProductDetail';
+import ProductSearch from 'src/containers/ProductSearch';
+import Register from 'src/containers/Register';
+import LoginPage from 'src/containers/SignIn';
 
 export default [
   { path: '/', element: <HomePage /> },

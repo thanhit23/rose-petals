@@ -1,16 +1,16 @@
-import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
-import { yupResolver } from '@hookform/resolvers/yup';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
+import * as Yup from 'yup';
 
-import styles from './styles';
-import messages from './messages';
 import ErrorMessage from '../ErrorMessage';
+import messages from './messages';
+import styles from './styles';
 
 export interface SubmitForm {
   message: string;

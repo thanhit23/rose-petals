@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import InputLabel from '@mui/material/InputLabel';
-import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
-import styles from './styles';
-import messages from './messages';
 import AutocompleteCountry from '../AutocompleteCountry';
+import messages from './messages';
+import styles from './styles';
 
 function CheckoutAddressForm() {
   const [billingAddress, setBillingAddress] = useState(true);

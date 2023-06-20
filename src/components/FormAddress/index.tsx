@@ -1,20 +1,20 @@
-import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
-import { yupResolver } from '@hookform/resolvers/yup';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Place } from '@mui/icons-material';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import { Place } from '@mui/icons-material';
+import * as Yup from 'yup';
 
-import styles from './styles';
-import messages from './messages';
-import { SubmitForm } from './types';
-import TextField from '../TextField';
 import ErrorMessage from '../ErrorMessage';
 import HeaderHoldUser from '../HeaderHoldUser';
+import TextField from '../TextField';
+import messages from './messages';
+import styles from './styles';
+import { SubmitForm } from './types';
 
 function FormAddress({ defaultValue = {} }: { defaultValue?: object }) {
   const loginValidationSchema = Yup.object().shape({

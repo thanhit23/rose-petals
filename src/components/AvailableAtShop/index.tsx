@@ -1,12 +1,13 @@
+import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
+
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { Link } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
-import { FormattedMessage } from 'react-intl';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 
 function AvailableAtShop() {
   const data = [

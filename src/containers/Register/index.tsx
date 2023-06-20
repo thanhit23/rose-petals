@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
 import Paper from '@mui/material/Paper';
 
+import RegisterPage from 'src/components/Register';
+
 import styles from './styles';
-import RegisterPage from '../../components/Register';
 
 function Register() {
   return (

@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 import styles from './styles';
 import { DefaultTypes } from './types';

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Add, FavoriteBorder, Remove, RemoveRedEye } from '@mui/icons-material';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import Rating from '@mui/material/Rating';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import { RemoveRedEye, FavoriteBorder, Add, Remove } from '@mui/icons-material';
+import Paper from '@mui/material/Paper';
+import Rating from '@mui/material/Rating';
 
 import styles from './styles';
 import { Props } from './types';

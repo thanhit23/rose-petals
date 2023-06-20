@@ -1,13 +1,13 @@
-import { FormattedMessage } from 'react-intl';
 import { HTMLAttributes } from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
 import Autocomplete, { AutocompleteRenderInputParams } from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
-import styles from './styles';
 import messages from './messages';
+import styles from './styles';
 import { CountryType } from './types';
 
 function AutocompleteCountry() {

@@ -1,15 +1,16 @@
 import { FormattedMessage } from 'react-intl';
 
+import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import SvgIcon from '@mui/material/SvgIcon';
-import Container from '@mui/material/Container';
+
+import FeedbackSupportTicket from 'src/components/FeedbackSupportTicket';
+import HeaderHoldUser from 'src/components/HeaderHoldUser';
+import LayoutMain from 'src/components/LayoutMain';
+import SideBarUser from 'src/components/SideBarUser';
+import { icons } from 'src/components/common';
 
 import messages from '../messages';
-import { icons } from '../../../components/common';
-import LayoutMain from '../../../components/LayoutMain';
-import SideBarUser from '../../../components/SideBarUser';
-import HeaderHoldUser from '../../../components/HeaderHoldUser';
-import FeedbackSupportTicket from '../../../components/FeedbackSupportTicket';
 
 function DetailSupportTicket() {
   const renderIconSupport = <SvgIcon viewBox="0 0 64 64">{icons.support}</SvgIcon>;

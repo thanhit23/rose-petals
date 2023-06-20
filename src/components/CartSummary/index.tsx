@@ -1,18 +1,18 @@
-import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
 
-import styles from './styles';
-import messages from './messages';
-import MuiTextField from '../TextField';
 import AutocompleteCountry from '../AutocompleteCountry';
+import MuiTextField from '../TextField';
+import messages from './messages';
+import styles from './styles';
 
 function CartSummary() {
   const currencies = [

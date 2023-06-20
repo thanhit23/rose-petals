@@ -1,20 +1,20 @@
-import Cart from '../../containers/Cart';
-import Order from '../../containers/Order';
-import Profile from '../../containers/Profile';
-import Address from '../../containers/Address';
-import Payment from '../../containers/Payment';
-import Checkout from '../../containers/Checkout';
-import WishList from '../../containers/WishList';
-import HomePage from '../../containers/HomePage';
-import ProfileEdit from '../../containers/Profile/Edit';
-import AddAddress from '../../containers/Address/Add';
-import EditAddress from '../../containers/Address/Edit';
-import OrderDetail from '../../containers/Order/Detail';
-import SupportTicket from '../../containers/SupportTicket';
-import PaymentMethod from '../../containers/PaymentMethod';
-import PaymentMethodAdd from '../../containers/PaymentMethod/Add';
-import PaymentMethodEdit from '../../containers/PaymentMethod/Edit';
-import DetailSupportTicket from '../../containers/SupportTicket/Detail';
+import Address from 'src/containers/Address';
+import AddAddress from 'src/containers/Address/Add';
+import EditAddress from 'src/containers/Address/Edit';
+import Cart from 'src/containers/Cart';
+import Checkout from 'src/containers/Checkout';
+import HomePage from 'src/containers/HomePage';
+import Order from 'src/containers/Order';
+import OrderDetail from 'src/containers/Order/Detail';
+import Payment from 'src/containers/Payment';
+import PaymentMethod from 'src/containers/PaymentMethod';
+import PaymentMethodAdd from 'src/containers/PaymentMethod/Add';
+import PaymentMethodEdit from 'src/containers/PaymentMethod/Edit';
+import Profile from 'src/containers/Profile';
+import ProfileEdit from 'src/containers/Profile/Edit';
+import SupportTicket from 'src/containers/SupportTicket';
+import DetailSupportTicket from 'src/containers/SupportTicket/Detail';
+import WishList from 'src/containers/WishList';
 
 export default [
   { path: '/user', component: HomePage, exact: true, index: true },

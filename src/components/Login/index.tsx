@@ -1,14 +1,15 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
-import styles from './styles';
+import LoginForm from 'src/containers/Login/LoginForm';
+
 import messages from './messages';
-import LoginForm from '../../containers/Login/LoginForm';
+import styles from './styles';
 
 export default function Login() {
   return (

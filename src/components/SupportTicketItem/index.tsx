@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
+import EastIcon from '@mui/icons-material/East';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import Paper from '@mui/material/Paper';
-import EastIcon from '@mui/icons-material/East';
 import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import styles from './styles';
 import Pagination from '../Pagination';
+import styles from './styles';
 
 function SupportTicketItem() {
   const handleChangePage = (value: number) => {
