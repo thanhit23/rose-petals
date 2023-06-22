@@ -11,6 +11,7 @@ import RelatedProducts from 'src/components/RelatedProducts';
 
 function ProductDetail() {
   const handleSubmitReview = (data: object) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 

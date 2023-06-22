@@ -9,7 +9,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 
 import styles from './styles';
 
-function Product() {
+function Product({ onClose }: { onClose: () => void }) {
   const [counter, setCounter] = React.useState(0);
 
   const handleIncrement = () => {
@@ -18,10 +18,6 @@ function Product() {
 
   const handleDecrement = () => {
     if (counter > 0) setCounter(counter - 1);
-  };
-
-  const handleClose = () => {
-    console.log('asasd');
   };
 
   return (
@@ -52,7 +48,7 @@ function Product() {
         </Box>
         <Box sx={styles.boxTotalPrice}>$456</Box>
       </Box>
-      <ButtonBase onClick={handleClose} sx={styles.buttonBaseClose}>
+      <ButtonBase onClick={() => onClose()} sx={styles.buttonBaseClose}>
         <CloseIcon />
       </ButtonBase>
     </Box>

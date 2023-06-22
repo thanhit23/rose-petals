@@ -48,9 +48,9 @@ export default function SideBarCart() {
                 </ButtonBase>
               </Box>
               <Divider />
-              <Product />
-              <Product />
-              <Product />
+              <Product onClose={handleClose} />
+              <Product onClose={handleClose} />
+              <Product onClose={handleClose} />
             </Box>
             <Box sx={{ padding: '20px' }}>
               <Button href="/checkout" variant="contained" sx={styles.btnCheckoutNow}>

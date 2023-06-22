@@ -48,6 +48,7 @@ function Address() {
   ];
 
   const handleChangePage = (value: number) => {
+    // eslint-disable-next-line no-console
     console.log(value);
   };
 

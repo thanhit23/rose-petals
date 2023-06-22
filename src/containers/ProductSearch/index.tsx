@@ -15,6 +15,7 @@ import SortBar from 'src/components/SortBar';
 function ProductSearch() {
   const [viewList, setViewList] = useState(false);
   const handleProductSearch = () => {
+    // eslint-disable-next-line no-console
     console.log('asdasdasd');
   };
 
