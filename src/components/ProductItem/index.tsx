@@ -14,6 +14,7 @@ import { Props } from './types';
 
 function ProductItem({ product }: Props) {
   const [quantity, setQuantity] = useState(0);
+  // eslint-disable-next-line no-console
   console.log(product);
   const handleReduce = (): void => {
     if (quantity === 0) return;

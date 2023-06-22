@@ -35,6 +35,7 @@ function FormPaymentMethod({ defaultValue = {} }: { defaultValue?: object }) {
   const { cardNumber, nameOnCard, date, cvc } = errors;
 
   const handleSubmitForm = (data: object) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 

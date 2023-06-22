@@ -38,6 +38,7 @@ function FormEditProfileUser() {
   const { email, firstName, lastName, phoneNumber } = errors;
 
   const handleSubmitForm = (data: object) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 

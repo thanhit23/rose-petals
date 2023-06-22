@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Place } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -10,7 +9,6 @@ import Paper from '@mui/material/Paper';
 import * as Yup from 'yup';
 
 import ErrorMessage from '../ErrorMessage';
-import HeaderHoldUser from '../HeaderHoldUser';
 import TextField from '../TextField';
 import messages from './messages';
 import styles from './styles';
@@ -36,6 +34,7 @@ function FormAddress({ defaultValue = {} }: { defaultValue?: object }) {
   const { name, addressLine, phone } = errors;
 
   const handleSubmitForm = (data: object) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 

@@ -15,6 +15,7 @@ import messages from './messages';
 
 function WishList() {
   const handleProductSearch = () => {
+    // eslint-disable-next-line no-console
     console.log('asdasdasd');
   };
   return (

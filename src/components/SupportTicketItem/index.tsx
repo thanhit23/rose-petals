@@ -13,6 +13,7 @@ import styles from './styles';
 
 function SupportTicketItem() {
   const handleChangePage = (value: number) => {
+    // eslint-disable-next-line no-console
     console.log(value);
   };
 

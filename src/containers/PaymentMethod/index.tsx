@@ -14,6 +14,7 @@ import messages from './messages';
 
 function PaymentMethod() {
   const handleChangePage = (value: number) => {
+    // eslint-disable-next-line no-console
     console.log(value);
   };
 
