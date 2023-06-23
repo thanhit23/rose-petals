@@ -12,7 +12,11 @@ export interface States {
   };
 }
 
+export interface ShowLoadingPayload {
+  isShow: boolean;
+}
+
 export interface ShowLoadingAction {
   type: typeof SHOW_LOADING;
-  payload: { isShow: boolean };
+  payload: ShowLoadingPayload;
 }

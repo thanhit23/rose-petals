@@ -1,8 +1,6 @@
 const formControlLabel = { display: 'flex' };
 
 const btnSubmit = {
-  mt: 3,
-  mb: 2,
   backgroundColor: '#d23f57',
   color: '#fff',
   boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
@@ -31,7 +29,6 @@ const boxForGotPassword = {
   borderRadius: '4px',
   paddingTop: '20px',
   paddingBottom: '20px',
-  marginTop: '1.25rem',
 };
 
 const linkRegister = {
@@ -49,7 +46,6 @@ const boxFooterLogin = {
   justifyContent: 'center',
   webkitBoxAlign: 'center',
   alignItems: 'center',
-  marginTop: '1.25rem',
 };
 
 const iconBtnShowPassword = {

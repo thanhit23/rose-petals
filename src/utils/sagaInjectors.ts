@@ -6,19 +6,19 @@ import { DAEMON, ONCE_TILL_UNMOUNT, RESTART_ON_REMOUNT } from './constants';
 
 const allowedModes = [RESTART_ON_REMOUNT, DAEMON, ONCE_TILL_UNMOUNT];
 
-const checkKey = (key: any) =>
+const checkKey = (key: string) =>
   invariant(isString(key) && !isEmpty(key), '(app/utils...) injectSaga: Expected `key` to be a non empty string');
 
 const checkDescriptor = (descriptor: object) => {
   const shape = {
     saga: isFunction,
-    mode: (mode: any) => isString(mode) && allowedModes.includes(mode),
+    mode: (mode: string) => isString(mode) && allowedModes.includes(mode),
   };
   invariant(conformsTo(descriptor, shape), '(app/utils...) injectSaga: Expected a valid saga descriptor');
 };
 
 export function injectSagaFactory(store: any, isValid: any) {
-  return function injectSaga(key: any, descriptor: { [key: string]: any } = {}, args: any) {
+  return function injectSaga(key: string, descriptor: { [key: string]: any } = {}, args: any) {
     if (!isValid) checkStore(store);
 
     const newDescriptor = {
@@ -50,8 +50,8 @@ export function injectSagaFactory(store: any, isValid: any) {
   };
 }
 
-export function ejectSagaFactory(store: any, isValid: any) {
-  return function ejectSaga(key: any) {
+export function ejectSagaFactory(store: any, isValid: boolean) {
+  return function ejectSaga(key: string) {
     if (!isValid) checkStore(store);
 
     checkKey(key);

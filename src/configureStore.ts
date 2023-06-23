@@ -5,15 +5,20 @@ import thunk from 'redux-thunk';
 import middlewareStorage from './middleware/apiMiddleware';
 import createReducer from './reducers';
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 export default function configureStore(initialState = {}) {
   const reduxSagaMonitorOptions = {};
   let composeEnhancers = compose;
 
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+
   if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
-    /* eslint-disable no-underscore-dangle */
-    if ((window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
-      composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
+    composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
 
     // NOTE: Uncomment the code below to restore support for Redux Saga
     // Dev Tools once it supports redux-saga version 1.x.x
@@ -21,7 +26,6 @@ export default function configureStore(initialState = {}) {
     //   reduxSagaMonitorOptions = {
     //     sagaMonitor: window.__SAGA_MONITOR_EXTENSION__,
     //   };
-    /* eslint-enable */
   }
 
   // Create the store with two middlewares

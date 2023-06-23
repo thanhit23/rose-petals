@@ -40,12 +40,12 @@ describe('Login Actions', () => {
   });
   describe('loginFailed', () => {
     it('should return the correct type', () => {
-      const data = { message: 'sai email' };
+      const message = 'sai email';
       const expectedResult = {
         type: LOGIN_FAILED,
-        payload: { data },
+        payload: { message: 'sai email' },
       };
-      expect(loginFailed()).toEqual(expectedResult);
+      expect(loginFailed(message)).toEqual(expectedResult);
     });
   });
 });

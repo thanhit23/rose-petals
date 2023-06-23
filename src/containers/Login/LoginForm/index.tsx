@@ -16,7 +16,6 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { useMutation } from '@tanstack/react-query';
 import { Dispatch, bindActionCreators, compose } from 'redux';
-import * as Yup from 'yup';
 
 import ErrorMessage from 'src/components/ErrorMessage';
 import TextField from 'src/components/TextField';
@@ -28,6 +27,7 @@ import { login as loginService } from '../services';
 import { Props, TData, UserSubmitForm } from '../types';
 import messages from './messages';
 import styles from './styles';
+import { loginValidationSchema } from './validationSchema';
 
 function LoginForm({ onLoginSuccess }: Props) {
   const [isPassword, setIsPassword] = useState(true);
@@ -45,11 +45,6 @@ function LoginForm({ onLoginSuccess }: Props) {
     },
   });
 
-  const loginValidationSchema = Yup.object().shape({
-    email: Yup.string().required().email(),
-    password: Yup.string().required().min(6).max(45),
-  });
-
   const {
     register,
     setError,
@@ -63,13 +58,16 @@ function LoginForm({ onLoginSuccess }: Props) {
   const { email, password, root } = errors;
 
   return (
-    <Box component="form" onSubmit={handleSubmit(data => mutate(data))} noValidate sx={{ width: '100%' }}>
-      <Grid container spacing={{ xs: 3 }}>
-        {!!root?.afterSubmit && (
-          <Grid item xs={12}>
-            <Alert severity="error">{root?.afterSubmit.message}</Alert>
-          </Grid>
-        )}
+    <Box component="form" onSubmit={handleSubmit(data => mutate(data))} noValidate>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          {!!root?.afterSubmit && (
+            <Alert sx={{ width: '100%' }} severity="error">
+              {root?.afterSubmit.message}
+            </Alert>
+          )}
+        </Grid>
+
         <Grid item xs={12}>
           <TextField
             label={<FormattedMessage {...messages.labelEmail} />}
@@ -83,6 +81,7 @@ function LoginForm({ onLoginSuccess }: Props) {
           />
           <ErrorMessage name={email} />
         </Grid>
+
         <Grid item xs={12}>
           <Box sx={styles.boxPassword}>
             <TextField
@@ -109,37 +108,49 @@ function LoginForm({ onLoginSuccess }: Props) {
           </Box>
           <ErrorMessage name={password} />
         </Grid>
+
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label={<FormattedMessage {...messages.rememberMe} />}
+            sx={styles.formControlLabel}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <LoadingButton
+            fullWidth
+            color="inherit"
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={isLoading}
+            sx={styles.btnSubmit}
+          >
+            <FormattedMessage {...messages.btnSubmit} />
+          </LoadingButton>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box sx={styles.boxFooterLogin}>
+            <Box color="#2b3445">
+              <FormattedMessage {...messages.notAccount} />
+            </Box>
+            <Link to="/register" style={styles.linkSingUp}>
+              <FormattedMessage {...messages.signUp} />
+            </Link>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box sx={styles.boxForGotPassword}>
+            <FormattedMessage {...messages.forgotPassword} />
+            <Link to="/reset-password" style={styles.linkRegister}>
+              <FormattedMessage {...messages.resetIt} />
+            </Link>
+          </Box>
+        </Grid>
       </Grid>
-      <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label={<FormattedMessage {...messages.rememberMe} />}
-        sx={styles.formControlLabel}
-      />
-      <LoadingButton
-        fullWidth
-        color="inherit"
-        size="large"
-        type="submit"
-        variant="contained"
-        loading={isLoading}
-        sx={styles.btnSubmit}
-      >
-        <FormattedMessage {...messages.btnSubmit} />
-      </LoadingButton>
-      <Box sx={styles.boxFooterLogin}>
-        <Box color="#2b3445">
-          <FormattedMessage {...messages.notAccount} />
-        </Box>
-        <Link to="/register" style={styles.linkSingUp}>
-          <FormattedMessage {...messages.signUp} />
-        </Link>
-      </Box>
-      <Box sx={styles.boxForGotPassword}>
-        <FormattedMessage {...messages.forgotPassword} />
-        <Link to="/reset-password" style={styles.linkRegister}>
-          <FormattedMessage {...messages.resetIt} />
-        </Link>
-      </Box>
     </Box>
   );
 }
