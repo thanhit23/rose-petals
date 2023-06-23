@@ -1,21 +1,26 @@
 import produce from 'immer';
 
-import { SHOW_LOADING } from '../LoadingIndicator/constants';
-import { LOGIN_SUCCESS } from '../Login/constants';
+import { MapAction } from 'src/common/types';
+import { SHOW_LOADING } from 'src/containers/LoadingIndicator/constants';
+import { ShowLoadingPayload } from 'src/containers/LoadingIndicator/types';
+import { LOGIN_SUCCESS } from 'src/containers/Login/constants';
+import { LoginFailedPayload, LoginSuccessPayload } from 'src/containers/Login/types';
 
 export const initialState = {
-  auth: null,
+  auth: {},
   loading: {
     showLoading: false,
   },
 };
 
-interface Action {
-  type: string;
-  payload?: any;
-}
+type Action = {
+  LOGIN_SUCCESS: LoginSuccessPayload;
+  SHOW_LOADING: ShowLoadingPayload;
+  LOGIN_FAILED: LoginFailedPayload;
+  LOGOUT_REQUEST: never;
+};
 
-const appReducer = (state = initialState, action: Action) =>
+const appReducer = (state = initialState, action: MapAction<Action>) =>
   produce(state, draft => {
     switch (action.type) {
       case LOGIN_SUCCESS: {

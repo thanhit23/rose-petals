@@ -6,9 +6,8 @@ const get = (key: string) => {
   return JSON.parse(<string>localStorage.getItem(key));
 };
 
-const set = (key: string, data: any) => {
+const set = (key: string, data: object) => {
   invariant(isString(key), '(app/storeManager) set store: Expected a valid store');
-
   localStorage.setItem(key, JSON.stringify(data));
 };
 

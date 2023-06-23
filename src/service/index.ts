@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { map } from 'lodash';
 
 import { LOGIN_FAILED } from 'src/containers/Login/constants';
@@ -7,7 +7,7 @@ import store from '../store';
 import { BASE_URL, LOGOUT_REQUEST, SERVER_ERROR, UNAUTHORIZED } from './constants';
 
 class Service {
-  instance: any;
+  instance;
   constructor() {
     this.instance = axios.create({
       baseURL: BASE_URL,
@@ -25,7 +25,7 @@ class Service {
     this.setHeaderDefault({ Authorization: `Bearer ${token}` });
   };
 
-  handleSuccess = (res: object) => res;
+  handleSuccess = (res: AxiosResponse): Promise<AxiosResponse> | AxiosResponse => res;
 
   handleError = (err: { response: { status: number; data: { message: string } } }) => {
     const {
@@ -60,7 +60,7 @@ class Service {
 
   put = (url: string, body: object) => this.instance.put(url, body);
 
-  delete = (url: string, id: string) => this.instance.delete(url, id);
+  delete = (url: string) => this.instance.delete(url);
 }
 
 export default new Service();

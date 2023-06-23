@@ -9,8 +9,9 @@ import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 
+import { DropDownTypes } from 'src/components/DropDown/types';
+
 import styles from './styles';
-import { DropDownTypes } from './types';
 
 function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);
@@ -77,9 +78,9 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <Box>
-                  {menuItem.map(({ title, path }: { title: string; path: string }, key: number) => (
+                  {menuItem.map(({ title, path }, key: number) => (
                     <Box sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
-                      <Link to={path} style={styles.linkMenuItem}>
+                      <Link to={path || ''} style={styles.linkMenuItem}>
                         <Box component="span" sx={styles.boxItem}>
                           {title}
                         </Box>
