@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
+import Popover from '@material-ui/core/Popover';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 import ButtonBase from '@mui/material/ButtonBase';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
 
 import { DropDownTypes } from './types';
 
 function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);
 
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const anchorRef = useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
@@ -37,10 +35,8 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
 
   const prevOpen = React.useRef(open);
 
-  React.useEffect(() => {
-    if (prevOpen.current && !open) {
-      anchorRef.current?.focus();
-    }
+  useEffect(() => {
+    if (prevOpen.current && !open) anchorRef.current?.focus();
 
     prevOpen.current = open;
   }, [open]);
@@ -61,41 +57,30 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
         {buttonText}
         {buttonIcon && <KeyboardArrowDownOutlined sx={{ ...buttonIconSx }} fontSize="small" />}
       </ButtonBase>
-      <Popper
+      <Popover
         open={open}
+        onClose={handleClose}
         anchorEl={anchorRef.current}
-        role={undefined}
-        placement="bottom-start"
-        transition
-        disablePortal
-        sx={{ zIndex: 100 }}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
       >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
-            }}
+        <Paper>
+          <MenuList
+            autoFocusItem={open}
+            id="composition-menu"
+            aria-labelledby="composition-button"
+            onKeyDown={handleListKeyDown}
           >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="composition-menu"
-                  aria-labelledby="composition-button"
-                  onKeyDown={handleListKeyDown}
-                >
-                  {menuItem.map(({ title }: { title: string }, key: number) => (
-                    <MenuItem sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
-                      {title}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+            {menuItem.map(({ title }: { title: string }, key: number) => (
+              <MenuItem sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
+                {title}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Paper>
+      </Popover>
     </>
   );
 }

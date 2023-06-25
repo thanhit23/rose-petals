@@ -8,14 +8,3 @@ export interface Props {
 export interface States {
   global: { auth: object };
 }
-
-export interface PropsSendReqToken {
-  type: string;
-  payload: {
-    token: string;
-  };
-}
-export interface ApiResponse {
-  data: object;
-  status: number;
-}
