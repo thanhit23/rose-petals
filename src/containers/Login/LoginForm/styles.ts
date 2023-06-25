@@ -1,7 +1,7 @@
 const formControlLabel = { display: 'flex' };
 
 const btnSubmit = {
-  backgroundColor: '#d23f57',
+  backgroundColor: 'error.main',
   color: '#fff',
   boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
   '&:hover': {
