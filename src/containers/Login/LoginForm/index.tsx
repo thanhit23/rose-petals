@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
@@ -129,6 +130,42 @@ function LoginForm({ onLoginSuccess }: Props) {
           >
             <FormattedMessage {...messages.btnSubmit} />
           </LoadingButton>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button
+            sx={{
+              width: '100%',
+              height: '100%',
+              marginBottom: '10px',
+              background: '#4285f4',
+              color: 'white',
+            }}
+          >
+            <Box component="img" src="/assets/icons/google.svg" alt="icons-google" />
+
+            <Box fontSize="12px" marginLeft="8px">
+              Continue with Google
+            </Box>
+          </Button>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button
+            sx={{
+              width: '100%',
+              height: '100%',
+              marginBottom: '10px',
+              background: 'rgb(59, 89, 152)',
+              color: 'white',
+            }}
+          >
+            <Box component="img" src="/assets/icons/facebook.svg" alt="icons-google" />
+
+            <Box fontSize="12px" marginLeft="8px">
+              Continue with Facebook
+            </Box>
+          </Button>
         </Grid>
 
         <Grid item xs={12}>
