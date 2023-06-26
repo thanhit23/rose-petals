@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import Box from '@mui/material/Box';

@@ -12,7 +12,6 @@ const buttonPerson = {
 const dialog = {
   '& div > div': {
     borderRadius: '8px',
-    maxWidth: '500px',
   },
 };
 

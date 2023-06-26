@@ -1,13 +1,9 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Button } from '@material-ui/core';
-import Popover from '@material-ui/core/Popover';
-import { Typography } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
-import DropDown from 'src/components/DropDown';
-
+import DropDown from '../../DropDown';
 import messages from './messages';
 import styles from './style';
 

@@ -63,7 +63,6 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
-        id="composition-button"
         placement="bottom-start"
         transition
         disablePortal
