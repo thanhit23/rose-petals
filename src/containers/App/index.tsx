@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import routes from '../../routes';
+import LoadingScreen from 'src/components/LoadingScreen';
+import routes from 'src/routes';
+
 import LoadingIndicator from '../LoadingIndicator';
 import './style.css';
 
@@ -27,8 +29,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <LoadingIndicator />
-      {useRoutes(routes())}
+      <Suspense fallback={<LoadingScreen />}>
+        <LoadingIndicator />
+        {useRoutes(routes())}
+      </Suspense>
     </ThemeProvider>
   );
 }

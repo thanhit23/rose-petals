@@ -1,23 +1,23 @@
-import Address from 'src/containers/Address';
-import AddAddress from 'src/containers/Address/Add';
-import EditAddress from 'src/containers/Address/Edit';
-import Cart from 'src/containers/Cart';
-import Checkout from 'src/containers/Checkout';
-import HomePage from 'src/containers/HomePage';
-import Order from 'src/containers/Order';
-import OrderDetail from 'src/containers/Order/Detail';
-import Payment from 'src/containers/Payment';
-import PaymentMethod from 'src/containers/PaymentMethod';
-import PaymentMethodAdd from 'src/containers/PaymentMethod/Add';
-import PaymentMethodEdit from 'src/containers/PaymentMethod/Edit';
-import Profile from 'src/containers/Profile';
-import ProfileEdit from 'src/containers/Profile/Edit';
-import SupportTicket from 'src/containers/SupportTicket';
-import DetailSupportTicket from 'src/containers/SupportTicket/Detail';
-import WishList from 'src/containers/WishList';
+import {
+  AddAddress,
+  Address,
+  Cart,
+  Checkout,
+  DetailSupportTicket,
+  EditAddress,
+  Order,
+  OrderDetail,
+  Payment,
+  PaymentMethod,
+  PaymentMethodAdd,
+  PaymentMethodEdit,
+  Profile,
+  ProfileEdit,
+  SupportTicket,
+  WishList,
+} from 'src/routes/elements';
 
 export default [
-  { path: '/user', component: HomePage, exact: true, index: true },
   { path: '/cart', component: Cart, index: true },
   { path: '/checkout', component: Checkout, index: true },
   { path: '/payment', component: Payment, index: true },
