@@ -12,7 +12,7 @@ import Container from '@mui/material/Container';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
-import useResponsive from '../../hook/useResponsive';
+import useResponsive from '../../hooks/useResponsive';
 import logo from '../../resources/images/logo.png';
 import { listMenuItems } from '../NavBar';
 import DropDown from '../NavBar/Dropdown';
