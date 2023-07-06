@@ -1,8 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { map } from 'lodash';
 
-import { LOGIN_FAILED } from 'src/containers/Login/constants';
-
 import store from '../store';
 import { BASE_URL, LOGOUT_REQUEST, SERVER_ERROR, UNAUTHORIZED } from './constants';
 
@@ -32,15 +30,8 @@ class Service {
       response: { status, data },
     } = err;
 
-    const { message } = data;
     switch (status) {
       case UNAUTHORIZED:
-        store.dispatch({
-          type: LOGIN_FAILED,
-          payload: {
-            message,
-          },
-        });
         store.dispatch({ type: LOGOUT_REQUEST });
         break;
       case SERVER_ERROR:

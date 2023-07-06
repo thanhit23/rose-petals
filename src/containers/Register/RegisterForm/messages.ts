@@ -5,7 +5,7 @@ export const scope = 'Containers.Register.Form';
 export default defineMessages({
   btnSignUp: {
     id: `${scope}.btnSignUp`,
-    defaultMessage: 'Sign Up',
+    defaultMessage: 'Submit',
   },
   labelName: {
     id: `${scope}.label.name`,

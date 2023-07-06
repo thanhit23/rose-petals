@@ -36,7 +36,28 @@ const errorMessage = {
   },
 };
 
+const visibilityOffIcon = {
+  color: '#dae1e7',
+  fontSize: '1.25rem',
+};
+
+const visibilityIcon = {
+  color: '#7d879c',
+  fontSize: '1.25rem',
+};
+
+const iconBtnShowPassword = {
+  padding: '5px',
+  position: 'absolute',
+  top: '50%',
+  right: '10px',
+  transform: 'translateY(-50%)',
+};
+
 export default {
+  iconBtnShowPassword,
+  visibilityOffIcon,
+  visibilityIcon,
   errorMessage,
   boxRegister,
   btnSubmit,

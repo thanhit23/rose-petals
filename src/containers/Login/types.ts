@@ -1,4 +1,4 @@
-import { LOGIN_FAILED, LOGIN_SUCCESS } from './constants';
+import { LOGIN_SUCCESS } from './constants';
 
 export interface Props {
   onLoginSuccess: (data: object) => void;
@@ -27,11 +27,6 @@ export interface LoginSuccessAction {
 export interface LoginFailedPayload {
   message: string;
 }
-
-export type LoginFailedAction = {
-  type: typeof LOGIN_FAILED;
-  payload: LoginFailedPayload;
-};
 
 export interface UserSubmitForm {
   email: string;

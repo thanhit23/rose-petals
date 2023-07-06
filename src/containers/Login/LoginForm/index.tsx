@@ -22,7 +22,7 @@ import TextField from 'src/components/TextField';
 import injectReducer, { TypeDefaultInjectors } from 'src/utils/injectReducer';
 
 import reducer from '../../App/reducer';
-import { loginFailed as loginFailedAction, loginSuccess as loginSuccessAction } from '../actions';
+import { loginSuccess as loginSuccessAction } from '../actions';
 import { login as loginService } from '../services';
 import { Props, TData, UserSubmitForm } from '../types';
 import messages from './messages';
@@ -83,7 +83,7 @@ function LoginForm({ onLoginSuccess }: Props) {
         </Grid>
 
         <Grid item xs={12}>
-          <Box sx={styles.boxPassword}>
+          <Box position="relative">
             <TextField
               label={<FormattedMessage {...messages.labelPassword} />}
               validate={register('password')}
@@ -156,7 +156,6 @@ function LoginForm({ onLoginSuccess }: Props) {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onLoginFailed: bindActionCreators(loginFailedAction, dispatch),
   onLoginSuccess: bindActionCreators(loginSuccessAction, dispatch),
 });
 
