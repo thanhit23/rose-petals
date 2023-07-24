@@ -4,7 +4,7 @@ const boxAvatar = {
   alignItems: 'center',
 };
 
-const avatar = { m: 1, backgroundColor: 'secondary.main' };
+const avatar = { m: 1 };
 
 const typography = {
   marginBottom: '32px',
