@@ -1,8 +1,7 @@
-// @mui
 import { GlobalStyles as MUIGlobalStyles } from '@mui/material';
 
 export default function GlobalStyles() {
-  const inputGlobalStyles = (
+  return (
     <MUIGlobalStyles
       styles={{
         '*': {
@@ -43,7 +42,6 @@ export default function GlobalStyles() {
         },
         img: {
           display: 'block',
-          maxWidth: '100%',
         },
         ul: {
           margin: 0,
@@ -52,6 +50,4 @@ export default function GlobalStyles() {
       }}
     />
   );
-
-  return inputGlobalStyles;
 }
