@@ -19,8 +19,6 @@ const linkSingUp = {
   textDecoration: 'none',
 };
 
-const boxPassword = { position: 'relative' };
-
 const boxForGotPassword = {
   display: 'flex',
   webkitBoxPack: 'center',
@@ -74,7 +72,6 @@ export default {
   boxFooterLogin,
   visibilityIcon,
   linkRegister,
-  boxPassword,
   linkSingUp,
   btnSubmit,
 };

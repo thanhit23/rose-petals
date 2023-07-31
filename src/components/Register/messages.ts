@@ -5,11 +5,11 @@ export const scope = 'Components.Register';
 export default defineMessages({
   signUp: {
     id: `${scope}.signUp`,
-    defaultMessage: 'Sign up',
+    defaultMessage: 'Register',
   },
   signIn: {
     id: `${scope}.signIn`,
-    defaultMessage: 'Sign in',
+    defaultMessage: 'Login',
   },
   hasAccount: {
     id: `${scope}.hasAccount`,

@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
 import { useMutation } from '@tanstack/react-query';
 import * as Yup from 'yup';
 
@@ -23,12 +24,16 @@ import messages from './messages';
 import { UserSubmitForm } from './types';
 
 function RegisterForm() {
+  const [isPassword, setIsPassword] = useState(true);
+
   const navigate = useNavigate();
+
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(),
     email: Yup.string().required().email(),
     password: Yup.string().required().min(6).max(40),
   });
+
   const {
     register,
     setError,
@@ -43,13 +48,11 @@ function RegisterForm() {
   const { mutate, isLoading } = useMutation({
     mutationFn: (data: object) => registerService(data),
     onSuccess: ({ data: { status, message } }: TData) => {
-      clearErrors();
+      clearErrors('root.afterSubmit');
       if (status) {
         navigate('/login');
       } else {
-        setError('root.afterSubmit', {
-          message,
-        });
+        setError('root.afterSubmit', { message });
       }
     },
   });
@@ -59,7 +62,7 @@ function RegisterForm() {
   return (
     <Box component="form" noValidate onSubmit={handleSubmit(data => mutate(data))} sx={{ mt: 3 }}>
       <Grid container spacing={2}>
-        {!!root?.afterSubmit && (
+        {!!root?.afterSubmit.message && (
           <Grid item xs={12}>
             <Alert severity="error">
               <Box sx={styles.errorMessage}>{root?.afterSubmit.message}</Box>
@@ -93,23 +96,31 @@ function RegisterForm() {
           <ErrorMessage name={email} />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            label={<FormattedMessage {...messages.labelPassword} />}
-            validate={register('password')}
-            sx={{
-              mt: 0,
-              '& div > fieldset': {
-                borderColor: () => password && '#e94560',
-              },
-            }}
-          />
+          <Box position="relative">
+            <TextField
+              label={<FormattedMessage {...messages.labelPassword} />}
+              validate={register('password')}
+              type={isPassword ? 'password' : 'text'}
+              sx={{
+                mt: 0,
+                '& div > fieldset': {
+                  borderColor: () => password && '#e94560',
+                },
+              }}
+            />
+            <IconButton
+              aria-label="show-password"
+              sx={styles.iconBtnShowPassword}
+              onClick={() => setIsPassword(!isPassword)}
+            >
+              {isPassword ? (
+                <VisibilityOffIcon sx={styles.visibilityOffIcon} />
+              ) : (
+                <VisibilityIcon sx={styles.visibilityIcon} />
+              )}
+            </IconButton>
+          </Box>
           <ErrorMessage name={password} />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox value="allowExtraEmails" color="primary" />}
-            label="I want to receive inspiration, marketing promotions and updates via email."
-          />
         </Grid>
       </Grid>
       <LoadingButton
