@@ -3,7 +3,7 @@ import Authenticated from 'src/containers/Authenticated';
 import authRoutes from './authRoutes';
 import publicRoutes from './publicRoutes';
 
-const publicRoute = publicRoutes.map(({ path, element }) => ({ path, element }));
+const publicRoute = publicRoutes.map(({ path, element, children = [] }) => ({ path, element, children }));
 
 const authRoute = authRoutes.map(({ path, index, component: Component }) => ({
   path,
