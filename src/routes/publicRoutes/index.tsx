@@ -3,8 +3,19 @@ import { HomePage, LoginPage, NotFound, ProductDetail, ProductSearch, RegisterPa
 export default [
   { path: '/', element: <HomePage /> },
   { path: '*', element: <NotFound /> },
-  { path: '/login', element: <LoginPage /> },
-  { path: '/register', element: <RegisterPage /> },
-  { path: '/product/:slug', element: <ProductDetail /> },
-  { path: '/product/search/:slug', element: <ProductSearch /> },
+  { path: 'login', element: <LoginPage /> },
+  { path: 'register', element: <RegisterPage /> },
+  {
+    path: 'product',
+    children: [
+      {
+        path: ':slug',
+        element: <ProductDetail />,
+      },
+      {
+        path: 'search/:slug',
+        element: <ProductSearch />,
+      },
+    ],
+  },
 ];
