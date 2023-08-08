@@ -64,6 +64,25 @@ const visibilityIcon = {
   fontSize: '1.25rem',
 };
 
+const boxAvatar = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
+
+const avatar = { m: 1 };
+
+const typography = {
+  marginBottom: '32px',
+  marginTop: '8px',
+  fontSize: '16px',
+  fontWeight: '700',
+  lineHeight: '1.5',
+  textAlign: 'center',
+  textTransform: 'none',
+  whiteSpace: 'normal',
+};
+
 export default {
   iconBtnShowPassword,
   boxForGotPassword,
@@ -74,4 +93,7 @@ export default {
   linkRegister,
   linkSingUp,
   btnSubmit,
+  typography,
+  boxAvatar,
+  avatar,
 };

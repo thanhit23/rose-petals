@@ -1,24 +1,40 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
 
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
 import Paper from '@mui/material/Paper';
+import { isEmpty } from 'lodash';
+import { compose } from 'redux';
 
-import Login from 'src/containers/Login';
+import DropDown from 'src/components/DropDown';
+import { logout } from 'src/containers/Authenticated/actions';
+import LoginForm from 'src/containers/Login/LoginForm';
+import store from 'src/store';
 
 import styles from './styles';
+import { Props, State } from './types';
 
-function UserButton() {
+function UserButton({ auth }: Props) {
   const [open, setOpen] = useState(false);
+
   const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
+
+  const descriptionElementRef = useRef<HTMLElement>(null);
 
   const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
     setOpen(true);
     setScroll(scrollType);
   };
 
-  const descriptionElementRef = useRef<HTMLElement>(null);
+  const handleClose = () => setOpen(false);
+
+  const handleLogout = () => store.dispatch(logout());
+
+  useEffect(() => {
+    if (!isEmpty(auth)) setOpen(false);
+  }, [auth]);
 
   useEffect(() => {
     if (open) {
@@ -29,13 +45,28 @@ function UserButton() {
     }
   }, [open]);
 
-  const handleClose = () => setOpen(false);
+  const renderPersonButton = () => {
+    if (isEmpty(auth)) {
+      return (
+        <Button onClick={handleClickOpen('body')} sx={styles.buttonPerson}>
+          <PersonOutlineOutlinedIcon />
+        </Button>
+      );
+    }
+    const menuItem = [
+      { title: 'Profile', path: '/profile' },
+      {
+        title: 'Logout',
+        onClick: handleLogout,
+      },
+    ];
+
+    return <DropDown buttonText={<PersonOutlineOutlinedIcon />} btnSx={styles.buttonPerson} menuItem={menuItem} />;
+  };
 
   return (
     <div>
-      <Button onClick={handleClickOpen('body')} sx={styles.buttonPerson}>
-        <PersonOutlineOutlinedIcon />
-      </Button>
+      {renderPersonButton()}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -45,11 +76,22 @@ function UserButton() {
         sx={styles.dialog}
       >
         <Paper elevation={3} sx={styles.paperLogin}>
-          <Login />
+          <LoginForm onCloseDialog={handleClose} />
         </Paper>
       </Dialog>
     </div>
   );
 }
 
-export default UserButton;
+const mapStateToProps = (state: State) => {
+  const {
+    global: { auth },
+  } = state;
+  return {
+    auth,
+  };
+};
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect)(UserButton);

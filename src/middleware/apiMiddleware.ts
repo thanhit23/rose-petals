@@ -6,7 +6,7 @@ const middlewareStorage =
     store.getState();
     switch (action.type) {
       case CHECK_TOKEN_FAILED:
-        localStorage.removeItem('token');
+        localStorage.removeItem('accessToken');
         window.location.href = '/login';
         break;
       case REDIRECT_LOGIN: {

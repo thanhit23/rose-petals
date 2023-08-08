@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Popover from '@material-ui/core/Popover';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
@@ -7,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 
-import { DropDownTypes } from './types';
+import { DropDownTypes, MenuItem as MenuItemType } from './types';
 
 function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);
@@ -73,9 +74,16 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
             aria-labelledby="composition-button"
             onKeyDown={handleListKeyDown}
           >
-            {menuItem.map(({ title }: { title: string }, key: number) => (
-              <MenuItem sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
-                {title}
+            {menuItem.map(({ title, path, onClick }: MenuItemType, key: number) => (
+              <MenuItem
+                sx={{ fontSize: '14px', ...sxItem }}
+                key={key}
+                onClick={e => {
+                  handleClose(e);
+                  onClick ? onClick() : null;
+                }}
+              >
+                {path ? <Link to={path}>{title}</Link> : title}
               </MenuItem>
             ))}
           </MenuList>

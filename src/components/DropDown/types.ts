@@ -1,7 +1,9 @@
-interface MenuItem {
-  title: string;
+export type MenuItem = {
+  title?: string;
   path?: string;
-}
+  onClick?: () => void;
+  component?: JSX.Element;
+};
 
 export interface DropDownTypes {
   buttonIconFirst?: JSX.Element;
@@ -9,6 +11,6 @@ export interface DropDownTypes {
   buttonIcon?: boolean;
   buttonIconSx?: object;
   btnSx: object;
-  menuItem: Array<MenuItem>;
+  menuItem: MenuItem[];
   sxItem?: object;
 }
