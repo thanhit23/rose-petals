@@ -13,7 +13,7 @@ import { DropDownTypes } from 'src/components/DropDown/types';
 
 import styles from './styles';
 
-function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
+function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
   const prevOpen = useRef(open);
@@ -79,8 +79,8 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <Box>
-                  {menuItem.map(({ title, path }, key: number) => (
-                    <Box sx={{ fontSize: '14px', ...sxItem }} key={key} onClick={handleClose}>
+                  {menuItem.map(({ title, path, sx }, key: number) => (
+                    <Box sx={{ fontSize: '14px', ...sx }} key={key} onClick={handleClose}>
                       <Link to={path || ''} style={styles.linkMenuItem}>
                         <Box component="span" sx={styles.boxItem}>
                           {title}
