@@ -3,6 +3,10 @@ import { defineMessages } from 'react-intl';
 export const scope = 'Containers.Login.Form';
 
 export default defineMessages({
+  title: {
+    id: `${scope}.title`,
+    defaultMessage: 'Welcome To Rose Petal',
+  },
   rememberMe: {
     id: `${scope}.rememberMe`,
     defaultMessage: 'Remember me',

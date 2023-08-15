@@ -1,52 +1,43 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useMutation } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
-import { compose } from 'redux';
 
 import LoadingScreen from 'src/components/LoadingScreen';
+import store from 'src/store';
 
+import { getMe as getMeAction } from './actions';
 import { isMe, setHeader } from './httpClients';
-import { Props, States } from './types';
+import { Props, TData } from './types';
 
-function Authenticated({ auth, children }: Props) {
+function Authenticated({ children }: Props) {
+  const {
+    global: { auth },
+  } = store.getState();
+
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token') || '';
+  const token = localStorage.getItem('accessToken') || '';
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: () => {
-      setHeader(token);
+  const { isLoading } = useQuery({
+    queryKey: ['/me', token],
+    queryFn: ({ queryKey }) => {
+      setHeader(queryKey[1]);
       return isMe();
     },
-    onSuccess: ({ data: { status } }) => !status && navigate('/login'),
+    onSuccess: ({ data: { status, data } }: TData) => {
+      status ? store.dispatch(getMeAction(data)) : navigate('/login');
+    },
   });
 
   useEffect(() => {
-    if (token) {
-      mutate();
-    } else {
-      navigate('/login');
-    }
-  }, []);
-
-  if (token && !isEmpty(auth)) return children;
+    if (!token && !auth) navigate('/login');
+  }, [token, auth]);
 
   if (isLoading && isEmpty(auth)) return <LoadingScreen />;
 
-  return <LoadingScreen />;
+  return children;
 }
 
-const mapStateToProps = (state: States) => {
-  const {
-    global: { auth },
-  } = state;
-  return {
-    auth,
-  };
-};
-const withConnect = connect(mapStateToProps, null);
-
-export default compose(withConnect)(Authenticated);
+export default Authenticated;

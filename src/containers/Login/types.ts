@@ -1,11 +1,12 @@
 import { LOGIN_SUCCESS } from './constants';
 
 export interface Props {
-  onLoginSuccess: (data: object) => void;
+  onCloseDialog?: () => void;
+  onLoginSuccess: (data: LoginSuccessData) => LoginSuccessAction;
 }
 
 export interface TData {
-  data: { status: boolean; data: object; message: string };
+  data: { status: boolean; data: LoginSuccessData; message: string };
 }
 
 export interface LoginSuccessData {
