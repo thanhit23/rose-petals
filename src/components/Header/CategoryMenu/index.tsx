@@ -10,14 +10,14 @@ import styles from './style';
 
 function CategoryMenu() {
   const listMenuItems = [
-    { title: 'All Categories' },
-    { title: 'Car' },
-    { title: 'Clothes' },
-    { title: 'Electronics' },
-    { title: 'Laptop' },
-    { title: 'Desktop' },
-    { title: 'Camera' },
-    { title: 'Toys' },
+    { title: 'All Categories', sx: { px: '30px' } },
+    { title: 'Car', sx: { px: '30px' } },
+    { title: 'Clothes', sx: { px: '30px' } },
+    { title: 'Electronics', sx: { px: '30px' } },
+    { title: 'Laptop', sx: { px: '30px' } },
+    { title: 'Desktop', sx: { px: '30px' } },
+    { title: 'Camera', sx: { px: '30px' } },
+    { title: 'Toys', sx: { px: '30px' } },
   ];
 
   return (
@@ -25,7 +25,6 @@ function CategoryMenu() {
       <div>
         <DropDown
           buttonIcon
-          sxItem={{ px: '30px' }}
           menuItem={listMenuItems}
           btnSx={styles.categoryBtn}
           buttonText={<FormattedMessage {...messages.button} />}

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Button from '@mui/material/Button';
@@ -19,6 +20,8 @@ import { Props, State } from './types';
 function UserButton({ auth }: Props) {
   const [open, setOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
 
   const descriptionElementRef = useRef<HTMLElement>(null);
@@ -30,7 +33,10 @@ function UserButton({ auth }: Props) {
 
   const handleClose = () => setOpen(false);
 
-  const handleLogout = () => store.dispatch(logout());
+  const handleLogout = () => {
+    store.dispatch(logout());
+    navigate('/');
+  };
 
   useEffect(() => {
     if (!isEmpty(auth)) setOpen(false);
@@ -54,7 +60,7 @@ function UserButton({ auth }: Props) {
       );
     }
     const menuItem = [
-      { title: 'Profile', path: '/profile' },
+      { title: 'Profile', path: '/profile', sx: { p: 0, '> a': { p: '6px 16px' } } },
       {
         title: 'Logout',
         onClick: handleLogout,

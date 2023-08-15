@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 
 import { DropDownTypes, MenuItem as MenuItemType } from './types';
 
-function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem, sxItem }: DropDownTypes) {
+function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);
 
   const anchorRef = useRef<HTMLButtonElement>(null);
@@ -74,9 +74,9 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
             aria-labelledby="composition-button"
             onKeyDown={handleListKeyDown}
           >
-            {menuItem.map(({ title, path, onClick }: MenuItemType, key: number) => (
+            {menuItem.map(({ title, path, sx, onClick }: MenuItemType, key: number) => (
               <MenuItem
-                sx={{ fontSize: '14px', ...sxItem }}
+                sx={{ fontSize: '14px', ...sx }}
                 key={key}
                 onClick={e => {
                   handleClose(e);
