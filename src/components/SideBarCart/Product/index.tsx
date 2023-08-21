@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 
+import { PATH_AUTH } from 'src/routes/paths';
+
 import styles from './styles';
 
 function Product({ onClose }: { onClose: () => void }) {
@@ -38,7 +40,7 @@ function Product({ onClose }: { onClose: () => void }) {
         />
       </Link>
       <Box sx={styles.boxInformationProduct}>
-        <Link to="/login" style={styles.linkNameProduct}>
+        <Link to={PATH_AUTH.login} style={styles.linkNameProduct}>
           <Box component="h5" sx={styles.boxNameProduct}>
             Silver High Neck Sweater
           </Box>

@@ -16,6 +16,7 @@ import * as Yup from 'yup';
 
 import ErrorMessage from 'src/components/ErrorMessage';
 import TextField from 'src/components/TextField';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import { TData } from '../../Login/types';
 import { register as registerService } from '../services';
@@ -50,7 +51,7 @@ function RegisterForm() {
     onSuccess: ({ data: { status, message } }: TData) => {
       clearErrors('root.afterSubmit');
       if (status) {
-        navigate('/login');
+        navigate(PATH_AUTH.login);
       } else {
         setError('root.afterSubmit', { message });
       }

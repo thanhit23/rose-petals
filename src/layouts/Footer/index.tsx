@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid';
 import SvgIcon from '@mui/material/SvgIcon';
 import styled from 'styled-components';
 
+import { PATH_AUTH } from 'src/routes/paths';
+
 import icons from './icons';
 import messages from './messages';
 import styles from './styles';
@@ -29,7 +31,7 @@ function Footer() {
           <Box sx={styles.wrapperGrid}>
             <Grid container spacing={{ xs: 3 }}>
               <Grid item xs={12} sm={6} md={6} lg={4}>
-                <Link to="/login">
+                <Link to={PATH_AUTH.login}>
                   <Box
                     sx={styles.boxLogo}
                     component="img"
