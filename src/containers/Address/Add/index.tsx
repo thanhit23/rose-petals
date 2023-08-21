@@ -6,30 +6,27 @@ import Grid from '@mui/material/Grid';
 
 import FormAddress from 'src/components/FormAddress';
 import HeaderHoldUser from 'src/components/HeaderHoldUser';
-import LayoutMain from 'src/components/LayoutMain';
 import SideBarUser from 'src/components/SideBarUser';
 
 import messages from './messages';
 
 function AddressAdd() {
   return (
-    <LayoutMain>
-      <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
-        <Grid container spacing={{ xs: 3 }}>
-          <SideBarUser />
-          <Grid item xs={12} lg={9}>
-            <HeaderHoldUser
-              path="/address"
-              icon={<Place fontSize="medium" />}
-              title={<FormattedMessage {...messages.title} />}
-              button={<FormattedMessage {...messages.btnBackAddress} />}
-            />
-            <FormAddress />
-          </Grid>
+    <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
+      <Grid container spacing={{ xs: 3 }}>
+        <SideBarUser />
+        <Grid item xs={12} lg={9}>
+          <HeaderHoldUser
+            path="/address"
+            icon={<Place fontSize="medium" />}
+            title={<FormattedMessage {...messages.title} />}
+            button={<FormattedMessage {...messages.btnBackAddress} />}
+          />
+          <FormAddress />
         </Grid>
-      </Container>
-    </LayoutMain>
+      </Grid>
+    </Container>
   );
 }
 
-export default AddressAdd;
+export const Component = AddressAdd;

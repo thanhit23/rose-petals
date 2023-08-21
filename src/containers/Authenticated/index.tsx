@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
@@ -9,9 +9,9 @@ import store from 'src/store';
 
 import { getMe as getMeAction } from './actions';
 import { isMe, setHeader } from './httpClients';
-import { Props, TData } from './types';
+import { TData } from './types';
 
-function Authenticated({ children }: Props) {
+function Authenticated() {
   const {
     global: { auth },
   } = store.getState();
@@ -37,7 +37,7 @@ function Authenticated({ children }: Props) {
 
   if (isLoading && isEmpty(auth)) return <LoadingScreen />;
 
-  return children;
+  return <Outlet />;
 }
 
 export default Authenticated;

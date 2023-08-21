@@ -1,4 +1,4 @@
-import { styles } from '../common';
+import { styles } from '../../components/common';
 
 const boxNavigate = {
   display: 'flex',

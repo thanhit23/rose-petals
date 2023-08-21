@@ -1,14 +1,15 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-import useResponsive from '../../hooks/useResponsive';
+import useResponsive from 'src/hooks/useResponsive';
+
 import Footer from '../Footer';
 import Header from '../Header';
 import NavBar from '../NavBar';
 import NavigateBar from '../NavigateBar';
 import TopBar from '../TopBar';
-import { LayoutMainType } from './types';
 
-export default function LayoutMain({ children }: LayoutMainType) {
+export default function LayoutMain() {
   const isDesktop = useResponsive('up', 'md');
 
   return (
@@ -17,7 +18,7 @@ export default function LayoutMain({ children }: LayoutMainType) {
       <Header />
       <div className="section-after-sticky">
         <NavBar />
-        {children}
+        <Outlet />
       </div>
       {!isDesktop && <NavigateBar />}
       <Footer />

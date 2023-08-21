@@ -1,9 +1,5 @@
 import { GET_ME_SUCCESS, LOGOUT } from './constants';
 
-export interface Props {
-  children: JSX.Element;
-}
-
 export interface TData {
   data: { status: boolean; data: object; message?: string };
 }

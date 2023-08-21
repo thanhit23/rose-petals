@@ -6,7 +6,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
 import HeaderHoldUser from 'src/components/HeaderHoldUser';
-import LayoutMain from 'src/components/LayoutMain';
 import Pagination from 'src/components/Pagination';
 import ProductItem from 'src/components/ProductItem';
 import SideBarUser from 'src/components/SideBarUser';
@@ -19,30 +18,28 @@ function WishList() {
     console.log('asdasdasd');
   };
   return (
-    <LayoutMain>
-      <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
-        <Grid container spacing={{ xs: 3 }}>
-          <SideBarUser />
-          <Grid item xs={12} lg={9}>
-            <HeaderHoldUser
-              icon={<FavoriteIcon />}
-              title={<FormattedMessage {...messages.wishList} />}
-              button={<FormattedMessage {...messages.btnAddAllToCart} />}
-            />
-            <Grid container spacing={{ xs: 3 }}>
-              <ProductItem product={{}} />
-              <ProductItem product={{}} />
-              <ProductItem product={{}} />
-              <ProductItem product={{}} />
-              <ProductItem product={{}} />
-              <ProductItem product={{}} />
-            </Grid>
-            <Pagination count={10} onChange={handleProductSearch} />
+    <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
+      <Grid container spacing={{ xs: 3 }}>
+        <SideBarUser />
+        <Grid item xs={12} lg={9}>
+          <HeaderHoldUser
+            icon={<FavoriteIcon />}
+            title={<FormattedMessage {...messages.wishList} />}
+            button={<FormattedMessage {...messages.btnAddAllToCart} />}
+          />
+          <Grid container spacing={{ xs: 3 }}>
+            <ProductItem product={{}} />
+            <ProductItem product={{}} />
+            <ProductItem product={{}} />
+            <ProductItem product={{}} />
+            <ProductItem product={{}} />
+            <ProductItem product={{}} />
           </Grid>
+          <Pagination count={10} onChange={handleProductSearch} />
         </Grid>
-      </Container>
-    </LayoutMain>
+      </Grid>
+    </Container>
   );
 }
 
-export default WishList;
+export const Component = WishList;

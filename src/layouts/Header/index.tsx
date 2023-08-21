@@ -12,11 +12,11 @@ import Container from '@mui/material/Container';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
+import SideBarCart from '../../components/SideBarCart';
 import useResponsive from '../../hooks/useResponsive';
 import logo from '../../resources/images/logo.png';
 import { listMenuItems } from '../NavBar';
 import DropDown from '../NavBar/Dropdown';
-import SideBarCart from '../SideBarCart';
 import CategoryMenu from './CategoryMenu';
 import UserButton from './UserButton';
 import styles from './styles';

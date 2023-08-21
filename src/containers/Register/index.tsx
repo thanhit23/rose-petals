@@ -15,4 +15,4 @@ function Register() {
   );
 }
 
-export default Register;
+export const Component = Register;

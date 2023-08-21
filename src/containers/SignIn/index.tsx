@@ -32,4 +32,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export const Component = SignIn;
