@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 
 import HeaderHoldUser from 'src/components/HeaderHoldUser';
 import ItemPaymentMethod from 'src/components/ItemPaymentMethod';
-import LayoutMain from 'src/components/LayoutMain';
 import Pagination from 'src/components/Pagination';
 import SideBarUser from 'src/components/SideBarUser';
 
@@ -19,25 +18,23 @@ function PaymentMethod() {
   };
 
   return (
-    <LayoutMain>
-      <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
-        <Grid container spacing={{ xs: 3 }}>
-          <SideBarUser />
-          <Grid item xs={12} lg={9}>
-            <HeaderHoldUser
-              path="/payment-method/add"
-              icon={<CreditCardIcon fontSize="medium" />}
-              title={<FormattedMessage {...messages.paymentMethods} />}
-              button={<FormattedMessage {...messages.btnAddNew} />}
-            />
-            <ItemPaymentMethod />
-            <ItemPaymentMethod />
-            <Pagination count={5} onChange={handleChangePage} />
-          </Grid>
+    <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
+      <Grid container spacing={{ xs: 3 }}>
+        <SideBarUser />
+        <Grid item xs={12} lg={9}>
+          <HeaderHoldUser
+            path="/payment-method/add"
+            icon={<CreditCardIcon fontSize="medium" />}
+            title={<FormattedMessage {...messages.paymentMethods} />}
+            button={<FormattedMessage {...messages.btnAddNew} />}
+          />
+          <ItemPaymentMethod />
+          <ItemPaymentMethod />
+          <Pagination count={5} onChange={handleChangePage} />
         </Grid>
-      </Container>
-    </LayoutMain>
+      </Grid>
+    </Container>
   );
 }
 
-export default PaymentMethod;
+export const Component = PaymentMethod;

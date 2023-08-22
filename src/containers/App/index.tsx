@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { useRoutes } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 
 import LoadingScreen from 'src/components/LoadingScreen';
 import LoadingIndicator from 'src/containers/LoadingIndicator';
@@ -11,7 +11,7 @@ function App() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <LoadingIndicator />
-      {useRoutes(routes())}
+      <RouterProvider router={routes} fallbackElement={<LoadingScreen />} />
     </Suspense>
   );
 }

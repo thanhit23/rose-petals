@@ -9,7 +9,6 @@ import Event from 'src/components/Event';
 import EventNotificationBanner from 'src/components/EventNotificationBanner';
 import FeaturedProducts from 'src/components/FeaturedProducts';
 import LatestArticles from 'src/components/LatestArticles';
-import LayoutMain from 'src/components/LayoutMain';
 import ListBrand from 'src/components/ListBrand';
 import MultipleOptionProduct from 'src/components/MultipleOptionProduct';
 import Service from 'src/components/Service';
@@ -32,23 +31,19 @@ function Home() {
   });
 
   return (
-    <>
-      <LayoutMain>
-        <Box bgcolor="#fff">
-          <SlideShow />
-          <Service />
-          <BestSellingCategories />
-          <BestSellingProducts />
-          <Event />
-          <FeaturedProducts />
-          <EventNotificationBanner />
-          <LatestArticles />
-          <ListBrand />
-          <MultipleOptionProduct />
-        </Box>
-      </LayoutMain>
-    </>
+    <Box bgcolor="#fff">
+      <SlideShow />
+      <Service />
+      <BestSellingCategories />
+      <BestSellingProducts />
+      <Event />
+      <FeaturedProducts />
+      <EventNotificationBanner />
+      <LatestArticles />
+      <ListBrand />
+      <MultipleOptionProduct />
+    </Box>
   );
 }
 
-export default Home;
+export const Component = Home;

@@ -6,30 +6,27 @@ import Grid from '@mui/material/Grid';
 
 import FormPaymentMethod from 'src/components/FormPaymentMethod';
 import HeaderHoldUser from 'src/components/HeaderHoldUser';
-import LayoutMain from 'src/components/LayoutMain';
 import SideBarUser from 'src/components/SideBarUser';
 
 import messages from './messages';
 
 function PaymentMethodAdd() {
   return (
-    <LayoutMain>
-      <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
-        <Grid container spacing={{ xs: 3 }}>
-          <SideBarUser />
-          <Grid item xs={12} lg={9}>
-            <HeaderHoldUser
-              path="/payment-methods"
-              icon={<CreditCardIcon fontSize="medium" />}
-              title={<FormattedMessage {...messages.addPayment} />}
-              button={<FormattedMessage {...messages.btnBackPayment} />}
-            />
-            <FormPaymentMethod />
-          </Grid>
+    <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
+      <Grid container spacing={{ xs: 3 }}>
+        <SideBarUser />
+        <Grid item xs={12} lg={9}>
+          <HeaderHoldUser
+            path="/payment-methods"
+            icon={<CreditCardIcon fontSize="medium" />}
+            title={<FormattedMessage {...messages.addPayment} />}
+            button={<FormattedMessage {...messages.btnBackPayment} />}
+          />
+          <FormPaymentMethod />
         </Grid>
-      </Container>
-    </LayoutMain>
+      </Grid>
+    </Container>
   );
 }
 
-export default PaymentMethodAdd;
+export const Component = PaymentMethodAdd;

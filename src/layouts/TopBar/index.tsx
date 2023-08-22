@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
 
-import DropDown from '../DropDown';
+import DropDown from '../../components/DropDown';
 import messages from './messages';
 import styles from './styles';
 

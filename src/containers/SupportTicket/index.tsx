@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import SvgIcon from '@mui/material/SvgIcon';
 
 import HeaderHoldUser from 'src/components/HeaderHoldUser';
-import LayoutMain from 'src/components/LayoutMain';
 import SideBarUser from 'src/components/SideBarUser';
 import SupportTicketItem from 'src/components/SupportTicketItem';
 import { icons } from 'src/components/common';
@@ -16,18 +15,16 @@ function SupportTicket() {
   const renderIconSupport = <SvgIcon viewBox="0 0 64 64">{icons.support}</SvgIcon>;
 
   return (
-    <LayoutMain>
-      <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
-        <Grid container spacing={{ xs: 3 }}>
-          <SideBarUser />
-          <Grid item xs={12} lg={9}>
-            <HeaderHoldUser icon={renderIconSupport} title={<FormattedMessage {...messages.title} />} />
-            <SupportTicketItem />
-          </Grid>
+    <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
+      <Grid container spacing={{ xs: 3 }}>
+        <SideBarUser />
+        <Grid item xs={12} lg={9}>
+          <HeaderHoldUser icon={renderIconSupport} title={<FormattedMessage {...messages.title} />} />
+          <SupportTicketItem />
         </Grid>
-      </Container>
-    </LayoutMain>
+      </Grid>
+    </Container>
   );
 }
 
-export default SupportTicket;
+export const Component = SupportTicket;

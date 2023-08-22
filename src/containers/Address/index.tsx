@@ -7,7 +7,6 @@ import Grid from '@mui/material/Grid';
 
 import HeaderHoldUser from 'src/components/HeaderHoldUser';
 import ItemAddress from 'src/components/ItemAddress';
-import LayoutMain from 'src/components/LayoutMain';
 import Pagination from 'src/components/Pagination';
 import SideBarUser from 'src/components/SideBarUser';
 
@@ -53,24 +52,22 @@ function Address() {
   };
 
   return (
-    <LayoutMain>
-      <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
-        <Grid container spacing={{ xs: 3 }}>
-          <SideBarUser />
-          <Grid item xs={12} lg={9}>
-            <HeaderHoldUser
-              path="/address/add"
-              icon={<Place fontSize="medium" />}
-              title={<FormattedMessage {...messages.title} />}
-              button={<FormattedMessage {...messages.btnAddAddress} />}
-            />
-            <ItemAddress listAddress={listAddress} />
-            <Pagination count={5} onChange={handleChangePage} />
-          </Grid>
+    <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
+      <Grid container spacing={{ xs: 3 }}>
+        <SideBarUser />
+        <Grid item xs={12} lg={9}>
+          <HeaderHoldUser
+            path="/address/add"
+            icon={<Place fontSize="medium" />}
+            title={<FormattedMessage {...messages.title} />}
+            button={<FormattedMessage {...messages.btnAddAddress} />}
+          />
+          <ItemAddress listAddress={listAddress} />
+          <Pagination count={5} onChange={handleChangePage} />
         </Grid>
-      </Container>
-    </LayoutMain>
+      </Grid>
+    </Container>
   );
 }
 
-export default Address;
+export const Component = Address;
