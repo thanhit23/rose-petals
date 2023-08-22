@@ -6,7 +6,7 @@
   </a>
   <h3 align="center">Rose Petals</h3>
   <p align="center">
-    E-commerce Website
+    E-commerce website can buy and sell goods online
     <br/>
     <a href="https://rose-petals.vercel.app"><strong>View »</strong></a>
   </p>
@@ -34,6 +34,10 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest
   ```
+* yarn
+  ```sh
+  npm install yarn
+  ```
 
 ### Installation
 
@@ -41,10 +45,15 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/thanhit23/rose-petals.git
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
+2. Install packages
+   1. With NPM
+      ```sh
+      npm install
+      ```
+   2. With YARN
+      ```sh
+      yarn install or yarn
+      ```
 3. Set the environment variables:
     ```sh
     cp .env.example .env.development
@@ -55,20 +64,23 @@ This is an example of how to list things you need to use the software and how to
 4. Run project
    ```sh
    npm start
+   yarn start
    ```
 
 ## Project Structure
 
 ```
 src\
-  |-component
-  |-container
-  |-helper
-  |-hook
+  |-common - 
+  |-components
+  |-containers
+  |-helpers
+  |-hooks
   |-layouts
   |-middleware
+  |-resources
   |-routes
   |-service
-  |-translate
+  |-translations
   |-utils
 ```
