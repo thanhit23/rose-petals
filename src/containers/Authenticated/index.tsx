@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 
 import LoadingScreen from 'src/components/LoadingScreen';
+import { PATH_AUTH } from 'src/routes/paths';
 import store from 'src/store';
 
 import { getMe as getMeAction } from './actions';
@@ -27,12 +28,12 @@ function Authenticated() {
       return isMe();
     },
     onSuccess: ({ data: { status, data } }: TData) => {
-      status ? store.dispatch(getMeAction(data)) : navigate('/login');
+      status ? store.dispatch(getMeAction(data)) : navigate(PATH_AUTH.login);
     },
   });
 
   useEffect(() => {
-    if (!token && !auth) navigate('/login');
+    if (!token && !auth) navigate(PATH_AUTH.login);
   }, [token, auth]);
 
   if (isLoading && isEmpty(auth)) return <LoadingScreen />;

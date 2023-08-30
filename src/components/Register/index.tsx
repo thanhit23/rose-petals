@@ -9,11 +9,12 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import RegisterForm from 'src/containers/Register/RegisterForm';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import messages from './messages';
 import styles from './styles';
 
-export default function Register() {
+function Register() {
   return (
     <Container component="main" maxWidth="xs">
       <Box sx={styles.boxWrap}>
@@ -29,10 +30,12 @@ export default function Register() {
         <Box color="#2b3445">
           <FormattedMessage {...messages.hasAccount} />
         </Box>
-        <Link to="/login" style={styles.linkSingUp}>
+        <Link to={PATH_AUTH.login} style={styles.linkSingUp}>
           <FormattedMessage {...messages.signIn} />
         </Link>
       </Box>
     </Container>
   );
 }
+
+export default Register;
