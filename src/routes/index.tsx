@@ -44,6 +44,19 @@ const routers: RouteObject[] = [
         lazy: () => import('src/containers/Payment'),
       },
       {
+        path: 'product',
+        children: [
+          {
+            path: 'search/:slug',
+            lazy: () => import('src/containers/ProductSearch'),
+          },
+          {
+            path: ':slug',
+            lazy: () => import('src/containers/ProductDetail'),
+          },
+        ],
+      },
+      {
         path: 'order',
         element: <Authenticated />,
         children: [
