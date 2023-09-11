@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Add, FavoriteBorder, Remove, RemoveRedEye } from '@mui/icons-material';
@@ -9,13 +9,17 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 
+import QuickView from '../QuickView';
 import styles from './styles';
 import { Props } from './types';
 
 function ProductItem({ product }: Props) {
   const [quantity, setQuantity] = useState(0);
-  // eslint-disable-next-line no-console
-  console.log(product);
+  const [modalProductDetail, setModalProductDetail] = useState(false);
+
+  const handleOpenModal = () => setModalProductDetail(true);
+  const handleCloseModal = () => setModalProductDetail(false);
+
   const handleReduce = (): void => {
     if (quantity === 0) return;
     setQuantity(quantity - 1);
@@ -46,9 +50,10 @@ function ProductItem({ product }: Props) {
       <Paper sx={styles.paperProduct}>
         <Box sx={styles.boxImage}>
           <Box className="hover-box" sx={styles.hoverBox}>
-            <IconButton aria-label="delete">
+            <IconButton aria-label="delete" onClick={handleOpenModal}>
               <RemoveRedEye fontSize="small" sx={styles.colorIcon} />
             </IconButton>
+            <QuickView openModal={modalProductDetail} handleCloseModal={handleCloseModal} />
             <IconButton aria-label="delete">
               <FavoriteBorder fontSize="small" sx={styles.colorIcon} />
             </IconButton>
