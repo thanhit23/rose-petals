@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
@@ -10,23 +11,29 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Divider from '@mui/material/Divider';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
+import { isEmpty } from 'lodash';
+import { compose } from 'redux';
+
+import { Auth } from 'src/containers/Authenticated/types';
+import { State } from 'src/layouts/Header/UserButton/types';
 
 import Product from './Product';
 import messages from './messages';
 import styles from './styles';
 
-export default function SideBarCart() {
+function SideBarCart({ auth }: Auth) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   return (
     <div>
-      <Badge badgeContent={3} color="secondary" sx={styles.badge}>
-        <Button onClick={handleOpen} sx={styles.btnCart}>
-          <ShoppingBagOutlinedIcon color="action" />
-        </Button>
-      </Badge>
+      {!isEmpty(auth) && (
+        <Badge badgeContent={3} color="secondary" sx={styles.badge}>
+          <Button onClick={handleOpen} sx={styles.btnCart}>
+            <ShoppingBagOutlinedIcon color="action" />
+          </Button>
+        </Badge>
+      )}
       <Modal
         open={open}
         onClose={handleClose}
@@ -66,3 +73,16 @@ export default function SideBarCart() {
     </div>
   );
 }
+
+const mapStateToProps = (state: State) => {
+  const {
+    global: { auth },
+  } = state;
+  return {
+    auth,
+  };
+};
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect)(SideBarCart);

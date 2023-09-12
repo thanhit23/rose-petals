@@ -12,6 +12,8 @@ import { compose } from 'redux';
 import DropDown from 'src/components/DropDown';
 import { logout } from 'src/containers/Authenticated/actions';
 import LoginForm from 'src/containers/Login/LoginForm';
+import female from 'src/resources/images/female.png';
+import male from 'src/resources/images/male.png';
 import store from 'src/store';
 
 import styles from './styles';
@@ -50,7 +52,6 @@ function UserButton({ auth }: Props) {
       }
     }
   }, [open]);
-
   const renderPersonButton = () => {
     if (isEmpty(auth)) {
       return (
@@ -67,7 +68,9 @@ function UserButton({ auth }: Props) {
       },
     ];
 
-    return <DropDown buttonText={<PersonOutlineOutlinedIcon />} btnSx={styles.buttonPerson} menuItem={menuItem} />;
+    return (
+      <DropDown avatar={auth?.gender === 'male' ? male : female} btnSx={styles.buttonPerson} menuItem={menuItem} />
+    );
   };
 
   return (
