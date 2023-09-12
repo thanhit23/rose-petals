@@ -35,13 +35,9 @@ export default defineMessages({
     id: `${scope}.awaitingDelivery`,
     defaultMessage: 'Awaiting Delivery',
   },
-  firstName: {
-    id: `${scope}.firstName`,
-    defaultMessage: 'First Name',
-  },
-  lastName: {
-    id: `${scope}.lastName`,
-    defaultMessage: 'Last Name',
+  name: {
+    id: `${scope}.name`,
+    defaultMessage: 'Name',
   },
   email: {
     id: `${scope}.email`,
@@ -51,8 +47,8 @@ export default defineMessages({
     id: `${scope}.phone`,
     defaultMessage: 'Phone',
   },
-  birthDate: {
-    id: `${scope}.birthDate`,
-    defaultMessage: 'Birth date',
+  gender: {
+    id: `${scope}.gender`,
+    defaultMessage: 'Gender',
   },
 });
