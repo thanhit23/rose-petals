@@ -94,15 +94,9 @@ function UserProfile() {
       <Paper sx={styles.paperDetailInfo}>
         <Box sx={styles.wrapperInfo}>
           <Box component="small" className="title">
-            <FormattedMessage {...messages.firstName} />
+            <FormattedMessage {...messages.name} />
           </Box>
-          <span>Nick</span>
-        </Box>
-        <Box sx={styles.wrapperInfo}>
-          <Box component="small" className="title">
-            <FormattedMessage {...messages.lastName} />
-          </Box>
-          <span>DuBuque</span>
+          <span>Nick DuBuque</span>
         </Box>
         <Box sx={styles.wrapperInfo}>
           <Box component="small" className="title">
@@ -118,9 +112,9 @@ function UserProfile() {
         </Box>
         <Box sx={styles.wrapperInfo}>
           <Box component="small" className="title">
-            <FormattedMessage {...messages.birthDate} />
+            <FormattedMessage {...messages.gender} />
           </Box>
-          <span>26 Apr, 1996</span>
+          <span>Female</span>
         </Box>
       </Paper>
     </Grid>
