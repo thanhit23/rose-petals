@@ -7,6 +7,7 @@ export type MenuItem = {
 };
 
 export interface DropDownTypes {
+  avatar?: string;
   buttonIconFirst?: JSX.Element;
   buttonText?: JSX.Element;
   buttonIcon?: boolean;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Popover from '@material-ui/core/Popover';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
+import Avatar from '@mui/material/Avatar';
 import ButtonBase from '@mui/material/ButtonBase';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
@@ -10,7 +11,7 @@ import Paper from '@mui/material/Paper';
 
 import { DropDownTypes, MenuItem as MenuItemType } from './types';
 
-function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem }: DropDownTypes) {
+function DropDown({ avatar, buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem }: DropDownTypes) {
   const [open, setOpen] = useState(false);
 
   const anchorRef = useRef<HTMLButtonElement>(null);
@@ -54,6 +55,7 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
         type="button"
         sx={btnSx}
       >
+        {avatar && <Avatar src={avatar} sx={{ width: '24px', height: '24px' }} />}
         {buttonIconFirst}
         {buttonText}
         {buttonIcon && <KeyboardArrowDownOutlined sx={{ ...buttonIconSx }} fontSize="small" />}
