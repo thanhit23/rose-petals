@@ -1,34 +1,27 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import { compose } from 'redux';
+
+import { Props, State } from 'src/containers/App/types';
 
 import DropDown from './Dropdown';
 import messages from './messages';
 import styles from './styles';
 
-export const listMenuItems = [
-  { title: 'All Categories', path: '/product/search/all' },
-  { title: 'Car', path: '/product/search/cart' },
-  { title: 'Clothes', path: '/product/search/clothes' },
-  { title: 'Electronics', path: '/product/search/electronics' },
-  { title: 'Laptop', path: '/product/search/laptop' },
-  { title: 'Desktop', path: '/product/search/desktop' },
-  { title: 'Camera', path: '/product/search/camera' },
-  { title: 'Toys', path: '/product/search/toys' },
-];
-
-function NavBar() {
+function NavBar({ categoryList }: Props) {
   return (
     <Paper sx={styles.paper}>
       <Container sx={styles.containerNavbar}>
         <Box>
           <DropDown
             buttonIcon
-            menuItem={listMenuItems}
+            menuItem={categoryList}
             btnSx={styles.categoryBtn}
             buttonIconFirst={<GridViewRoundedIcon fontSize="small" />}
             buttonText={
@@ -42,5 +35,14 @@ function NavBar() {
     </Paper>
   );
 }
+const mapStateToProps = (state: State) => {
+  const {
+    global: { categoryList },
+  } = state;
+  return {
+    categoryList,
+  };
+};
 
-export default NavBar;
+const withConnect = connect(mapStateToProps, null);
+export default compose(withConnect)(NavBar);

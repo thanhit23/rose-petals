@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,17 +12,19 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import { compose } from 'redux';
+
+import { Props, State } from 'src/containers/App/types';
 
 import SideBarCart from '../../components/SideBarCart';
 import useResponsive from '../../hooks/useResponsive';
 import logo from '../../resources/images/logo.png';
-import { listMenuItems } from '../NavBar';
 import DropDown from '../NavBar/Dropdown';
 import CategoryMenu from './CategoryMenu';
 import UserButton from './UserButton';
 import styles from './styles';
 
-function Header() {
+function Header({ categoryList }: Props) {
   const isDesktop = useResponsive('up', 'md');
 
   const isLaptopL = useResponsive('down', 'lg');
@@ -82,7 +85,7 @@ function Header() {
                       <DropDown
                         btnSx={styles.btnCategoryDropdown}
                         buttonIcon
-                        menuItem={listMenuItems}
+                        menuItem={categoryList}
                         buttonIconFirst={<GridViewRoundedIcon fontSize="small" />}
                       />
                     </Box>
@@ -146,4 +149,14 @@ function Header() {
   );
 }
 
-export default Header;
+const mapStateToProps = (state: State) => {
+  const {
+    global: { categoryList },
+  } = state;
+  return {
+    categoryList,
+  };
+};
+
+const withConnect = connect(mapStateToProps, null);
+export default compose(withConnect)(Header);

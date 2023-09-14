@@ -8,16 +8,21 @@ import { ShowLoadingPayload } from 'src/containers/LoadingIndicator/types';
 import { LOGIN_SUCCESS } from 'src/containers/Login/constants';
 import { LoginFailedPayload, LoginSuccessPayload } from 'src/containers/Login/types';
 
+import { CATEGORY_LIST } from './constant';
+import { CategoryListPayload } from './types';
+
 export const initialState = {
   auth: {} || null,
   loading: {
     showLoading: false,
   },
+  categoryList: [] || null,
 };
 
 type Action = {
   LOGIN_SUCCESS: LoginSuccessPayload;
   SHOW_LOADING: ShowLoadingPayload;
+  CATEGORY_LIST: CategoryListPayload;
   LOGIN_FAILED: LoginFailedPayload;
   GET_ME_SUCCESS: GetMePayload;
   LOGOUT_REQUEST: never;
@@ -40,6 +45,13 @@ const appReducer = (state = initialState, action: MapAction<Action>) =>
         } = action;
         draft.auth = user;
         localStorage.setItem('accessToken', token);
+        break;
+      }
+      case CATEGORY_LIST: {
+        const {
+          payload: { data },
+        } = action;
+        draft.categoryList = data;
         break;
       }
       case LOGOUT: {

@@ -1,9 +1,9 @@
 const categoryBtn = {
   display: 'flex',
-  paddingLeft: '24px',
-  paddingRight: '24px',
+  padding: '0 10px',
   gap: '4px',
   height: '3em',
+  minWidth: '200px',
   color: '#4B566B',
   backgroundColor: ' #F6F9FC',
   alignItems: 'center',
