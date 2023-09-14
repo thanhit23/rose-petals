@@ -26,6 +26,7 @@ const boxImg = {
 
 const img = {
   width: '100%',
+  objectFit: 'contain',
   filter: 'grayscale(1)',
 };
 
