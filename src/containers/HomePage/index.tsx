@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Box from '@mui/material/Box';
 import { useQuery } from '@tanstack/react-query';
 
@@ -16,7 +14,7 @@ import SlideShow from 'src/components/Slide';
 import { getMe as getMeAction } from 'src/containers/Authenticated/actions';
 import store from 'src/store';
 
-import { getMe, setBearerToken } from './httpClients';
+import { getBrands, getMe, setBearerToken } from './httpClients';
 
 function Home() {
   useQuery({
@@ -30,6 +28,13 @@ function Home() {
     onSuccess: ({ data: { data, status } }) => status && store.dispatch(getMeAction(data)),
   });
 
+  const { data: listBrand = [] } = useQuery({
+    queryKey: ['getBrands'],
+    queryFn: () => getBrands(),
+    retry: 0,
+    select: ({ data: { data } }) => data,
+  });
+
   return (
     <Box bgcolor="#fff">
       <SlideShow />
@@ -40,7 +45,7 @@ function Home() {
       <FeaturedProducts />
       <EventNotificationBanner />
       <LatestArticles />
-      <ListBrand />
+      <ListBrand listBrand={listBrand} />
       <MultipleOptionProduct />
     </Box>
   );
