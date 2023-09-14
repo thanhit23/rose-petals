@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import PersonIcon from '@mui/icons-material/Person';
 import Avatar from '@mui/material/Avatar';
@@ -6,12 +7,14 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import { compose } from 'redux';
 
 import HeaderHoldUser from '../HeaderHoldUser';
 import messages from './messages';
 import styles from './styles';
+import { Props, State } from './types';
 
-function UserProfile() {
+function UserProfile({ auth }: Props) {
   return (
     <Grid item xs={12} lg={9}>
       <HeaderHoldUser
@@ -29,7 +32,7 @@ function UserProfile() {
                 <Box className="wrap-info">
                   <Box>
                     <Box component="h5" sx={styles.nameUser}>
-                      Nick DuBuque
+                      {auth.name}
                     </Box>
                     <Box display="flex" alignItems="center">
                       <Typography sx={styles.typographyBalance}>
@@ -96,29 +99,40 @@ function UserProfile() {
           <Box component="small" className="title">
             <FormattedMessage {...messages.name} />
           </Box>
-          <span>Nick DuBuque</span>
+          <span>{auth.name}</span>
         </Box>
         <Box sx={styles.wrapperInfo}>
           <Box component="small" className="title">
             <FormattedMessage {...messages.email} />
           </Box>
-          <span>Jayden.Gislason78@gmail.com</span>
+          <span>{auth.email}</span>
         </Box>
         <Box sx={styles.wrapperInfo}>
           <Box component="small" className="title">
             <FormattedMessage {...messages.phone} />
           </Box>
-          <span>(445) 653-3771 x985</span>
+          <span>{auth.phoneNumber}</span>
         </Box>
         <Box sx={styles.wrapperInfo}>
           <Box component="small" className="title">
             <FormattedMessage {...messages.gender} />
           </Box>
-          <span>Female</span>
+          <span>{auth.gender}</span>
         </Box>
       </Paper>
     </Grid>
   );
 }
 
-export default UserProfile;
+const mapStateToProps = (state: State) => {
+  const {
+    global: { auth },
+  } = state;
+  return {
+    auth,
+  };
+};
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect)(UserProfile);
