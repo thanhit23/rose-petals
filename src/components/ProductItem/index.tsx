@@ -14,6 +14,7 @@ import styles from './styles';
 import { Props } from './types';
 
 function ProductItem({ product }: Props) {
+  console.log(product, 'product');
   const [quantity, setQuantity] = useState(0);
   const [modalProductDetail, setModalProductDetail] = useState(false);
 

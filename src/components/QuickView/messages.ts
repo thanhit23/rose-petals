@@ -9,7 +9,7 @@ export default defineMessages({
   },
   addToCart: {
     id: `${scope}.addToCart`,
-    defaultMessage: 'Add To SideBarCart',
+    defaultMessage: 'Add To Cart',
   },
   review: {
     id: `${scope}.review`,
