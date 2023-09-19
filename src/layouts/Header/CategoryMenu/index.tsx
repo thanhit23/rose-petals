@@ -1,37 +1,49 @@
-import React from 'react';
+import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import Stack from '@mui/material/Stack';
+import { compose } from 'redux';
 
 import DropDown from 'src/components/DropDown';
+import { Props, State } from 'src/containers/App/types';
 
 import messages from './messages';
 import styles from './style';
 
-function CategoryMenu() {
-  const listMenuItems = [
-    { title: 'All Categories', sx: { px: '30px' } },
-    { title: 'Car', sx: { px: '30px' } },
-    { title: 'Clothes', sx: { px: '30px' } },
-    { title: 'Electronics', sx: { px: '30px' } },
-    { title: 'Laptop', sx: { px: '30px' } },
-    { title: 'Desktop', sx: { px: '30px' } },
-    { title: 'Camera', sx: { px: '30px' } },
-    { title: 'Toys', sx: { px: '30px' } },
-  ];
-
+function CategoryMenu({ categoryList }: Props) {
+  const [buttonText, setButtonText] = useState<JSX.Element | string>(<FormattedMessage {...messages.button} />);
+  const newListCategory = categoryList.map(item => ({
+    title: item.name,
+    sx: { width: '215px' },
+  }));
+  const handleClickMenuItem = (e: Event | React.SyntheticEvent) => {
+    const input = e.target as HTMLElement;
+    setButtonText(input.outerText);
+  };
   return (
     <Stack direction="row" spacing={2}>
       <div>
         <DropDown
           buttonIcon
-          menuItem={listMenuItems}
+          menuItem={newListCategory}
+          onClickItem={handleClickMenuItem}
           btnSx={styles.categoryBtn}
-          buttonText={<FormattedMessage {...messages.button} />}
+          buttonText={buttonText}
         />
       </div>
     </Stack>
   );
 }
 
-export default CategoryMenu;
+const mapStateToProps = (state: State) => {
+  const {
+    global: { categoryList },
+  } = state;
+  return {
+    categoryList,
+  };
+};
+
+const withConnect = connect(mapStateToProps, null);
+export default compose(withConnect)(CategoryMenu);

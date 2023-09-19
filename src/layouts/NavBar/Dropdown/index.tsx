@@ -9,11 +9,20 @@ import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 
-import { DropDownTypes } from 'src/components/DropDown/types';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import styles from './styles';
+import { DropDownTypes } from './types';
 
-function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem }: DropDownTypes) {
+function DropDown({
+  buttonIconFirst,
+  buttonText,
+  buttonIcon,
+  buttonIconSx,
+  btnSx,
+  menuItem,
+  onClickItem,
+}: DropDownTypes) {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
   const prevOpen = useRef(open);
@@ -23,6 +32,7 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
   const handleClose = (event: Event | React.SyntheticEvent) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) return;
 
+    onClickItem instanceof Function && onClickItem(event);
     setOpen(false);
   };
 
@@ -79,13 +89,13 @@ function DropDown({ buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <Box>
-                  {menuItem.map(({ title, path, sx }, key: number) => (
+                  {menuItem.map(({ name, slug, sx }, key: number) => (
                     <Box sx={{ fontSize: '14px', ...sx }} key={key} onClick={handleClose}>
-                      <Link to={path || ''} style={styles.linkMenuItem}>
+                      <Box component={Link} to={PATH_PUBLIC.product.search(slug)} sx={styles.linkMenuItem}>
                         <Box component="span" sx={styles.boxItem}>
-                          {title}
+                          {name}
                         </Box>
-                      </Link>
+                      </Box>
                     </Box>
                   ))}
                 </Box>

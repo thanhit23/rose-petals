@@ -11,18 +11,28 @@ import Paper from '@mui/material/Paper';
 
 import { DropDownTypes, MenuItem as MenuItemType } from './types';
 
-function DropDown({ avatar, buttonIconFirst, buttonText, buttonIcon, buttonIconSx, btnSx, menuItem }: DropDownTypes) {
+function DropDown({
+  avatar,
+  buttonIconFirst,
+  buttonText,
+  buttonIcon,
+  buttonIconSx,
+  btnSx,
+  menuItem,
+  onClickItem,
+}: DropDownTypes) {
   const [open, setOpen] = useState(false);
 
   const anchorRef = useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
-  const handleClose = (event: Event | React.SyntheticEvent) => {
+  const handleClose = (event: Event | React.SyntheticEvent<Element, Event>) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
 
+    onClickItem instanceof Function && onClickItem(event);
     setOpen(false);
   };
 
