@@ -15,11 +15,11 @@ function CategoryMenu({ categoryList }: Props) {
   const [buttonText, setButtonText] = useState<JSX.Element | string>(<FormattedMessage {...messages.button} />);
   const newListCategory = categoryList.map(item => ({
     title: item.name,
-    sx: { width: '215px' },
+    sx: { width: '200px' },
   }));
   const handleClickMenuItem = (e: Event | React.SyntheticEvent) => {
     const input = e.target as HTMLElement;
-    setButtonText(input.outerText);
+    setButtonText(input.innerText || <FormattedMessage {...messages.button} />);
   };
   return (
     <Stack direction="row" spacing={2}>
