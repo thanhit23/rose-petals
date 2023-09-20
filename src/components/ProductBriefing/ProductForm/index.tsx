@@ -39,67 +39,12 @@ export default function ProductForm() {
         </Box>
       </Box>
       <Box marginBottom="16px">
-        <Box component="h6" sx={styles.option}>
-          Option
-        </Box>
-        <Box>
-          <Chip
-            label="option 1"
-            onClick={() => setColorOption(1)}
-            sx={{
-              ...styles.optionItem,
-              backgroundColor: handleChangeColor(colorOption === 1),
-              color: handleChangeColor(colorOption === 1, '#fff', '#000000de'),
-              '&:hover': {
-                backgroundColor: () => (colorOption === 1 ? '#E3364E' : '#0000001f'),
-              },
-            }}
-          />
-          <Chip
-            label="option 2"
-            onClick={() => setColorOption(2)}
-            sx={{
-              ...styles.optionItem,
-              backgroundColor: handleChangeColor(colorOption === 2),
-              color: handleChangeColor(colorOption === 2, '#fff', '#000000de'),
-              '&:hover': {
-                backgroundColor: () => (colorOption === 2 ? '#E3364E' : '#0000001f'),
-              },
-            }}
-          />
-          <Chip
-            label="option 3"
-            onClick={() => setColorOption(3)}
-            sx={{
-              ...styles.optionItem,
-              backgroundColor: handleChangeColor(colorOption === 3),
-              color: handleChangeColor(colorOption === 3, '#fff', '#000000de'),
-              '&:hover': {
-                backgroundColor: () => (colorOption === 3 ? '#E3364E' : '#0000001f'),
-              },
-            }}
-          />
-          <Chip
-            label="option 4"
-            onClick={() => setColorOption(4)}
-            sx={{
-              ...styles.optionItem,
-              backgroundColor: handleChangeColor(colorOption === 4),
-              color: handleChangeColor(colorOption === 4, '#fff', '#000000de'),
-              '&:hover': {
-                backgroundColor: () => (colorOption === 4 ? '#E3364E' : '#0000001f'),
-              },
-            }}
-          />
-        </Box>
-      </Box>
-      <Box marginBottom="16px">
         <Box component="h6" sx={styles.boxType}>
-          Type
+          Size
         </Box>
         <Box>
           <Chip
-            label="type 1"
+            label="Size M"
             onClick={() => setColorType(1)}
             sx={{
               ...styles.typeItem,
@@ -111,7 +56,7 @@ export default function ProductForm() {
             }}
           />
           <Chip
-            label="type 2"
+            label="Size L"
             onClick={() => setColorType(2)}
             sx={{
               ...styles.typeItem,
@@ -123,7 +68,7 @@ export default function ProductForm() {
             }}
           />
           <Chip
-            label="type 3"
+            label="Size XL"
             onClick={() => setColorType(3)}
             sx={{
               ...styles.typeItem,
@@ -135,7 +80,7 @@ export default function ProductForm() {
             }}
           />
           <Chip
-            label="type 4"
+            label="Size 2XL"
             onClick={() => setColorType(4)}
             sx={{
               ...styles.typeItem,
