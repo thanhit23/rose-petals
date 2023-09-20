@@ -59,23 +59,9 @@ const btnProceedToPayment = {
   },
 };
 
-const checkoutBilling = {
-  color: '#0f3460 !important',
-};
-
-const formControlLabel = {
-  '& > span': {
-    fontSize: '14px',
-    fontFamily: styles.fontFamilyDefault,
-    letterSpacing: 'inherit',
-  },
-};
-
 export default {
   paperBillingXShipping,
   btnProceedToPayment,
-  formControlLabel,
-  checkoutBilling,
   typographyTitle,
   btnBackToCart,
   outlinedInput,
