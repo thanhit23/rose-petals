@@ -35,10 +35,6 @@ export default defineMessages({
     id: `${scope}.address2`,
     defaultMessage: 'Address 2',
   },
-  billingAddress: {
-    id: `${scope}.billingAddress`,
-    defaultMessage: 'Billing Address',
-  },
   btnBackToCart: {
     id: `${scope}.btnBackToCart`,
     defaultMessage: 'Back to Cart',
