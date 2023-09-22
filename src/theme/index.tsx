@@ -18,6 +18,15 @@ export default function ThemeProvider({ children }: { children: JSX.Element }) {
       typography,
       shape: { borderRadius: 8 },
       customShadows: customShadows(themeMode),
+      components: {
+        MuiContainer: {
+          styleOverrides: {
+            maxWidthLg: {
+              maxWidth: '1280px !important',
+            },
+          },
+        },
+      },
     }),
     [themeMode],
   );
