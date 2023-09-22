@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -17,8 +14,6 @@ import messages from './messages';
 import styles from './styles';
 
 function CheckoutAddressForm() {
-  const [billingAddress, setBillingAddress] = useState(true);
-
   const renderFormInformation = () => (
     <Grid container spacing={{ xs: 6 }}>
       <Grid item xs={12} sm={6}>
@@ -78,19 +73,6 @@ function CheckoutAddressForm() {
           <FormattedMessage {...messages.shippingAddress} />
         </Typography>
         {renderFormInformation()}
-      </Paper>
-      <Paper elevation={1} sx={styles.paperBillingXShipping}>
-        <Typography component="p" sx={styles.typographyTitle}>
-          <FormattedMessage {...messages.billingAddress} />
-        </Typography>
-        <FormControlLabel
-          control={
-            <Checkbox size="small" sx={styles.checkoutBilling} onClick={() => setBillingAddress(!billingAddress)} />
-          }
-          sx={styles.formControlLabel}
-          label="Same as shipping address"
-        />
-        {billingAddress ? renderFormInformation() : ''}
       </Paper>
       <Grid container spacing={{ xs: 6 }}>
         <Grid item xs={12} sm={6}>
