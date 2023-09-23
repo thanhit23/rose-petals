@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import SearchIcon from '@mui/icons-material/Search';
@@ -20,7 +19,7 @@ import SideBarCart from '../../components/SideBarCart';
 import useResponsive from '../../hooks/useResponsive';
 import logo from '../../resources/images/logo.png';
 import DropDown from '../NavBar/Dropdown';
-import CategoryMenu from './CategoryMenu';
+import Search from './Search';
 import UserButton from './UserButton';
 import styles from './styles';
 
@@ -28,22 +27,6 @@ function Header({ categoryList }: Props) {
   const isDesktop = useResponsive('up', 'md');
 
   const isLaptopL = useResponsive('down', 'lg');
-
-  const useOutlinedInputStyles = makeStyles(() => ({
-    root: {
-      '&:hover > fieldset': {
-        borderColor: '#D23F57 !important',
-      },
-    },
-    focused: {
-      '& > fieldset': {
-        borderColor: '#D23F57 !important',
-        borderWidth: '1px !important',
-      },
-    },
-  }));
-
-  const outlinedInputClasses = useOutlinedInputStyles();
 
   const [showHeader, setShowHeader] = React.useState(true);
 
@@ -95,17 +78,7 @@ function Header({ categoryList }: Props) {
               {isDesktop && (
                 <Box sx={{ ...styles.boxWrapperFrom }}>
                   <Box sx={styles.boxFromControl}>
-                    <FormControl fullWidth>
-                      <OutlinedInput
-                        classes={outlinedInputClasses}
-                        sx={styles.outlineInput}
-                        fullWidth
-                        size="small"
-                        placeholder="Searching for..."
-                        startAdornment={<SearchIcon sx={styles.outlineInputSearchIcon} />}
-                        endAdornment={<CategoryMenu />}
-                      />
-                    </FormControl>
+                    <Search />
                   </Box>
                 </Box>
               )}
@@ -133,16 +106,7 @@ function Header({ categoryList }: Props) {
           <IconButton aria-label="delete" onClick={handleCloseFormSearch}>
             <CloseIcon />
           </IconButton>
-          <FormControl fullWidth>
-            <OutlinedInput
-              classes={outlinedInputClasses}
-              sx={styles.outlineInput}
-              fullWidth
-              size="small"
-              placeholder="Searching for..."
-              startAdornment={<SearchIcon sx={styles.outlineInputSearchIcon} />}
-            />
-          </FormControl>
+          <Search />
         </Box>
       </Modal>
     </>
