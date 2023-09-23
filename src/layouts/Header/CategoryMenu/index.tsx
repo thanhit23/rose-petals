@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import Stack from '@mui/material/Stack';
+import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
 import DropDown from 'src/components/DropDown';
@@ -19,14 +20,20 @@ function CategoryMenu({ categoryList }: Props) {
   }));
   const handleClickMenuItem = (e: Event | React.SyntheticEvent) => {
     const input = e.target as HTMLElement;
-    setButtonText(input.innerText || <FormattedMessage {...messages.button} />);
+    !isEmpty(input.innerText) && setButtonText(input.innerText);
   };
   return (
     <Stack direction="row" spacing={2}>
       <div>
         <DropDown
           buttonIcon
-          menuItem={newListCategory}
+          menuItem={[
+            {
+              title: 'All Categories',
+              sx: { width: '200px' },
+            },
+            ...newListCategory,
+          ]}
           onClickItem={handleClickMenuItem}
           btnSx={styles.categoryBtn}
           buttonText={buttonText}
