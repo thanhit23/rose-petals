@@ -6,3 +6,8 @@ export interface Props {
     phoneNumber: string;
   }[];
 }
+
+export interface DataModalDelete {
+  id: string;
+  address: string;
+}

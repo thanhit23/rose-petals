@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Delete, Edit } from '@mui/icons-material';
@@ -6,10 +6,21 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
+import ShowModalDeleteMyAddress from '../ShowModalDeleteMyAddress';
 import styles from './styles';
-import { Props } from './types';
+import { DataModalDelete, Props } from './types';
 
 function ItemAddress({ listAddress }: Props) {
+  const [modalProductDetail, setModalProductDetail] = useState(false);
+  const [selectData, setSelectData] = useState({ id: '', address: '' });
+
+  const handleOpenModalDelete = (dataDelete: DataModalDelete) => {
+    setSelectData(dataDelete);
+    setModalProductDetail(true);
+  };
+
+  const handleCloseModal = () => setModalProductDetail(false);
+
   return (
     <>
       {listAddress.map(({ id, address, addressLine, phoneNumber }, i) => (
@@ -23,12 +34,17 @@ function ItemAddress({ listAddress }: Props) {
                 <Edit fontSize="small" />
               </IconButton>
             </Link>
-            <IconButton size="medium">
+            <IconButton size="medium" onClick={() => handleOpenModalDelete({ id, address })}>
               <Delete fontSize="small" />
             </IconButton>
           </Typography>
         </Paper>
       ))}
+      <ShowModalDeleteMyAddress
+        openModal={modalProductDetail}
+        handleCloseModal={handleCloseModal}
+        selectDataDelete={selectData}
+      />
     </>
   );
 }
