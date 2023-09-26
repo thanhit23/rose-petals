@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
@@ -6,9 +7,13 @@ import PersonIcon from '@mui/icons-material/Person';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -21,6 +26,11 @@ import styles from './styles';
 import { UserSubmitForm } from './types';
 
 function FormEditProfileUser() {
+  const [gender, setGender] = React.useState('male');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setGender((event.target as HTMLInputElement).value);
+  };
   const {
     register,
     handleSubmit,
@@ -97,9 +107,10 @@ function FormEditProfileUser() {
                 <ErrorMessage name={phoneNumber} />
               </Grid>
               <Grid item xs={12} md={6}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker label="Birth Date" views={['day']} sx={styles.datePicker} />
-                </LocalizationProvider>
+                <RadioGroup row value={gender} onChange={handleChange}>
+                  <FormControlLabel value="female" control={<Radio />} label="Female" />
+                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                </RadioGroup>
               </Grid>
             </Grid>
           </Box>

@@ -27,6 +27,10 @@ export default defineMessages({
     id: `${scope}.labelPhone`,
     defaultMessage: 'Phone',
   },
+  // labelGender: {
+  //   id: `${scope}.labelGender`,
+  //   defaultMessage: 'Gender',
+  // },
   btnSave: {
     id: `${scope}.btnSave`,
     defaultMessage: 'Save Changes',

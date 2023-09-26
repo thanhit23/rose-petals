@@ -16,5 +16,6 @@
   ],
   "importOrderSeparation": true,
   "importOrderMergeDuplicateImports": true,
-  "importOrderSortSpecifiers": true
+  "importOrderSortSpecifiers": true,
+  "endOfLine": "crlf"
 }
