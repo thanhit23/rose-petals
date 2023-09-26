@@ -1,6 +1,6 @@
-const formatterPrice = new Intl.NumberFormat('en-US', {
+const formatterPrice = new Intl.NumberFormat('vi-VN', {
   style: 'currency',
-  currency: 'USD',
+  currency: 'VND',
 });
 
 export default formatterPrice;

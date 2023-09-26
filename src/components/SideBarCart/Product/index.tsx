@@ -7,11 +7,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 
-import { PATH_AUTH } from 'src/routes/paths';
+import formatterPrice from 'src/helpers/formatPrice';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import styles from './styles';
+import { Props } from './types';
 
-function Product({ onClose }: { onClose: () => void }) {
+function Product({ data, onClose }: Props) {
   const [counter, setCounter] = React.useState(0);
 
   const handleIncrement = () => {
@@ -33,22 +35,19 @@ function Product({ onClose }: { onClose: () => void }) {
           -
         </Button>
       </Box>
-      <Link to="/#">
-        <Avatar
-          src="https://bazar-react.vercel.app/assets/images/products/Fashion/Clothes/1.SilverHighNeckSweater.png"
-          sx={styles.avatar}
-        />
+      <Link to={PATH_PUBLIC.product.slug(data.product.slug)}>
+        <Avatar src={data.product.images} sx={styles.avatar} />
       </Link>
       <Box sx={styles.boxInformationProduct}>
-        <Link to={PATH_AUTH.login} style={styles.linkNameProduct}>
+        <Link to={PATH_PUBLIC.product.slug(data.product.slug)} style={styles.linkNameProduct}>
           <Box component="h5" sx={styles.boxNameProduct}>
-            Silver High Neck Sweater
+            {data.product.name}
           </Box>
         </Link>
         <Box component="small" sx={styles.boxPrice}>
-          $210.00 x 2
+          {formatterPrice.format(data.product.price)} x {data.quantity}
         </Box>
-        <Box sx={styles.boxTotalPrice}>$456</Box>
+        <Box sx={styles.boxTotalPrice}>{formatterPrice.format(data.product.price * data.quantity)}</Box>
       </Box>
       <ButtonBase onClick={() => onClose()} sx={styles.buttonBaseClose}>
         <CloseIcon />
