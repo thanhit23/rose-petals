@@ -1,21 +1,21 @@
-import React from 'react';
+import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
+
+import { DescriptionContext } from 'src/containers/ProductDetail';
 
 import messages from './messages';
 import styles from './styles';
 
 function ProductDescription() {
+  const description = useContext(DescriptionContext);
   return (
     <Box>
       <Box component="h3" sx={styles.specification}>
         <FormattedMessage {...messages.specification} />:
       </Box>
-      <Box>
-        Brand: Beats Model: S450 Wireless Bluetooth Headset FM Frequency Response: 87.5 – 108 MHz Feature: FM Radio,
-        Card Supported (Micro SD / TF) Made in China
-      </Box>
+      <Box>{description}</Box>
     </Box>
   );
 }
