@@ -61,8 +61,8 @@ export default function Search() {
     handleHideResult();
   };
 
-  const handleClickItem = (slug: string) => {
-    navigate(PATH_PUBLIC.product.slug(slug));
+  const handleClickItem = (slug: string, productId: string) => {
+    navigate(PATH_PUBLIC.product.slug(slug, productId));
     handleHideResult();
   };
 
@@ -111,7 +111,7 @@ export default function Search() {
           component={'div'}
           key={product._id}
           sx={{ cursor: 'pointer' }}
-          onClick={() => handleClickItem(product.slug)}
+          onClick={() => handleClickItem(product.slug, product._id)}
         >
           <Box sx={styles.boxWrapper}>
             <Box component={'img'} sx={styles.boxImage} src={product.thumbnail} alt={product.name} />

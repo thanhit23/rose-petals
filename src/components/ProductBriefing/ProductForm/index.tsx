@@ -7,11 +7,15 @@ import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 
+import formatterPrice from 'src/helpers/formatPrice';
+
 import messages from '../messages';
 import styles from '../styles';
+import { ProductProps } from '../types';
 
-export default function ProductForm() {
+function ProductForm({ product }: ProductProps) {
   const [colorType, setColorType] = useState(0);
+  const { name, price, brand } = product;
   const sizes = [
     { label: 'M', id: 1 },
     { label: 'L', id: 2 },
@@ -23,12 +27,12 @@ export default function ProductForm() {
   return (
     <Grid item xs={12} md={6}>
       <Box component="h1" sx={styles.boxTitle}>
-        SIlver High Neck Sweater
+        {name}
       </Box>
       <Box sx={styles.boxWrapBrand}>
         <Box>Brand:</Box>
         <Box component="h6" sx={styles.boxBrand}>
-          Xiaomi
+          {brand.name}
         </Box>
       </Box>
       <Box sx={styles.boxRated}>
@@ -64,7 +68,7 @@ export default function ProductForm() {
       </Box>
       <Box sx={styles.wrapPrice}>
         <Box component="h2" sx={styles.boxPrice}>
-          $258.00
+          {formatterPrice.format(price)}
         </Box>
         <Box>Stock Available</Box>
       </Box>
@@ -74,3 +78,5 @@ export default function ProductForm() {
     </Grid>
   );
 }
+
+export default ProductForm;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -6,15 +6,13 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
 import styles from '../styles';
+import { ImageProps } from '../types';
 
-export default function ProductSlide() {
+export default function ProductSlide({ images }: ImageProps) {
   const [srcImg, setSrcImg] = useState('');
-
-  const imgItem = [
-    'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F21.YellowCasualSweater.png&w=3840&q=75',
-    'https://bazar-react.vercel.app/assets/images/products/Fashion/Clothes/1.SilverHighNeckSweater.png',
-    'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FClothes%2F4.DenimBlueJeans.png&w=3840&q=75',
-  ];
+  useEffect(() => {
+    setSrcImg(images[0].fullUrl);
+  }, [images]);
   return (
     <Grid item xs={12} md={6}>
       <Box sx={styles.boxContainerImg}>
@@ -27,19 +25,19 @@ export default function ProductSlide() {
         </Box>
       </Box>
       <Box display="flex" overflow="auto">
-        {imgItem.map((i, index) => (
+        {images.map((item, index) => (
           <Button
             key={index}
             sx={() => ({
               ...styles.boxImgItem,
               marginLeft: () => (!index ? 'auto' : 0),
-              marginRight: () => (index === imgItem.length - 1 ? 'auto' : '10px'),
-              borderColor: () => (i === srcImg ? '#d23f57' : '#dae1e7'),
+              marginRight: () => (index === images.length - 1 ? 'auto' : '10px'),
+              borderColor: () => (item.fullUrl === srcImg ? '#d23f57' : '#dae1e7'),
             })}
-            onClick={() => setSrcImg(i)}
+            onClick={() => setSrcImg(item.fullUrl)}
           >
             <Box>
-              <Avatar src={i} />
+              <Avatar src={item.fullUrl} />
             </Box>
           </Button>
         ))}
