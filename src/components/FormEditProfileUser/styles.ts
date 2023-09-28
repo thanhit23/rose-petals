@@ -30,27 +30,6 @@ const boxUpload = {
 
 const iconCameraEnhance = { fontSize: '1.25rem' };
 
-const datePicker = {
-  width: '100%',
-  '& > label': {
-    letterSpacing: 'inherit',
-    fontSize: '14px',
-    transform: 'translate(14px, 9px)',
-    '&.Mui-focused': {
-      transform: 'translate(14px, -9px) scale(0.75)',
-    },
-    '&.MuiFormLabel-filled': {
-      transform: 'translate(14px, -9px) scale(0.75)',
-    },
-  },
-  '& > div': {
-    fontSize: '14px',
-    '& > input': {
-      padding: '8.5px 14px',
-    },
-  },
-};
-
 const btnSave = {
   minWidth: '0px',
   minHeight: '0px',
@@ -69,7 +48,6 @@ export default {
   iconCameraEnhance,
   boxWrapAvatar,
   paperAvatar,
-  datePicker,
   boxUpload,
   btnSave,
   avatar,
