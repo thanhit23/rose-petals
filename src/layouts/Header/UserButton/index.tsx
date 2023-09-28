@@ -68,9 +68,7 @@ function UserButton({ auth }: Props) {
       },
     ];
 
-    return (
-      <DropDown avatar={auth?.gender === 'male' ? male : female} btnSx={styles.buttonPerson} menuItem={menuItem} />
-    );
+    return <DropDown avatar={auth.gender === 1 ? male : female} btnSx={styles.buttonPerson} menuItem={menuItem} />;
   };
 
   return (
