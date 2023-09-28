@@ -15,10 +15,6 @@ export default defineMessages({
     id: `${scope}.wishlist`,
     defaultMessage: 'Wishlist',
   },
-  supportTickets: {
-    id: `${scope}.supportTickets`,
-    defaultMessage: 'Support Tickets',
-  },
   ProfileInfo: {
     id: `${scope}.ProfileInfo`,
     defaultMessage: 'Profile Info',
