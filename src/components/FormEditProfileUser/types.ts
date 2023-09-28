@@ -1,6 +1,7 @@
 export interface UserSubmitForm {
   email: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
+  fullName: string;
+  phoneNumber: number;
+  address: string;
+  gender: number;
 }

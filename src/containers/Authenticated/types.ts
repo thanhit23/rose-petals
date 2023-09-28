@@ -20,7 +20,7 @@ export interface LogoutAction {
 interface AuthType {
   dob: string;
   email: string;
-  gender: string;
+  gender: number;
   id: string;
   isEmailVerified: boolean;
   lastLoginAt: string;

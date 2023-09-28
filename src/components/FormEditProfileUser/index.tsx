@@ -1,26 +1,33 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
 import PersonIcon from '@mui/icons-material/Person';
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { compose } from 'redux';
 
 import ErrorMessage from '../ErrorMessage';
 import HeaderHoldUser from '../HeaderHoldUser';
 import MuiTextField from '../TextField';
+import { Props, State } from '../UserProfile/types';
 import messages from './messages';
 import styles from './styles';
 import { UserSubmitForm } from './types';
 
-function FormEditProfileUser() {
+function FormEditProfileUser({ auth }: Props) {
+  const [gender, setGender] = React.useState('male');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setGender((event.target as HTMLInputElement).value);
+  };
   const {
     register,
     handleSubmit,
@@ -28,14 +35,14 @@ function FormEditProfileUser() {
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
     defaultValues: {
-      firstName: 'Nick',
-      lastName: 'DuBuque',
-      email: 'Jayden.Gislason78@gmail.com',
-      phoneNumber: '(445) 653-3771 x985',
+      fullName: auth.name,
+      email: auth.email,
+      phoneNumber: auth.phoneNumber,
+      address: auth.location,
+      gender: auth.gender === 1 ? 1 : 2,
     },
   });
-
-  const { email, firstName, lastName, phoneNumber } = errors;
+  const { email, fullName, phoneNumber, address } = errors;
 
   const handleSubmitForm = (data: object) => {
     // eslint-disable-next-line no-console
@@ -67,17 +74,9 @@ function FormEditProfileUser() {
                 <MuiTextField
                   label={<FormattedMessage {...messages.labelFirstName} />}
                   message={messages.labelFirstName}
-                  validate={register('firstName')}
+                  validate={register('fullName')}
                 />
-                <ErrorMessage name={firstName} />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <MuiTextField
-                  label={<FormattedMessage {...messages.labelLastName} />}
-                  message={messages.labelLastName}
-                  validate={register('lastName')}
-                />
-                <ErrorMessage name={lastName} />
+                <ErrorMessage name={fullName} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiTextField
@@ -97,9 +96,27 @@ function FormEditProfileUser() {
                 <ErrorMessage name={phoneNumber} />
               </Grid>
               <Grid item xs={12} md={6}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker label="Birth Date" views={['day']} sx={styles.datePicker} />
-                </LocalizationProvider>
+                <MuiTextField
+                  label={<FormattedMessage {...messages.labelAddress} />}
+                  message={messages.labelAddress}
+                  validate={register('address')}
+                />
+                <ErrorMessage name={address} />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <MuiTextField
+                  type="email"
+                  label={<FormattedMessage {...messages.labelEmail} />}
+                  message={messages.labelEmail}
+                  validate={register('email')}
+                />
+                <ErrorMessage name={email} />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <RadioGroup row {...register('gender')}>
+                  <FormControlLabel value={1} control={<Radio />} label="Male" />
+                  <FormControlLabel value={2} control={<Radio />} label="Female" />
+                </RadioGroup>
               </Grid>
             </Grid>
           </Box>
@@ -112,4 +129,15 @@ function FormEditProfileUser() {
   );
 }
 
-export default FormEditProfileUser;
+const mapStateToProps = (state: State) => {
+  const {
+    global: { auth },
+  } = state;
+  return {
+    auth,
+  };
+};
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect)(FormEditProfileUser);

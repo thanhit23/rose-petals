@@ -19,9 +19,9 @@ export default defineMessages({
     id: `${scope}.labelEmail`,
     defaultMessage: 'Email',
   },
-  labelLastName: {
-    id: `${scope}.labelLastName`,
-    defaultMessage: 'Last Name',
+  labelAddress: {
+    id: `${scope}.labeladdress`,
+    defaultMessage: 'address',
   },
   labelPhone: {
     id: `${scope}.labelPhone`,
