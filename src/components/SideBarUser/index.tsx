@@ -6,13 +6,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonIcon from '@mui/icons-material/Person';
 import PlaceIcon from '@mui/icons-material/Place';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import { SvgIcon } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import { supportTicked } from './icons';
 import messages from './messages';
 import styles from './styles';
 
@@ -38,16 +36,6 @@ function SideBarUser() {
       icon: <FavoriteBorderIcon fontSize="small" />,
       title: <FormattedMessage {...messages.wishlist} />,
       quantity: 19,
-    },
-    {
-      path: '/support-tickets',
-      icon: (
-        <SvgIcon component="svg" viewBox="0 0 64 64" fontSize="small">
-          {supportTicked}
-        </SvgIcon>
-      ),
-      title: <FormattedMessage {...messages.supportTickets} />,
-      quantity: 1,
     },
   ];
 

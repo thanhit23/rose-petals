@@ -121,20 +121,6 @@ const routers: RouteObject[] = [
         ],
       },
       {
-        path: 'support-tickets',
-        element: <Authenticated />,
-        children: [
-          {
-            index: true,
-            lazy: () => import('src/containers/SupportTicket'),
-          },
-          {
-            path: ':id',
-            lazy: () => import('src/containers/SupportTicket/Detail'),
-          },
-        ],
-      },
-      {
         path: 'wish-list',
         element: <Authenticated />,
         lazy: () => import('src/containers/WishList'),
