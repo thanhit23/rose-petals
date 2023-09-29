@@ -6,7 +6,7 @@ export const PATH_AUTH = {
 export const PATH_PUBLIC = {
   product: {
     index: '/product',
-    slug: (slug: string) => `/product/${slug}`,
+    slug: (slug: string, id: string) => `/product/${slug}?id=${id}`,
     search: (value: string) => `/product/search/${value}`,
   },
 };
