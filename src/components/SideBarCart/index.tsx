@@ -14,21 +14,20 @@ import Paper from '@mui/material/Paper';
 import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
-import { Auth } from 'src/containers/Authenticated/types';
-import { State } from 'src/layouts/Header/UserButton/types';
-
 import Product from './Product';
 import messages from './messages';
 import styles from './styles';
+import { ProductCart, Props, State } from './types';
 
-function SideBarCart({ auth }: Auth) {
+function SideBarCart({ auth, productList }: Props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   return (
     <div>
       {!isEmpty(auth) && (
-        <Badge badgeContent={3} color="secondary" sx={styles.badge}>
+        <Badge badgeContent={productList.length} color="secondary" sx={styles.badge}>
           <Button onClick={handleOpen} sx={styles.btnCart}>
             <ShoppingBagOutlinedIcon color="action" />
           </Button>
@@ -47,7 +46,7 @@ function SideBarCart({ auth }: Auth) {
                 <Box sx={styles.wrapperTitleCart}>
                   <ShoppingBagOutlinedIcon color="action" />
                   <Box component="p" sx={styles.itemListCart}>
-                    4 <FormattedMessage {...messages.itemTitle} />
+                    {productList.length} <FormattedMessage {...messages.itemTitle} />
                   </Box>
                 </Box>
                 <ButtonBase onClick={handleClose} sx={styles.closeBtnBase}>
@@ -55,9 +54,9 @@ function SideBarCart({ auth }: Auth) {
                 </ButtonBase>
               </Box>
               <Divider />
-              <Product onClose={handleClose} />
-              <Product onClose={handleClose} />
-              <Product onClose={handleClose} />
+              {productList.map((product: ProductCart) => (
+                <Product key={product._id} data={product} onClose={handleClose} />
+              ))}
             </Box>
             <Box sx={{ padding: '20px' }}>
               <Button href="/checkout" variant="contained" sx={styles.btnCheckoutNow}>
@@ -76,10 +75,11 @@ function SideBarCart({ auth }: Auth) {
 
 const mapStateToProps = (state: State) => {
   const {
-    global: { auth },
+    global: { auth, product },
   } = state;
   return {
     auth,
+    productList: product.cart.list,
   };
 };
 

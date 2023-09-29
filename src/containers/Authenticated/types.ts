@@ -17,7 +17,7 @@ export interface LogoutAction {
   type: typeof LOGOUT;
 }
 
-interface AuthType {
+export interface AuthType {
   dob: string;
   email: string;
   gender: string;

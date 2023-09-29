@@ -8,8 +8,8 @@ import { ShowLoadingPayload } from 'src/containers/LoadingIndicator/types';
 import { LOGIN_SUCCESS } from 'src/containers/Login/constants';
 import { LoginFailedPayload, LoginSuccessPayload } from 'src/containers/Login/types';
 
-import { CATEGORY_LIST } from './constant';
-import { CategoryListPayload } from './types';
+import { CATEGORY_LIST, PRODUCT_CART_LIST } from './constant';
+import { CategoryListPayload, ProductCartListPayload } from './types';
 
 export const initialState = {
   auth: {} || null,
@@ -17,12 +17,19 @@ export const initialState = {
     showLoading: false,
   },
   categoryList: [] || null,
+  product: {
+    cart: {
+      list: [] || null,
+    },
+    detail: {},
+  },
 };
 
 type Action = {
   LOGIN_SUCCESS: LoginSuccessPayload;
   SHOW_LOADING: ShowLoadingPayload;
   CATEGORY_LIST: CategoryListPayload;
+  PRODUCT_CART_LIST: ProductCartListPayload;
   LOGIN_FAILED: LoginFailedPayload;
   GET_ME_SUCCESS: GetMePayload;
   LOGOUT_REQUEST: never;
@@ -52,6 +59,13 @@ const appReducer = (state = initialState, action: MapAction<Action>) =>
           payload: { data },
         } = action;
         draft.categoryList = data;
+        break;
+      }
+      case PRODUCT_CART_LIST: {
+        const {
+          payload: { data },
+        } = action;
+        draft.product.cart.list = data;
         break;
       }
       case LOGOUT: {
