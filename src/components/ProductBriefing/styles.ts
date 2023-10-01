@@ -58,7 +58,7 @@ const boxImg = {
 const boxTitle = {
   marginBottom: '8px',
   marginTop: '0px',
-  fontSize: '30px',
+  fontSize: '25px',
   fontWeight: '700',
   lineHeight: '1.5',
   textTransform: 'none',
@@ -69,7 +69,6 @@ const boxWrapBrand = {
   display: 'flex',
   WebkitBoxAlign: 'center',
   alignItems: 'center',
-  marginBottom: '8px',
 };
 
 const boxBrand = {
@@ -86,13 +85,18 @@ const boxRated = {
   display: 'flex',
   WebkitBoxAlign: 'center',
   alignItems: 'center',
-  marginBottom: '16px',
 };
 
 const wrapRating = {
   marginLeft: '8px',
   marginRight: '8px',
   lineHeight: '1',
+};
+
+const wrapBrandRating = {
+  display: 'flex',
+  gap: '10px',
+  marginBottom: { md: '8px' },
 };
 
 const rating = { fontSize: '1.25rem' };
@@ -195,6 +199,7 @@ export default {
   boxImgItem,
   wrapRating,
   optionItem,
+  wrapBrandRating,
   btnAddCart,
   wrapPrice,
   typeItem,
