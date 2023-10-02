@@ -34,6 +34,7 @@ const initialState = {
 };
 
 export const DescriptionContext = createContext('');
+
 function ProductDetail() {
   const [dataProduct, setDataProduct] = useState<Product>(initialState);
   const [searchParams] = useSearchParams();

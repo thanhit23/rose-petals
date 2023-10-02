@@ -3,16 +3,13 @@ import { GET_ME_SUCCESS, LOGOUT } from './constants';
 export interface TData {
   data: { status: boolean; data: object; message?: string };
 }
-
 export interface GetMePayload {
   data: object;
 }
-
 export interface GetMeAction {
   type: typeof GET_ME_SUCCESS;
   payload: GetMePayload;
 }
-
 export interface LogoutAction {
   type: typeof LOGOUT;
 }
@@ -20,7 +17,7 @@ export interface LogoutAction {
 export interface AuthType {
   dob: string;
   email: string;
-  gender: string;
+  gender: number;
   id: string;
   isEmailVerified: boolean;
   lastLoginAt: string;
@@ -30,7 +27,6 @@ export interface AuthType {
   role: string;
   social: string;
 }
-
 export type Auth = {
   auth: AuthType;
 };
