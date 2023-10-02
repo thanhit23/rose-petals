@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-key */
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
@@ -14,6 +12,8 @@ import TextField from '@mui/material/TextField';
 import { Props } from '../ListBrand/types';
 import messages from './messages';
 import styles from './styles';
+
+const ratingList = [5, 4, 3, 2, 1];
 
 function FilterPanel({ listBrand }: Props) {
   return (
@@ -35,6 +35,7 @@ function FilterPanel({ listBrand }: Props) {
         </Box>
         {listBrand.map(item => (
           <FormControlLabel
+            key={item.name}
             sx={styles.flex}
             control={<Checkbox color="default" size="small" />}
             label={<Box sx={styles.labelFormControl}>{item.name}</Box>}
@@ -44,31 +45,14 @@ function FilterPanel({ listBrand }: Props) {
         <Box component="h6" sx={styles.boxPriceRange}>
           <FormattedMessage {...messages.ratings} />
         </Box>
-        <FormControlLabel
-          sx={styles.flex}
-          control={<Checkbox color="default" size="small" />}
-          label={<Rating name="read-only" value={5} readOnly size="small" />}
-        />
-        <FormControlLabel
-          sx={styles.flex}
-          control={<Checkbox color="default" size="small" />}
-          label={<Rating name="read-only" value={4} readOnly size="small" />}
-        />
-        <FormControlLabel
-          sx={styles.flex}
-          control={<Checkbox color="default" size="small" />}
-          label={<Rating name="read-only" value={3} readOnly size="small" />}
-        />
-        <FormControlLabel
-          sx={styles.flex}
-          control={<Checkbox color="default" size="small" />}
-          label={<Rating name="read-only" value={2} readOnly size="small" />}
-        />
-        <FormControlLabel
-          sx={styles.flex}
-          control={<Checkbox color="default" size="small" />}
-          label={<Rating name="read-only" value={1} readOnly size="small" />}
-        />
+        {ratingList.map((item, index) => (
+          <FormControlLabel
+            key={index}
+            sx={styles.flex}
+            control={<Checkbox color="default" size="small" />}
+            label={<Rating name="read-only" value={item} readOnly size="small" />}
+          />
+        ))}
         <Divider sx={styles.dividerTwo} />
       </Paper>
     </Grid>

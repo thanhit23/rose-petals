@@ -22,10 +22,13 @@ function ProductSearch() {
     retry: 0,
     select: ({ data: { data } }) => data,
   });
+
   const handleProductSearch = () => {
     // eslint-disable-next-line no-console
     console.log('asdasdasd');
   };
+
+  const handleChangeView = (isView: boolean) => setViewList(isView);
 
   const renderProduct = () => {
     if (viewList) {
@@ -35,7 +38,6 @@ function ProductSearch() {
         </Box>
       );
     }
-
     return (
       <Grid container spacing={{ xs: 3 }}>
         <ProductItem product={{}} />
@@ -50,8 +52,6 @@ function ProductSearch() {
       </Grid>
     );
   };
-
-  const handleChangeView = (isView: boolean) => setViewList(isView);
 
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
@@ -69,5 +69,4 @@ function ProductSearch() {
     </Container>
   );
 }
-
 export const Component = ProductSearch;
