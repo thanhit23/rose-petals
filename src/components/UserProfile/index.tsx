@@ -34,12 +34,6 @@ function UserProfile({ auth }: Props) {
                     <Box component="h5" sx={styles.nameUser}>
                       {auth.name}
                     </Box>
-                    <Box display="flex" alignItems="center">
-                      <Typography sx={styles.typographyBalance}>
-                        <FormattedMessage {...messages.balance} />
-                      </Typography>
-                      <Typography sx={styles.typographyBalancePrice}>$500.00</Typography>
-                    </Box>
                   </Box>
                   <Typography sx={styles.typographyRank}>
                     <FormattedMessage {...messages.silverUser} />
