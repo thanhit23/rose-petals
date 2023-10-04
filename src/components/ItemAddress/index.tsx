@@ -6,9 +6,9 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import ShowModalDeleteMyAddress from '../ShowModalDeleteMyAddress';
+import ModalDelete from '../ModalDelete';
 import styles from './styles';
-import { DataModalDelete, Props } from './types';
+import { DataModalDelete, DeleteId, Props } from './types';
 
 function ItemAddress({ listAddress }: Props) {
   const [modalProductDetail, setModalProductDetail] = useState(false);
@@ -20,6 +20,9 @@ function ItemAddress({ listAddress }: Props) {
   };
 
   const handleCloseModal = () => setModalProductDetail(false);
+  const handelDelete = (id: DeleteId) => {
+    console.log(id, 'handle delete');
+  };
 
   return (
     <>
@@ -40,10 +43,11 @@ function ItemAddress({ listAddress }: Props) {
           </Typography>
         </Paper>
       ))}
-      <ShowModalDeleteMyAddress
+      <ModalDelete
+        content={selectData.address}
         openModal={modalProductDetail}
         handleCloseModal={handleCloseModal}
-        selectDataDelete={selectData}
+        onDelete={() => handelDelete(selectData.id)}
       />
     </>
   );
