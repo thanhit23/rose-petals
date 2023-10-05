@@ -35,11 +35,11 @@ function Product({ data, onClose }: Props) {
           -
         </Button>
       </Box>
-      <Link to={PATH_PUBLIC.product.slug(data.product.slug)}>
+      <Link to={PATH_PUBLIC.product.slug(data.product.slug, data.product._id)}>
         <Avatar src={data.product.images} sx={styles.avatar} />
       </Link>
       <Box sx={styles.boxInformationProduct}>
-        <Link to={PATH_PUBLIC.product.slug(data.product.slug)} style={styles.linkNameProduct}>
+        <Link to={PATH_PUBLIC.product.slug(data.product.slug, data.product._id)} style={styles.linkNameProduct}>
           <Box component="h5" sx={styles.boxNameProduct}>
             {data.product.name}
           </Box>
