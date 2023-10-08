@@ -4,9 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { useQuery } from '@tanstack/react-query';
 
-import AvailableAtShop from 'src/components/AvailableAtShop';
 import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
-import FrequentlyBoughtTogether from 'src/components/FrequentlyBoughtTogether';
 import ProductBriefing from 'src/components/ProductBriefing';
 import { Product } from 'src/components/ProductBriefing/types';
 import RelatedProducts from 'src/components/RelatedProducts';
@@ -54,8 +52,6 @@ function ProductDetail() {
       <DescriptionContext.Provider value={dataProduct.description}>
         <DetailReviewTabbedPane handleSubmitReview={handleSubmitReview} />
       </DescriptionContext.Provider>
-      <FrequentlyBoughtTogether />
-      <AvailableAtShop />
       <RelatedProducts />
     </Container>
   );

@@ -11,10 +11,6 @@ export default defineMessages({
     id: `${scope}.editProfile`,
     defaultMessage: 'Edit Profile',
   },
-  balance: {
-    id: `${scope}.balance`,
-    defaultMessage: 'Balance:',
-  },
   silverUser: {
     id: `${scope}.silverUser`,
     defaultMessage: 'SILVER USER',

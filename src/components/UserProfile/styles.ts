@@ -47,21 +47,6 @@ const typographyRank = {
   letterSpacing: '0.2em',
 };
 
-const typographyBalance = {
-  fontSize: '14px',
-  fontFamily: styles.fontFamilyDefault,
-  letterSpacing: 'inherit',
-  color: 'rgb(125, 135, 156)',
-};
-
-const typographyBalancePrice = {
-  margin: '0px 0px 0px 4px',
-  fontSize: '14px',
-  fontFamily: styles.fontFamilyDefault,
-  color: 'rgb(210, 63, 87)',
-  letterSpacing: 'inherit',
-};
-
 const paperStats = {
   color: 'rgb(43, 52, 69)',
   boxShadow: 'rgba(3, 0, 71, 0.09) 0px 1px 3px',
@@ -125,8 +110,6 @@ const wrapperInfo = {
 };
 
 export default {
-  typographyBalancePrice,
-  typographyBalance,
   paperStatsNumber,
   paperStatsTitle,
   paperDetailInfo,
