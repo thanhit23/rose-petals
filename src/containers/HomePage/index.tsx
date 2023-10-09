@@ -14,7 +14,7 @@ import SlideShow from 'src/components/Slide';
 import { getMe as getMeAction } from 'src/containers/Authenticated/actions';
 import store from 'src/store';
 
-import { getBrands, getMe, setBearerToken } from './httpClients';
+import { getBrands, getFeaturedProducts, getMe, setBearerToken } from './httpClients';
 
 function Home() {
   useQuery({
@@ -35,6 +35,12 @@ function Home() {
     select: ({ data: { data } }) => data,
   });
 
+  const { data: listFeatureProduct = [] } = useQuery({
+    queryKey: ['featuredProducts'],
+    queryFn: () => getFeaturedProducts(),
+    select: ({ data: { data } }) => data,
+  });
+
   return (
     <Box bgcolor="#fff">
       <SlideShow />
@@ -42,7 +48,7 @@ function Home() {
       <BestSellingCategories />
       <BestSellingProducts />
       <Event />
-      <FeaturedProducts />
+      <FeaturedProducts listFeatureProduct={listFeatureProduct} />
       <EventNotificationBanner />
       <LatestArticles />
       <ListBrand listBrand={listBrand} />

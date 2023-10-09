@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Rating from '@mui/material/Rating';
+
+import formatPrice from 'src/helpers/formatPrice';
 
 import QuickView from '../QuickView';
 import messages from './messages';
@@ -74,11 +76,13 @@ function ProductItemQuickView({
           <Box component="small" sx={styles.boxCategory}>
             {category}
           </Box>
-          <Box component="p" sx={styles.boxProductName}>
-            {name}
+          <Box sx={styles.boxproductNameBox}>
+            <Box component="p" sx={styles.boxProductName}>
+              {name}
+            </Box>
           </Box>
           <Box component="h4" sx={styles.boxPrice}>
-            ${price}
+            {formatPrice.format(price)}
           </Box>
           <Box sx={styles.boxWrapperRatingReview}>
             <Rating name="read-only" value={star} readOnly sx={styles.rating} />
