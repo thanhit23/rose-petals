@@ -11,8 +11,9 @@ import Paper from '@mui/material/Paper';
 
 import { formatPrice } from '../../helpers';
 import styles from './styles';
+import { Props } from './types';
 
-function CartProductListItem() {
+function CartProductListItem({ productCart }: Props) {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
@@ -28,26 +29,30 @@ function CartProductListItem() {
   return (
     <Paper sx={styles.paper}>
       <Box
+        sx={styles.avatar}
         width="140px"
         height="140px"
         component="img"
-        src="https://bazar-react.vercel.app/assets/images/products/Fashion/Clothes/1.SilverHighNeckSweater.png"
+        src={productCart.product.images}
+        alt={productCart.product.name}
       />
       <IconButton aria-label="close" size="small" sx={styles.iconClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
       <Box sx={styles.informationProduct}>
-        <Link to="/">
-          <Box component="span" sx={styles.nameProduct}>
-            Silver High Neck Sweater
-          </Box>
-        </Link>
+        <Box sx={styles.inforNameProduct}>
+          <Link to="/">
+            <Box component="span" sx={styles.nameProduct}>
+              {productCart.product.name}
+            </Box>
+          </Link>
+        </Box>
         <Box sx={styles.wrapperPrice}>
           <Box component="span" sx={styles.priceXQuantity}>
-            $210.00 x {quantity}
+            {formatPrice.format(productCart.product.price)} x {quantity}
           </Box>
           <Box component="span" sx={styles.totalPrice}>
-            {formatPrice.format(210 * quantity)}
+            {formatPrice.format(productCart.product.price * quantity)}
           </Box>
         </Box>
         <Box display="flex" alignItems="center">

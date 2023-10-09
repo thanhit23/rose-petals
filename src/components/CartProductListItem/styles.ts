@@ -24,6 +24,14 @@ const informationProduct = {
   flexDirection: 'column',
 };
 
+const inforNameProduct = {
+  width: '570px',
+  textTransform: 'none',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+};
+
 const nameProduct = {
   lineHeight: '1.5',
   fontWeight: '600',
@@ -75,6 +83,16 @@ const boxQuantity = {
   whiteSpace: 'normal',
 };
 
+const avatar = {
+  lineHeight: 1,
+  overflow: 'hidden',
+  userSelect: 'none',
+  marginLeft: '16px',
+  marginRight: '16px',
+  border: 'none',
+  flexShrink: 0,
+};
+
 const btnReduce = {
   minWidth: '0px',
   minHeight: '0px',
@@ -89,9 +107,11 @@ export default {
   wrapperPrice,
   btnIncrease,
   boxQuantity,
+  inforNameProduct,
   nameProduct,
   totalPrice,
   btnReduce,
   iconClose,
   paper,
+  avatar,
 };
