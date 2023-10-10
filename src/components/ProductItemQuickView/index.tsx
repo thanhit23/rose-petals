@@ -10,6 +10,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Rating from '@mui/material/Rating';
 
 import formatPrice from 'src/helpers/formatPrice';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import QuickView from '../QuickView';
 import messages from './messages';
@@ -19,6 +20,7 @@ import { ItemSellTypes } from './types';
 function ProductItemQuickView({
   thumbnail,
   category,
+  id,
   name,
   slug,
   price,
@@ -36,7 +38,7 @@ function ProductItemQuickView({
     <Box position="unset">
       <Box width="calc(100% - 1.125rem)" margin="auto">
         <Box sx={styles.boxWrapperProduct}>
-          <Link to={`/product/${slug}`}>
+          <Link to={PATH_PUBLIC.product.slug(slug, id)}>
             <Box
               sx={() => {
                 if (widthHeightImg) {
