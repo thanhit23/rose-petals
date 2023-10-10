@@ -90,14 +90,22 @@ const boxCategory = {
   textTransform: 'none',
   whiteSpace: 'normal',
 };
+const boxproductNameBox = {
+  width: '220px',
+  textTransform: 'none',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+};
 
 const boxProductName = {
   textTransform: 'none',
-  whiteSpace: 'normal',
   marginBottom: 0,
   marginTop: 0,
   fontSize: '14px',
   fontWeight: 700,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 };
 
 const boxPrice = {
@@ -136,6 +144,7 @@ export default {
   boxWrapperRatingReview,
   boxWrapperProduct,
   boxComponentImg,
+  boxproductNameBox,
   boxProductName,
   boxWrapperItem,
   btnQuickView,
