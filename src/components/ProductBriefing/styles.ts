@@ -58,11 +58,16 @@ const boxImg = {
 const boxTitle = {
   marginBottom: '8px',
   marginTop: '0px',
-  fontSize: '25px',
+  fontSize: { sm: '25px', md: '20px' },
   fontWeight: '700',
   lineHeight: '1.5',
   textTransform: 'none',
   whiteSpace: 'normal',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 2,
 };
 
 const boxWrapBrand = {

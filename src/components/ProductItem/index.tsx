@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Add, FavoriteBorder, Remove, RemoveRedEye } from '@mui/icons-material';
@@ -9,12 +9,16 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 
+import { Product } from 'src/common/types';
+
 import QuickView from '../QuickView';
 import styles from './styles';
-import { Props } from './types';
 
-function ProductItem({ product }: Props) {
-  console.log(product, 'product');
+type Props = {
+  product: Product;
+};
+
+const ProductItem: React.FC<Props> = ({ product }) => {
   const [quantity, setQuantity] = useState(0);
   const [modalProductDetail, setModalProductDetail] = useState(false);
 
@@ -54,7 +58,7 @@ function ProductItem({ product }: Props) {
             <IconButton aria-label="delete" onClick={handleOpenModal}>
               <RemoveRedEye fontSize="small" sx={styles.colorIcon} />
             </IconButton>
-            <QuickView openModal={modalProductDetail} handleCloseModal={handleCloseModal} />
+            <QuickView product={product} openModal={modalProductDetail} handleCloseModal={handleCloseModal} />
             <IconButton aria-label="delete">
               <FavoriteBorder fontSize="small" sx={styles.colorIcon} />
             </IconButton>
@@ -93,6 +97,6 @@ function ProductItem({ product }: Props) {
       </Paper>
     </Grid>
   );
-}
+};
 
 export default ProductItem;

@@ -11,11 +11,13 @@ import ProductItem from 'src/components/ProductItem';
 import styles from 'src/components/ProductItem/styles';
 import ProductViewInList from 'src/components/ProductViewInList';
 import SortBar from 'src/components/SortBar';
+import { products } from 'src/mockData';
 
 import { getBrands } from '../HomePage/httpClients';
 
 function ProductSearch() {
   const [viewList, setViewList] = useState(false);
+
   const { data: listBrand = [] } = useQuery({
     queryKey: ['getBrands'],
     queryFn: () => getBrands(),
@@ -40,15 +42,9 @@ function ProductSearch() {
     }
     return (
       <Grid container spacing={{ xs: 3 }}>
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
-        <ProductItem product={{}} />
+        {products.map(product => (
+          <ProductItem key={product._id} product={product} />
+        ))}
       </Grid>
     );
   };

@@ -47,7 +47,7 @@ const ProductForm: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={12} md={6} sx={{ maxWidth: { sm: '100%' } }}>
       <Box component="h1" sx={styles.boxTitle}>
         {product?.name}
       </Box>
