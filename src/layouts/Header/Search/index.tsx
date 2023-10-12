@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import StoreIcon from '@mui/icons-material/Store';
 import { Box, FormControl, OutlinedInput } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react/headless';
 
 import useDebounce from 'src/hooks/useDebounce';
 import { PATH_PUBLIC } from 'src/routes/paths';
@@ -23,11 +23,12 @@ import { Product, SubmitForm } from './types';
 
 export default function Search() {
   const inputRef = useRef();
-  const [searchValue, setSearchValue] = useState('');
-  const [searchResult, setSearchResult] = useState<Product[]>([]);
-  const [showResult, setShowResult] = useState(false);
-  const [categoryId, setCategoryId] = useState('');
   const navigate = useNavigate();
+
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [searchResult, setSearchResult] = useState<Product[]>([]);
+  const [showResult, setShowResult] = useState<boolean>(false);
+  const [categoryId, setCategoryId] = useState('');
 
   const debouncedValue = useDebounce(searchValue, 700);
 
@@ -54,42 +55,47 @@ export default function Search() {
   });
 
   const onSubmit = () => {
-    navigate(PATH_PUBLIC.product.search(searchValue));
+    if (debouncedValue === '') return;
 
     const inputElement = inputRef.current as unknown as HTMLInputElement;
+
     inputElement.blur();
     handleHideResult();
+    navigate(PATH_PUBLIC.product.search(searchValue));
   };
 
   const handleClickItem = (slug: string, productId: string) => {
-    navigate(PATH_PUBLIC.product.slug(slug, productId));
     handleHideResult();
+    navigate(PATH_PUBLIC.product.slug(slug, productId));
   };
 
   const handleSearch = () => {
-    navigate(PATH_PUBLIC.product.search(searchValue));
+    if (debouncedValue === '') return;
+
     handleHideResult();
+    navigate(PATH_PUBLIC.product.search(searchValue));
   };
 
   const handleChange = (e: React.PointerEvent<HTMLInputElement>) => {
     const searchValue = e.currentTarget.value;
+
     if (!searchValue.startsWith(' ')) {
       setSearchValue(searchValue);
     }
   };
 
   const handleClear = () => {
+    const inputElement = inputRef.current as unknown as HTMLInputElement;
+
     setSearchValue('');
     setSearchResult([]);
 
-    const inputElement = inputRef.current as unknown as HTMLInputElement;
     inputElement.focus();
   };
 
   useEffect(() => {
     if (!debouncedValue.trim()) {
       setSearchResult([]);
-      return;
     }
   }, [debouncedValue]);
 
@@ -100,37 +106,35 @@ export default function Search() {
     onSuccess: ({ data: { data, status } }) => status && setSearchResult(data),
   });
 
-  const renderResult = () => (
-    <Box sx={styles.boxResult}>
-      <Box component={'div'} sx={styles.searchTitle} onClick={handleSearch}>
-        <StoreIcon fontSize="small" color="error" />
-        <FormattedMessage {...messages.searchFor} />: &quot;{searchValue}&quot;
-      </Box>
-      {searchResult?.map(product => (
-        <Box
-          component={'div'}
-          key={product._id}
-          sx={{ cursor: 'pointer' }}
-          onClick={() => handleClickItem(product.slug, product._id)}
-        >
-          <Box sx={styles.boxWrapper}>
-            <Box component={'img'} sx={styles.boxImage} src={product.thumbnail} alt={product.name} />
-            <Box component={'span'} sx={styles.boxTitle}>
-              {product.name}
-            </Box>
-          </Box>
-        </Box>
-      ))}
-    </Box>
-  );
-
   return (
-    <HeadlessTippy
+    <Tippy
       interactive
       visible={showResult}
       offset={[0, 8]}
       placement="bottom-start"
-      render={renderResult}
+      render={attrs => (
+        <Box sx={styles.boxResult} {...attrs}>
+          <Box component={'div'} sx={styles.searchTitle} onClick={handleSearch}>
+            <StoreIcon fontSize="small" color="error" />
+            <FormattedMessage {...messages.searchFor} />: &quot;{searchValue}&quot;
+          </Box>
+          {searchResult?.map(product => (
+            <Box
+              component={'div'}
+              key={product._id}
+              sx={{ cursor: 'pointer' }}
+              onClick={() => handleClickItem(product.slug, product._id)}
+            >
+              <Box sx={styles.boxWrapper}>
+                <Box component={'img'} sx={styles.boxImage} src={product.thumbnail} alt={product.name} />
+                <Box component={'span'} sx={styles.boxTitle}>
+                  {product.name}
+                </Box>
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      )}
       onClickOutside={handleHideResult}
     >
       <Box component={'form'} noValidate sx={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
@@ -156,6 +160,6 @@ export default function Search() {
           {isFetching && <RefreshIcon fontSize="small" sx={styles.loadingIcon} />}
         </FormControl>
       </Box>
-    </HeadlessTippy>
+    </Tippy>
   );
 }
