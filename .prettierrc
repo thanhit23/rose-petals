@@ -17,5 +17,6 @@
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrderSeparation": true,
   "importOrderMergeDuplicateImports": true,
-  "importOrderSortSpecifiers": true
+  "importOrderSortSpecifiers": true,
+  "endOfLine": "crlf"
 }

@@ -11,3 +11,5 @@ export interface DataModalDelete {
   id: string;
   address: string;
 }
+
+export type DeleteId = string;
