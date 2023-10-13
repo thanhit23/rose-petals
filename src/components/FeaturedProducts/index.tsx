@@ -21,6 +21,7 @@ function FeaturedProducts({ listFeatureProduct }: Props) {
             {listFeatureProduct.map((product: FeaturedProduct) => (
               <ProductItem
                 key={product._id}
+                id={product._id}
                 category={product.category?.name}
                 name={product.name}
                 slug={product.slug}

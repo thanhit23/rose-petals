@@ -1,4 +1,5 @@
 export interface ItemSellTypes {
+  id?: string;
   thumbnail: string;
   category: string;
   name: string;
