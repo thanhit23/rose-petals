@@ -38,7 +38,6 @@ function ProductDetail() {
   const [searchParams] = useSearchParams();
   const productId = searchParams.get('id') as string;
   const handleSubmitReview = (data: object) => {
-    // eslint-disable-next-line no-console
     console.log(data);
   };
   useQuery({

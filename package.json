@@ -49,6 +49,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "husky-install": "husky install",
+    "typecheck": "bash -c tsc --noEmit",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint:format": "prettier --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
     "lint": "yarn lint:fix && yarn lint:format"
@@ -58,6 +60,20 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint:fix",
+      "yarn lint:format"
+    ],
+    "*.{ts,tsx}": [
+      "yarn typecheck"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && pretty-quick --staged"
+    }
   },
   "browserslist": {
     "production": [
@@ -83,6 +99,9 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
-    "prettier": "^2.8.4"
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^2.8.4",
+    "pretty-quick": "^3.1.3"
   }
 }
