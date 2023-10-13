@@ -88,6 +88,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@tanstack/react-query-devtools": "^4.29.6",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/invariant": "^2.2.35",
