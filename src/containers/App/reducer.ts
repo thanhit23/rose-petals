@@ -8,10 +8,13 @@ import { ShowLoadingPayload } from 'src/containers/LoadingIndicator/types';
 import { LOGIN_SUCCESS } from 'src/containers/Login/constants';
 import { LoginFailedPayload, LoginSuccessPayload } from 'src/containers/Login/types';
 
+import { CHANGE_LOCALE } from '../../layouts/TopBar/constants';
+import { ChangeLocalePayload } from '../../layouts/TopBar/types';
 import { CATEGORY_LIST, PRODUCT_CART_LIST } from './constant';
 import { CategoryListPayload, ProductCartListPayload } from './types';
 
 export const initialState = {
+  locale: localStorage.getItem('locale') || 'en',
   auth: {} || null,
   loading: {
     showLoading: false,
@@ -32,6 +35,7 @@ type Action = {
   PRODUCT_CART_LIST: ProductCartListPayload;
   LOGIN_FAILED: LoginFailedPayload;
   GET_ME_SUCCESS: GetMePayload;
+  CHANGE_LOCALE: ChangeLocalePayload;
   LOGOUT_REQUEST: never;
   LOGOUT: never;
 };
@@ -59,6 +63,13 @@ const appReducer = (state = initialState, action: MapAction<Action>) =>
           payload: { data },
         } = action;
         draft.categoryList = data;
+        break;
+      }
+      case CHANGE_LOCALE: {
+        const {
+          payload: { locale },
+        } = action;
+        draft.locale = locale;
         break;
       }
       case PRODUCT_CART_LIST: {

@@ -9,6 +9,7 @@ export interface States {
     loading: {
       showLoading: boolean;
     };
+    locale: string;
   };
 }
 

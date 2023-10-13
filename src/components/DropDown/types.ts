@@ -1,9 +1,12 @@
+import React from 'react';
+
 export type MenuItem = {
   title?: string;
   path?: string;
   id?: string;
+  value?: string;
   sx?: object;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, value: string | undefined) => void;
   component?: JSX.Element;
 };
 
