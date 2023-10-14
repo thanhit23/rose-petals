@@ -8,19 +8,23 @@ import Typography from '@mui/material/Typography';
 
 import ModalDelete from '../ModalDelete';
 import styles from './styles';
-import { DataModalDelete, DeleteId, Props } from './types';
+import { Address, InforDelete } from './types';
+
+type Props = {
+  listAddress: Address[];
+};
 
 function ItemAddress({ listAddress }: Props) {
   const [modalProductDetail, setModalProductDetail] = useState(false);
   const [selectData, setSelectData] = useState({ id: '', address: '' });
 
-  const handleOpenModalDelete = (dataDelete: DataModalDelete) => {
+  const handleOpenModalDelete = (dataDelete: InforDelete) => {
     setSelectData(dataDelete);
     setModalProductDetail(true);
   };
 
   const handleCloseModal = () => setModalProductDetail(false);
-  const handelDelete = (id: DeleteId) => {
+  const handleDelete = (id: string) => {
     console.log(id, 'handle delete');
   };
 
@@ -47,7 +51,7 @@ function ItemAddress({ listAddress }: Props) {
         content={selectData.address}
         openModal={modalProductDetail}
         handleCloseModal={handleCloseModal}
-        onDelete={() => handelDelete(selectData.id)}
+        onDelete={() => handleDelete(selectData.id)}
       />
     </>
   );

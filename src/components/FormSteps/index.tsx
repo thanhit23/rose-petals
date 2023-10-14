@@ -1,3 +1,4 @@
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
@@ -7,14 +8,13 @@ import Grid from '@mui/material/Grid';
 
 import messages from './messages';
 import styles from './styles';
-import { BreadBarCartPageTypes } from './types';
 
-function FormSteps({ activeIndexPage }: BreadBarCartPageTypes) {
-  const handleActive = (index: number) => {
-    if (index <= activeIndexPage) return styles.active;
+type Props = {
+  activeIndexPage: number;
+};
 
-    return styles.unActive;
-  };
+const FormSteps: React.FC<Props> = ({ activeIndexPage }) => {
+  const handleActive = (index: number) => (index <= activeIndexPage ? styles.active : styles.unActive);
 
   return (
     <Box marginBottom="20px">
@@ -80,6 +80,6 @@ function FormSteps({ activeIndexPage }: BreadBarCartPageTypes) {
       </Grid>
     </Box>
   );
-}
+};
 
 export default FormSteps;

@@ -49,6 +49,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 0,
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/indent': 0,
+    '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     'jsx-alignment': 0,
     'jsx-wrap-multiline': 0,

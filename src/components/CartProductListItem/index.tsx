@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@mui/icons-material/Add';
@@ -9,11 +9,16 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 
-import { formatPrice } from '../../helpers';
-import styles from './styles';
-import { Props } from './types';
+import { ProductCart } from 'src/components/SideBarCart/types';
+import { formatPrice } from 'src/helpers';
 
-function CartProductListItem({ productCart }: Props) {
+import styles from './styles';
+
+type Props = {
+  productCart: ProductCart;
+};
+
+const CartProductListItem: React.FC<Props> = ({ productCart }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrease = () => {
@@ -28,14 +33,16 @@ function CartProductListItem({ productCart }: Props) {
 
   return (
     <Paper sx={styles.paper}>
-      <Box
-        sx={styles.avatar}
-        width="140px"
-        height="140px"
-        component="img"
-        src={productCart.product.images}
-        alt={productCart.product.name}
-      />
+      <Box padding="16px">
+        <Box
+          sx={styles.avatar}
+          width="110px"
+          height="110px"
+          component="img"
+          src={productCart.product.images}
+          alt={productCart.product.name}
+        />
+      </Box>
       <IconButton aria-label="close" size="small" sx={styles.iconClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
@@ -67,6 +74,6 @@ function CartProductListItem({ productCart }: Props) {
       </Box>
     </Paper>
   );
-}
+};
 
 export default CartProductListItem;

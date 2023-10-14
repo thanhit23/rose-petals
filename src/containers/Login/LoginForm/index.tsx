@@ -17,26 +17,25 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { useMutation } from '@tanstack/react-query';
 import { Dispatch, bindActionCreators, compose } from 'redux';
 
 import ErrorMessage from 'src/components/ErrorMessage';
 import TextField from 'src/components/TextField';
+import { useClientLogin } from 'src/queries/auth';
 
 import { loginSuccess as loginSuccessAction } from '../actions';
-import { login as loginService } from '../services';
-import { Props, TData, UserSubmitForm } from '../types';
+import { Props, UserSubmitForm } from '../types';
 import messages from './messages';
 import styles from './styles';
 import { loginValidationSchema } from './validationSchema';
 
 function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
   const navigator = useNavigate();
-  const [isPassword, setIsPassword] = useState(true);
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: (data: object) => loginService(data),
-    onSuccess: ({ data: { status, data, message } }: TData) => {
+  const [isPassword, setIsPassword] = useState<boolean>(true);
+
+  const { mutate, isLoading } = useClientLogin({
+    onSuccess: ({ status, data, message }) => {
       if (status) {
         onLoginSuccess(data);
         onCloseDialog instanceof Function ? onCloseDialog() : navigator('/');

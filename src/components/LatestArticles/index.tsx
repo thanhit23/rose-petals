@@ -9,7 +9,7 @@ import messages from './messages';
 import styles from './styles';
 
 function LatestArticles() {
-  const listLatesArticles = [
+  const listLateArticles = [
     {
       title: '30% Off Coupon for Black Friday',
       image: 'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fblogs%2Fblog-1.jpg&w=3840&q=75',
@@ -39,7 +39,7 @@ function LatestArticles() {
         <FormattedMessage {...messages.title} />
       </Box>
       <Grid container spacing={3}>
-        {listLatesArticles.map((art, i) => (
+        {listLateArticles.map((art, i) => (
           <ArticleItem key={i} article={art} />
         ))}
       </Grid>

@@ -11,11 +11,12 @@ import SideBarUser from 'src/components/SideBarUser';
 import messages from './messages';
 
 function AddressEdit() {
-  const defaultValue = {
+  const address = {
     name: 'Office',
     addressLine: '497 Erdman Passage, New Zoietown',
     phone: '(213) 840-9416',
   };
+
   return (
     <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
       <Grid container spacing={{ xs: 3 }}>
@@ -27,7 +28,7 @@ function AddressEdit() {
             title={<FormattedMessage {...messages.title} />}
             button={<FormattedMessage {...messages.btnBackAddress} />}
           />
-          <FormAddress defaultValue={defaultValue} />
+          <FormAddress address={address} />
         </Grid>
       </Grid>
     </Container>

@@ -1,7 +1,7 @@
 import { styled } from '@mui/joy/styles';
 import { red } from '@mui/material/colors';
 
-interface ErrorMessageType {
+interface Props {
   name?: {
     message?: string;
   };
@@ -12,7 +12,7 @@ const Span = styled('span')(() => ({
   fontSize: 14,
 }));
 
-function ErrorMessage({ name }: ErrorMessageType) {
+function ErrorMessage({ name }: Props) {
   if (name) {
     return <Span>{name.message}</Span>;
   }

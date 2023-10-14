@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
@@ -7,37 +7,55 @@ import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 
+import { Product } from 'src/common/types';
 import QuantityButton from 'src/components/QuantityButton';
 import formatterPrice from 'src/helpers/formatPrice';
 
 import messages from '../messages';
 import styles from '../styles';
-import { ProductProps } from '../types';
+import { InitialState } from './types';
 
-function ProductForm({ product }: ProductProps) {
-  const [colorType, setColorType] = useState({
-    sizes: '',
-    colors: '',
-  });
-  const [quantity, setQuantity] = useState(1);
-  const { name, price, brand } = product;
+type Props = {
+  product?: Product;
+};
+
+const initialState: InitialState = {
+  sizes: '',
+  colors: '',
+};
+
+const ProductForm: React.FC<Props> = ({ product }) => {
+  const [colorType, setColorType] = useState<InitialState>(initialState);
+
+  const [quantity, setQuantity] = useState<number>(1);
+
   const sizes = [{ label: 'M' }, { label: 'L' }, { label: 'XL' }];
+
   const colors = [{ label: 'Blue' }, { label: 'Red', id: 2 }, { label: 'Green' }];
+
   const handleChangeColor = (condition: boolean, colorDefault?: string, colorActive?: string) =>
     condition ? colorDefault || '#D23F57' : colorActive || '#00000014';
+
   const handleSubmit = () => {
-    console.log({ name, price, quantity, color: colorType.colors, size: colorType.sizes });
+    console.log({
+      name: product?.name,
+      price: product?.price,
+      quantity,
+      color: colorType.colors,
+      size: colorType.sizes,
+    });
   };
+
   return (
     <Grid item xs={12} md={6}>
       <Box component="h1" sx={styles.boxTitle}>
-        {name}
+        {product?.name}
       </Box>
       <Box sx={styles.wrapBrandRating}>
         <Box sx={styles.boxWrapBrand}>
           <Box>Brand:</Box>
           <Box component="h6" sx={styles.boxBrand}>
-            {brand.name}
+            {product?.brand.name}
           </Box>
         </Box>
         <Box sx={styles.boxRated}>
@@ -96,7 +114,7 @@ function ProductForm({ product }: ProductProps) {
       </Box>
       <Box sx={styles.wrapPrice}>
         <Box component="h2" sx={styles.boxPrice}>
-          {formatterPrice.format(price)}
+          {formatterPrice.format(product?.price || 0)}
         </Box>
         <QuantityButton quantity={quantity} setQuantity={setQuantity} />
       </Box>
@@ -106,6 +124,6 @@ function ProductForm({ product }: ProductProps) {
       </Button>
     </Grid>
   );
-}
+};
 
 export default ProductForm;

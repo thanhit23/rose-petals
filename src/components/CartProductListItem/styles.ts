@@ -87,8 +87,7 @@ const avatar = {
   lineHeight: 1,
   overflow: 'hidden',
   userSelect: 'none',
-  marginLeft: '16px',
-  marginRight: '16px',
+  borderRadius: '10px',
   border: 'none',
   flexShrink: 0,
 };

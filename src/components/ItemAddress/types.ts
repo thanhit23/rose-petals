@@ -1,15 +1,8 @@
-export interface Props {
-  listAddress: {
-    id: string;
-    address: string;
-    addressLine: string;
-    phoneNumber: string;
-  }[];
-}
-
-export interface DataModalDelete {
+export interface Address {
   id: string;
   address: string;
+  addressLine?: string;
+  phoneNumber?: string;
 }
 
-export type DeleteId = string;
+export type InforDelete = Address;

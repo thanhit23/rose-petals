@@ -11,9 +11,10 @@ import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
 import { compose } from 'redux';
 
-import DropDown from '../../components/DropDown';
-import { States } from '../../containers/LoadingIndicator/types';
-import store from '../../store';
+import { State } from 'src/common/types';
+import DropDown from 'src/components/DropDown';
+import store from 'src/store';
+
 import { CHANGE_LOCALE } from './constants';
 import messages from './messages';
 import styles from './styles';
@@ -56,7 +57,7 @@ const TopBar: React.FC<Props> = ({ locale }) => {
             btnSx={styles.dropDownBtn}
             buttonText={
               <Box component="span" sx={styles.boxLanguage}>
-                {intl.formatMessage(messages[locale === 'en' ? 'language_en' : 'language_vi'])}
+                {intl.formatMessage(locale === 'en' ? messages.language_en : messages.language_vi)}
               </Box>
             }
             buttonIconSx={{ fontSize: '0.875rem' }}
@@ -78,15 +79,9 @@ const TopBar: React.FC<Props> = ({ locale }) => {
   );
 };
 
-const mapStateToProps = (state: States) => {
-  const {
-    global: { locale },
-  } = state;
-
-  return {
-    locale,
-  };
-};
+const mapStateToProps = ({ global: { locale } }: State) => ({
+  locale,
+});
 
 const withConnect = connect(mapStateToProps, null);
 

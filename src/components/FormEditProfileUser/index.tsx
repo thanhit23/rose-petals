@@ -14,15 +14,19 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import { compose } from 'redux';
 
+import { State } from 'src/common/types';
+import { Auth } from 'src/containers/Authenticated/types';
+
 import ErrorMessage from '../ErrorMessage';
 import HeaderHoldUser from '../HeaderHoldUser';
 import MuiTextField from '../TextField';
-import { Props, State } from '../UserProfile/types';
 import messages from './messages';
 import styles from './styles';
 import { UserSubmitForm } from './types';
 
-function FormEditProfileUser({ auth }: Props) {
+type Props = Auth;
+
+const FormEditProfileUser: React.FC<Props> = ({ auth }) => {
   const {
     register,
     handleSubmit,
@@ -37,6 +41,7 @@ function FormEditProfileUser({ auth }: Props) {
       gender: auth.gender,
     },
   });
+
   const { email, fullName, phoneNumber, address } = errors;
 
   const handleSubmitForm = (data: object) => {
@@ -121,16 +126,11 @@ function FormEditProfileUser({ auth }: Props) {
       </Paper>
     </Grid>
   );
-}
-
-const mapStateToProps = (state: State) => {
-  const {
-    global: { auth },
-  } = state;
-  return {
-    auth,
-  };
 };
+
+const mapStateToProps = ({ global: { auth } }: State) => ({
+  auth,
+});
 
 const withConnect = connect(mapStateToProps, null);
 

@@ -9,11 +9,16 @@ import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 
-import { Props } from '../ListBrand/types';
+import { Brand } from 'src/common/types';
+
 import messages from './messages';
 import styles from './styles';
 
 const ratingList = [5, 4, 3, 2, 1];
+
+type Props = {
+  listBrand: Brand[];
+};
 
 function FilterPanel({ listBrand }: Props) {
   return (

@@ -154,7 +154,7 @@ export default function Search() {
             size="small"
             placeholder="Searching for..."
             startAdornment={<SearchIcon sx={styles.outlineInputSearchIcon} />}
-            endAdornment={<CategoryMenu setCategoryId={setCategoryId} />}
+            endAdornment={<CategoryMenu onChangeCategoryId={setCategoryId} />}
           />
           {!!searchValue && !isFetching && <ClearIcon fontSize="small" sx={styles.closeIcon} onClick={handleClear} />}
           {isFetching && <RefreshIcon fontSize="small" sx={styles.loadingIcon} />}

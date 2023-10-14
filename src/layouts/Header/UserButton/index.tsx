@@ -9,17 +9,20 @@ import Paper from '@mui/material/Paper';
 import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
+import { State } from 'src/common/types';
 import DropDown from 'src/components/DropDown';
 import { logout } from 'src/containers/Authenticated/actions';
+import { Auth } from 'src/containers/Authenticated/types';
 import LoginForm from 'src/containers/Login/LoginForm';
 import female from 'src/resources/images/female.png';
 import male from 'src/resources/images/male.png';
 import store from 'src/store';
 
 import styles from './styles';
-import { Props, State } from './types';
 
-function UserButton({ auth }: Props) {
+type Props = Auth;
+
+const UserButton: React.FC<Props> = ({ auth }) => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -88,16 +91,11 @@ function UserButton({ auth }: Props) {
       </Dialog>
     </div>
   );
-}
-
-const mapStateToProps = (state: State) => {
-  const {
-    global: { auth },
-  } = state;
-  return {
-    auth,
-  };
 };
+
+const mapStateToProps = ({ global: { auth } }: State) => ({
+  auth,
+});
 
 const withConnect = connect(mapStateToProps, null);
 

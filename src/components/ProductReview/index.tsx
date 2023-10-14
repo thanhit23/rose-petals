@@ -8,13 +8,15 @@ import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 
+import { Nullable } from 'src/common/types';
+
 import ErrorMessage from '../ErrorMessage';
 import messages from './messages';
 import styles from './styles';
 import { ReviewSubmitForm, ReviewTypes } from './types';
 
 function ProductReview({ onSubmit }: ReviewTypes) {
-  const [value, setValue] = React.useState<number | null>(0);
+  const [value, setValue] = React.useState<Nullable<number>>(0);
 
   const {
     register,

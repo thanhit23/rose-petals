@@ -11,7 +11,7 @@ import SideBarUser from 'src/components/SideBarUser';
 import messages from './messages';
 
 function PaymentMethodEdit() {
-  const defaultValue = {
+  const paymentMethod = {
     cardNumber: 'Office',
     nameOnCard: 'Office',
     date: '(213) 840-9416',
@@ -29,7 +29,7 @@ function PaymentMethodEdit() {
             title={<FormattedMessage {...messages.editPayment} />}
             button={<FormattedMessage {...messages.btnBackPayment} />}
           />
-          <FormPaymentMethod defaultValue={defaultValue} />
+          <FormPaymentMethod paymentMethod={paymentMethod} />
         </Grid>
       </Grid>
     </Container>

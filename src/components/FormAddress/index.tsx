@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
@@ -14,7 +15,15 @@ import messages from './messages';
 import styles from './styles';
 import { SubmitForm } from './types';
 
-function FormAddress({ defaultValue = {} }: { defaultValue?: object }) {
+type Props = {
+  address?: {
+    name: string;
+    addressLine: string;
+    phone: string;
+  };
+};
+
+const FormAddress: React.FC<Props> = ({ address }) => {
   const loginValidationSchema = Yup.object().shape({
     name: Yup.string().required(),
     addressLine: Yup.string().required(),
@@ -28,7 +37,11 @@ function FormAddress({ defaultValue = {} }: { defaultValue?: object }) {
   } = useForm<SubmitForm>({
     mode: 'onChange',
     resolver: yupResolver(loginValidationSchema),
-    defaultValues: defaultValue || {},
+    defaultValues: {
+      name: address?.name || '',
+      addressLine: address?.addressLine || '',
+      phone: address?.phone || '',
+    },
   });
 
   const { name, addressLine, phone } = errors;
@@ -85,6 +98,6 @@ function FormAddress({ defaultValue = {} }: { defaultValue?: object }) {
       </form>
     </Paper>
   );
-}
+};
 
 export default FormAddress;

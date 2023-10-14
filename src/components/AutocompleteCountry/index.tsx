@@ -8,10 +8,10 @@ import TextField from '@mui/material/TextField';
 
 import messages from './messages';
 import styles from './styles';
-import { CountryType } from './types';
+import { CountryOption } from './types';
 
 function AutocompleteCountry() {
-  const allCountry: readonly CountryType[] = [
+  const allCountry: readonly CountryOption[] = [
     { label: 'Afghanistan', code: 'AF' },
     { label: 'Åland Islands', code: 'AX' },
     { label: 'Albania', code: 'AL' },
@@ -259,7 +259,7 @@ function AutocompleteCountry() {
 
   const urlFlag = 'https://flagcdn.com';
 
-  const renderOptions = (props: HTMLAttributes<HTMLLIElement>, { label, code }: CountryType) => (
+  const renderOptions = (props: HTMLAttributes<HTMLLIElement>, { label, code }: CountryOption) => (
     <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
       <img
         loading="lazy"

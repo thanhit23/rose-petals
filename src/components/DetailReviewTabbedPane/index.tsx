@@ -7,9 +7,12 @@ import Description from '../ProductDescription';
 import Review from '../ProductReview';
 import TabPanel from '../TabPanelProduct';
 import styles from './styles';
-import { DetailReviewTabbedPaneType } from './types';
 
-function DetailReviewTabbedPane({ handleSubmitReview }: DetailReviewTabbedPaneType) {
+type Props = {
+  handleSubmitReview: (data: object) => void;
+};
+
+const DetailReviewTabbedPane: React.FC<Props> = ({ handleSubmitReview }) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => setValue(newValue);
@@ -39,6 +42,6 @@ function DetailReviewTabbedPane({ handleSubmitReview }: DetailReviewTabbedPaneTy
       </TabPanel>
     </>
   );
-}
+};
 
 export default DetailReviewTabbedPane;

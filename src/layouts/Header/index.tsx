@@ -9,30 +9,32 @@ import { IconButton, Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import FormControl from '@mui/material/FormControl';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import { compose } from 'redux';
 
-import { Props, State } from 'src/containers/App/types';
+import { ListCategory, State } from 'src/common/types';
+import SideBarCart from 'src/components/SideBarCart';
+import useResponsive from 'src/hooks/useResponsive';
+import logo from 'src/resources/images/logo.png';
 
-import SideBarCart from '../../components/SideBarCart';
-import useResponsive from '../../hooks/useResponsive';
-import logo from '../../resources/images/logo.png';
 import DropDown from '../NavBar/Dropdown';
 import Search from './Search';
 import UserButton from './UserButton';
 import styles from './styles';
 
-function Header({ categoryList }: Props) {
+type Props = {
+  categoryList: ListCategory[];
+};
+
+const Header: React.FC<Props> = ({ categoryList }) => {
   const isDesktop = useResponsive('up', 'md');
 
   const isLaptopL = useResponsive('down', 'lg');
 
-  const [showHeader, setShowHeader] = React.useState(true);
+  const [showHeader, setShowHeader] = React.useState<boolean>(true);
 
-  const [showInit, setShowInit] = React.useState({});
+  const [showInit, setShowInit] = React.useState<{ top: string } | object>({});
 
-  const [openSearch, setOpenSearch] = useState(false);
+  const [openSearch, setOpenSearch] = useState<boolean>(false);
 
   useEffect(() => {
     const scrollPosition = 380;
@@ -111,16 +113,12 @@ function Header({ categoryList }: Props) {
       </Modal>
     </>
   );
-}
-
-const mapStateToProps = (state: State) => {
-  const {
-    global: { categoryList },
-  } = state;
-  return {
-    categoryList,
-  };
 };
 
+const mapStateToProps = ({ global: { category } }: State) => ({
+  categoryList: category.list,
+});
+
 const withConnect = connect(mapStateToProps, null);
+
 export default compose(withConnect)(Header);
