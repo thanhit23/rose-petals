@@ -1,5 +1,6 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -8,12 +9,37 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
+import { compose } from 'redux';
 
 import DropDown from '../../components/DropDown';
+import { States } from '../../containers/LoadingIndicator/types';
+import store from '../../store';
+import { CHANGE_LOCALE } from './constants';
 import messages from './messages';
 import styles from './styles';
 
-function TopBar() {
+type Props = {
+  locale: string;
+};
+
+const TopBar: React.FC<Props> = ({ locale }) => {
+  const intl = useIntl();
+
+  const menuItems = [
+    {
+      title: 'EN',
+      sx: { color: locale === 'en' ? 'red' : null },
+      value: 'en',
+      onClick: () => store.dispatch({ type: CHANGE_LOCALE, payload: { locale: 'en' } }),
+    },
+    {
+      title: 'VI',
+      sx: { color: locale === 'vi' ? 'red' : null },
+      value: 'vi',
+      onClick: () => store.dispatch({ type: CHANGE_LOCALE, payload: { locale: 'vi' } }),
+    },
+  ];
+
   return (
     <Box sx={styles.boxTopBar}>
       <Container maxWidth="lg" sx={styles.containerTopBar}>
@@ -26,11 +52,11 @@ function TopBar() {
         <Box sx={{ display: 'flex' }}>
           <DropDown
             buttonIcon
-            menuItem={[{ title: 'EN' }, { title: 'DE' }]}
+            menuItem={menuItems}
             btnSx={styles.dropDownBtn}
             buttonText={
               <Box component="span" sx={styles.boxLanguage}>
-                <FormattedMessage {...messages.language} />
+                {intl.formatMessage(messages[locale === 'en' ? 'language_en' : 'language_vi'])}
               </Box>
             }
             buttonIconSx={{ fontSize: '0.875rem' }}
@@ -50,6 +76,18 @@ function TopBar() {
       </Container>
     </Box>
   );
-}
+};
 
-export default TopBar;
+const mapStateToProps = (state: States) => {
+  const {
+    global: { locale },
+  } = state;
+
+  return {
+    locale,
+  };
+};
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect)(TopBar);

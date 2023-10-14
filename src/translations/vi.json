@@ -1,5 +1,16 @@
 {
-  "Components.Login.btn.login": "Đăng Nhập",
-  "Components.NotFound.title": "Không Tìm Thấy",
-  "Components.NotFound.button": "Trở Lại Trang Chủ"
+  "Components.Login.title": "Chào mừng đến với Rose Petal",
+  "Components.Login.rememberMe": "Remember me",
+  "Components.Login.label.password": "Mật khẩu",
+  "Components.Login.label.email": "Địa chỉ Email",
+  "Components.Login.forgotPassword": "Quên mật khẩu?",
+  "Components.Login.resetIt": "Reset It",
+  "Components.Login.notAccount": "Don't have an account?",
+  "Components.Login.signUp": "Sign Up",
+  "Components.Login.button.submit": "Đăng nhập",
+  "Components.Header.Category.button": "Danh mục",
+  "Components.Header.Cart.button.checkoutNow": "Checkout Now",
+  "Components.Header.Cart.button.outlined": "Outlined",
+  "Components.NotFound.title": "Not Found",
+  "Components.NotFound.button.back-to-home": "Back to home page"
 }

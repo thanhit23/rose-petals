@@ -86,14 +86,14 @@ function DropDown({
             aria-labelledby="composition-button"
             onKeyDown={handleListKeyDown}
           >
-            {menuItem.map(({ title, path, sx, id, onClick }: MenuItemType, key: number) => (
+            {menuItem.map(({ title, path, sx, id, onClick, value }: MenuItemType, key: number) => (
               <MenuItem
                 sx={{ fontSize: '14px', ...sx }}
                 key={key}
                 id={id}
                 onClick={e => {
                   handleClose(e);
-                  onClick ? onClick() : null;
+                  onClick ? onClick(e, value) : null;
                 }}
               >
                 {path ? <Link to={path}>{title}</Link> : title}
