@@ -6,26 +6,37 @@ import Stack from '@mui/material/Stack';
 import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
+import { ListCategory, State } from 'src/common/types';
 import DropDown from 'src/components/DropDown';
-import { State } from 'src/containers/App/types';
 
 import messages from './messages';
 import styles from './style';
-import { Props } from './types';
 
-function CategoryMenu({ categoryList, setCategoryId }: Props) {
+type Props = {
+  categoryList: ListCategory[];
+  onChangeCategoryId: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const CategoryMenu: React.FC<Props> = ({ categoryList, onChangeCategoryId }) => {
   const [buttonText, setButtonText] = useState<JSX.Element | string>(<FormattedMessage {...messages.button} />);
 
-  const newListCategory = categoryList.map(item => ({
-    title: item.name,
-    id: item.id,
-    sx: { width: '200px' },
-  }));
+  const categoryListMenu = [
+    {
+      id: '',
+      title: 'All Categories',
+      sx: { width: '200px' },
+    },
+    ...categoryList.map(item => ({
+      title: item.name,
+      id: item.id,
+      sx: { width: '200px' },
+    })),
+  ];
 
   const handleClickMenuItem = (e: Event | React.SyntheticEvent) => {
     const input = e.target as HTMLElement;
     !isEmpty(input.innerText) && setButtonText(input.innerText);
-    setCategoryId(input.id);
+    onChangeCategoryId(input.id);
   };
 
   return (
@@ -33,14 +44,7 @@ function CategoryMenu({ categoryList, setCategoryId }: Props) {
       <div>
         <DropDown
           buttonIcon
-          menuItem={[
-            {
-              id: '',
-              title: 'All Categories',
-              sx: { width: '200px' },
-            },
-            ...newListCategory,
-          ]}
+          menuItem={categoryListMenu}
           onClickItem={handleClickMenuItem}
           btnSx={styles.categoryBtn}
           buttonText={buttonText}
@@ -48,16 +52,12 @@ function CategoryMenu({ categoryList, setCategoryId }: Props) {
       </div>
     </Stack>
   );
-}
-
-const mapStateToProps = (state: State) => {
-  const {
-    global: { categoryList },
-  } = state;
-  return {
-    categoryList,
-  };
 };
 
+const mapStateToProps = ({ global: { category } }: State) => ({
+  categoryList: category.list,
+});
+
 const withConnect = connect(mapStateToProps, null);
+
 export default compose(withConnect)(CategoryMenu);

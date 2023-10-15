@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
@@ -14,7 +15,16 @@ import messages from './messages';
 import styles from './styles';
 import { SubmitForm } from './types';
 
-function FormPaymentMethod({ defaultValue = {} }: { defaultValue?: object }) {
+type Props = {
+  paymentMethod?: {
+    cardNumber: string;
+    nameOnCard: string;
+    date: string;
+    cvc: string;
+  };
+};
+
+const FormPaymentMethod: React.FC<Props> = ({ paymentMethod }) => {
   const loginValidationSchema = Yup.object().shape({
     cardNumber: Yup.string().required(),
     nameOnCard: Yup.string().required(),
@@ -29,7 +39,12 @@ function FormPaymentMethod({ defaultValue = {} }: { defaultValue?: object }) {
   } = useForm<SubmitForm>({
     mode: 'onChange',
     resolver: yupResolver(loginValidationSchema),
-    defaultValues: defaultValue || {},
+    defaultValues: {
+      cardNumber: paymentMethod?.cardNumber || '',
+      nameOnCard: paymentMethod?.nameOnCard || '',
+      date: paymentMethod?.date || '',
+      cvc: paymentMethod?.cvc || '',
+    },
   });
 
   const { cardNumber, nameOnCard, date, cvc } = errors;
@@ -94,6 +109,6 @@ function FormPaymentMethod({ defaultValue = {} }: { defaultValue?: object }) {
       </form>
     </Paper>
   );
-}
+};
 
 export default FormPaymentMethod;

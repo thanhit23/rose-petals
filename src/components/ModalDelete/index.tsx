@@ -1,3 +1,4 @@
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -8,14 +9,22 @@ import Typography from '@mui/material/Typography';
 
 import messages from './messages';
 import styles from './styles';
-import { ModalDeleteTypes } from './types';
 
-export default function ShowModalDeleteMyAddress({ content, onDelete, openModal, handleCloseModal }: ModalDeleteTypes) {
+type Props = {
+  openModal: boolean;
+  handleCloseModal: () => void;
+  onDelete: () => void;
+  content: string | React.JSX.Element;
+};
+
+const ModalDeleteMyAddress: React.FC<Props> = ({ content, onDelete, openModal, handleCloseModal }) => {
   const handleClose = () => handleCloseModal();
+
   const handleDelete = () => {
     onDelete();
     handleCloseModal();
   };
+
   return (
     <div>
       <Modal open={openModal} onClose={handleClose}>
@@ -39,4 +48,6 @@ export default function ShowModalDeleteMyAddress({ content, onDelete, openModal,
       </Modal>
     </div>
   );
-}
+};
+
+export default ModalDeleteMyAddress;

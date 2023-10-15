@@ -7,9 +7,9 @@ import { SHOW_LOADING } from 'src/containers/LoadingIndicator/constants';
 import { ShowLoadingPayload } from 'src/containers/LoadingIndicator/types';
 import { LOGIN_SUCCESS } from 'src/containers/Login/constants';
 import { LoginFailedPayload, LoginSuccessPayload } from 'src/containers/Login/types';
+import { CHANGE_LOCALE } from 'src/layouts/TopBar/constants';
+import { ChangeLocalePayload } from 'src/layouts/TopBar/types';
 
-import { CHANGE_LOCALE } from '../../layouts/TopBar/constants';
-import { ChangeLocalePayload } from '../../layouts/TopBar/types';
 import { CATEGORY_LIST, PRODUCT_CART_LIST } from './constant';
 import { CategoryListPayload, ProductCartListPayload } from './types';
 
@@ -19,7 +19,9 @@ export const initialState = {
   loading: {
     showLoading: false,
   },
-  categoryList: [] || null,
+  category: {
+    list: [] || null,
+  },
   product: {
     cart: {
       list: [] || null,
@@ -62,7 +64,7 @@ const appReducer = (state = initialState, action: MapAction<Action>) =>
         const {
           payload: { data },
         } = action;
-        draft.categoryList = data;
+        draft.category.list = data;
         break;
       }
       case CHANGE_LOCALE: {

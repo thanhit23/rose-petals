@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
@@ -9,25 +9,20 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Rating from '@mui/material/Rating';
 
+import { Nullable, Product } from 'src/common/types';
 import formatPrice from 'src/helpers/formatPrice';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
 import QuickView from '../QuickView';
 import messages from './messages';
 import styles from './styles';
-import { ItemSellTypes } from './types';
 
-function ProductItemQuickView({
-  thumbnail,
-  category,
-  id,
-  name,
-  slug,
-  price,
-  review,
-  star,
-  widthHeightImg = null,
-}: ItemSellTypes) {
+type Props = {
+  product: Product;
+  widthHeightImg?: Nullable<string>;
+};
+
+const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null }) => {
   const [loved, setLoved] = useState(false);
   const [ModalProductDetail, setModalProductDetail] = useState(false);
 
@@ -38,7 +33,7 @@ function ProductItemQuickView({
     <Box position="unset">
       <Box width="calc(100% - 1.125rem)" margin="auto">
         <Box sx={styles.boxWrapperProduct}>
-          <Link to={PATH_PUBLIC.product.slug(slug, id)}>
+          <Link to={PATH_PUBLIC.product.slug(product?.slug, product?._id)}>
             <Box
               sx={() => {
                 if (widthHeightImg) {
@@ -58,7 +53,7 @@ function ProductItemQuickView({
                     return styles.boxComponentImg;
                   }}
                   alt=""
-                  src={thumbnail}
+                  src={product?.thumbnail}
                 />
               </Box>
             </Box>
@@ -76,26 +71,26 @@ function ProductItemQuickView({
         </Box>
         <Box padding="8px" textAlign="center">
           <Box component="small" sx={styles.boxCategory}>
-            {category}
+            {product?.category.name}
           </Box>
           <Box sx={styles.boxproductNameBox}>
             <Box component="p" sx={styles.boxProductName}>
-              {name}
+              {product?.name}
             </Box>
           </Box>
           <Box component="h4" sx={styles.boxPrice}>
-            {formatPrice.format(price)}
+            {formatPrice.format(product?.price)}
           </Box>
           <Box sx={styles.boxWrapperRatingReview}>
-            <Rating name="read-only" value={star} readOnly sx={styles.rating} />
+            <Rating name="read-only" value={product?.star} readOnly sx={styles.rating} />
             <Box component="small" sx={styles.review}>
-              ({review} <FormattedMessage {...messages.review} />)
+              ({product?.review} <FormattedMessage {...messages.review} />)
             </Box>
           </Box>
         </Box>
       </Box>
     </Box>
   );
-}
+};
 
 export default ProductItemQuickView;

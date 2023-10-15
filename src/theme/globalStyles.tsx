@@ -17,12 +17,6 @@ export default function GlobalStyles() {
         body: {
           margin: 0,
           padding: 0,
-          width: '100%',
-          height: '100%',
-        },
-        '#root': {
-          width: '100%',
-          height: '100%',
         },
         button: {
           textTransform: 'capitalize !important',

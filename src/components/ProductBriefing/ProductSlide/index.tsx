@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -6,13 +6,19 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
 import styles from '../styles';
-import { ImageProps } from '../types';
+import { ImageProduct } from '../types';
 
-export default function ProductSlide({ images }: ImageProps) {
+type Props = {
+  images: ImageProduct[];
+};
+
+const ProductSlide: React.FC<Props> = ({ images }) => {
   const [srcImg, setSrcImg] = useState('');
+
   useEffect(() => {
     setSrcImg(images[0].fullUrl);
   }, [images]);
+
   return (
     <Grid item xs={12} md={6}>
       <Box sx={styles.boxContainerImg}>
@@ -44,4 +50,6 @@ export default function ProductSlide({ images }: ImageProps) {
       </Box>
     </Grid>
   );
-}
+};
+
+export default ProductSlide;

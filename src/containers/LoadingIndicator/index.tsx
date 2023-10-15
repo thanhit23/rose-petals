@@ -1,26 +1,24 @@
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { compose } from 'redux';
 
+import { State } from 'src/common/types';
 import Loadings from 'src/components/Loading';
 
-import { Props, States } from './types';
-
-function Loading({ showLoading }: Props) {
-  return showLoading ? <Loadings /> : <></>;
+export interface Props {
+  showLoading: boolean;
 }
 
-const mapStateToProps = (state: States) => {
-  const {
-    global: {
-      loading: { showLoading },
-    },
-  } = state;
+const Loading: React.FC<Props> = ({ showLoading }) => (showLoading ? <Loadings /> : <></>);
 
-  return {
-    showLoading,
-  };
-};
+const mapStateToProps = ({
+  global: {
+    loading: { showLoading },
+  },
+}: State) => ({
+  showLoading,
+});
 
 const withConnect = connect(mapStateToProps, null);
 

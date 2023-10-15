@@ -2,6 +2,7 @@ import { AuthType } from 'src/containers/Authenticated/types';
 
 export interface ProductCart {
   _id: string;
+  quantity: number;
   product: {
     _id: string;
     images: string;
@@ -9,7 +10,6 @@ export interface ProductCart {
     price: number;
     slug: string;
   };
-  quantity: number;
 }
 
 export type ProductList = ProductCart[];
@@ -18,15 +18,3 @@ export type Props = {
   auth: AuthType;
   productList: ProductList;
 };
-
-export interface State {
-  global: {
-    auth: AuthType;
-    product: {
-      cart: {
-        list: ProductList;
-      };
-      detail: object;
-    };
-  };
-}

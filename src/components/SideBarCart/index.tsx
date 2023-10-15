@@ -14,12 +14,14 @@ import Paper from '@mui/material/Paper';
 import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
+import { State } from 'src/common/types';
+
 import Product from './Product';
 import messages from './messages';
 import styles from './styles';
-import { ProductCart, Props, State } from './types';
+import { ProductCart, Props } from './types';
 
-function SideBarCart({ auth, productList }: Props) {
+const SideBarCart: React.FC<Props> = ({ auth, productList }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -71,17 +73,19 @@ function SideBarCart({ auth, productList }: Props) {
       </Modal>
     </div>
   );
-}
-
-const mapStateToProps = (state: State) => {
-  const {
-    global: { auth, product },
-  } = state;
-  return {
-    auth,
-    productList: product.cart.list,
-  };
 };
+
+const mapStateToProps = ({
+  global: {
+    auth,
+    product: {
+      cart: { list },
+    },
+  },
+}: State) => ({
+  auth,
+  productList: list,
+});
 
 const withConnect = connect(mapStateToProps, null);
 

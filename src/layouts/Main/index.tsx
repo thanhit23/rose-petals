@@ -16,7 +16,7 @@ export default function LayoutMain() {
     <>
       <TopBar />
       <Header />
-      <div className="section-after-sticky">
+      <div className="section-after-sticky" style={{ position: 'relative' }}>
         <NavBar />
         <Outlet />
       </div>

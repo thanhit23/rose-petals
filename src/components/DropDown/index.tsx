@@ -21,7 +21,7 @@ function DropDown({
   menuItem,
   onClickItem,
 }: DropDownTypes) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const anchorRef = useRef<HTMLButtonElement>(null);
 
