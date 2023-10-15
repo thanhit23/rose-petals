@@ -34,24 +34,16 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
       <Box width="calc(100% - 1.125rem)" margin="auto">
         <Box sx={styles.boxWrapperProduct}>
           <Link to={PATH_PUBLIC.product.slug(product?.slug, product?._id)}>
-            <Box
-              sx={() => {
-                if (widthHeightImg) {
-                  return { ...styles.boxComponentImg, height: widthHeightImg };
-                }
-                return styles.boxWrapperItem;
-              }}
-            >
+            <Box sx={widthHeightImg ? { ...styles.boxComponentImg, height: widthHeightImg } : styles.boxComponentImg}>
               <Box>
                 <Box
                   className="img-product"
                   component="img"
-                  sx={() => {
-                    if (widthHeightImg) {
-                      return { ...styles.boxComponentImg, width: widthHeightImg, height: widthHeightImg };
-                    }
-                    return styles.boxComponentImg;
-                  }}
+                  sx={
+                    widthHeightImg
+                      ? { ...styles.boxComponentImg, width: widthHeightImg, height: widthHeightImg }
+                      : styles.boxComponentImg
+                  }
                   alt=""
                   src={product?.thumbnail}
                 />
@@ -73,10 +65,12 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
           <Box component="small" sx={styles.boxCategory}>
             {product?.category.name}
           </Box>
-          <Box sx={styles.boxproductNameBox}>
-            <Box component="p" sx={styles.boxProductName}>
-              {product?.name}
-            </Box>
+          <Box sx={styles.boxProductNameBox}>
+            <Link to={PATH_PUBLIC.product.slug(product?.slug, product?._id)}>
+              <Box component="p" sx={styles.boxProductName}>
+                {product?.name}
+              </Box>
+            </Link>
           </Box>
           <Box component="h4" sx={styles.boxPrice}>
             {formatPrice.format(product?.price)}

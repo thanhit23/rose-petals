@@ -90,7 +90,7 @@ const boxCategory = {
   textTransform: 'none',
   whiteSpace: 'normal',
 };
-const boxproductNameBox = {
+const boxProductNameBox = {
   width: '220px',
   textTransform: 'none',
   whiteSpace: 'nowrap',
@@ -144,7 +144,7 @@ export default {
   boxWrapperRatingReview,
   boxWrapperProduct,
   boxComponentImg,
-  boxproductNameBox,
+  boxProductNameBox,
   boxProductName,
   boxWrapperItem,
   btnQuickView,
