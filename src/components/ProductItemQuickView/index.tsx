@@ -59,7 +59,7 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
           <ButtonBase className="product-view-action" sx={styles.btnQuickView} onClick={openModalProduct}>
             <FormattedMessage {...messages.btnQuickView} />
           </ButtonBase>
-          <QuickView openModal={ModalProductDetail} handleCloseModal={handleCloseModal} />
+          <QuickView product={product} openModal={ModalProductDetail} handleCloseModal={handleCloseModal} />
         </Box>
         <Box padding="8px" textAlign="center">
           <Box component="small" sx={styles.boxCategory}>
