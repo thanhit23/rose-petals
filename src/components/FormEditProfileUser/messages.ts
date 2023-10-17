@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Component.FormEditProfileUser';
+export const scope = 'Components.FormEditProfileUser';
 export default defineMessages({
   title: {
     id: `${scope}.title`,
@@ -19,8 +19,8 @@ export default defineMessages({
     defaultMessage: 'Email',
   },
   labelAddress: {
-    id: `${scope}.labeladdress`,
-    defaultMessage: 'address',
+    id: `${scope}.labelAddress`,
+    defaultMessage: 'Address',
   },
   labelPhone: {
     id: `${scope}.labelPhone`,
@@ -29,5 +29,13 @@ export default defineMessages({
   btnSave: {
     id: `${scope}.btnSave`,
     defaultMessage: 'Save Changes',
+  },
+  male: {
+    id: `${scope}.male`,
+    defaultMessage: 'Male',
+  },
+  female: {
+    id: `${scope}.female`,
+    defaultMessage: 'Female',
   },
 });

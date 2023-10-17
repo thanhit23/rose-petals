@@ -23,7 +23,7 @@ const CategoryMenu: React.FC<Props> = ({ categoryList, onChangeCategoryId }) => 
   const categoryListMenu = [
     {
       id: '',
-      title: 'All Categories',
+      title: <FormattedMessage {...messages.button} />,
       sx: { width: '200px' },
     },
     ...categoryList.map(item => ({

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type MenuItem = {
-  title?: string;
+  title?: string | React.ReactNode;
   path?: string;
   id?: string;
   value?: string;

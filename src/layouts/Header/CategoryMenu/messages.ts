@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.Header.Category';
+export const scope = 'Layouts.Header.Category';
 
 export default defineMessages({
   button: {

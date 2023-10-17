@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Component.UserProfile';
+export const scope = 'Components.UserProfile';
 
 export default defineMessages({
   title: {

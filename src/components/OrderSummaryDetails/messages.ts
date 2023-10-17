@@ -28,7 +28,7 @@ export default defineMessages({
     defaultMessage: 'Total:',
   },
   paidCard: {
-    id: `${scope}.total`,
+    id: `${scope}.paidByCreditCard`,
     defaultMessage: 'Paid by Credit/Debit Card:',
   },
 });

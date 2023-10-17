@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.Footer';
+export const scope = 'Layouts.Footer';
 
 export default defineMessages({
   description: {

@@ -7,4 +7,8 @@ export default defineMessages({
     id: `${scope}.searchFor`,
     defaultMessage: 'Keyword',
   },
+  placeholderSearch: {
+    id: `${scope}.placeholderSearch`,
+    defaultMessage: 'Searching for...',
+  },
 });

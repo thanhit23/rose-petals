@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.NavigateBar';
+export const scope = 'Layouts.NavigateBar';
 
 export default defineMessages({
   home: {
@@ -12,8 +12,8 @@ export default defineMessages({
     defaultMessage: 'Category',
   },
   cart: {
-    id: `${scope}.category`,
-    defaultMessage: 'Category',
+    id: `${scope}.cart`,
+    defaultMessage: 'Cart',
   },
   profile: {
     id: `${scope}.profile`,

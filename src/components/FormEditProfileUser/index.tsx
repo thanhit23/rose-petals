@@ -113,8 +113,16 @@ const FormEditProfileUser: React.FC<Props> = ({ auth }) => {
               </Grid>
               <Grid item xs={12} md={6}>
                 <RadioGroup row>
-                  <FormControlLabel value={1} control={<Radio {...register('gender')} />} label="Female" />
-                  <FormControlLabel value={2} control={<Radio {...register('gender')} />} label="Male" />
+                  <FormControlLabel
+                    value={1}
+                    control={<Radio {...register('gender')} />}
+                    label={<FormattedMessage {...messages.female} />}
+                  />
+                  <FormControlLabel
+                    value={2}
+                    control={<Radio {...register('gender')} />}
+                    label={<FormattedMessage {...messages.male} />}
+                  />
                 </RadioGroup>
               </Grid>
             </Grid>
