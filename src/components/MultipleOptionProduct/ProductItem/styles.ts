@@ -6,11 +6,13 @@ const boxImg = {
 const boxProduct = {
   display: 'flex',
   marginBottom: '16px',
+  padding: '0 5px',
   gap: '16px',
   alignItems: 'center',
   '&:hover > a > div > .img-product': {
     transform: 'scale(1.12)',
   },
+  overflow: 'hidden',
 };
 
 const img = {
@@ -26,12 +28,22 @@ const boxLinkHover = {
   },
 };
 
+const boxTitleSort = {
+  width: '200px',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+};
+
 const boxTitle = {
   marginBottom: 0,
   marginTop: 0,
   fontSize: '16px',
   textTransform: 'none',
-  whiteSpace: 'normal',
+  overflow: 'hidden',
+  display: '-webkit-box',
+  '-webkit-box-orient': 'vertical',
+  '-webkit-line-clamp': '2',
 };
 
 const boxPrice = {
@@ -53,4 +65,5 @@ export default {
   boxImg,
   rating,
   img,
+  boxTitleSort,
 };

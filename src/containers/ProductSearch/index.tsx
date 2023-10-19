@@ -14,6 +14,7 @@ import SortBar from 'src/components/SortBar';
 import { products } from 'src/mockData';
 
 import { getBrands } from '../HomePage/httpClients';
+import { getFilterProducts } from './services';
 
 function ProductSearch() {
   const [viewList, setViewList] = useState(false);
@@ -21,6 +22,13 @@ function ProductSearch() {
   const { data: listBrand = [] } = useQuery({
     queryKey: ['getBrands'],
     queryFn: () => getBrands(),
+    retry: 0,
+    select: ({ data: { data } }) => data,
+  });
+
+  const { data: listFilterProduct = [] } = useQuery({
+    queryKey: ['getFilterProducts'],
+    queryFn: () => getFilterProducts(),
     retry: 0,
     select: ({ data: { data } }) => data,
   });
