@@ -23,7 +23,7 @@ const FeaturedProducts: React.FC<Props> = ({ listFeatureProduct }) => (
     <Box>
       {listFeatureProduct.length > 0 && (
         <SlideProduct slidesToShow={5}>
-          {listFeatureProduct.map((product: Product) => (
+          {listFeatureProduct.map(product => (
             <ProductItem key={product._id} product={product} widthHeightImg="227px" />
           ))}
         </SlideProduct>

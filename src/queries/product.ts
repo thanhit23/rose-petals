@@ -9,7 +9,7 @@ export const useGetProductDetail = <T = Product>(params: string, options: UseQue
     queryFn: async () => {
       const { data } = await getProductDetail(params);
 
-      return data;
+      return data.data;
     },
     ...options,
   });

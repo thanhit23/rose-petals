@@ -31,6 +31,7 @@ function App() {
     },
     onSuccess: ({ data: { data, status } }) => status && store.dispatch(getProductCartAction(data)),
   });
+
   return (
     <Suspense fallback={<LoadingScreen />}>
       <LoadingIndicator />
