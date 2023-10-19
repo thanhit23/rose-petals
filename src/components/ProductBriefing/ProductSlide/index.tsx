@@ -16,7 +16,7 @@ const ProductSlide: React.FC<Props> = ({ images }) => {
   const [srcImg, setSrcImg] = useState('');
 
   useEffect(() => {
-    setSrcImg(images[0].fullUrl);
+    setSrcImg(images[0]?.fullUrl);
   }, [images]);
 
   return (
