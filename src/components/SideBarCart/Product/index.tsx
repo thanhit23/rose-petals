@@ -30,7 +30,7 @@ function Product({ data, onClose }: Props) {
         <Button onClick={handleIncrement} sx={styles.btnPlusMinus}>
           +
         </Button>
-        <Box sx={styles.boxCounter}>{counter}</Box>
+        <Box sx={styles.boxCounter}>{data.quantity}</Box>
         <Button onClick={handleDecrement} sx={styles.btnPlusMinus}>
           -
         </Button>

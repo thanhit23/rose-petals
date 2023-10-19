@@ -37,12 +37,12 @@ body::backdrop {
   background-color: #f6f9fc;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 p {
   line-height: 1.75;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 button {
