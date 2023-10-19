@@ -10,17 +10,17 @@ export default defineMessages({
     id: `${scope}.backToProfile`,
     defaultMessage: 'Back To Profile',
   },
-  labelFirstName: {
-    id: `${scope}.labelFirstName`,
-    defaultMessage: 'First Name',
+  labelName: {
+    id: `${scope}.labelName`,
+    defaultMessage: 'Name',
   },
   labelEmail: {
     id: `${scope}.labelEmail`,
     defaultMessage: 'Email',
   },
   labelAddress: {
-    id: `${scope}.labeladdress`,
-    defaultMessage: 'address',
+    id: `${scope}.labelAddress`,
+    defaultMessage: 'Address',
   },
   labelPhone: {
     id: `${scope}.labelPhone`,

@@ -6,7 +6,7 @@ import messages from './messages';
 import styles from './styles';
 import { MuiTextFieldType } from './types';
 
-function TextField({ label, message, sx = {}, validate = {}, type = 'text' }: MuiTextFieldType) {
+function TextField({ message, sx = {}, validate = {}, type = 'text', ...props }: MuiTextFieldType) {
   const intl = useIntl();
   const renderPlaceholder = () => {
     if (message) intl.formatMessage(message || messages.default);
@@ -18,11 +18,11 @@ function TextField({ label, message, sx = {}, validate = {}, type = 'text' }: Mu
       fullWidth
       type={type}
       size="small"
-      label={label}
       variant="outlined"
       placeholder={renderPlaceholder()}
       sx={{ ...styles.textField, ...sx }}
       {...validate}
+      {...props}
     />
   );
 }
