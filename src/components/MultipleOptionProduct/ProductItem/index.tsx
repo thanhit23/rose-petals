@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 
+import { formatPrice } from 'src/helpers';
+
 import styles from './styles';
 import { ProductItemTypes } from './types';
 
@@ -32,7 +34,7 @@ function ProductItem({ srcImg, name, price, star }: ProductItemTypes) {
           </Box>
         </Link>
         <Box component="p" sx={styles.boxPrice}>
-          ${price}
+          {formatPrice.format(price)}VND
         </Box>
         <Rating
           name="simple-controlled"
