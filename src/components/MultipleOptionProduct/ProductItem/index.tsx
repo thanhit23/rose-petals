@@ -4,17 +4,28 @@ import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 
-import styles from './styles';
-import { ProductItemTypes } from './types';
+import { formatPrice } from 'src/helpers';
 
-function ProductItem({ srcImg, name, price, star }: ProductItemTypes) {
-  const [value, setValue] = useState(star);
+import styles from './styles';
+
+type Props = {
+  item: {
+    srcImg?: string;
+    thumbnail?: string;
+    name: string;
+    price: number;
+    star: number;
+  };
+};
+
+const ProductItem: React.FC<Props> = ({ item }) => {
+  const [value, setValue] = useState(item?.star);
 
   return (
     <Box sx={styles.boxProduct}>
       <Link to="#">
         <Box sx={styles.boxImg}>
-          <Box component="img" src={srcImg} sx={styles.img} className="img-product" />
+          <Box component="img" src={item?.srcImg} sx={styles.img} className="img-product" />
         </Box>
       </Link>
       <Box sx={styles.boxLinkHover}>
@@ -28,11 +39,11 @@ function ProductItem({ srcImg, name, price, star }: ProductItemTypes) {
           }}
         >
           <Box component="p" sx={styles.boxTitle}>
-            {name}
+            {item?.name}
           </Box>
         </Link>
         <Box component="p" sx={styles.boxPrice}>
-          ${price}
+          {formatPrice.format(item?.price || 0)}
         </Box>
         <Rating
           name="simple-controlled"
@@ -45,6 +56,6 @@ function ProductItem({ srcImg, name, price, star }: ProductItemTypes) {
       </Box>
     </Box>
   );
-}
+};
 
 export default ProductItem;

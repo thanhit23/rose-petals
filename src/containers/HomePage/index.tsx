@@ -14,7 +14,14 @@ import SlideShow from 'src/components/Slide';
 import { getMe as getMeAction } from 'src/containers/Authenticated/actions';
 import store from 'src/store';
 
-import { getBrands, getFeaturedProducts, getMe, setBearerToken } from './httpClients';
+import {
+  getBrands,
+  getFeaturedProducts,
+  getMe,
+  getNewTopProduct,
+  getWeekTopProduct,
+  setBearerToken,
+} from './httpClients';
 
 function Home() {
   useQuery({
@@ -31,6 +38,20 @@ function Home() {
   const { data: listBrand = [] } = useQuery({
     queryKey: ['getBrands'],
     queryFn: () => getBrands(),
+    retry: 0,
+    select: ({ data: { data } }) => data,
+  });
+
+  const { data: productBestTheWeek = [] } = useQuery({
+    queryKey: ['getWeekTopProduct'],
+    queryFn: () => getWeekTopProduct(),
+    retry: 0,
+    select: ({ data: { data } }) => data,
+  });
+
+  const { data: productLatest = [] } = useQuery({
+    queryKey: ['getNewTopProduct'],
+    queryFn: () => getNewTopProduct(),
     retry: 0,
     select: ({ data: { data } }) => data,
   });
@@ -52,7 +73,7 @@ function Home() {
       <EventNotificationBanner />
       <LatestArticles />
       <ListBrand listBrand={listBrand} />
-      <MultipleOptionProduct />
+      <MultipleOptionProduct productBestTheWeek={productBestTheWeek} productLatest={productLatest} />
     </Box>
   );
 }
