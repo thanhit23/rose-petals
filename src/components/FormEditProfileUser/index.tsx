@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
 import PersonIcon from '@mui/icons-material/Person';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
@@ -15,7 +16,8 @@ import Paper from '@mui/material/Paper';
 import { compose } from 'redux';
 
 import { State } from 'src/common/types';
-import { Auth } from 'src/containers/Authenticated/types';
+import { AuthType } from 'src/containers/Authenticated/types';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import ErrorMessage from '../ErrorMessage';
 import HeaderHoldUser from '../HeaderHoldUser';
@@ -23,35 +25,37 @@ import MuiTextField from '../TextField';
 import messages from './messages';
 import styles from './styles';
 import { UserSubmitForm } from './types';
+import { editProfileValidationSchema } from './validationSchema';
 
-type Props = Auth;
+type Props = {
+  auth: AuthType;
+  onSubmitForm: (data: UserSubmitForm) => void;
+};
 
-const FormEditProfileUser: React.FC<Props> = ({ auth }) => {
+const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
   const {
     register,
-    handleSubmit,
     formState: { errors },
+    watch,
+    handleSubmit,
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
+    resolver: yupResolver(editProfileValidationSchema),
     defaultValues: {
-      fullName: auth.name,
+      name: auth.name,
       email: auth.email,
       phoneNumber: auth.phoneNumber,
-      address: auth.location,
-      gender: auth.gender,
+      location: auth.location,
+      gender: auth.gender.toString(),
     },
   });
 
-  const { email, fullName, phoneNumber, address } = errors;
+  const { email, name, phoneNumber, location } = errors;
 
-  const handleSubmitForm = (data: object) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  };
   return (
     <Grid item xs={12} lg={9}>
       <HeaderHoldUser
-        path="/profile"
+        path={PATH_AUTH.profile}
         icon={<PersonIcon fontSize="medium" />}
         title={<FormattedMessage {...messages.title} />}
         button={<FormattedMessage {...messages.backToProfile} />}
@@ -66,19 +70,20 @@ const FormEditProfileUser: React.FC<Props> = ({ auth }) => {
             </IconButton>
           </Box>
         </Box>
-        <form onSubmit={handleSubmit(data => handleSubmitForm(data))}>
+        <form onSubmit={handleSubmit(onSubmitForm)}>
           <Box marginBottom="32px">
             <Grid container spacing={{ xs: 3 }}>
               <Grid item xs={12} md={6}>
                 <MuiTextField
-                  label={<FormattedMessage {...messages.labelFirstName} />}
-                  message={messages.labelFirstName}
-                  validate={register('fullName')}
+                  label={<FormattedMessage {...messages.labelName} />}
+                  message={messages.labelName}
+                  validate={register('name')}
                 />
-                <ErrorMessage name={fullName} />
+                <ErrorMessage name={name} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiTextField
+                  disabled
                   type="email"
                   label={<FormattedMessage {...messages.labelEmail} />}
                   message={messages.labelEmail}
@@ -98,23 +103,24 @@ const FormEditProfileUser: React.FC<Props> = ({ auth }) => {
                 <MuiTextField
                   label={<FormattedMessage {...messages.labelAddress} />}
                   message={messages.labelAddress}
-                  validate={register('address')}
+                  validate={register('location')}
                 />
-                <ErrorMessage name={address} />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <MuiTextField
-                  type="email"
-                  label={<FormattedMessage {...messages.labelEmail} />}
-                  message={messages.labelEmail}
-                  validate={register('email')}
-                />
-                <ErrorMessage name={email} />
+                <ErrorMessage name={location} />
               </Grid>
               <Grid item xs={12} md={6}>
                 <RadioGroup row>
-                  <FormControlLabel value={1} control={<Radio {...register('gender')} />} label="Female" />
-                  <FormControlLabel value={2} control={<Radio {...register('gender')} />} label="Male" />
+                  <FormControlLabel
+                    checked={watch('gender') === '1'}
+                    value={1}
+                    control={<Radio {...register('gender')} />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    checked={watch('gender') === '2'}
+                    value={2}
+                    control={<Radio {...register('gender')} />}
+                    label="Male"
+                  />
                 </RadioGroup>
               </Grid>
             </Grid>

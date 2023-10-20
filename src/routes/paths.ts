@@ -1,6 +1,7 @@
 export const PATH_AUTH = {
   login: '/auth/login',
   register: '/auth/register',
+  profile: '/profile',
 };
 
 export const PATH_PUBLIC = {

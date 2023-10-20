@@ -1,7 +1,11 @@
+import { Auth } from 'src/containers/Authenticated/types';
+
+export type State = { global: Auth };
+
 export interface UserSubmitForm {
   email: string;
-  fullName: string;
+  name: string;
   phoneNumber: number;
-  address: string;
-  gender: number;
+  location: string;
+  gender: string;
 }
