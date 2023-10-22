@@ -7,4 +7,8 @@ export default defineMessages({
     id: `${scope}.btnAddCart`,
     defaultMessage: 'Add To Cart',
   },
+  addToCartMessage: {
+    id: `${scope}.addToCartMessage`,
+    defaultMessage: 'Add to cart successfully',
+  },
 });

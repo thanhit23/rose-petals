@@ -57,7 +57,7 @@ function Product({ data, onDeleteProduct }: Props) {
             </Box>
           </Link>
           <Box component="small" sx={styles.boxPrice}>
-            {formatterPrice.format(data.product.price * quantity)}
+            {formatterPrice.format(data.product.price)} x {quantity}
           </Box>
           <Box sx={styles.boxTotalPrice}>{formatterPrice.format(data.product.price * quantity)}</Box>
         </Box>

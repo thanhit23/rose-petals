@@ -15,9 +15,7 @@ export const DescriptionContext = createContext('');
 
 function ProductDetail() {
   const [searchParams] = useSearchParams();
-
   const productId = searchParams.get('id') as string;
-
   const { data } = useGetProductDetail(productId);
 
   const handleSubmitReview = (data: object) => {

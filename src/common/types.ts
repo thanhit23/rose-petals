@@ -65,3 +65,10 @@ export type ListCategory = {
   slug: string;
   id: string;
 };
+
+export type AddToCartProduct = {
+  productId: string;
+  quantity: number;
+  size: string;
+  color: string;
+};
