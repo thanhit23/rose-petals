@@ -11,30 +11,10 @@ import ListBrand from 'src/components/ListBrand';
 import MultipleOptionProduct from 'src/components/MultipleOptionProduct';
 import Service from 'src/components/Service';
 import SlideShow from 'src/components/Slide';
-import { getMe as getMeAction } from 'src/containers/Authenticated/actions';
-import store from 'src/store';
 
-import {
-  getBrands,
-  getFeaturedProducts,
-  getMe,
-  getNewTopProduct,
-  getWeekTopProduct,
-  setBearerToken,
-} from './httpClients';
+import { getBrands, getFeaturedProducts, getNewTopProduct, getWeekTopProduct } from './httpClients';
 
 function Home() {
-  useQuery({
-    queryKey: ['getMe'],
-    queryFn: () => {
-      const token: string = localStorage.getItem('accessToken') || '';
-      setBearerToken(token);
-      return getMe();
-    },
-    retry: 0,
-    onSuccess: ({ data: { data, status } }) => status && store.dispatch(getMeAction(data)),
-  });
-
   const { data: listBrand = [] } = useQuery({
     queryKey: ['getBrands'],
     queryFn: () => getBrands(),

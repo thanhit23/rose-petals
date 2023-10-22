@@ -31,17 +31,17 @@ const routers: RouteObject[] = [
       {
         path: 'cart',
         element: <Authenticated />,
-        lazy: () => import('src/containers/Cart'),
+        children: [{ index: true, lazy: () => import('src/containers/Cart') }],
       },
       {
         path: 'checkout',
         element: <Authenticated />,
-        lazy: () => import('src/containers/Checkout'),
+        children: [{ index: true, lazy: () => import('src/containers/Checkout') }],
       },
       {
         path: 'payment',
         element: <Authenticated />,
-        lazy: () => import('src/containers/Payment'),
+        children: [{ index: true, lazy: () => import('src/containers/Payment') }],
       },
       {
         path: 'product',
@@ -123,7 +123,12 @@ const routers: RouteObject[] = [
       {
         path: 'wish-list',
         element: <Authenticated />,
-        lazy: () => import('src/containers/WishList'),
+        children: [
+          {
+            index: true,
+            lazy: () => import('src/containers/WishList'),
+          },
+        ],
       },
     ],
   },

@@ -4,17 +4,28 @@ import { RouterProvider } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import LoadingScreen from 'src/components/LoadingScreen';
+import { getMe as getMeAction } from 'src/containers/Authenticated/actions';
 import LoadingIndicator from 'src/containers/LoadingIndicator';
 import routes from 'src/routes';
 import store from 'src/store';
 
-import { setHeader } from '../Authenticated/httpClients';
+import { isMe, setHeader } from '../Authenticated/httpClients';
 import { getCategoryAction, getProductCartAction } from './actions';
 import { categoryLists, getProductCartList } from './service';
 import './style.css';
 
 function App() {
   const token = localStorage.getItem('accessToken') || '';
+
+  useQuery({
+    queryKey: ['getMe'],
+    queryFn: () => {
+      setHeader(token);
+      return isMe();
+    },
+    retry: 0,
+    onSuccess: ({ data: { data, status } }) => status && store.dispatch(getMeAction(data)),
+  });
 
   useQuery({
     queryKey: ['getCategory'],
