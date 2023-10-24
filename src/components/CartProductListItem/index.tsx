@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 
 import { ProductCart } from 'src/components/SideBarCart/types';
 import { formatPrice } from 'src/helpers';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import styles from './styles';
 
@@ -34,21 +35,23 @@ const CartProductListItem: React.FC<Props> = ({ productCart }) => {
   return (
     <Paper sx={styles.paper}>
       <Box padding="16px">
-        <Box
-          sx={styles.avatar}
-          width="110px"
-          height="110px"
-          component="img"
-          src={productCart.product.images}
-          alt={productCart.product.name}
-        />
+        <Link to={PATH_PUBLIC.product.slug(productCart.product?.slug, productCart.product?._id)}>
+          <Box
+            sx={styles.avatar}
+            width="110px"
+            height="110px"
+            component="img"
+            src={productCart.product.images}
+            alt={productCart.product.name}
+          />
+        </Link>
       </Box>
       <IconButton aria-label="close" size="small" sx={styles.iconClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
       <Box sx={styles.informationProduct}>
         <Box sx={styles.inforNameProduct}>
-          <Link to="/">
+          <Link to={PATH_PUBLIC.product.slug(productCart.product?.slug, productCart.product?._id)}>
             <Box component="span" sx={styles.nameProduct}>
               {productCart.product.name}
             </Box>
@@ -56,17 +59,17 @@ const CartProductListItem: React.FC<Props> = ({ productCart }) => {
         </Box>
         <Box sx={styles.wrapperPrice}>
           <Box component="span" sx={styles.priceXQuantity}>
-            {formatPrice.format(productCart.product.price)} x {quantity}
+            {formatPrice.format(productCart.product.price)} x {productCart.quantity}
           </Box>
           <Box component="span" sx={styles.totalPrice}>
-            {formatPrice.format(productCart.product.price * quantity)}
+            {formatPrice.format(productCart.product.price * productCart.quantity)}
           </Box>
         </Box>
         <Box display="flex" alignItems="center">
           <Button variant="outlined" sx={styles.btnIncrease} onClick={handleIncrease}>
             <RemoveIcon fontSize="small" />
           </Button>
-          <Box sx={styles.boxQuantity}>{quantity}</Box>
+          <Box sx={styles.boxQuantity}>{productCart.quantity}</Box>
           <Button variant="outlined" sx={styles.btnReduce} onClick={handleReduce}>
             <AddIcon fontSize="small" />
           </Button>

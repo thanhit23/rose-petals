@@ -22,7 +22,7 @@ const Cart: React.FC<Props> = ({ productList }) => (
         ))}
       </Grid>
       <Grid item xs={12} md={4}>
-        <CartSummary />
+        <CartSummary productList={productList} />
       </Grid>
     </Grid>
   </Container>
