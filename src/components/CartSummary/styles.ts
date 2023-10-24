@@ -70,53 +70,6 @@ const textFieldComment = {
     },
   },
 };
-
-const btnApplyVoucher = {
-  width: '100%',
-  minWidth: '0px',
-  minHeight: '0px',
-  fontWeight: '600',
-  textTransform: 'capitalize',
-  fontFamily: styles.fontFamilyDefault,
-  marginTop: '16px',
-  marginBottom: '32px',
-  letterSpacing: 'inherit',
-};
-
-const boxShippingEstimates = {
-  lineHeight: '1.5',
-  fontWeight: '600',
-  marginBottom: '16px',
-  display: 'block',
-  textTransform: 'none',
-  whiteSpace: 'normal',
-};
-
-const textFieldState = {
-  '& > div > div': {
-    padding: '7.07px 14px',
-    fontSize: '14px',
-    fontFamily: styles.fontFamilyDefault,
-
-    letterSpacing: 'initial',
-  },
-};
-
-const textFieldZipCode = {
-  marginTop: '16px',
-};
-
-const btnCalculateShipping = {
-  minWidth: '0',
-  minHeight: '0',
-  fontWeight: '600',
-  textTransform: 'capitalize',
-  marginTop: '16px',
-  marginBottom: '16px',
-  letterSpacing: 'inherit',
-  fontFamily: styles.fontFamilyDefault,
-};
-
 const btnCheckoutNow = {
   minWidth: '0',
   minHeight: '0',
@@ -128,15 +81,10 @@ const btnCheckoutNow = {
 
 export default {
   boxAdditionalComments,
-  boxShippingEstimates,
-  btnCalculateShipping,
   formControlComment,
   boxWrapTotalPrice,
   textFieldComment,
-  textFieldZipCode,
-  btnApplyVoucher,
   boxTitleComment,
-  textFieldState,
   btnCheckoutNow,
   paperBilling,
   boxTotal,
