@@ -5,15 +5,22 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 
-import MuiTextField from '../TextField';
+import { Props } from 'src/containers/Cart/types';
+import formatPrice from 'src/helpers/formatPrice';
+
 import messages from './messages';
 import styles from './styles';
 
-function CartSummary() {
+const CartSummary: React.FC<Props> = ({ productList }) => {
+  const totalProducts = productList.reduce(
+    (total: number, productCart: { product: { price: number }; quantity: number }) =>
+      total + productCart.product.price * productCart.quantity,
+    0,
+  );
+
   return (
     <Paper sx={styles.paperBilling}>
       <Box sx={styles.boxWrapTotalPrice}>
@@ -21,7 +28,7 @@ function CartSummary() {
           <FormattedMessage {...messages.total} />
         </Box>
         <Box component="span" sx={styles.boxPrice}>
-          $460.00
+          {formatPrice.format(totalProducts)}
         </Box>
       </Box>
       <Divider sx={styles.divider} />
@@ -43,6 +50,6 @@ function CartSummary() {
       </Link>
     </Paper>
   );
-}
+};
 
 export default CartSummary;
