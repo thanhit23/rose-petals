@@ -1,4 +1,6 @@
 type ProductMultipleOptions = {
+  _id: string;
+  slug: string;
   price: number;
   star: number;
   name: string;

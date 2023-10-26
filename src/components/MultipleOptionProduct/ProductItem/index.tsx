@@ -5,11 +5,14 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 
 import { formatPrice } from 'src/helpers';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import styles from './styles';
 
 type Props = {
   item: {
+    _id: string;
+    slug: string;
     srcImg?: string;
     thumbnail?: string;
     name: string;
@@ -20,17 +23,16 @@ type Props = {
 
 const ProductItem: React.FC<Props> = ({ item }) => {
   const [value, setValue] = useState(item?.star);
-
   return (
     <Box sx={styles.boxProduct}>
-      <Link to="#">
+      <Link to={PATH_PUBLIC.product.slug(item?.slug, item?._id)}>
         <Box sx={styles.boxImg}>
-          <Box component="img" src={item?.srcImg} sx={styles.img} className="img-product" />
+          <Box component="img" src={item?.thumbnail} sx={styles.img} className="img-product" />
         </Box>
       </Link>
       <Box sx={styles.boxLinkHover}>
         <Link
-          to="#"
+          to={PATH_PUBLIC.product.slug(item?.slug, item?._id)}
           style={{
             position: 'relative',
             transition: 'color 150ms ease-in-out',

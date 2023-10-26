@@ -28,7 +28,7 @@ const MultipleOptionProduct: React.FC<Props> = ({ productLatest, productBestTheW
 
       <Grid item xs={12} md={12} lg={6}>
         <Box component="h3" sx={styles.boxTitle}>
-          <FormattedMessage {...messages.latestProducts} />
+          <FormattedMessage {...messages.bestWeek} />
         </Box>
         <Grid container>
           {productLatest.map((item, i) => (
