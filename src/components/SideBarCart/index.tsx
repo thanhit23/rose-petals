@@ -11,8 +11,11 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Divider from '@mui/material/Divider';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 import { compose } from 'redux';
+
+import { deleteSideBarCart } from 'src/layouts/Header/httpClients';
 
 import Product from './Product';
 import messages from './messages';

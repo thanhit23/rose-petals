@@ -6,31 +6,50 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import formatterPrice from 'src/helpers/formatPrice';
+import { deleteSideBarCart } from 'src/layouts/Header/httpClients';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
 import styles from './styles';
 import { Props } from './types';
 
-function Product({ data, onClose }: Props) {
-  const [counter, setCounter] = React.useState(0);
+function Product({ data }: Props) {
+  const token = localStorage.getItem('accessToken') || '';
 
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: () => deleteSideBarCart(data._id),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['getProductCartList', token],
+        exact: true,
+      });
+    },
+  });
+  const handleDelete = () => {
+    mutate();
+  };
+
+  const [quantity, setQuantity] = React.useState(1);
   const handleIncrement = () => {
-    if (counter < 10) setCounter(counter + 1);
+    if (quantity === 10) return;
+    setQuantity(quantity + 1);
   };
 
   const handleDecrement = () => {
-    if (counter > 0) setCounter(counter - 1);
+    if (quantity === 0) return;
+    setQuantity(quantity - 1);
   };
-
   return (
     <Box sx={styles.containerProduct}>
       <Box sx={styles.boxWrapBtnPlusMinus}>
         <Button onClick={handleIncrement} sx={styles.btnPlusMinus}>
           +
         </Button>
-        <Box sx={styles.boxCounter}>{counter}</Box>
+        <Box sx={styles.boxCounter}>{quantity}</Box>
         <Button onClick={handleDecrement} sx={styles.btnPlusMinus}>
           -
         </Button>
@@ -45,11 +64,11 @@ function Product({ data, onClose }: Props) {
           </Box>
         </Link>
         <Box component="small" sx={styles.boxPrice}>
-          {formatterPrice.format(data.product.price)} x {data.quantity}
+          {formatterPrice.format(data.product.price * quantity)}
         </Box>
-        <Box sx={styles.boxTotalPrice}>{formatterPrice.format(data.product.price * data.quantity)}</Box>
+        <Box sx={styles.boxTotalPrice}>{formatterPrice.format(data.product.price * quantity)}</Box>
       </Box>
-      <ButtonBase onClick={() => onClose()} sx={styles.buttonBaseClose}>
+      <ButtonBase onClick={() => handleDelete()} sx={styles.buttonBaseClose}>
         <CloseIcon />
       </ButtonBase>
     </Box>
