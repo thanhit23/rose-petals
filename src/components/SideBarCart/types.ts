@@ -17,4 +17,5 @@ export type ProductList = ProductCart[];
 export type Props = {
   auth: AuthType;
   productList: ProductList;
+  onDeleteProduct: (id: string) => void;
 };
