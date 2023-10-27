@@ -49,7 +49,6 @@ const Header: React.FC<Props> = ({ categoryList }) => {
       newScrollPosition <= scrollPosition && setShowHeader(true);
       scrollPosition < newScrollPosition && setShowHeader(false);
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true });
   }, []);
 
