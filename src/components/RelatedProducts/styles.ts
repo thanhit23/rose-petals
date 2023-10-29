@@ -1,3 +1,8 @@
+const relatedTitle = {
+  marginTop: '16px',
+  marginBottom: '16px',
+};
+
 const paperProduct = {
   boxShadow: '0px 1px 3px rgb(3 0 71 / 9%)',
   display: 'flex',
@@ -104,6 +109,7 @@ const btnAddToCart = {
 };
 
 export default {
+  relatedTitle,
   informationProduct,
   btnAddToCart,
   boxAddToCart,

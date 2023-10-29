@@ -1,5 +1,3 @@
-import { styles } from '../common';
-
 const containerTitle = {
   display: 'flex',
   marginTop: '-16px',
