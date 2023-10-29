@@ -23,30 +23,14 @@ const boxImage = {
   display: 'inline-block',
 };
 
-const chipSale = {
-  height: '24px',
-  color: '#fff',
-  backgroundColor: '#D23F57',
-  zIndex: '1',
-  top: '10px',
-  left: '10px',
-  paddingLeft: '3px',
-  paddingRight: '3px',
-  fontWeight: '600',
-  fontSize: '10px',
-  position: 'absolute',
-  '& > span': {
-    paddingRight: '8px',
-    paddingLeft: '8px',
-  },
-};
-
 const boxIcon = {
   zIndex: '2',
   top: '7px',
   opacity: '0',
   right: '15px',
   display: 'flex',
+  borderRadius: '10px',
+  backgroundColor: '#dbdbdb',
   cursor: 'pointer',
   position: 'absolute',
   flexDirection: 'column',
@@ -54,7 +38,7 @@ const boxIcon = {
 };
 
 const icon = {
-  color: '#00000042',
+  color: '#787878',
 };
 
 const imageProduct = {
@@ -118,7 +102,6 @@ export default {
   priceProduct,
   nameProduct,
   boxImage,
-  chipSale,
   boxIcon,
   icon,
 };

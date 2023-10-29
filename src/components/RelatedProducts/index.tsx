@@ -17,6 +17,7 @@ import Rating from '@mui/material/Rating';
 import { Product } from 'src/common/types';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
+import QuickView from '../QuickView';
 import messages from './messages';
 import styles from './styles';
 
@@ -26,6 +27,10 @@ type Props = {
 
 const RelatedProducts: React.FC<Props> = ({ listRelatedProduct }) => {
   const [quantity, setQuantity] = useState(0);
+  const [modalRelatedProduct, setModalRelatedProduct] = useState(false);
+
+  const handleOpenModal = () => setModalRelatedProduct(true);
+  const handleCloseModal = () => setModalRelatedProduct(false);
 
   const handleIncrease = () => {
     if (quantity === 10) return;
@@ -47,11 +52,15 @@ const RelatedProducts: React.FC<Props> = ({ listRelatedProduct }) => {
           <Grid item xs={12} sm={6} md={4} lg={3} key={productRelate._id}>
             <Paper sx={styles.paperProduct}>
               <Box sx={styles.boxImage}>
-                <Chip label="12% off" sx={styles.chipSale} />
                 <Box sx={styles.boxIcon} className="box--icon">
-                  <IconButton aria-label="delete" size="medium" sx={styles.icon}>
+                  <IconButton aria-label="delete" size="medium" sx={styles.icon} onClick={handleOpenModal}>
                     <VisibilityIcon fontSize="small" />
                   </IconButton>
+                  <QuickView
+                    product={productRelate}
+                    openModal={modalRelatedProduct}
+                    handleCloseModal={handleCloseModal}
+                  />
                   <IconButton aria-label="delete" size="medium" sx={styles.icon}>
                     <FavoriteIcon fontSize="small" />
                   </IconButton>
