@@ -12,7 +12,13 @@ import MultipleOptionProduct from 'src/components/MultipleOptionProduct';
 import Service from 'src/components/Service';
 import SlideShow from 'src/components/Slide';
 
-import { getBrands, getFeaturedProducts, getNewTopProduct, getWeekTopProduct } from './httpClients';
+import {
+  getBestSellingProducts,
+  getBrands,
+  getFeaturedProducts,
+  getNewTopProduct,
+  getWeekTopProduct,
+} from './httpClients';
 
 function Home() {
   const { data: listBrand = [] } = useQuery({
@@ -42,12 +48,18 @@ function Home() {
     select: ({ data: { data } }) => data,
   });
 
+  const { data: bestSellingProduct = [] } = useQuery({
+    queryKey: ['bestSellingProducts'],
+    queryFn: () => getBestSellingProducts(),
+    select: ({ data: { data } }) => data,
+  });
+
   return (
     <Box bgcolor="#fff">
       <SlideShow />
       <Service />
       <BestSellingCategories />
-      <BestSellingProducts />
+      <BestSellingProducts products={bestSellingProduct} />
       <Event />
       <FeaturedProducts listFeatureProduct={listFeatureProduct} />
       <EventNotificationBanner />
