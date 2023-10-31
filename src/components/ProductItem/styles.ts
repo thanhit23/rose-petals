@@ -69,33 +69,13 @@ const boxPrice = {
   marginTop: '4px',
 };
 
-const boxAddCart = {
-  display: 'flex',
-  width: '30px',
-  WebkitBoxAlign: 'center',
-  alignItems: 'center',
-  flexDirection: 'column-reverse',
-  WebkitBoxPack: 'justify',
-  justifyContent: 'space-between',
-};
-
-const btnIcon = {
-  minWidth: '0',
-  minHeight: '0',
-  fontWeight: '600',
-  textTransform: 'capitalize',
-  padding: '3px',
-};
-
 export default {
   boxQuantityPaginationProduct,
   wrapContentProduct,
   paperProduct,
-  boxAddCart,
   colorIcon,
   hoverBox,
   boxImage,
   boxTitle,
   boxPrice,
-  btnIcon,
 };

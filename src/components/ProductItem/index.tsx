@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Add, FavoriteBorder, Remove, RemoveRedEye } from '@mui/icons-material';
+import { FavoriteBorder, RemoveRedEye } from '@mui/icons-material';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
@@ -19,36 +18,10 @@ type Props = {
 };
 
 const ProductItem: React.FC<Props> = ({ product }) => {
-  const [quantity, setQuantity] = useState(0);
   const [modalProductDetail, setModalProductDetail] = useState(false);
 
   const handleOpenModal = () => setModalProductDetail(true);
   const handleCloseModal = () => setModalProductDetail(false);
-
-  const handleReduce = (): void => {
-    if (quantity === 0) return;
-    setQuantity(quantity - 1);
-  };
-
-  const handleIncrease = (): void => {
-    if (quantity === 10) return;
-    setQuantity(quantity + 1);
-  };
-
-  const renderReduce = () => {
-    if (quantity) {
-      return (
-        <>
-          <Box fontWeight={600} color="#2b3445">
-            {quantity}
-          </Box>
-          <Button variant="outlined" sx={styles.btnIcon} onClick={handleReduce}>
-            <Remove fontSize="small" />
-          </Button>
-        </>
-      );
-    }
-  };
 
   return (
     <Grid item xs={12} sm={6} lg={4}>
@@ -85,12 +58,6 @@ const ProductItem: React.FC<Props> = ({ product }) => {
                   $187.00
                 </Box>
               </Box>
-            </Box>
-            <Box sx={styles.boxAddCart}>
-              <Button variant="outlined" sx={styles.btnIcon} onClick={handleIncrease}>
-                <Add fontSize="small" />
-              </Button>
-              {renderReduce()}
             </Box>
           </Box>
         </Box>
