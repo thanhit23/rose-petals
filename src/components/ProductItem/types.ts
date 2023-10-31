@@ -1,3 +1,8 @@
 export interface Props {
-  product: object;
+  product: {
+    name: string;
+    price: number;
+    rating: number;
+    thumbnail: string;
+  };
 }

@@ -12,7 +12,6 @@
   </p>
 </div>
 
-
 [![Mui](https://raw.githubusercontent.com/mui/material-ui/master/docs/public/static/logo.svg)](https://mui.com/)
 [![Css](https://camo.githubusercontent.com/dbc04597e794ef93a1c4fe4faf5baf73e8dba35e3be5bcccd97fc9edec5bc55d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4353532d3135373262363f7374796c653d666f722d7468652d6261646765266c6162656c436f6c6f723d626c61636b266c6f676f3d63737333266c6f676f436f6c6f723d313537326236)](https://react.dev)
 [![HTML](https://camo.githubusercontent.com/670f208bd19f87f733d0dcacb56c49387354d0bf1c8f303c99aa2d2a1c55d290/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d48544d4c2d4533344632363f7374796c653d666f722d7468652d6261646765266c6162656c436f6c6f723d626c61636b266c6f676f3d68746d6c35266c6f676f436f6c6f723d453334463236)](https://react.dev)
@@ -30,11 +29,11 @@ To get a local copy up and running follow these simple example steps.
 
 This is an example of how to list things you need to use the software and how to install them.
 
-* npm
+- npm
   ```sh
   npm install npm@latest
   ```
-* yarn
+- yarn
   ```sh
   npm install yarn
   ```
@@ -55,12 +54,12 @@ This is an example of how to list things you need to use the software and how to
       yarn install or yarn
       ```
 3. Set the environment variables:
-    ```sh
-    cp .env.example .env.development
-    ```
-    ```dotenv
-    API_BASE_URL=
-    ```
+   ```sh
+   cp .env.example .env.development
+   ```
+   ```dotenv
+   API_BASE_URL=
+   ```
 4. Run project
    ```sh
    npm start
@@ -71,7 +70,7 @@ This is an example of how to list things you need to use the software and how to
 
 ```
 src\
-  |-common - 
+  |-common -
   |-components
   |-containers
   |-helpers
