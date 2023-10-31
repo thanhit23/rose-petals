@@ -34,7 +34,7 @@ function ProductItem({ srcImg, name, price, star }: ProductItemTypes) {
           </Box>
         </Link>
         <Box component="p" sx={styles.boxPrice}>
-          {formatPrice.format(price)}VND
+          {formatPrice.format(price)}
         </Box>
         <Rating
           name="simple-controlled"

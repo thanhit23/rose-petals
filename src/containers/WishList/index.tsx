@@ -28,12 +28,7 @@ function WishList() {
             button={<FormattedMessage {...messages.btnAddAllToCart} />}
           />
           <Grid container spacing={{ xs: 3 }}>
-            <ProductItem product={{}} />
-            <ProductItem product={{}} />
-            <ProductItem product={{}} />
-            <ProductItem product={{}} />
-            <ProductItem product={{}} />
-            <ProductItem product={{}} />
+            <ProductItem product={{ name: 'g435y', price: 4343, rating: 3, thumbnail: '34234324' }} />
           </Grid>
           <Pagination count={10} onChange={handleProductSearch} />
         </Grid>
