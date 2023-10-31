@@ -21,7 +21,7 @@ import messages from './messages';
 import styles from './styles';
 import { ProductCart, Props } from './types';
 
-const SideBarCart: React.FC<Props> = ({ auth, productList }) => {
+const SideBarCart: React.FC<Props> = ({ auth, productList, onDeleteProduct }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -57,7 +57,7 @@ const SideBarCart: React.FC<Props> = ({ auth, productList }) => {
               </Box>
               <Divider />
               {productList.map((product: ProductCart) => (
-                <Product key={product._id} data={product} onClose={handleClose} />
+                <Product key={product._id} data={product} onDeleteProduct={onDeleteProduct} />
               ))}
             </Box>
             <Box sx={{ padding: '20px' }}>

@@ -26,7 +26,7 @@ function ProductSearch() {
     select: ({ data: { data } }) => data,
   });
 
-  const { data: listFilterProduct = [] } = useQuery({
+  useQuery({
     queryKey: ['getFilterProducts'],
     queryFn: () => getFilterProducts(),
     retry: 0,
