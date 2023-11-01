@@ -1,4 +1,3 @@
-import { ImageProduct } from 'src/components/ProductBriefing/types';
 import { ProductCart } from 'src/components/SideBarCart/types';
 import { AuthType } from 'src/containers/Authenticated/types';
 
@@ -41,7 +40,7 @@ export type Product = {
     name: string;
   };
   description?: string;
-  images?: ImageProduct[];
+  images?: string[];
   star?: number;
   review?: number;
   thumbnail?: string;

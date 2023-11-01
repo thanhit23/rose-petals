@@ -19,7 +19,6 @@ import { Props } from './types';
 
 function CheckoutAddressForm({ listData, onFilterCheckout, filterCheckout }: Props) {
   const { province, district, ward } = listData;
-
   const { control, handleSubmit, setValue } = useForm({
     mode: 'onChange',
     defaultValues: {
