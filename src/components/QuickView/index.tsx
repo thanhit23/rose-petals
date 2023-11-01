@@ -22,6 +22,7 @@ type Props = {
 
 const QuickView: React.FC<Props> = ({ product, openModal, handleCloseModal }) => {
   const handleClose = () => handleCloseModal();
+
   return (
     <div>
       <Modal

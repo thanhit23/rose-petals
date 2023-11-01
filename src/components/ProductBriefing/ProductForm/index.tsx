@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
@@ -6,22 +7,24 @@ import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
+import { useQueryClient } from '@tanstack/react-query';
 
-import { Product } from 'src/common/types';
+import { AddToCartProduct, Product } from 'src/common/types';
 import QuantityButton from 'src/components/QuantityButton';
 import formatterPrice from 'src/helpers/formatPrice';
+import { useAddToCart } from 'src/queries/cart';
 
 import messages from '../messages';
 import styles from '../styles';
-import { InitialState } from './types';
+import { InitialState, TData } from './types';
 
 type Props = {
   product?: Product;
 };
 
 const initialState: InitialState = {
-  sizes: '',
-  colors: '',
+  sizes: 'M',
+  colors: 'Blue',
 };
 
 const ProductForm: React.FC<Props> = ({ product }) => {
@@ -36,13 +39,32 @@ const ProductForm: React.FC<Props> = ({ product }) => {
   const handleChangeColor = (condition: boolean, colorDefault?: string, colorActive?: string) =>
     condition ? colorDefault || '#D23F57' : colorActive || '#00000014';
 
+  const queryClient = useQueryClient();
+
+  const { mutate } = useAddToCart({
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['getProductCartList'],
+      });
+    },
+  });
+
+  const handleAddToCart = (data: AddToCartProduct) => {
+    mutate(data, {
+      onSuccess: ({ data: { status } }: TData) => {
+        if (status) {
+          toast.success(<FormattedMessage {...messages.addToCartMessage} />);
+        }
+      },
+    });
+  };
+
   const handleSubmit = () => {
-    console.log({
-      name: product?.name,
-      price: product?.price,
+    handleAddToCart({
+      productId: product?._id ?? '',
       quantity,
-      color: colorType.colors,
       size: colorType.sizes,
+      color: colorType.colors,
     });
   };
 
