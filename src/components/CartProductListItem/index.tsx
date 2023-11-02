@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@mui/icons-material/Add';
@@ -12,8 +12,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { ProductCart } from 'src/components/SideBarCart/types';
 import { formatPrice } from 'src/helpers';
+import { useUpdateQuantityProduct } from 'src/queries/cart';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
+import ModalDelete from '../ModalDelete';
 import { deleteSideBarCart } from './services';
 import styles from './styles';
 
@@ -22,6 +24,8 @@ type Props = {
 };
 
 const CartProductListItem: React.FC<Props> = ({ productCart }) => {
+  const [quantity, setQuantity] = useState(productCart.quantity);
+  const [modalDeleteProduct, setModalDeleteProduct] = useState(false);
   const token = localStorage.getItem('accessToken') || '';
 
   const queryClient = useQueryClient();
@@ -35,20 +39,43 @@ const CartProductListItem: React.FC<Props> = ({ productCart }) => {
       });
     },
   });
+
   const handleDelete = () => {
     mutate();
   };
 
-  const [quantity, setQuantity] = useState(1);
+  useEffect(() => {
+    setQuantity(productCart.quantity);
+  }, [productCart.quantity]);
+
+  const updateQuantityProduct = useUpdateQuantityProduct({
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['getProductCartList'],
+      });
+    },
+  });
 
   const handleIncrease = () => {
-    if (quantity === 1) return;
-    setQuantity(quantity - 1);
+    if (quantity === 10) return;
+    setQuantity(quantity + 1);
+    updateQuantityProduct.mutate({
+      id: productCart._id,
+      quantity: '1',
+    });
   };
 
   const handleReduce = () => {
-    if (quantity === 10) return;
-    setQuantity(quantity + 1);
+    if (quantity === 1) {
+      setModalDeleteProduct(true);
+      return;
+    }
+
+    setQuantity(quantity - 1);
+    updateQuantityProduct.mutate({
+      id: productCart._id,
+      quantity: '-1',
+    });
   };
 
   return (
@@ -78,22 +105,36 @@ const CartProductListItem: React.FC<Props> = ({ productCart }) => {
         </Box>
         <Box sx={styles.wrapperPrice}>
           <Box component="span" sx={styles.priceXQuantity}>
-            {formatPrice.format(productCart.product.price)} x {productCart.quantity}
+            {formatPrice.format(productCart.product.price)} x {quantity}
           </Box>
           <Box component="span" sx={styles.totalPrice}>
-            {formatPrice.format(productCart.product.price * productCart.quantity)}
+            {formatPrice.format(productCart.product.price * quantity)}
           </Box>
         </Box>
         <Box display="flex" alignItems="center">
-          <Button variant="outlined" sx={styles.btnIncrease} onClick={handleIncrease}>
+          <Button
+            variant="outlined"
+            sx={updateQuantityProduct.isLoading ? { ...styles.btnReduce, ...styles.btnDisabled } : styles.btnReduce}
+            onClick={handleReduce}
+          >
             <RemoveIcon fontSize="small" />
           </Button>
-          <Box sx={styles.boxQuantity}>{productCart.quantity}</Box>
-          <Button variant="outlined" sx={styles.btnReduce} onClick={handleReduce}>
+          <Box sx={styles.boxQuantity}>{quantity}</Box>
+          <Button
+            variant="outlined"
+            sx={updateQuantityProduct.isLoading ? { ...styles.btnIncrease, ...styles.btnDisabled } : styles.btnIncrease}
+            onClick={handleIncrease}
+          >
             <AddIcon fontSize="small" />
           </Button>
         </Box>
       </Box>
+      <ModalDelete
+        content="Delete this product"
+        openModal={modalDeleteProduct}
+        handleCloseModal={() => setModalDeleteProduct(false)}
+        onDelete={() => handleDelete()}
+      />
     </Paper>
   );
 };

@@ -92,6 +92,11 @@ const buttonBaseClose = {
   },
 };
 
+const btnDisabled = {
+  opacity: '40%',
+  pointerEvents: 'none',
+};
+
 export default {
   boxInformationProduct,
   boxWrapBtnPlusMinus,
@@ -104,4 +109,5 @@ export default {
   boxCounter,
   boxPrice,
   avatar,
+  btnDisabled,
 };
