@@ -15,13 +15,13 @@ export default defineMessages({
     id: `${scope}.phoneNumber`,
     defaultMessage: 'Phone Number',
   },
-  zipCode: {
-    id: `${scope}.zipCode`,
-    defaultMessage: 'Zip Code',
+  city: {
+    id: `${scope}.city`,
+    defaultMessage: 'City',
   },
-  address1: {
-    id: `${scope}.address1`,
-    defaultMessage: 'Address 1',
+  district: {
+    id: `${scope}.district`,
+    defaultMessage: 'District',
   },
   emailAddress: {
     id: `${scope}.emailAddress`,
@@ -31,9 +31,9 @@ export default defineMessages({
     id: `${scope}.company`,
     defaultMessage: 'Company',
   },
-  address2: {
-    id: `${scope}.address2`,
-    defaultMessage: 'Address 2',
+  ward: {
+    id: `${scope}.ward`,
+    defaultMessage: 'Ward',
   },
   btnBackToCart: {
     id: `${scope}.btnBackToCart`,

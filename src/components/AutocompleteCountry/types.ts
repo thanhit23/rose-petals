@@ -1,4 +1,4 @@
-export interface CountryOption {
+export interface CountryType {
   label: string;
   code: string;
 }
