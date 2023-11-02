@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useQuery } from '@tanstack/react-query';
 
+import { Product } from 'src/common/types';
 import FilterPanel from 'src/components/FilterPanel';
 import Pagination from 'src/components/Pagination';
 import ProductItem from 'src/components/ProductItem';
 import styles from 'src/components/ProductItem/styles';
 import ProductViewInList from 'src/components/ProductViewInList';
 import SortBar from 'src/components/SortBar';
-import { products } from 'src/mockData';
+import useDebounce from 'src/hooks/useDebounce';
 
 import { getBrands } from '../HomePage/httpClients';
 import { getFilterProducts } from './services';
 
 function ProductSearch() {
   const [viewList, setViewList] = useState(false);
+  const [price, setPrice] = useState({ priceMin: 0, priceMax: 0 });
+  const [rating, setRating] = useState({ ratingMin: 0, ratingMax: 0 });
+  const [brand, setBrand] = useState('Chanelll');
+
+  const priceDebounce = useDebounce(price, 700);
+  const ratingDebounce = useDebounce(rating, 700);
 
   const { data: listBrand = [] } = useQuery({
     queryKey: ['getBrands'],
@@ -26,15 +33,14 @@ function ProductSearch() {
     select: ({ data: { data } }) => data,
   });
 
-  useQuery({
-    queryKey: ['getFilterProducts'],
-    queryFn: () => getFilterProducts(),
+  const { data: listFilterProduct = [] } = useQuery({
+    queryKey: ['getFilterProducts', priceDebounce, ratingDebounce],
+    queryFn: () => getFilterProducts(price.priceMin, price.priceMax, rating.ratingMin, rating.ratingMax),
     retry: 0,
     select: ({ data: { data } }) => data,
   });
 
   const handleProductSearch = () => {
-    // eslint-disable-next-line no-console
     console.log('asdasdasd');
   };
 
@@ -50,9 +56,7 @@ function ProductSearch() {
     }
     return (
       <Grid container spacing={{ xs: 3 }}>
-        {products.map(product => (
-          <ProductItem key={product._id} product={product} />
-        ))}
+        {listFilterProduct && listFilterProduct.map((item: Product) => <ProductItem product={item} key={item.name} />)}
       </Grid>
     );
   };
@@ -61,7 +65,7 @@ function ProductSearch() {
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
       <SortBar changeView={handleChangeView} viewList={viewList} />
       <Grid container spacing={{ xs: 3 }}>
-        <FilterPanel listBrand={listBrand} />
+        <FilterPanel setPrice={setPrice} setRating={setRating} listBrand={listBrand} />
         <Grid item xs={12} md={9}>
           {renderProduct()}
           <Box sx={styles.boxQuantityPaginationProduct}>

@@ -8,5 +8,5 @@ export const getFilterProducts = (
   brand?: string,
 ) =>
   Service.get(
-    `/v1/products?price_min=${priceMin}&price_max=${priceMax}&rating_min=${ratingMin}&rating_max=${ratingMax}&brand=${brand}`,
+    `/v1/products?price_min=${priceMin}&price_max=${priceMax}&rating_min=${ratingMin}&rating_max=${ratingMax}`,
   );

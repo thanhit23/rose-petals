@@ -45,7 +45,7 @@ export type Product = {
   star?: number;
   review?: number;
   thumbnail?: string;
-  rating?: string;
+  rating?: number;
   createdAt?: string;
   deletedAt?: string;
   updatedAt?: string;

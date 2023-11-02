@@ -17,7 +17,7 @@ type Props = {
   product: Product;
 };
 
-const ProductItem: React.FC<Props> = ({ product }) => {
+const ProductItem: React.FC<Props> = ({ product }: Props) => {
   const [modalProductDetail, setModalProductDetail] = useState(false);
 
   const handleOpenModal = () => setModalProductDetail(true);
@@ -34,11 +34,7 @@ const ProductItem: React.FC<Props> = ({ product }) => {
             <QuickView product={product} openModal={modalProductDetail} handleCloseModal={handleCloseModal} />
           </Box>
           <Link to="/">
-            <Box
-              component="img"
-              width="100%"
-              src="https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2FFashion%2FAccessories%2F7.PoliceGrayEyeglasses.png&w=3840&q=75"
-            />
+            <Box component="img" width="100%" src={product.thumbnail} />
           </Link>
         </Box>
         <Box p="1rem">
@@ -46,13 +42,13 @@ const ProductItem: React.FC<Props> = ({ product }) => {
             <Box sx={styles.wrapContentProduct}>
               <Link to="/">
                 <Box className="title" component="h3" sx={styles.boxTitle}>
-                  Police Gray Eyeglasses
+                  {product.name}
                 </Box>
               </Link>
-              <Rating name="read-only" value={4} readOnly sx={{ fontSize: '1.25rem' }} />
+              <Rating name="read-only" value={product.rating} readOnly sx={{ fontSize: '1.25rem' }} />
               <Box sx={styles.boxPrice}>
                 <Box fontWeight={600} color="#D23F57">
-                  $187.00
+                  {product.price}
                 </Box>
               </Box>
             </Box>
