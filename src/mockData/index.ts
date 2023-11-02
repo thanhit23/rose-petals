@@ -6,7 +6,7 @@ export const products = [
       name: "Women's Fashion",
     },
     category: {
-      id: '1',
+      _id: '1',
       name: "Women's Fashion",
     },
     name: 'Gray Overcoat Women',
@@ -24,7 +24,7 @@ export const products = [
       name: "Women's Fashion",
     },
     category: {
-      id: '1',
+      _id: '1',
       name: "Women's Fashion",
     },
     name: 'Gray Overcoat Women',
@@ -42,7 +42,7 @@ export const products = [
       name: "Women's Fashion",
     },
     category: {
-      id: '1',
+      _id: '1',
       name: "Women's Fashion",
     },
     name: 'Gray Overcoat Women',
@@ -60,7 +60,7 @@ export const products = [
       name: "Women's Fashion",
     },
     category: {
-      id: '1',
+      _id: '1',
       name: "Women's Fashion",
     },
     name: 'Gray Overcoat Women',

@@ -36,7 +36,7 @@ export type Product = {
     name: string;
   };
   category: {
-    id: string;
+    _id: string;
     name: string;
   };
   description?: string;

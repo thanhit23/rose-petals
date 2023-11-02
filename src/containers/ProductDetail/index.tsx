@@ -23,9 +23,9 @@ function ProductDetail() {
   };
 
   const { data: listRelatedProducts = [] } = useQuery({
-    queryKey: ['RelatedProducts', data?.category.id],
-    queryFn: () => getRelatedProducts(data?.category.id as string),
-    enabled: !!data?.category.id,
+    queryKey: ['RelatedProducts', data?.category?._id],
+    queryFn: () => getRelatedProducts(data?.category?._id as string),
+    enabled: !!data?.category?._id,
     select: ({ data: { data } }) => data,
   });
 
