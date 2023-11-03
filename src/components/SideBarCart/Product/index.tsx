@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -6,8 +6,10 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
+import { useQueryClient } from '@tanstack/react-query';
 
 import formatterPrice from 'src/helpers/formatPrice';
+import { useUpdateQuantityProduct } from 'src/queries/cart';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
 import ModalDelete from '../../ModalDelete';
@@ -20,30 +22,66 @@ type Props = {
 };
 
 function Product({ data, onDeleteProduct }: Props) {
-  const [quantity, setQuantity] = React.useState(data.quantity);
+  const [quantity, setQuantity] = useState(data.quantity);
   const [modalDeleteProduct, setModalDeleteProduct] = useState(false);
 
   const handleDelete = () => onDeleteProduct(data._id);
 
+  useEffect(() => {
+    setQuantity(data.quantity);
+  }, [data.quantity]);
+
+  const queryClient = useQueryClient();
+
+  const updateQuantityProduct = useUpdateQuantityProduct({
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['getProductCartList'],
+      });
+    },
+  });
+
   const handleIncrement = () => {
     if (quantity === 10) return;
     setQuantity(quantity + 1);
+    updateQuantityProduct.mutate({
+      id: data._id,
+      quantity: '1',
+    });
   };
 
   const handleDecrement = () => {
-    if (quantity === 0) return;
+    if (quantity === 1) {
+      setModalDeleteProduct(true);
+      return;
+    }
+
     setQuantity(quantity - 1);
+    updateQuantityProduct.mutate({
+      id: data._id,
+      quantity: '-1',
+    });
   };
 
   return (
     <>
       <Box sx={styles.containerProduct}>
         <Box sx={styles.boxWrapBtnPlusMinus}>
-          <Button onClick={handleIncrement} sx={styles.btnPlusMinus}>
+          <Button
+            onClick={handleIncrement}
+            sx={
+              updateQuantityProduct.isLoading ? { ...styles.btnPlusMinus, ...styles.btnDisabled } : styles.btnPlusMinus
+            }
+          >
             +
           </Button>
           <Box sx={styles.boxCounter}>{quantity}</Box>
-          <Button onClick={handleDecrement} sx={styles.btnPlusMinus}>
+          <Button
+            onClick={handleDecrement}
+            sx={
+              updateQuantityProduct.isLoading ? { ...styles.btnPlusMinus, ...styles.btnDisabled } : styles.btnPlusMinus
+            }
+          >
             -
           </Button>
         </Box>

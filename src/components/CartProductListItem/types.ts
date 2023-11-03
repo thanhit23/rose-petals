@@ -11,8 +11,3 @@ export interface ProductCart {
 }
 
 export type ProductList = ProductCart[];
-
-export type Props = {
-  data: ProductCart;
-  onClose: () => void;
-};

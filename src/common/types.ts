@@ -71,3 +71,8 @@ export type AddToCartProduct = {
   size: string;
   color: string;
 };
+
+export type UpdateQuantityProduct = {
+  id: string;
+  quantity: string;
+};

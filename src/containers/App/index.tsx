@@ -48,7 +48,7 @@ const App: React.FC<Props> = ({ auth }) => {
       setHeader(queryKey[1]);
       return getProductCartList();
     },
-    enabled: !auth,
+    enabled: !!auth,
     onSuccess: ({ data: { data, status } }) => status && store.dispatch(getProductCartAction(data)),
   });
 

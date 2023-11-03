@@ -100,6 +100,11 @@ const btnReduce = {
   padding: '5px',
 };
 
+const btnDisabled = {
+  opacity: '40%',
+  pointerEvents: 'none',
+};
+
 export default {
   informationProduct,
   priceXQuantity,
@@ -113,4 +118,5 @@ export default {
   iconClose,
   paper,
   avatar,
+  btnDisabled,
 };
