@@ -66,7 +66,7 @@ function ProductSearch() {
           {renderProduct()}
           <Box sx={styles.boxQuantityPaginationProduct}>
             <Box component="span">Showing 1-9 of 1.3k Products</Box>
-            <Pagination count={10} onChange={handleProductSearch} />
+            <Pagination count={10} page={1} onChange={handleProductSearch} />
           </Box>
         </Grid>
       </Grid>

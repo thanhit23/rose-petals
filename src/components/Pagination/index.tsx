@@ -5,21 +5,22 @@ import Box from '@mui/material/Box';
 
 import styles from './styles';
 
-interface PaginationProps {
+type Props = {
   count: number;
+  page: number;
   onChange: (page: number) => void;
-}
+};
 
-function Pagination({ count, onChange }: PaginationProps) {
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+const Pagination: React.FC<Props> = ({ count, page, onChange }) => {
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     onChange(value);
   };
 
   return (
     <Box sx={styles.boxPagination}>
-      <MuiPagination count={count} variant="outlined" color="primary" onChange={handleChange} />
+      <MuiPagination count={count} page={page} variant="outlined" color="primary" onChange={handleChange} />
     </Box>
   );
-}
+};
 
 export default Pagination;
