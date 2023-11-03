@@ -75,6 +75,7 @@ const boxTitlePaper = {
 };
 
 const closeBtnBase = {
+  zIndex: '10',
   padding: '8px',
   borderRadius: '50%',
   overflow: 'visible',
