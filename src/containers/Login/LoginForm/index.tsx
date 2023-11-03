@@ -22,6 +22,7 @@ import { Dispatch, bindActionCreators, compose } from 'redux';
 import ErrorMessage from 'src/components/ErrorMessage';
 import TextField from 'src/components/TextField';
 import { useClientLogin } from 'src/queries/auth';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import { loginSuccess as loginSuccessAction } from '../actions';
 import { Props, UserSubmitForm } from '../types';
@@ -145,7 +146,7 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
               <Box color="#2b3445">
                 <FormattedMessage {...messages.notAccount} />
               </Box>
-              <Link to="/register" style={styles.linkSingUp}>
+              <Link to={PATH_AUTH.register} style={styles.linkSingUp}>
                 <FormattedMessage {...messages.signUp} />
               </Link>
             </Box>
