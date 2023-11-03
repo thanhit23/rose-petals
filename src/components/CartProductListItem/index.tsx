@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { ProductCart } from 'src/components/SideBarCart/types';
 import { formatPrice } from 'src/helpers';
@@ -16,37 +16,24 @@ import { useUpdateQuantityProduct } from 'src/queries/cart';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
 import ModalDelete from '../ModalDelete';
-import { deleteSideBarCart } from './services';
 import styles from './styles';
 
 type Props = {
   productCart: ProductCart;
+  onDeleteProduct: (id: string) => void;
 };
 
-const CartProductListItem: React.FC<Props> = ({ productCart }) => {
+const CartProductListItem: React.FC<Props> = ({ productCart, onDeleteProduct }) => {
   const [quantity, setQuantity] = useState(productCart.quantity);
   const [modalDeleteProduct, setModalDeleteProduct] = useState(false);
-  const token = localStorage.getItem('accessToken') || '';
 
-  const queryClient = useQueryClient();
-
-  const { mutate } = useMutation({
-    mutationFn: () => deleteSideBarCart(productCart._id),
-    onSuccess: () => {
-      void queryClient.invalidateQueries({
-        queryKey: ['getProductCartList', token],
-        exact: true,
-      });
-    },
-  });
-
-  const handleDelete = () => {
-    mutate();
-  };
+  const handleDelete = () => onDeleteProduct(productCart._id);
 
   useEffect(() => {
     setQuantity(productCart.quantity);
   }, [productCart.quantity]);
+
+  const queryClient = useQueryClient();
 
   const updateQuantityProduct = useUpdateQuantityProduct({
     onSuccess: () => {
@@ -92,7 +79,7 @@ const CartProductListItem: React.FC<Props> = ({ productCart }) => {
           />
         </Link>
       </Box>
-      <IconButton aria-label="close" size="small" sx={styles.iconClose} onClick={() => handleDelete()}>
+      <IconButton aria-label="close" size="small" sx={styles.iconClose} onClick={() => setModalDeleteProduct(true)}>
         <CloseIcon fontSize="small" />
       </IconButton>
       <Box sx={styles.informationProduct}>
