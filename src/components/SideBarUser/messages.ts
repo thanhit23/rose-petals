@@ -3,29 +3,17 @@ import { defineMessages } from 'react-intl';
 export const scope = 'Components.SideBarUser';
 
 export default defineMessages({
-  dashboard: {
-    id: `${scope}.dashboard`,
-    defaultMessage: 'DASHBOARD',
+  settings: {
+    id: `${scope}.settings`,
+    defaultMessage: 'SETTINGS',
   },
   orders: {
     id: `${scope}.order`,
     defaultMessage: 'Orders',
   },
-  wishlist: {
-    id: `${scope}.wishlist`,
-    defaultMessage: 'Wishlist',
-  },
   ProfileInfo: {
     id: `${scope}.ProfileInfo`,
     defaultMessage: 'Profile Info',
-  },
-  accountSetting: {
-    id: `${scope}.accountSetting`,
-    defaultMessage: 'ACCOUNT SETTINGS',
-  },
-  addresses: {
-    id: `${scope}.addresses`,
-    defaultMessage: 'Addresses',
   },
   paymentMethods: {
     id: `${scope}.paymentMethods`,
