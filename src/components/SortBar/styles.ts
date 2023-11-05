@@ -36,13 +36,6 @@ const boxQuantityResult = {
   whiteSpace: 'normal',
 };
 
-const wrapperShortBy = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-  flex: '1 1 0',
-};
-
 const boxOptionSort = {
   display: 'flex',
   WebkitBoxAlign: 'center',
@@ -51,24 +44,6 @@ const boxOptionSort = {
   flexWrap: 'wrap',
   marginTop: '0.5rem',
   marginBottom: '0.5rem',
-};
-
-const boxShortBy = {
-  marginBottom: '0px',
-  marginTop: '0px',
-  fontSize: '14px',
-  color: '#7D879C',
-  textTransform: 'none',
-  whiteSpace: 'pre',
-};
-
-const formControl = { minWidth: 150 };
-
-const selectOption = {
-  '> div': {
-    padding: '7.07px 14px',
-    fontSize: '14px',
-  },
 };
 
 const wrapperView = {
@@ -91,12 +66,8 @@ const boxView = {
 export default {
   boxQuantityResult,
   boxKeywordSearch,
-  wrapperShortBy,
   boxOptionSort,
-  selectOption,
   paperSortBar,
-  formControl,
   wrapperView,
-  boxShortBy,
   boxView,
 };
