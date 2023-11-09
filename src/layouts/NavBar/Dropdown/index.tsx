@@ -91,7 +91,11 @@ function DropDown({
                 <Box>
                   {menuItem.map(({ name, slug, sx }, key: number) => (
                     <Box sx={{ fontSize: '14px', ...sx }} key={key} onClick={handleClose}>
-                      <Box component={Link} to={PATH_PUBLIC.product.search(slug)} sx={styles.linkMenuItem}>
+                      <Box
+                        component={Link}
+                        to={`${PATH_PUBLIC.product.search(slug)}?category=${encodeURIComponent(name as string)}`}
+                        sx={styles.linkMenuItem}
+                      >
                         <Box component="span" sx={styles.boxItem}>
                           {name}
                         </Box>
