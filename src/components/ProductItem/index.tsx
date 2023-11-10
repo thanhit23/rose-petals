@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { FavoriteBorder, RemoveRedEye } from '@mui/icons-material';
+import { RemoveRedEye } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -32,9 +32,6 @@ const ProductItem: React.FC<Props> = ({ product }) => {
               <RemoveRedEye fontSize="small" sx={styles.colorIcon} />
             </IconButton>
             <QuickView product={product} openModal={modalProductDetail} handleCloseModal={handleCloseModal} />
-            <IconButton aria-label="delete">
-              <FavoriteBorder fontSize="small" sx={styles.colorIcon} />
-            </IconButton>
           </Box>
           <Link to="/">
             <Box

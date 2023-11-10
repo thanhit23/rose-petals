@@ -2,9 +2,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
 
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonIcon from '@mui/icons-material/Person';
-import PlaceIcon from '@mui/icons-material/Place';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -13,6 +11,7 @@ import Typography from '@mui/material/Typography';
 
 import messages from './messages';
 import styles from './styles';
+import { BarItem } from './types';
 
 function SideBarUser() {
   const { pathname } = useLocation();
@@ -24,33 +23,17 @@ function SideBarUser() {
     return styles.unActive;
   };
 
-  const barItemsTop = [
+  const barItems: BarItem[] = [
+    {
+      path: '/profile',
+      icon: <PersonIcon fontSize="small" />,
+      title: <FormattedMessage {...messages.ProfileInfo} />,
+    },
     {
       path: '/order',
       icon: <ShoppingBagOutlinedIcon fontSize="small" />,
       title: <FormattedMessage {...messages.orders} />,
       quantity: 5,
-    },
-    {
-      path: '/wish-list',
-      icon: <FavoriteBorderIcon fontSize="small" />,
-      title: <FormattedMessage {...messages.wishlist} />,
-      quantity: 19,
-    },
-  ];
-
-  const barItemsBottom = [
-    {
-      path: '/profile',
-      icon: <PersonIcon fontSize="small" />,
-      title: <FormattedMessage {...messages.ProfileInfo} />,
-      quantity: 3,
-    },
-    {
-      path: '/address',
-      icon: <PlaceIcon fontSize="small" />,
-      title: <FormattedMessage {...messages.addresses} />,
-      quantity: 16,
     },
     {
       path: '/payment-methods',
@@ -64,30 +47,16 @@ function SideBarUser() {
     <Grid item xs={12} lg={3}>
       <Paper sx={styles.paperContainer}>
         <Typography sx={styles.typographyTitle}>
-          <FormattedMessage {...messages.dashboard} />
+          <FormattedMessage {...messages.settings} />
         </Typography>
-        {barItemsTop.map(({ path, icon, title, quantity }, i) => (
+        {barItems.map(({ path, icon, title, quantity }, i) => (
           <Link key={i} to={path}>
             <Box sx={{ ...styles.boxItem, ...activeItem(path) }}>
               <Box sx={styles.boxTitle}>
                 {icon}
-                <Box component="span">{title}</Box>
+                <span>{title}</span>
               </Box>
-              <Box component="span">{quantity}</Box>
-            </Box>
-          </Link>
-        ))}
-        <Typography sx={styles.typographyTitle}>
-          <FormattedMessage {...messages.accountSetting} />
-        </Typography>
-        {barItemsBottom.map(({ path, icon, title, quantity }, i) => (
-          <Link key={i} to={path}>
-            <Box sx={{ ...styles.boxItem, ...activeItem(path) }}>
-              <Box sx={styles.boxTitle}>
-                {icon}
-                <Box component="span">{title}</Box>
-              </Box>
-              <Box component="span">{quantity}</Box>
+              {quantity && <span>{quantity}</span>}
             </Box>
           </Link>
         ))}
