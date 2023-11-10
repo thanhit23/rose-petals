@@ -46,29 +46,10 @@ const divider = {
   borderColor: 'rgb(243, 245, 249)',
 };
 
-const outlinedInput = {
-  '& > div > input': {
-    fontSize: '14px',
-  },
-};
-
-const btnApplyVoucher = {
-  margin: '1rem 0px 30px',
-  width: '100%',
-  minWidth: '0px',
-  minHeight: '0px',
-  fontWeight: '600',
-  textTransform: 'capitalize',
-  fontFamily: styles.fontFamilyDefault,
-  letterSpacing: 'inherit',
-};
-
 export default {
   typographyTotalPrice,
-  btnApplyVoucher,
   typographyTitle,
   typographyPrice,
-  outlinedInput,
   boxCalculate,
   divider,
   paper,

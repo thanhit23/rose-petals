@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import messages from './messages';
@@ -39,17 +38,6 @@ function PricingDetail() {
       </Box>
       <Divider sx={styles.divider} />
       <Typography sx={styles.typographyTotalPrice}>$2,610.00</Typography>
-      <TextField
-        id="outlined-basic"
-        sx={styles.outlinedInput}
-        placeholder="Voucher"
-        variant="outlined"
-        fullWidth
-        size="small"
-      />
-      <Button variant="outlined" sx={styles.btnApplyVoucher}>
-        <FormattedMessage {...messages.btnApplyVoucher} />
-      </Button>
     </Paper>
   );
 }
