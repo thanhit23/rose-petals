@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
@@ -10,12 +10,23 @@ import styles from './styles';
 
 function ProductDescription() {
   const description = useContext(DescriptionContext);
+  const descriptionLines = description.split('\n');
+
+  const renderDescription = (descriptionLines: string[]) =>
+    descriptionLines.map((line: string, index: number) => (
+      <p key={index}>
+        {line.split('\\n').map((text, idx) => (
+          <React.Fragment key={idx}>{text}</React.Fragment>
+        ))}
+      </p>
+    ));
+
   return (
     <Box>
       <Box component="h3" sx={styles.specification}>
         <FormattedMessage {...messages.specification} />:
       </Box>
-      <Box>{description}</Box>
+      {renderDescription(descriptionLines)}
     </Box>
   );
 }
