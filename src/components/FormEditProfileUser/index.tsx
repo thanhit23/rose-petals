@@ -46,7 +46,7 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
       email: auth.email,
       phoneNumber: auth.phoneNumber,
       location: auth.location,
-      gender: auth.gender.toString(),
+      gender: auth.gender && auth.gender.toString(),
     },
   });
 

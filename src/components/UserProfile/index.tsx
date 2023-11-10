@@ -28,7 +28,7 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
   const { data } = useGetListOrder();
   const listOrder = data?.data;
 
-  const renderStatus = (status: number) => {
+  const checkGender = (status: number) => {
     if (status === 1) {
       return ORDERED;
     } else if (status === 2) {
@@ -39,12 +39,12 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
   };
 
   const renderAwaitingShipment = () => {
-    const listOrderAwaitingShipment = listOrder?.filter((order: any) => renderStatus(order.status) === ORDERED);
+    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkGender(order.status) === ORDERED);
     return _.size(listOrderAwaitingShipment);
   };
 
   const renderAwaitingDelivery = () => {
-    const listOrderAwaitingShipment = listOrder?.filter((order: any) => renderStatus(order.status) === DELIVERING);
+    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkGender(order.status) === DELIVERING);
     return _.size(listOrderAwaitingShipment);
   };
 
@@ -144,7 +144,7 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
           <Box component="small" className="title">
             <FormattedMessage {...messages.gender} />
           </Box>
-          <span>{auth.gender === 1 ? 'Female' : 'Male'}</span>
+          <span>{checkGender(auth.gender)}</span>
         </Box>
       </Paper>
     </Grid>
