@@ -6,17 +6,11 @@ import Grid from '@mui/material/Grid';
 
 import HeaderHoldUser from 'src/components/HeaderHoldUser';
 import ItemPaymentMethod from 'src/components/ItemPaymentMethod';
-import Pagination from 'src/components/Pagination';
 import SideBarUser from 'src/components/SideBarUser';
 
 import messages from './messages';
 
 function PaymentMethod() {
-  const handleChangePage = (value: number) => {
-    // eslint-disable-next-line no-console
-    console.log(value);
-  };
-
   return (
     <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
       <Grid container spacing={{ xs: 3 }}>
@@ -30,7 +24,6 @@ function PaymentMethod() {
           />
           <ItemPaymentMethod />
           <ItemPaymentMethod />
-          <Pagination count={5} onChange={handleChangePage} />
         </Grid>
       </Grid>
     </Container>

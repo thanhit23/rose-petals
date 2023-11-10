@@ -19,8 +19,4 @@ export default defineMessages({
     id: `${scope}.discount`,
     defaultMessage: 'Discount:',
   },
-  btnApplyVoucher: {
-    id: `${scope}.button.ApplyVoucher`,
-    defaultMessage: 'Apply Voucher',
-  },
 });

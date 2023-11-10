@@ -85,24 +85,6 @@ const routers: RouteObject[] = [
         ],
       },
       {
-        path: 'address',
-        element: <Authenticated />,
-        children: [
-          {
-            index: true,
-            lazy: () => import('src/containers/Address'),
-          },
-          {
-            path: 'add',
-            lazy: () => import('src/containers/Address/Add'),
-          },
-          {
-            path: ':id',
-            lazy: () => import('src/containers/Address/Edit'),
-          },
-        ],
-      },
-      {
         path: 'payment-methods',
         element: <Authenticated />,
         children: [
@@ -117,16 +99,6 @@ const routers: RouteObject[] = [
           {
             path: 'add',
             lazy: () => import('src/containers/PaymentMethod/Add'),
-          },
-        ],
-      },
-      {
-        path: 'wish-list',
-        element: <Authenticated />,
-        children: [
-          {
-            index: true,
-            lazy: () => import('src/containers/WishList'),
           },
         ],
       },

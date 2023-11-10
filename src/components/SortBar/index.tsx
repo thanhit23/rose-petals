@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import { Apps, ViewList } from '@mui/icons-material';
 import Box from '@mui/material/Box';
@@ -10,17 +10,27 @@ import Paper from '@mui/material/Paper';
 import messages from './messages';
 import styles from './styles';
 
-function SortBar({ changeView, viewList }: { changeView: (isView: boolean) => void; viewList: boolean }) {
+type Props = {
+  changeView: (isView: boolean) => void;
+  viewList: boolean;
+};
+
+const SortBar: React.FC<Props> = ({ changeView, viewList }) => {
   const { slug = '' } = useParams();
+
+  const [searchParams] = useSearchParams();
+
+  const categoryName = searchParams.get('category');
 
   return (
     <Paper sx={styles.paperSortBar}>
       <Box>
         <Box component="h5" sx={styles.boxKeywordSearch}>
-          <FormattedMessage {...messages.searchingFor} />“ {slug} ”
+          <FormattedMessage {...messages[categoryName ? 'categories' : 'searchingFor']} />
+          {categoryName ? ` "${categoryName}"` : ` “${slug}”`}
         </Box>
         <Box component="p" sx={styles.boxQuantityResult}>
-          48 <FormattedMessage {...messages.resultsFound} />
+          47 <FormattedMessage {...messages.resultsFound} />
         </Box>
       </Box>
       <Box sx={styles.boxOptionSort}>
@@ -38,6 +48,6 @@ function SortBar({ changeView, viewList }: { changeView: (isView: boolean) => vo
       </Box>
     </Paper>
   );
-}
+};
 
 export default SortBar;
