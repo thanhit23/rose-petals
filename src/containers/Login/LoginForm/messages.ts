@@ -7,10 +7,6 @@ export default defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Welcome To Rose Petal',
   },
-  rememberMe: {
-    id: `${scope}.rememberMe`,
-    defaultMessage: 'Remember me',
-  },
   labelEmail: {
     id: `${scope}.label.email`,
     defaultMessage: 'Email Address',
