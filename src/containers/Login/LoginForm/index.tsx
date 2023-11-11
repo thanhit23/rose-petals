@@ -12,8 +12,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -118,15 +116,6 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
             </Box>
             <ErrorMessage name={password} />
           </Grid>
-
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label={<FormattedMessage {...messages.rememberMe} />}
-              sx={styles.formControlLabel}
-            />
-          </Grid>
-
           <Grid item xs={12}>
             <LoadingButton
               fullWidth

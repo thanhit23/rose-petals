@@ -1,5 +1,3 @@
-const formControlLabel = { display: 'flex' };
-
 const btnSubmit = {
   backgroundColor: 'error.main_btn',
   color: '#fff',
@@ -87,7 +85,6 @@ export default {
   iconBtnShowPassword,
   boxForGotPassword,
   visibilityOffIcon,
-  formControlLabel,
   boxFooterLogin,
   visibilityIcon,
   linkRegister,
