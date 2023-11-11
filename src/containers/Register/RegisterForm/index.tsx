@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { useMutation } from '@tanstack/react-query';
-import * as Yup from 'yup';
 
 import ErrorMessage from 'src/components/ErrorMessage';
 import TextField from 'src/components/TextField';
@@ -23,17 +22,12 @@ import { register as registerService } from '../services';
 import styles from '../styles';
 import messages from './messages';
 import { UserSubmitForm } from './types';
+import { registerFormValidationSchema } from './validationSchema';
 
 function RegisterForm() {
   const [isPassword, setIsPassword] = useState(true);
 
   const navigate = useNavigate();
-
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required(),
-    email: Yup.string().required().email(),
-    password: Yup.string().required().min(6).max(40),
-  });
 
   const {
     register,
@@ -43,7 +37,7 @@ function RegisterForm() {
     formState: { errors },
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(registerFormValidationSchema),
   });
 
   const { mutate, isLoading } = useMutation({
@@ -58,7 +52,7 @@ function RegisterForm() {
     },
   });
 
-  const { name, email, password, root } = errors;
+  const { name, email, verifyingCode, password, confirmPassword, root } = errors;
 
   return (
     <Box component="form" noValidate onSubmit={handleSubmit(data => mutate(data))} sx={{ mt: 3 }}>
@@ -71,6 +65,49 @@ function RegisterForm() {
           </Grid>
         )}
         <Grid item xs={12}>
+          <Box sx={styles.formControll}>
+            <TextField
+              label={<FormattedMessage {...messages.labelEmail} />}
+              validate={register('email')}
+              sx={{
+                mt: 0,
+                '& div > fieldset': {
+                  borderColor: () => email && '#e94560',
+                },
+              }}
+            />
+            <LoadingButton fullWidth color="inherit" size="large" type="submit" variant="contained" sx={styles.btnSend}>
+              <FormattedMessage {...messages.btnSend} />
+            </LoadingButton>
+          </Box>
+          <ErrorMessage name={email} />
+        </Grid>
+        <Grid item xs={12}>
+          <Box sx={styles.formControll}>
+            <TextField
+              label={<FormattedMessage {...messages.labelVerifying} />}
+              validate={register('verifyingCode')}
+              sx={{
+                mt: 0,
+                '& div > fieldset': {
+                  borderColor: () => verifyingCode && '#e94560',
+                },
+              }}
+            />
+            <LoadingButton
+              fullWidth
+              color="inherit"
+              size="large"
+              type="submit"
+              variant="contained"
+              sx={styles.btnConfirm}
+            >
+              <FormattedMessage {...messages.btnConfirm} />
+            </LoadingButton>
+          </Box>
+          <ErrorMessage name={verifyingCode} />
+        </Grid>
+        <Grid item xs={12}>
           <TextField
             label={<FormattedMessage {...messages.labelName} />}
             validate={register('name')}
@@ -82,19 +119,6 @@ function RegisterForm() {
             }}
           />
           <ErrorMessage name={name} />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label={<FormattedMessage {...messages.labelEmail} />}
-            validate={register('email')}
-            sx={{
-              mt: 0,
-              '& div > fieldset': {
-                borderColor: () => email && '#e94560',
-              },
-            }}
-          />
-          <ErrorMessage name={email} />
         </Grid>
         <Grid item xs={12}>
           <Box position="relative">
@@ -122,6 +146,33 @@ function RegisterForm() {
             </IconButton>
           </Box>
           <ErrorMessage name={password} />
+        </Grid>
+        <Grid item xs={12}>
+          <Box position="relative">
+            <TextField
+              label={<FormattedMessage {...messages.labelConfirmPassword} />}
+              validate={register('confirmPassword')}
+              type={isPassword ? 'confirmPassword' : 'text'}
+              sx={{
+                mt: 0,
+                '& div > fieldset': {
+                  borderColor: () => confirmPassword && '#e94560',
+                },
+              }}
+            />
+            <IconButton
+              aria-label="show-password"
+              sx={styles.iconBtnShowPassword}
+              onClick={() => setIsPassword(!isPassword)}
+            >
+              {isPassword ? (
+                <VisibilityOffIcon sx={styles.visibilityOffIcon} />
+              ) : (
+                <VisibilityIcon sx={styles.visibilityIcon} />
+              )}
+            </IconButton>
+          </Box>
+          <ErrorMessage name={confirmPassword} />
         </Grid>
       </Grid>
       <LoadingButton
