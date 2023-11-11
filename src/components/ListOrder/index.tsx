@@ -6,10 +6,15 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 import ItemOrder from '../ItemOrder';
+import { ItemOrderTypes } from '../ItemOrder/types';
 import messages from './messages';
 import styles from './styles';
 
-function ListOrder() {
+type Props = {
+  listOrder: ItemOrderTypes[];
+};
+
+function ListOrder({ listOrder }: Props) {
   return (
     <>
       <Box sx={styles.containerTitle}>
@@ -43,11 +48,9 @@ function ListOrder() {
           }}
         />
       </Paper>
-      <ItemOrder />
-      <ItemOrder />
-      <ItemOrder />
-      <ItemOrder />
-      <ItemOrder />
+      {listOrder?.map((itemOrder: ItemOrderTypes) => (
+        <ItemOrder itemOrder={itemOrder} key={itemOrder._id} />
+      ))}
     </>
   );
 }

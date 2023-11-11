@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 
+import LoadingButton from '@mui/lab/LoadingButton';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 import { useQueryClient } from '@tanstack/react-query';
+import { isEmpty } from 'lodash';
 
 import { AddToCartProduct, Product } from 'src/common/types';
 import QuantityButton from 'src/components/QuantityButton';
 import formatterPrice from 'src/helpers/formatPrice';
 import { useAddToCart } from 'src/queries/cart';
 
+import { PATH_AUTH } from '../../../routes/paths';
+import store from '../../../store';
 import messages from '../messages';
 import styles from '../styles';
 import { InitialState, TData } from './types';
@@ -23,25 +27,31 @@ type Props = {
 };
 
 const initialState: InitialState = {
-  sizes: 'M',
-  colors: 'Blue',
+  sizes: '',
+  colors: '',
 };
 
+const sizes = [{ label: 'M' }, { label: 'L' }, { label: 'XL' }];
+
+const colors = [{ label: 'Blue' }, { label: 'Red' }, { label: 'Green' }];
+
 const ProductForm: React.FC<Props> = ({ product }) => {
+  const {
+    global: { auth },
+  } = store.getState();
+
+  const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
   const [colorType, setColorType] = useState<InitialState>(initialState);
 
   const [quantity, setQuantity] = useState<number>(1);
 
-  const sizes = [{ label: 'M' }, { label: 'L' }, { label: 'XL' }];
-
-  const colors = [{ label: 'Blue' }, { label: 'Red', id: 2 }, { label: 'Green' }];
-
   const handleChangeColor = (condition: boolean, colorDefault?: string, colorActive?: string) =>
     condition ? colorDefault || '#D23F57' : colorActive || '#00000014';
 
-  const queryClient = useQueryClient();
-
-  const { mutate } = useAddToCart({
+  const addProductToCart = useAddToCart({
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: ['getProductCartList'],
@@ -50,7 +60,7 @@ const ProductForm: React.FC<Props> = ({ product }) => {
   });
 
   const handleAddToCart = (data: AddToCartProduct) => {
-    mutate(data, {
+    addProductToCart.mutate(data, {
       onSuccess: ({ data: { status } }: TData) => {
         if (status) {
           toast.success(<FormattedMessage {...messages.addToCartMessage} />);
@@ -60,6 +70,11 @@ const ProductForm: React.FC<Props> = ({ product }) => {
   };
 
   const handleSubmit = () => {
+    if (isEmpty(auth)) {
+      navigate(PATH_AUTH.login);
+      return;
+    }
+
     handleAddToCart({
       productId: product?._id ?? '',
       quantity,
@@ -75,7 +90,7 @@ const ProductForm: React.FC<Props> = ({ product }) => {
       </Box>
       <Box sx={styles.wrapBrandRating}>
         <Box sx={styles.boxWrapBrand}>
-          <Box>Brand:</Box>
+          <Box sx={{ marginRight: 1 }}>Brand:</Box>
           <Box component="h6" sx={styles.boxBrand}>
             {product?.brand.name}
           </Box>
@@ -141,9 +156,14 @@ const ProductForm: React.FC<Props> = ({ product }) => {
         <QuantityButton quantity={quantity} setQuantity={setQuantity} />
       </Box>
 
-      <Button variant="contained" sx={styles.btnAddCart} onClick={handleSubmit}>
+      <LoadingButton
+        loading={addProductToCart.isLoading}
+        variant="contained"
+        sx={styles.btnAddCart}
+        onClick={handleSubmit}
+      >
         <FormattedMessage {...messages.btnAddCart} />
-      </Button>
+      </LoadingButton>
     </Grid>
   );
 };

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
+import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
 import LoadingScreen from 'src/components/LoadingScreen';
@@ -48,7 +49,7 @@ const App: React.FC<Props> = ({ auth }) => {
       setHeader(queryKey[1]);
       return getProductCartList();
     },
-    enabled: !!auth,
+    enabled: !isEmpty(auth),
     onSuccess: ({ data: { data, status } }) => status && store.dispatch(getProductCartAction(data)),
   });
 
