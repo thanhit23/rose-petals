@@ -16,6 +16,7 @@ import {
   getBestSellingProducts,
   getBrands,
   getFeaturedProducts,
+  getLinkCategories,
   getNewTopProduct,
   getWeekTopProduct,
 } from './httpClients';
