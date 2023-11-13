@@ -1,17 +1,21 @@
 import { Box } from '@mui/material';
 import Paper from '@mui/material/Paper';
 
+import HeaderAuth from 'src/components/HeaderAuth';
 import RegisterPage from 'src/components/Register';
 
 import styles from './styles';
 
 function Register() {
   return (
-    <Box sx={styles.boxRegister}>
-      <Paper sx={styles.paper}>
-        <RegisterPage />
-      </Paper>
-    </Box>
+    <>
+      <HeaderAuth />
+      <Box sx={styles.boxRegister}>
+        <Paper sx={styles.paper}>
+          <RegisterPage />
+        </Paper>
+      </Box>
+    </>
   );
 }
 
