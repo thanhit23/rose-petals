@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-import { intergratePathImage } from 'src/helpers';
+import { integrationPathImage } from 'src/helpers';
 
 import styles from '../styles';
 
@@ -19,6 +19,7 @@ const ProductSlide: React.FC<Props> = ({ images }) => {
   useEffect(() => {
     setSrcImg(images[0]);
   }, [images]);
+
   return (
     <Grid item xs={12} md={6}>
       <Box sx={styles.boxContainerImg}>
@@ -27,7 +28,7 @@ const ProductSlide: React.FC<Props> = ({ images }) => {
             component="img"
             src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27300%27%20height=%27300%27/%3e"
           />
-          <Box component="img" src={intergratePathImage(srcImg)} sx={styles.boxImg} />
+          <Box component="img" src={integrationPathImage(srcImg)} sx={styles.boxImg} />
         </Box>
       </Box>
       <Box display="flex" overflow="auto">
@@ -43,7 +44,7 @@ const ProductSlide: React.FC<Props> = ({ images }) => {
             onClick={() => setSrcImg(item)}
           >
             <Box>
-              <Avatar src={intergratePathImage(srcImg)} />
+              <Avatar src={integrationPathImage(srcImg)} />
             </Box>
           </Button>
         ))}
