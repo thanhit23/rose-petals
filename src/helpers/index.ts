@@ -1,2 +1,2 @@
 export { default as formatPrice } from './formatPrice';
-export { default as intergratePathImage } from './images';
+export { default as integrationPathImage } from './images';

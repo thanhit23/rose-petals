@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
 
 import { Product } from 'src/common/types';
-import { intergratePathImage } from 'src/helpers';
+import { integrationPathImage } from 'src/helpers';
 
 import ProductForm from '../ProductBriefing/ProductForm';
 import styles from './styles';
@@ -53,7 +53,7 @@ const QuickView: React.FC<Props> = ({ product, openModal, handleCloseModal }) =>
                   {images?.map((item, index) => (
                     <Box key={index} className="each-slide-effect">
                       <Box margin="auto" width="calc(100% - 1.5rem)">
-                        <Box sx={styles.boxImage} component="img" alt="ảnh" src={intergratePathImage(item)} />
+                        <Box sx={styles.boxImage} component="img" alt="ảnh" src={integrationPathImage(item)} />
                       </Box>
                     </Box>
                   ))}
