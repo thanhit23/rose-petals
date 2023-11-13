@@ -17,7 +17,7 @@ const paper = {
   padding: '2rem 3rem',
 };
 
-const formControll = {
+const formControl = {
   display: 'flex',
   gap: '8px',
 };
@@ -99,7 +99,7 @@ export default {
   visibilityIcon,
   errorMessage,
   boxRegister,
-  formControll,
+  formControl,
   btnSubmit,
   btnSend,
   btnConfirm,
