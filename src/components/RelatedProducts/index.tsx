@@ -13,6 +13,7 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
+import { isEmpty } from 'lodash';
 
 import { Product } from 'src/common/types';
 import { PATH_PUBLIC } from 'src/routes/paths';
@@ -38,10 +39,12 @@ const RelatedProducts: React.FC<Props> = ({ listRelatedProduct }) => {
   };
 
   return (
-    <Box marginBottom="60px">
-      <Box component="h3" sx={styles.relatedTitle}>
-        <FormattedMessage {...messages.title} />
-      </Box>
+    <Box paddingBottom="60px">
+      {!isEmpty(listRelatedProduct) && (
+        <Box component="h3" sx={styles.relatedTitle}>
+          <FormattedMessage {...messages.title} />
+        </Box>
+      )}
       <Grid container spacing={{ xs: 8 }}>
         {listRelatedProduct.map(productRelate => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={productRelate._id}>
