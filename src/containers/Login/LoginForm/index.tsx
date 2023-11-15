@@ -144,7 +144,7 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
           <Grid item xs={12}>
             <Box sx={styles.boxForGotPassword}>
               <FormattedMessage {...messages.forgotPassword} />
-              <Link to="/reset-password" style={styles.linkRegister}>
+              <Link to={PATH_AUTH.resetPassword} style={styles.linkRegister}>
                 <FormattedMessage {...messages.resetIt} />
               </Link>
             </Box>

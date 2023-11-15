@@ -17,6 +17,10 @@ const routers: RouteObject[] = [
         path: 'register',
         lazy: () => import('src/containers/Register'),
       },
+      {
+        path: 'reset-password',
+        lazy: () => import('src/containers/ResetPassword'),
+      },
     ],
   },
   {
