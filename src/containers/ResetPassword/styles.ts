@@ -27,9 +27,12 @@ const paper = {
   width: '500px',
   padding: '2rem 3rem',
 };
-
+const boxItem = {
+  display: 'flex',
+};
 export default {
   typography,
   boxResetPassword,
   paper,
+  boxItem,
 };
