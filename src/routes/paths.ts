@@ -3,6 +3,9 @@ export const PATH_AUTH = {
   register: '/auth/register',
   resetPassword: '/auth/reset-password',
   profile: '/profile',
+  payment: '/payment',
+  checkout: '/checkout',
+  cart: '/cart',
 };
 
 export const PATH_PUBLIC = {

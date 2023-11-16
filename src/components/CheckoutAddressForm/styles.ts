@@ -1,6 +1,10 @@
 import { styles } from '../common';
 
-const formControl = { marginBottom: '16px' };
+const formControl = { marginBottom: '26px', position: 'relative' };
+
+const errorMessage = { position: 'absolute', left: 0, bottom: '-20px' };
+
+const formControlLabel = { display: 'flex' };
 
 const inputLabel = {
   letterSpacing: 'inherit',
@@ -60,10 +64,12 @@ const btnProceedToPayment = {
 };
 export default {
   paperBillingXShipping,
+  formControlLabel,
   btnProceedToPayment,
   typographyTitle,
   btnBackToCart,
   outlinedInput,
   formControl,
   inputLabel,
+  errorMessage,
 };

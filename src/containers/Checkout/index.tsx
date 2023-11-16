@@ -1,16 +1,26 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { compose } from 'redux';
 
+import { State } from 'src/common/types';
 import CheckoutAddressForm from 'src/components/CheckoutAddressForm';
 import { FilterCheckout, ListData } from 'src/components/CheckoutAddressForm/types';
 import BreadBarCartPage from 'src/components/FormSteps';
 import PricingDetail from 'src/components/PricingDetail';
+import { PATH_AUTH } from 'src/routes/paths';
 
-import { getAddress } from './services';
-import { KeyAddress, ResponseAddressFormat } from './types';
+import { ProductList } from '../Cart/types';
+import { getAddress, postOrder, postOrderDetail } from './services';
+import { KeyAddress, OrderDetailType, OrderType, ResponseAddressFormat } from './types';
+
+export type Props = {
+  productList: ProductList;
+};
 
 const formatResponse = (result: Partial<ResponseAddressFormat>[], key: KeyAddress) =>
   result.map(item => ({
@@ -18,7 +28,8 @@ const formatResponse = (result: Partial<ResponseAddressFormat>[], key: KeyAddres
     name: item[`${key}_name`] as string,
   }));
 
-function Checkout() {
+const Checkout: React.FC<Props> = ({ productList }) => {
+  const navigate = useNavigate();
   const [filterCheckout, setFilterCheckout] = useState<FilterCheckout>({
     province: '',
     district: null,
@@ -51,6 +62,19 @@ function Checkout() {
     ward: dataWard,
   };
 
+  const createOrderDetail = useMutation({
+    mutationFn: (data: OrderDetailType) => postOrderDetail(data),
+    onSuccess: ({ data: { status } }) => {
+      if (status) {
+        navigate(PATH_AUTH.payment);
+      }
+    },
+  });
+
+  const createOrder = useMutation({
+    mutationFn: (data: OrderType) => postOrder(data),
+  });
+
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
       <BreadBarCartPage activeIndexPage={2} />
@@ -58,16 +82,31 @@ function Checkout() {
         <Grid item xs={12} md={8} lg={8}>
           <CheckoutAddressForm
             listData={listData}
+            productList={productList}
             filterCheckout={filterCheckout}
             onFilterCheckout={setFilterCheckout}
+            onCreateOrder={createOrder}
+            onCreateOrderDetail={createOrderDetail}
           />
         </Grid>
         <Grid item xs={12} md={4} lg={4} sx={{ transition: 'all 250ms' }}>
-          <PricingDetail />
+          <PricingDetail productList={productList} />
         </Grid>
       </Grid>
     </Container>
   );
-}
+};
 
-export const Component = Checkout;
+const mapStateToProps = ({
+  global: {
+    product: {
+      cart: { list },
+    },
+  },
+}: State) => ({
+  productList: list,
+});
+
+const withConnect = connect(mapStateToProps, null);
+
+export const Component = compose(withConnect)(Checkout);
