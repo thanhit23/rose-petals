@@ -5,10 +5,14 @@ export const scope = 'Containers.ResetPassword';
 export default defineMessages({
   title: {
     id: `${scope}.title`,
-    defaultMessage: 'Reset your password',
+    defaultMessage: 'Forgot password',
   },
   submit: {
     id: `${scope}.submit`,
-    defaultMessage: 'Reset',
+    defaultMessage: 'Send',
+  },
+  labelEmail: {
+    id: `${scope}.label.email`,
+    defaultMessage: 'Email',
   },
 });

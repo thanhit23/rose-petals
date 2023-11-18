@@ -14,7 +14,7 @@ function HeaderAuth() {
         <Box sx={styles.itemBackHome}>
           <Link to="/">
             <Box sx={styles.flexItem}>
-              <ArrowBackIcon sx={{ fontSize: 24 }} />
+              <ArrowBackIcon sx={styles.iconHeader} />
               <Typography component="h1" variant="h5">
                 <FormattedMessage {...messages.home} />
               </Typography>

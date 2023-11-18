@@ -16,6 +16,11 @@ const flexItem = {
   alignItems: 'center',
 };
 
+const iconHeader = {
+  fontSize: 24,
+  paddingRight: '5px',
+};
+
 const headerContainer = {
   color: '#FFFFFF',
 };
@@ -25,4 +30,5 @@ export default {
   headerContainer,
   flexItem,
   itemBackHome,
+  iconHeader,
 };
