@@ -35,14 +35,6 @@ const divider = {
   borderColor: 'rgb(243, 245, 249)',
 };
 
-const textFieldComment = {
-  '& > div': {
-    padding: '8.5px 14px',
-    '& > textarea': {
-      height: '120px !important',
-    },
-  },
-};
 const btnCheckoutNow = {
   minWidth: '0',
   minHeight: '0',
@@ -54,7 +46,6 @@ const btnCheckoutNow = {
 
 export default {
   boxWrapTotalPrice,
-  textFieldComment,
   btnCheckoutNow,
   paperBilling,
   boxTotal,

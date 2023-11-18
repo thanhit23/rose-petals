@@ -8,7 +8,7 @@ export default defineMessages({
     defaultMessage: 'Total',
   },
   btnCheckoutNow: {
-    id: `${scope}.button.checkoutNow`,
+    id: `${scope}.checkoutNow`,
     defaultMessage: 'Checkout Now',
   },
 });
