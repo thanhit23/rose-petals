@@ -7,14 +7,6 @@ export default defineMessages({
     id: `${scope}.total`,
     defaultMessage: 'Total',
   },
-  additionalComments: {
-    id: `${scope}.additionalComments`,
-    defaultMessage: 'Additional Comments',
-  },
-  note: {
-    id: `${scope}.note`,
-    defaultMessage: 'Note',
-  },
   btnCheckoutNow: {
     id: `${scope}.button.checkoutNow`,
     defaultMessage: 'Checkout Now',

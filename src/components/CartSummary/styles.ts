@@ -35,41 +35,6 @@ const divider = {
   borderColor: 'rgb(243, 245, 249)',
 };
 
-const boxTitleComment = {
-  display: 'flex',
-  alignItems: 'center',
-  marginBottom: '16px',
-  columnGap: '8px',
-};
-
-const boxAdditionalComments = {
-  lineHeight: '1.5',
-  textTransform: 'none',
-  whiteSpace: 'normal',
-  fontWeight: 600,
-};
-
-const boxNote = {
-  lineHeight: '1',
-  padding: '6px 10px',
-  fontSize: '12px',
-  borderRadius: '3px',
-  color: 'rgb(210, 63, 87)',
-  backgroundColor: 'rgb(252, 233, 236)',
-  textTransform: 'none',
-  whiteSpace: 'normal',
-};
-
-const formControlComment = { marginBottom: '16px' };
-
-const textFieldComment = {
-  '& > div': {
-    padding: '8.5px 14px',
-    '& > textarea': {
-      height: '120px !important',
-    },
-  },
-};
 const btnCheckoutNow = {
   minWidth: '0',
   minHeight: '0',
@@ -80,15 +45,10 @@ const btnCheckoutNow = {
 };
 
 export default {
-  boxAdditionalComments,
-  formControlComment,
   boxWrapTotalPrice,
-  textFieldComment,
-  boxTitleComment,
   btnCheckoutNow,
   paperBilling,
   boxTotal,
   boxPrice,
   divider,
-  boxNote,
 };
