@@ -8,3 +8,24 @@ export type ResponseAddressFormat = {
 };
 
 export type KeyAddress = 'province' | 'district' | 'ward';
+
+export type OrderType = {
+  fullName: string;
+  phoneNumber: string;
+  address: string;
+  customerNote?: string;
+  status: number;
+  amount: number;
+  quantity: number;
+};
+
+export type OrderDetailType = {
+  products: {
+    product: string;
+    quantity: number;
+    price: number;
+  }[];
+  order: string;
+  discountPercent?: number;
+  shipingFee?: number;
+};

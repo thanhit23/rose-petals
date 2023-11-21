@@ -19,4 +19,8 @@ export default defineMessages({
     id: `${scope}.button.viewCart`,
     defaultMessage: 'View Cart',
   },
+  errorMessage: {
+    id: `${scope}.button.errorMessage`,
+    defaultMessage: 'Please add product to cart',
+  },
 });

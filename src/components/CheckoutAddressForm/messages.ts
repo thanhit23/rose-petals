@@ -23,17 +23,13 @@ export default defineMessages({
     id: `${scope}.district`,
     defaultMessage: 'District',
   },
-  emailAddress: {
-    id: `${scope}.emailAddress`,
-    defaultMessage: 'Email Address',
-  },
-  company: {
-    id: `${scope}.company`,
-    defaultMessage: 'Company',
-  },
   ward: {
     id: `${scope}.ward`,
     defaultMessage: 'Ward',
+  },
+  addressDetail: {
+    id: `${scope}.addressDetail`,
+    defaultMessage: 'Additional Note',
   },
   btnBackToCart: {
     id: `${scope}.btnBackToCart`,

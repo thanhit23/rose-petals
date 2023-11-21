@@ -5,6 +5,7 @@ interface Props {
   name?: {
     message?: string;
   };
+  sx?: object;
 }
 
 const Span = styled('span')(() => ({
@@ -12,9 +13,9 @@ const Span = styled('span')(() => ({
   fontSize: 14,
 }));
 
-function ErrorMessage({ name }: Props) {
+function ErrorMessage({ name, sx }: Props) {
   if (name) {
-    return <Span>{name.message}</Span>;
+    return <Span sx={sx}>{name.message}</Span>;
   }
 
   return <></>;
