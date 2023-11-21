@@ -7,4 +7,12 @@ export default defineMessages({
     id: `${scope}.deleteMessage`,
     defaultMessage: 'Delete successfully',
   },
+  emptyCartMessage: {
+    id: `${scope}.emptyCartMessage`,
+    defaultMessage: 'You dont have any products yet',
+  },
+  btnEmptyCart: {
+    id: `${scope}.btnEmptyCart`,
+    defaultMessage: 'Shop now',
+  },
 });
