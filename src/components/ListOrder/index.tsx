@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
@@ -28,18 +29,22 @@ function ListOrder({ listOrder }: Props) {
         </Box>
       </Box>
       <Paper elevation={0} sx={styles.paperHeaderList}>
-        <Box component="h5" sx={styles.headerItem}>
-          <FormattedMessage {...messages.order} />
-        </Box>
-        <Box component="h5" sx={styles.headerItem}>
-          <FormattedMessage {...messages.status} />
-        </Box>
-        <Box component="h5" sx={styles.headerItem}>
-          <FormattedMessage {...messages.datePurchased} />
-        </Box>
-        <Box component="h5" sx={styles.headerItem}>
-          <FormattedMessage {...messages.total} />
-        </Box>
+        {listOrder?.length > 0 && (
+          <>
+            <Box component="h5" sx={styles.headerItem}>
+              <FormattedMessage {...messages.order} />
+            </Box>
+            <Box component="h5" sx={styles.headerItem}>
+              <FormattedMessage {...messages.status} />
+            </Box>
+            <Box component="h5" sx={styles.headerItem}>
+              <FormattedMessage {...messages.datePurchased} />
+            </Box>
+            <Box component="h5" sx={styles.headerItem}>
+              <FormattedMessage {...messages.total} />
+            </Box>
+          </>
+        )}
         <Box
           component="h5"
           sx={{
@@ -48,9 +53,11 @@ function ListOrder({ listOrder }: Props) {
           }}
         />
       </Paper>
-      {listOrder?.map((itemOrder: ItemOrderTypes) => (
-        <ItemOrder itemOrder={itemOrder} key={itemOrder._id} />
-      ))}
+      {listOrder?.length > 0 ? (
+        listOrder?.map((itemOrder: ItemOrderTypes) => <ItemOrder itemOrder={itemOrder} key={itemOrder._id} />)
+      ) : (
+        <Avatar src="/noorder.jpg" sx={styles.noOrder} />
+      )}
     </>
   );
 }
