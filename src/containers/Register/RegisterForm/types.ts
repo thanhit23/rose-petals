@@ -5,3 +5,8 @@ export interface UserSubmitForm {
   verifyingCode: number;
   confirmPassword: string;
 }
+
+export interface VerifyCode {
+  token: string;
+  code: number;
+}

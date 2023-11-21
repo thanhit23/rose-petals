@@ -35,4 +35,20 @@ export default defineMessages({
     id: `${scope}.label.confirmPassword`,
     defaultMessage: 'Confirm Password',
   },
+  verifyEmailSuccessMessage: {
+    id: `${scope}.label.verifyEmailSuccessMessage`,
+    defaultMessage: 'The code is send',
+  },
+  verifyCodeSuccessMessage: {
+    id: `${scope}.label.verifyCodeSuccessMessage`,
+    defaultMessage: 'The code is verify',
+  },
+  verifyEmailErrorMessage: {
+    id: `${scope}.label.verifyEmailErrorMessage`,
+    defaultMessage: 'Please verify email',
+  },
+  verifyCodeErrorMessage: {
+    id: `${scope}.label.verifyCodeErrorMessage`,
+    defaultMessage: 'Please verify code',
+  },
 });
