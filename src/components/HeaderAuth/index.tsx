@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Typography } from '@mui/material';
-import Container from '@mui/material/Container';
-
-import typography from 'src/theme/typography';
 
 import messages from './messages';
 import styles from './styles';
