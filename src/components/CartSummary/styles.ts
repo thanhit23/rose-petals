@@ -42,6 +42,11 @@ const btnCheckoutNow = {
   textTransform: 'capitalize',
   letterSpacing: 'inherit',
   fontFamily: styles.fontFamilyDefault,
+  boxShadow: '0px 0px 28px rgba(3, 0, 71, 0.01)',
+  '&:hover': {
+    backgroundColor: '#E3364E',
+    boxShadow: '0px 0px 28px rgba(3, 0, 71, 0.01)',
+  },
 };
 
 export default {

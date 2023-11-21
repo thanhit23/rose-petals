@@ -8,6 +8,8 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { format } from 'date-fns';
 
+import { formatPrice } from 'src/helpers';
+
 import { DELIVERED, DELIVERING, ORDERED } from './orderStatus';
 import styles from './styles';
 import { ItemOrderTypes } from './types';
@@ -39,7 +41,7 @@ function ItemOrder({ itemOrder }: Props) {
           <Chip label={renderStatus(itemOrder.status)} sx={styles.chipStatus} />
         </Box>
         <Typography sx={styles.orderItem}>{formattedDate}</Typography>
-        <Typography sx={styles.orderItem}>{itemOrder.amount}</Typography>
+        <Typography sx={styles.orderItem}>{formatPrice.format(itemOrder.amount)}</Typography>
         <Typography>
           <IconButton aria-label="east">
             <EastIcon fontSize="small" />

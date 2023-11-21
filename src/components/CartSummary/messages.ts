@@ -11,4 +11,8 @@ export default defineMessages({
     id: `${scope}.button.checkoutNow`,
     defaultMessage: 'Checkout Now',
   },
+  errorMessage: {
+    id: `${scope}.button.errorMessage`,
+    defaultMessage: 'Please add product to cart',
+  },
 });

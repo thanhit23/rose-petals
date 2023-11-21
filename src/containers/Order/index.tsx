@@ -30,7 +30,7 @@ function Order() {
         <SideBarUser />
         <Grid item xs={12} lg={9}>
           <ListOrder listOrder={data?.data} />
-          <Pagination count={data?.meta?.totalPages} onChange={handleChangePage} />
+          {data?.data?.length > 0 && <Pagination count={data?.meta?.totalPages} onChange={handleChangePage} />}
         </Grid>
       </Grid>
     </Container>

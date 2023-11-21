@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
@@ -16,6 +17,7 @@ import { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
 import { State } from 'src/common/types';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import Product from './Product';
 import messages from './messages';
@@ -26,6 +28,14 @@ const SideBarCart: React.FC<Props> = ({ auth, productList, onDeleteProduct }) =>
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleRedirectToCheckout = () => {
+    if (productList.length !== 0) {
+      window.location.href = PATH_AUTH.checkout;
+    } else {
+      toast.error(<FormattedMessage {...messages.errorMessage} />);
+    }
+  };
 
   return (
     <div>
@@ -75,10 +85,10 @@ const SideBarCart: React.FC<Props> = ({ auth, productList, onDeleteProduct }) =>
               )}
             </Box>
             <Box sx={{ padding: '20px' }}>
-              <Button href="/checkout" variant="contained" sx={styles.btnCheckoutNow}>
+              <Button variant="contained" sx={styles.btnCheckoutNow} onClick={handleRedirectToCheckout}>
                 <FormattedMessage {...messages.btnCheckoutNow} />
               </Button>
-              <Button href="/cart" variant="outlined" sx={styles.btnOutlined}>
+              <Button href={PATH_AUTH.cart} variant="outlined" sx={styles.btnOutlined}>
                 <FormattedMessage {...messages.btnViewCart} />
               </Button>
             </Box>
