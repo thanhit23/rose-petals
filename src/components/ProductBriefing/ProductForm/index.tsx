@@ -88,67 +88,45 @@ const ProductForm: React.FC<Props> = ({ product }) => {
       <Box component="h1" sx={styles.boxTitle}>
         {product?.name}
       </Box>
-      <Box sx={styles.wrapBrandRating}>
-        <Box sx={styles.boxWrapBrand}>
-          <Box sx={{ marginRight: 1 }}>Brand:</Box>
-          <Box component="h6" sx={styles.boxBrand}>
-            {product?.brand.name}
-          </Box>
-        </Box>
-        <Box sx={styles.boxRated}>
-          <Box lineHeight={1}>Rated:</Box>
-          <Box sx={styles.wrapRating}>
-            <Rating name="read-only" value={Number(product?.rating)} readOnly sx={styles.rating} />
-          </Box>
-          <Box component="h6" sx={styles.quantityRating}>
-            (50)
-          </Box>
+      <Box sx={styles.boxWrapBrand}>
+        <Box sx={{ marginRight: 1 }}>Brand:</Box>
+        <Box component="h6" sx={styles.boxBrand}>
+          {product?.brand.name}
         </Box>
       </Box>
-      <Box marginBottom="16px">
-        <Box component="h6" sx={styles.boxType}>
-          Size
+      <Box sx={styles.boxRated}>
+        <Box lineHeight={1}>Rated:</Box>
+        <Box sx={styles.wrapRating}>
+          <Rating name="read-only" value={Number(product?.rating)} readOnly sx={styles.rating} />
         </Box>
-        <Box>
-          {sizes.map(({ label }, index) => (
-            <Chip
-              label={label}
-              key={index}
-              onClick={() => setColorType(prev => ({ ...prev, sizes: label }))}
-              sx={{
-                ...styles.typeItem,
-                backgroundColor: handleChangeColor(colorType.sizes === label),
-                color: handleChangeColor(colorType.sizes === label, '#fff', '#000000de'),
-                '&:hover': {
-                  backgroundColor: () => (colorType.sizes === label ? '#E3364E' : '#0000001f'),
-                },
-              }}
-            />
-          ))}
+        <Box component="h6" sx={styles.quantityRating}>
+          (50)
         </Box>
       </Box>
-      <Box marginBottom="16px">
-        <Box component="h6" sx={styles.boxType}>
-          Color
+      {product?.size && product?.size.length !== 0 && (
+        <Box marginBottom="16px">
+          <Box component="h6" sx={styles.boxType}>
+            Size
+          </Box>
+          <Box>
+            {sizes.map(({ label }, index) => (
+              <Chip
+                label={label}
+                key={index}
+                onClick={() => setColorType(prev => ({ ...prev, sizes: label }))}
+                sx={{
+                  ...styles.typeItem,
+                  backgroundColor: handleChangeColor(colorType.sizes === label),
+                  color: handleChangeColor(colorType.sizes === label, '#fff', '#000000de'),
+                  '&:hover': {
+                    backgroundColor: () => (colorType.sizes === label ? '#E3364E' : '#0000001f'),
+                  },
+                }}
+              />
+            ))}
+          </Box>
         </Box>
-        <Box>
-          {colors.map(({ label }, index) => (
-            <Chip
-              label={label}
-              key={index}
-              onClick={() => setColorType(prev => ({ ...prev, colors: label }))}
-              sx={{
-                ...styles.typeItem,
-                backgroundColor: handleChangeColor(colorType.colors === label),
-                color: handleChangeColor(colorType.colors === label, '#fff', '#000000de'),
-                '&:hover': {
-                  backgroundColor: () => (colorType.colors === label ? '#E3364E' : '#0000001f'),
-                },
-              }}
-            />
-          ))}
-        </Box>
-      </Box>
+      )}
       <Box sx={styles.wrapPrice}>
         <Box component="h2" sx={styles.boxPrice}>
           {formatterPrice.format(product?.price || 0)}

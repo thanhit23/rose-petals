@@ -44,7 +44,7 @@ const ProductSlide: React.FC<Props> = ({ images }) => {
             onClick={() => setSrcImg(item)}
           >
             <Box>
-              <Avatar src={integrationPathImage(srcImg)} />
+              <Avatar src={integrationPathImage(item)} />
             </Box>
           </Button>
         ))}
