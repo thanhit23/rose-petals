@@ -10,11 +10,13 @@ const typography = {
 };
 
 const boxResetPassword = {
-  marginTop: 5,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  height: 'calc(100vh - 50px)',
+  justifyContent: 'space-around',
 };
+
 const paper = {
   backgroundColor: 'rgb(255, 255, 255)',
   color: 'rgb(43, 52, 69)',
@@ -26,12 +28,27 @@ const paper = {
   padding: '2rem 3rem',
 };
 
-const Item = {
-  marginLeft: '5px',
+const boxItem = {
+  display: 'flex',
 };
+
+const btnSubmit = {
+  mt: 2,
+  mb: 2,
+  color: '#fff',
+  backgroundColor: '#d23f57',
+  boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#e3364e',
+    boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
+  },
+};
+
 export default {
   typography,
   boxResetPassword,
   paper,
-  Item,
+  boxItem,
+  btnSubmit,
 };

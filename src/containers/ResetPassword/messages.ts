@@ -5,18 +5,22 @@ export const scope = 'Containers.ResetPassword';
 export default defineMessages({
   title: {
     id: `${scope}.title`,
-    defaultMessage: 'Reset your password',
+    defaultMessage: 'Forgot password',
   },
   submit: {
     id: `${scope}.submit`,
-    defaultMessage: 'Reset',
+    defaultMessage: 'Send',
   },
-  titleRegister: {
-    id: `${scope}.titleRegister`,
+  labelEmail: {
+    id: `${scope}.label.email`,
+    defaultMessage: 'Email',
+  },
+  register: {
+    id: `${scope}.button.register`,
     defaultMessage: 'Register',
   },
-  titleAsk: {
-    id: `${scope}.titleAsk`,
+  haveAccount: {
+    id: `${scope}.haveAccount`,
     defaultMessage: "Don't have an account?",
   },
 });

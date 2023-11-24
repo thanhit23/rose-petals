@@ -1,7 +1,7 @@
 export const PATH_AUTH = {
   login: '/auth/login',
   register: '/auth/register',
-  resetPassword: '/auth/reset-password',
+  forgotPassword: '/auth/forgot-password',
   profile: '/profile',
   payment: '/payment',
   checkout: '/checkout',
