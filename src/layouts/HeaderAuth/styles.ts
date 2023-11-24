@@ -8,20 +8,29 @@ const boxBackHome = {
   boxShadow: 'rgba(3, 0, 71, 0.09) 0px 8px 30px',
   overflow: 'hidden',
 };
+
 const itemBackHome = {
   width: '80px',
 };
+
 const flexItem = {
   display: 'flex',
   alignItems: 'center',
 };
 
+const iconHeader = {
+  fontSize: 24,
+  paddingRight: '5px',
+};
+
 const headerContainer = {
   color: '#FFFFFF',
 };
+
 export default {
   boxBackHome,
   headerContainer,
   flexItem,
   itemBackHome,
+  iconHeader,
 };
