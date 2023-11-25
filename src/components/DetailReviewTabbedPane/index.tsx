@@ -5,14 +5,35 @@ import Tabs from '@mui/material/Tabs';
 
 import Description from '../ProductDescription';
 import Review from '../ProductReview';
+import { ProductReviewType } from '../ProductReview/types';
 import TabPanel from '../TabPanelProduct';
 import styles from './styles';
 
 type Props = {
-  handleSubmitReview: (data: object) => void;
+  listProductReview: ProductReviewType[];
+  totalPage: number;
+  onCreateComment: (data: object) => void;
+  onUpdateComment: (data: object) => void;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  isFetching: boolean;
+  onDeleteComment: (id: string) => void;
+  idComment: string;
+  page: number;
+  setIdComment: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const DetailReviewTabbedPane: React.FC<Props> = ({ handleSubmitReview }) => {
+const DetailReviewTabbedPane: React.FC<Props> = ({
+  isFetching,
+  listProductReview,
+  onCreateComment,
+  onUpdateComment,
+  totalPage,
+  page,
+  setPage,
+  idComment,
+  setIdComment,
+  onDeleteComment,
+}) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => setValue(newValue);
@@ -21,7 +42,6 @@ const DetailReviewTabbedPane: React.FC<Props> = ({ handleSubmitReview }) => {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   });
-
   return (
     <>
       <Tabs
@@ -38,7 +58,18 @@ const DetailReviewTabbedPane: React.FC<Props> = ({ handleSubmitReview }) => {
         <Description />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Review onSubmit={handleSubmitReview} />
+        <Review
+          isFetching={isFetching}
+          setPage={setPage}
+          listProductReview={listProductReview}
+          totalPage={totalPage}
+          onCreateComment={onCreateComment}
+          onUpdateComment={onUpdateComment}
+          onDeleteComment={onDeleteComment}
+          idComment={idComment}
+          page={page}
+          setIdComment={setIdComment}
+        />
       </TabPanel>
     </>
   );

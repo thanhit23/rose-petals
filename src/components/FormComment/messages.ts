@@ -1,19 +1,10 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Components.ProductReview';
-
+export const scope = 'Component.FormComment';
 export default defineMessages({
-  writeAReview: {
-    id: `${scope}.writeAReview`,
-    defaultMessage: 'Write a review for this product',
-  },
   yourRating: {
     id: `${scope}.yourRating`,
     defaultMessage: 'Your Rating',
-  },
-  noComment: {
-    id: `${scope}.noComment`,
-    defaultMessage: 'No comment',
   },
   yourReview: {
     id: `${scope}.yourReview`,
