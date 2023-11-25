@@ -62,30 +62,9 @@ const bottomReset = {
   },
 };
 
-const iconBtnShowPassword = {
-  padding: '5px',
-  position: 'absolute',
-  top: '50%',
-  right: '10px',
-  transform: 'translateY(-50%)',
-};
-
-const visibilityOffIcon = {
-  color: '#dae1e7',
-  fontSize: '1.25rem',
-};
-
-const visibilityIcon = {
-  color: '#7d879c',
-  fontSize: '1.25rem',
-};
-
 export default {
   typography,
   boxResetPassword,
-  iconBtnShowPassword,
-  visibilityIcon,
-  visibilityOffIcon,
   formSubmit,
   btnSubmit,
   bottomReset,

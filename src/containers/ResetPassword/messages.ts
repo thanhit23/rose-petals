@@ -7,20 +7,32 @@ export default defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Forgot password',
   },
-  submit: {
-    id: `${scope}.submit`,
-    defaultMessage: 'Send',
-  },
-  labelEmail: {
-    id: `${scope}.label.email`,
-    defaultMessage: 'Email',
-  },
-  register: {
-    id: `${scope}.button.register`,
+  titleRegister: {
+    id: `${scope}.titleRegister`,
     defaultMessage: 'Register',
   },
   haveAccount: {
     id: `${scope}.haveAccount`,
     defaultMessage: "Don't have an account?",
+  },
+  btnSubmit: {
+    id: `${scope}.btnSubmit`,
+    defaultMessage: 'Reset',
+  },
+  labelPassword: {
+    id: `${scope}.password`,
+    defaultMessage: 'New Password',
+  },
+  labelConfirmPassword: {
+    id: `${scope}.confirmPassword`,
+    defaultMessage: 'Confirm Password',
+  },
+  resetSuccess: {
+    id: `${scope}.resetSuccess`,
+    defaultMessage: 'Reset password successfully',
+  },
+  resetFailed: {
+    id: `${scope}.resetSuccess`,
+    defaultMessage: 'Reset password failed!',
   },
 });

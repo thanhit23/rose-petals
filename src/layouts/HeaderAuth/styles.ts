@@ -8,9 +8,11 @@ const boxBackHome = {
   boxShadow: 'rgba(3, 0, 71, 0.09) 0px 8px 30px',
   overflow: 'hidden',
 };
+
 const itemBackHome = {
   width: '80px',
 };
+
 const flexItem = {
   display: 'flex',
   alignItems: 'center',

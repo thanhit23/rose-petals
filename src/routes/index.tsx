@@ -2,12 +2,14 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import NotFound from 'src/components/NotFound';
 import Authenticated from 'src/containers/Authenticated';
+import LayoutAuth from 'src/layouts/Auth';
 import GeneralLayout from 'src/layouts/Main';
 
 const routers: RouteObject[] = [
   {
     path: '/auth',
     errorElement: <NotFound />,
+    element: <LayoutAuth />,
     children: [
       {
         path: 'login',
@@ -19,6 +21,10 @@ const routers: RouteObject[] = [
       },
       {
         path: 'forgot-password',
+        lazy: () => import('src/containers/ForgotPassword'),
+      },
+      {
+        path: 'reset-password',
         lazy: () => import('src/containers/ResetPassword'),
       },
     ],
