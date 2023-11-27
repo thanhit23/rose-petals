@@ -16,11 +16,7 @@ type Props = {
   numberProduct: number;
 };
 
-const SortBar: React.FC<Props> = ({
-  changeView,
-  viewList,
-  numberProduct,
-}) => {
+const SortBar: React.FC<Props> = ({ changeView, viewList, numberProduct }) => {
   const { slug = '' } = useParams();
 
   const [searchParams] = useSearchParams();

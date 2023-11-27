@@ -123,11 +123,12 @@ function ProductSearch() {
           )}
           <Box sx={styles.boxQuantityPaginationProduct}>
             <Box component="span">Showing {numberProduct} of 0 Products</Box>
-            {numberProduct > 9 && <Pagination count={count} onChange={handleProductSearch} />}
+            {numberProduct > 9 && <Pagination page={1} count={count} onChange={handleProductSearch} />}
           </Box>
         </Grid>
       </Grid>
     </Container>
   );
 }
+
 export const Component = ProductSearch;

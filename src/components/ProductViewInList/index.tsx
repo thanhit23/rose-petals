@@ -15,8 +15,8 @@ import styles from './styles';
 
 type Props = {
   showListFilterProduct: {
-    next: () => void;
     prev: () => void;
+    next: () => void;
     jump: (page: number) => void;
     currentData: () => Product[];
     currentPage: number;
