@@ -26,7 +26,6 @@ function DropDown({
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
   const prevOpen = useRef(open);
-
   const handleToggle = () => setOpen(prevOpen => !prevOpen);
 
   const handleClose = (event: Event | React.SyntheticEvent) => {
@@ -89,11 +88,11 @@ function DropDown({
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <Box>
-                  {menuItem.map(({ name, slug, sx }, key: number) => (
+                  {menuItem.map(({ name, slug, id, sx }, key: number) => (
                     <Box sx={{ fontSize: '14px', ...sx }} key={key} onClick={handleClose}>
                       <Box
                         component={Link}
-                        to={`${PATH_PUBLIC.product.search(slug)}?category=${encodeURIComponent(name as string)}`}
+                        to={`${PATH_PUBLIC.product.search(slug)}?categoryId=${id}`}
                         sx={styles.linkMenuItem}
                       >
                         <Box component="span" sx={styles.boxItem}>

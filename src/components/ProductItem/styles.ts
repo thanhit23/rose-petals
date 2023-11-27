@@ -9,6 +9,11 @@ const boxImage = {
   textAlign: 'center',
   position: 'relative',
   display: 'inline-block',
+  '& img': {
+    height: '290px',
+    width: '290px',
+    objectFit: 'cover',
+  },
 };
 
 const boxQuantityPaginationProduct = {

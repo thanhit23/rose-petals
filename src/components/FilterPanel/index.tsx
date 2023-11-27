@@ -27,50 +27,42 @@ type PropsFilter = {
   }[];
   setPrice?: React.Dispatch<
     React.SetStateAction<{
-      priceMin: number;
-      priceMax: number;
+      price_min: number;
+      price_max: number;
     }>
   >;
   setRating?: React.Dispatch<
     React.SetStateAction<{
-      ratingMin: number;
-      ratingMax: number;
+      rating_min: number;
+      rating_max: number;
     }>
   >;
+  setBrand?: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {} }: PropsFilter) {
+function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {}, setBrand = () => {} }: PropsFilter) {
   const [arrayRating, setArrayRating] = useState<number[]>([]);
+  const [arrayBrand, setArrayBrand] = useState<string[]>([]);
+  const min = _.min(arrayRating) || 0;
+  const max = _.max(arrayRating) || 0;
+
   const handlePriceChange = (e: { target: { name: any; value: any } }) => {
     setPrice(prev => ({
       ...prev,
       [e.target.name]: Number(e.target.value),
     }));
   };
-  const min = _.min(arrayRating) || 0;
-  const max = _.max(arrayRating) || 0;
 
-  useEffect(() => {
-    if (arrayRating.length == 1) {
-      setRating(prev => ({
-        ...prev,
-        ratingMin: 0,
-        ratingMax: max,
-      }));
-    } else if (arrayRating.length > 1) {
-      setRating(prev => ({
-        ...prev,
-        ratingMin: min,
-        ratingMax: max,
-      }));
-    } else {
-      setRating(prev => ({
-        ...prev,
-        ratingMin: 0,
-        ratingMax: 0,
-      }));
-    }
-  }, [arrayRating]);
+  const handleBrandChange = (brandId: string) => {
+    setArrayBrand(prev => {
+      const isChecked = prev.includes(brandId);
+      if (isChecked) {
+        return prev.filter(item => item !== brandId) as string[];
+      } else {
+        return [...prev, brandId];
+      }
+    });
+  };
 
   const handleRatingChange = (numberRating: number) => {
     setArrayRating(prev => {
@@ -83,6 +75,37 @@ function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {} }: P
     });
   };
 
+  useEffect(() => {
+    if (arrayRating.length == 1) {
+      setRating(prev => ({
+        ...prev,
+        rating_min: min,
+        rating_max: 0,
+      }));
+    } else if (arrayRating.length > 1) {
+      setRating(prev => ({
+        ...prev,
+        rating_min: min,
+        rating_max: max,
+      }));
+    } else {
+      setRating(prev => ({
+        ...prev,
+        rating_min: 0,
+        rating_max: 0,
+      }));
+    }
+  }, [arrayRating]);
+
+  useEffect(() => {
+    const lengthArrayBrand = arrayBrand.length - 1;
+    if (arrayBrand.length > 0) {
+      setBrand(arrayBrand[lengthArrayBrand]);
+    } else {
+      setBrand(null);
+    }
+  }, [arrayBrand]);
+
   return (
     <Grid item md={3}>
       <Paper sx={styles.wrapPaper}>
@@ -91,7 +114,7 @@ function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {} }: P
         </Box>
         <Box sx={styles.boxQuantityPriceRange}>
           <TextField
-            name="priceMin"
+            name="price_min"
             id="outlined-basic"
             defaultValue={0}
             onChange={handlePriceChange}
@@ -103,7 +126,7 @@ function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {} }: P
             -
           </Box>
           <TextField
-            name="priceMax"
+            name="price_max"
             id="outlined-basic"
             defaultValue={0}
             onChange={handlePriceChange}
@@ -120,6 +143,7 @@ function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {} }: P
           <FormControlLabel
             key={item.name}
             sx={styles.flex}
+            onChange={() => handleBrandChange(item._id)}
             control={<Checkbox color="default" size="small" />}
             label={<Box sx={styles.labelFormControl}>{item.name}</Box>}
           />

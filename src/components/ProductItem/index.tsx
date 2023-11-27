@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 
 import { Product } from 'src/common/types';
+import formatterPrice from 'src/helpers/formatPrice';
 
 import QuickView from '../QuickView';
 import styles from './styles';
@@ -48,7 +49,7 @@ const ProductItem: React.FC<Props> = ({ product }: Props) => {
               <Rating name="read-only" value={product.rating} readOnly sx={{ fontSize: '1.25rem' }} />
               <Box sx={styles.boxPrice}>
                 <Box fontWeight={600} color="#D23F57">
-                  {product.price}
+                  {formatterPrice.format(product.price)}
                 </Box>
               </Box>
             </Box>

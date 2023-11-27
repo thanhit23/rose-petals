@@ -13,9 +13,14 @@ import styles from './styles';
 type Props = {
   changeView: (isView: boolean) => void;
   viewList: boolean;
+  numberProduct: number;
 };
 
-const SortBar: React.FC<Props> = ({ changeView, viewList }) => {
+const SortBar: React.FC<Props> = ({
+  changeView,
+  viewList,
+  numberProduct,
+}) => {
   const { slug = '' } = useParams();
 
   const [searchParams] = useSearchParams();
@@ -30,7 +35,7 @@ const SortBar: React.FC<Props> = ({ changeView, viewList }) => {
           {categoryName ? ` "${categoryName}"` : ` “${slug}”`}
         </Box>
         <Box component="p" sx={styles.boxQuantityResult}>
-          47 <FormattedMessage {...messages.resultsFound} />
+          {numberProduct} <FormattedMessage {...messages.resultsFound} />
         </Box>
       </Box>
       <Box sx={styles.boxOptionSort}>
