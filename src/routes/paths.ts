@@ -6,6 +6,10 @@ export const PATH_AUTH = {
   payment: '/payment',
   checkout: '/checkout',
   cart: '/cart',
+  order: {
+    index: '/order',
+    id: (id: string) => `/order/${id}`,
+  },
 };
 
 export const PATH_PUBLIC = {

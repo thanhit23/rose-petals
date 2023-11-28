@@ -80,11 +80,13 @@ function CheckoutAddressForm({
         if (status) {
           onCreateOrderDetail.mutate({
             products: productList.map(product => ({
-              product: product._id,
+              product: product.product._id,
               quantity: product.quantity,
               price: product.product.price,
             })),
             order: data.id,
+            shipingFee: 0,
+            discountPercent: 0,
           });
         }
       },

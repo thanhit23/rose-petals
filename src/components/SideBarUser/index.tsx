@@ -9,12 +9,15 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
+import { useGetListOrder } from 'src/queries/order';
+
 import messages from './messages';
 import styles from './styles';
 import { BarItem } from './types';
 
-function SideBarUser() {
+const SideBarUser: React.FC = () => {
   const { pathname } = useLocation();
+  const { data } = useGetListOrder();
 
   const activeItem = (path: string) => {
     const regex = new RegExp(path);
@@ -33,7 +36,7 @@ function SideBarUser() {
       path: '/order',
       icon: <ShoppingBagOutlinedIcon fontSize="small" />,
       title: <FormattedMessage {...messages.orders} />,
-      quantity: 5,
+      quantity: data?.meta?.totalResults || 0,
     },
     {
       path: '/payment-methods',
@@ -63,6 +66,6 @@ function SideBarUser() {
       </Paper>
     </Grid>
   );
-}
+};
 
 export default SideBarUser;
