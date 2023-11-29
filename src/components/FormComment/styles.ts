@@ -1,3 +1,5 @@
+import { styles } from '../common';
+
 const wrapReview = {
   marginBottom: '32px',
   maxWidth: '600px',
@@ -97,6 +99,20 @@ const boxYourReview = {
   whiteSpace: 'normal',
 };
 
+const btnSubmit = {
+  minWidth: '0px',
+  minHeight: '0px',
+  fontWeight: '600',
+  textTransform: 'capitalize',
+  height: '32px',
+  letterSpacing: 'inherit',
+  fontFamily: styles.fontFamilyDefault,
+  '&:hover': {
+    backgroundColor: 'rgb(227, 54, 78)',
+    boxShadow: 'rgba(3, 0, 71, 0.01) 0px 0px 28px',
+  },
+};
+
 export default {
   wrapInformationUser,
   titleReviewProduct,
@@ -110,4 +126,5 @@ export default {
   nameUser,
   comment,
   avatar,
+  btnSubmit,
 };

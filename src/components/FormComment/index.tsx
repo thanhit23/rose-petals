@@ -91,7 +91,7 @@ export default function FormComment({
         />
         <ErrorMessage name={content} />
       </Box>
-      <Button variant="contained" type="submit">
+      <Button variant="contained" type="submit" sx={styles.btnSubmit}>
         <FormattedMessage {...messages.btnSubmit} />
       </Button>
     </form>
