@@ -1,6 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
+import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
@@ -8,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import SvgIcon from '@mui/material/SvgIcon';
 import styled from 'styled-components';
 
+import logo from 'src/resources/images/logo.png';
 import { PATH_AUTH } from 'src/routes/paths';
 
 import icons from './icons';
@@ -31,13 +33,16 @@ function Footer() {
           <Box sx={styles.wrapperGrid}>
             <Grid container spacing={{ xs: 3 }}>
               <Grid item xs={12} sm={6} md={6} lg={4}>
-                <Link to={PATH_AUTH.login}>
-                  <Box
-                    sx={styles.boxLogo}
-                    component="img"
-                    src="https://bazar-react.vercel.app/assets/images/logo.svg"
-                  />
-                </Link>
+                <Box sx={styles.flexBox}>
+                  <Link to="/">
+                    <Box sx={styles.boxLogo}>
+                      <img width="60" height="60" src={logo} />
+                    </Box>
+                  </Link>
+                  <Box component="h3">
+                    <FormattedMessage {...messages.nameShop} />
+                  </Box>
+                </Box>
                 <Box component="p" sx={styles.boxDescription}>
                   <FormattedMessage {...messages.description} />
                 </Box>

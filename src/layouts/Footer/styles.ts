@@ -8,16 +8,21 @@ const containerFooter = {
 };
 
 const wrapperGrid = {
-  paddingTop: '80px',
-  paddingBottom: '80px',
+  paddingTop: '50px',
+  paddingBottom: '50px',
   overflow: 'hidden',
 };
 
 const boxLogo = {
-  marginBottom: '20px',
   display: 'block',
+  paddingRight: '15px',
 };
 
+const flexBox = {
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '20px',
+};
 const boxDescription = {
   marginBottom: '20px',
   marginTop: 0,
@@ -115,4 +120,5 @@ export default {
   boxFooter,
   boxEmail,
   boxLogo,
+  flexBox,
 };
