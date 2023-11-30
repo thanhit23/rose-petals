@@ -38,19 +38,19 @@ const PricingDetail: React.FC<Props> = ({ productList }) => {
         <Typography sx={styles.typographyTitle}>
           <FormattedMessage {...messages.shipping} />
         </Typography>
-        <Typography sx={styles.typographyPrice}>$0.00</Typography>
+        <Typography sx={styles.typographyPrice}>{formatPrice.format(0)}</Typography>
       </Box>
       <Box sx={styles.boxCalculate}>
         <Typography sx={styles.typographyTitle}>
           <FormattedMessage {...messages.tax} />
         </Typography>
-        <Typography sx={styles.typographyPrice}>$40.00</Typography>
+        <Typography sx={styles.typographyPrice}>{formatPrice.format(0)}</Typography>
       </Box>
       <Box sx={{ ...styles.boxCalculate, marginBottom: '16px' }}>
         <Typography sx={styles.typographyTitle}>
           <FormattedMessage {...messages.discount} />
         </Typography>
-        <Typography sx={styles.typographyPrice}>$0.00</Typography>
+        <Typography sx={styles.typographyPrice}>{formatPrice.format(0)}</Typography>
       </Box>
       <Divider sx={styles.divider} />
       <Typography sx={styles.typographyTotalPrice}>{formatPrice.format(totalPrice)}</Typography>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { compose } from 'redux';
 
 import { State } from 'src/common/types';
@@ -12,11 +12,12 @@ import CheckoutAddressForm from 'src/components/CheckoutAddressForm';
 import { FilterCheckout, ListData } from 'src/components/CheckoutAddressForm/types';
 import BreadBarCartPage from 'src/components/FormSteps';
 import PricingDetail from 'src/components/PricingDetail';
+import { useCreateOrder, useCreateOrderDetail } from 'src/queries/order';
 import { PATH_AUTH } from 'src/routes/paths';
 
 import { ProductList } from '../Cart/types';
-import { getAddress, postOrder, postOrderDetail } from './services';
-import { KeyAddress, OrderDetailType, OrderType, ResponseAddressFormat } from './types';
+import { getAddress } from './services';
+import { KeyAddress, ResponseAddressFormat } from './types';
 
 export type Props = {
   productList: ProductList;
@@ -62,8 +63,7 @@ const Checkout: React.FC<Props> = ({ productList }) => {
     ward: dataWard,
   };
 
-  const createOrderDetail = useMutation({
-    mutationFn: (data: OrderDetailType) => postOrderDetail(data),
+  const createOrderDetail = useCreateOrderDetail({
     onSuccess: ({ data: { status } }) => {
       if (status) {
         navigate(PATH_AUTH.payment);
@@ -71,9 +71,7 @@ const Checkout: React.FC<Props> = ({ productList }) => {
     },
   });
 
-  const createOrder = useMutation({
-    mutationFn: (data: OrderType) => postOrder(data),
-  });
+  const createOrder = useCreateOrder();
 
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>

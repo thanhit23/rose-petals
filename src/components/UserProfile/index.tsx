@@ -8,12 +8,15 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import _ from 'lodash';
 import { compose } from 'redux';
 
 import { State } from 'src/common/types';
+import { useGetListOrder } from 'src/queries/order';
 
 import { AuthType } from '../../containers/Authenticated/types';
 import HeaderHoldUser from '../HeaderHoldUser';
+import { DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
 import messages from './messages';
 import styles from './styles';
 
@@ -21,7 +24,30 @@ type Props = {
   auth: AuthType;
 };
 
-function UserProfile({ auth }: Props) {
+const UserProfile: React.FC<Props> = ({ auth }) => {
+  const { data } = useGetListOrder();
+  const listOrder = data?.data;
+
+  const renderStatus = (status: number) => {
+    if (status === 1) {
+      return ORDERED;
+    } else if (status === 2) {
+      return DELIVERING;
+    } else if (status === 3) {
+      return DELIVERED;
+    }
+  };
+
+  const renderAwaitingShipment = () => {
+    const listOrderAwaitingShipment = listOrder?.filter((order: any) => renderStatus(order.status) === ORDERED);
+    return _.size(listOrderAwaitingShipment);
+  };
+
+  const renderAwaitingDelivery = () => {
+    const listOrderAwaitingShipment = listOrder?.filter((order: any) => renderStatus(order.status) === DELIVERING);
+    return _.size(listOrderAwaitingShipment);
+  };
+
   return (
     <Grid item xs={12} lg={9}>
       <HeaderHoldUser
@@ -54,7 +80,7 @@ function UserProfile({ auth }: Props) {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    16
+                    {data?.meta?.totalResults || 0}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.allOrders} />
@@ -74,7 +100,7 @@ function UserProfile({ auth }: Props) {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    00
+                    {renderAwaitingShipment()}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.awaitingShipment} />
@@ -84,7 +110,7 @@ function UserProfile({ auth }: Props) {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    01
+                    {renderAwaitingDelivery()}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.awaitingDelivery} />
@@ -123,7 +149,7 @@ function UserProfile({ auth }: Props) {
       </Paper>
     </Grid>
   );
-}
+};
 
 const mapStateToProps = ({ global: { auth } }: State) => ({
   auth,

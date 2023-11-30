@@ -1,3 +1,4 @@
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Box from '@mui/material/Box';
@@ -6,23 +7,33 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
+import { OrderDetailType } from 'src/containers/Order/types';
+import { formatPrice } from 'src/helpers';
+
 import messages from './messages';
 import styles from './styles';
 
-function OrderSummaryDetails() {
+type Props = {
+  orderDetail: OrderDetailType;
+};
+
+function OrderSummaryDetails({ orderDetail }: Props) {
+  const discountPrice = orderDetail.subtotal * (orderDetail.discountPercent / 100);
+  const renderAddress = (address: string, customNote: string) => (customNote ? `${address}, ${customNote}` : address);
+
   return (
-    <>
-      <Grid xs={12} md={6} lg={6} paddingLeft="24px" paddingTop="24px">
+    <React.Fragment>
+      <Grid item xs={12} md={6} lg={6} paddingLeft="24px" paddingTop="24px">
         <Paper sx={styles.paperAddress}>
           <Box component="h5" sx={styles.boxAddressTitle}>
             <FormattedMessage {...messages.shippingAddress} />
           </Box>
           <Box component="p" sx={styles.boxAddress}>
-            Kelly Williams 777 Brockton Avenue, Abington MA 2351
+            {renderAddress(orderDetail.address, orderDetail.customNote)}
           </Box>
         </Paper>
       </Grid>
-      <Grid xs={12} md={6} lg={6} paddingLeft="24px" paddingTop="24px">
+      <Grid item xs={12} md={6} lg={6} paddingLeft="24px" paddingTop="24px">
         <Paper sx={styles.paperSummary}>
           <Box component="h5" sx={styles.boxTotalSummary}>
             <FormattedMessage {...messages.totalSummary} />
@@ -32,7 +43,7 @@ function OrderSummaryDetails() {
               <FormattedMessage {...messages.subtotal} />
             </Typography>
             <Box component="h6" sx={styles.priceSummary}>
-              $350.00
+              {formatPrice.format(orderDetail.subtotal || 0)}
             </Box>
           </Box>
           <Box sx={styles.boxTitle}>
@@ -40,7 +51,7 @@ function OrderSummaryDetails() {
               <FormattedMessage {...messages.shippingFee} />
             </Typography>
             <Box component="h6" sx={styles.priceSummary}>
-              $350.00
+              {formatPrice.format(orderDetail.shipingFee || 0)}
             </Box>
           </Box>
           <Box sx={styles.boxTitle}>
@@ -48,7 +59,7 @@ function OrderSummaryDetails() {
               <FormattedMessage {...messages.discount} />
             </Typography>
             <Box component="h6" sx={styles.priceSummary}>
-              $350.00
+              {formatPrice.format(discountPrice || 0)}
             </Box>
           </Box>
           <Divider sx={styles.divider} />
@@ -57,7 +68,7 @@ function OrderSummaryDetails() {
               <FormattedMessage {...messages.total} />
             </Box>
             <Box component="h6" sx={styles.priceSummary}>
-              $350.00
+              {formatPrice.format(orderDetail.totalPrice || 0)}
             </Box>
           </Box>
           <Typography sx={styles.paidCard}>
@@ -65,7 +76,7 @@ function OrderSummaryDetails() {
           </Typography>
         </Paper>
       </Grid>
-    </>
+    </React.Fragment>
   );
 }
 

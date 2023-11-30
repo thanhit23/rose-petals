@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { format } from 'date-fns';
 
 import { formatPrice } from 'src/helpers';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import { DELIVERED, DELIVERING, ORDERED } from './orderStatus';
 import styles from './styles';
@@ -32,7 +33,7 @@ function ItemOrder({ itemOrder }: Props) {
   };
 
   return (
-    <Link to="/order/f0ba538b">
+    <Link to={`${PATH_AUTH.order.id(itemOrder._id)}`}>
       <Paper sx={styles.paperItem} key={itemOrder._id}>
         <Box component="h5" sx={styles.codeItem}>
           {itemOrder.user.name}

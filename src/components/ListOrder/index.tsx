@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';

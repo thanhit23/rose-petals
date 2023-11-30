@@ -1,3 +1,3 @@
 import Service from 'src/service';
 
-export const getListOrder = (page: number) => Service.get(`/v1/orders?page=${page}`);
+export const getOrderDetail = (id: string) => Service.get(`/v1/orders/${id}/detail`);

@@ -1,3 +1,3 @@
-export const ORDERED = 'ordered';
-export const DELIVERING = 'delevering';
-export const DELIVERED = 'delivered successfully';
+export const ORDERED = 'ORDERED';
+export const DELIVERING = 'DELIVERING';
+export const DELIVERED = 'DELIVERED';
