@@ -7,5 +7,5 @@ export interface UserSubmitForm {
   name: string;
   phoneNumber: number;
   location: string;
-  gender: string;
+  gender: string | number;
 }
