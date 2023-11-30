@@ -28,7 +28,7 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
   const { data } = useGetListOrder();
   const listOrder = data?.data;
 
-  const checkGender = (status: number) => {
+  const checkStatus = (status: number) => {
     if (status === 1) {
       return ORDERED;
     } else if (status === 2) {
@@ -38,13 +38,23 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
     }
   };
 
+  const checkGender = (gender: number) => {
+    if (gender === 1) {
+      return 'Female';
+    } else if (gender === 2) {
+      return 'Male';
+    } else {
+      return '';
+    }
+  };
+
   const renderAwaitingShipment = () => {
-    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkGender(order.status) === ORDERED);
+    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkStatus(order.status) === ORDERED);
     return _.size(listOrderAwaitingShipment);
   };
 
   const renderAwaitingDelivery = () => {
-    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkGender(order.status) === DELIVERING);
+    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkStatus(order.status) === DELIVERING);
     return _.size(listOrderAwaitingShipment);
   };
 
@@ -138,13 +148,13 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
           <Box component="small" className="title">
             <FormattedMessage {...messages.phone} />
           </Box>
-          <span>{auth.phoneNumber}</span>
+          <span>{auth.phoneNumber || 'N/A'}</span>
         </Box>
         <Box sx={styles.wrapperInfo}>
           <Box component="small" className="title">
             <FormattedMessage {...messages.gender} />
           </Box>
-          <span>{checkGender(auth.gender)}</span>
+          <span>{checkGender(auth.gender) || 'N/A'}</span>
         </Box>
       </Paper>
     </Grid>

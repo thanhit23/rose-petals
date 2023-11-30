@@ -46,11 +46,11 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
       email: auth.email,
       phoneNumber: auth.phoneNumber,
       location: auth.location,
-      gender: auth.gender && auth.gender.toString(),
+      gender: auth.gender,
     },
   });
 
-  const { email, name, phoneNumber, location } = errors;
+  const { email, name, phoneNumber, location, gender } = errors;
 
   return (
     <Grid item xs={12} lg={9}>
@@ -110,18 +110,19 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
               <Grid item xs={12} md={6}>
                 <RadioGroup row>
                   <FormControlLabel
-                    checked={watch('gender') === '1'}
+                    checked={+watch('gender') === 1}
                     value={1}
                     control={<Radio {...register('gender')} />}
                     label="Female"
                   />
                   <FormControlLabel
-                    checked={watch('gender') === '2'}
+                    checked={+watch('gender') === 2}
                     value={2}
                     control={<Radio {...register('gender')} />}
                     label="Male"
                   />
                 </RadioGroup>
+                <ErrorMessage name={gender} />
               </Grid>
             </Grid>
           </Box>
