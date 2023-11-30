@@ -41,6 +41,7 @@ export type Product = {
   };
   description?: string;
   images?: string[];
+  size?: string[];
   star?: number;
   review?: number;
   thumbnail?: string;
