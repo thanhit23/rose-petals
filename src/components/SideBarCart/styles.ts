@@ -50,17 +50,18 @@ const paperCart = {
   backgroundColor: '#fff',
   boxShadow: 24,
   borderRadius: 'inherit',
-  '& .title-cart-empty': {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+};
+
+const boxTitleCart = {
+  display: 'flex',
+  flexDirection: 'column',
+};
+
+const boxImgEmptyCart = {
+  display: 'flex',
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
 };
 
 const boxTitlePaper = {
@@ -75,6 +76,7 @@ const boxTitlePaper = {
 };
 
 const closeBtnBase = {
+  zIndex: '10',
   padding: '8px',
   borderRadius: '50%',
   overflow: 'visible',
@@ -120,4 +122,6 @@ export default {
   paperCart,
   btnCart,
   badge,
+  boxTitleCart,
+  boxImgEmptyCart,
 };

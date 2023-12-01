@@ -54,7 +54,7 @@ const SideBarCart: React.FC<Props> = ({ auth, productList, onDeleteProduct }) =>
       >
         <Paper elevation={0} sx={styles.paperCart}>
           <Box width="360px">
-            <Box overflow="auto" height="calc((100vh - 80px) - 3.25rem)">
+            <Box sx={styles.boxTitleCart} overflow="auto" height="calc((100vh - 80px) - 3.25rem)">
               <Box sx={styles.boxTitlePaper}>
                 <Box sx={styles.wrapperTitleCart}>
                   <ShoppingBagOutlinedIcon color="action" />
@@ -76,7 +76,7 @@ const SideBarCart: React.FC<Props> = ({ auth, productList, onDeleteProduct }) =>
                   <Product key={product._id} data={product} onDeleteProduct={onDeleteProduct} />
                 ))
               ) : (
-                <Box className="title-cart-empty">
+                <Box sx={styles.boxImgEmptyCart}>
                   <Avatar
                     src="https://media.istockphoto.com/id/841884438/vi/vec-to/bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-empty-shopping-bag-d%E1%BB%85-th%C6%B0%C6%A1ng-th%E1%BA%A5t-v%E1%BB%8Dng-t%C3%BAi-mua-s%E1%BA%AFm-thi%E1%BA%BFt-k%E1%BA%BF-%C4%91%C6%B0%E1%BB%9Dng-m%E1%BB%8Fng-ph%E1%BA%B3ng-minh.jpg?s=612x612&w=0&k=20&c=FhRssii1J4Hn4nuCQ-AhDBn0vmWGZwfu74j6boF2t7g="
                     sx={{ width: 250, height: 250 }}
