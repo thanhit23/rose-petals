@@ -12,9 +12,19 @@ const paper = {
   marginBottom: '1.25rem',
 };
 
+const btnFavorite = {
+  position: 'absolute',
+  top: '15px',
+  right: '15px',
+  fontSize: '1.125rem',
+  padding: '5px',
+};
+
 const wrapImg = {
   '& > img': {
     display: 'block',
+    height: '222.5px',
+    objectFit: 'cover',
   },
 };
 
@@ -29,12 +39,14 @@ const wrapContent = {
 
 const productTitle = {
   marginBottom: '0.5rem',
-  marginTop: '0.5rem',
+  marginTop: '1.5rem',
   fontSize: '16px',
   fontWeight: '600',
   lineHeight: '1.5',
   textTransform: 'none',
-  whiteSpace: 'normal',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 };
 
 const wrapProductPrice = {
@@ -57,6 +69,15 @@ const productPrice = {
   whiteSpace: 'normal',
 };
 
+const productDescription = {
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 2,
+  color: 'rgb(125, 135, 156)',
+};
+
 const btnAddToCart = {
   minWidth: '0px',
   minHeight: '0px',
@@ -77,6 +98,8 @@ export default {
   productPrice,
   productTitle,
   wrapContent,
+  btnFavorite,
+  productDescription,
   wrapImg,
   paper,
 };
