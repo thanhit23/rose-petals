@@ -49,6 +49,8 @@ export type Product = {
   createdAt?: string;
   deletedAt?: string;
   updatedAt?: string;
+  quantity?: number;
+  sold?: number;
 };
 
 export type Brand = {
