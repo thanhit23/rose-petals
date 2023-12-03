@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import _ from 'lodash';
 import { compose } from 'redux';
 
 import { State } from 'src/common/types';
@@ -34,6 +35,9 @@ function CheckoutAddressForm({
   onCreateOrder,
   onCreateOrderDetail,
 }: Props) {
+  const [districtError, setDistrictError] = useState({ message: '' });
+  const [wardError, setWardError] = useState({ message: '' });
+
   const {
     register,
     formState: { errors },
@@ -53,7 +57,7 @@ function CheckoutAddressForm({
     },
   });
 
-  const { fullName, phoneNumber, city, district, ward } = errors;
+  const { fullName, phoneNumber, city } = errors;
 
   const totalPrice = useMemo(() => {
     const result = productList.reduce(
@@ -65,6 +69,16 @@ function CheckoutAddressForm({
   }, [productList]);
 
   const onSubmit = ({ fullName, phoneNumber, addressDetail, city, district, ward }: any) => {
+    if (!district?.name) {
+      setDistrictError({ message: (<FormattedMessage {...messages.districtErrorMessage} />) as unknown as string });
+      return;
+    } else {
+      if (_.size(listData.ward) !== 0 && !ward?.name) {
+        setWardError({ message: (<FormattedMessage {...messages.wardErrorMessage} />) as unknown as string });
+        return;
+      }
+    }
+
     const formData = {
       fullName,
       phoneNumber,
@@ -127,6 +141,8 @@ function CheckoutAddressForm({
                       ? { district: null, ward: null, province: value?.id ?? null }
                       : { ...filterCheckout, province: value?.id ?? null };
                   onFilterCheckout({ ...filter });
+                  setDistrictError({ message: '' });
+                  setWardError({ message: '' });
                 }}
                 label={<FormattedMessage {...messages.city} />}
                 onClear={() => {
@@ -150,6 +166,8 @@ function CheckoutAddressForm({
                       ? { district: null, ward: null, province: filterCheckout.province }
                       : { ...filterCheckout, district: value?.id ?? null };
                   onFilterCheckout({ ...filter });
+                  setDistrictError({ message: '' });
+                  setWardError({ message: '' });
                 }}
                 onClear={() => {
                   setValue('ward', '');
@@ -158,18 +176,21 @@ function CheckoutAddressForm({
                 data={listData.district}
                 validate={control}
               />
-              <ErrorMessage name={district} sx={styles.errorMessage} />
+              {<ErrorMessage name={districtError} sx={styles.errorMessage} />}
             </FormControl>
             <FormControl fullWidth sx={styles.formControl}>
               <AutoCompleteAddress
                 name="ward"
                 value={filterCheckout.ward || ''}
-                setValue={value => onFilterCheckout({ ...filterCheckout, ward: value?.id ?? null })}
+                setValue={value => {
+                  onFilterCheckout({ ...filterCheckout, ward: value?.id ?? null });
+                  setWardError({ message: '' });
+                }}
                 label={<FormattedMessage {...messages.ward} />}
                 data={listData.ward}
                 validate={control}
               />
-              <ErrorMessage name={ward} sx={styles.errorMessage} />
+              <ErrorMessage name={wardError} sx={styles.errorMessage} />
             </FormControl>
             <FormControl fullWidth sx={styles.formControl}>
               <MuiTextField
