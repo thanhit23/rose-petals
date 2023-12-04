@@ -22,7 +22,7 @@ function BestSellingProducts({ products }: Props) {
         <FormattedMessage {...messages.title} />
       </Box>
       <div>
-        {products.length && (
+        {products?.length && (
           <SlideProduct slidesToShow={5}>
             {products.map(product => (
               <ProductItem key={product._id} product={product} widthHeightImg="227px" />

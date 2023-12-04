@@ -90,12 +90,16 @@ const boxRated = {
   display: 'flex',
   WebkitBoxAlign: 'center',
   alignItems: 'center',
+  gap: '0 5px',
+  margin: '5px 0',
 };
 
 const wrapRating = {
   marginLeft: '8px',
-  marginRight: '8px',
   lineHeight: '1',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0 3px',
 };
 
 const wrapBrandRating = {
@@ -104,16 +108,18 @@ const wrapBrandRating = {
   marginBottom: { md: '8px' },
 };
 
-const rating = { fontSize: '1.25rem' };
+const rating = { fontSize: '1.2rem' };
 
 const quantityRating = {
   marginBottom: '0px',
   marginTop: '0px',
-  fontSize: '14px',
+  fontSize: '16px',
   fontWeight: '600',
   lineHeight: '1.5',
   textTransform: 'none',
   whiteSpace: 'normal',
+  borderBottom: '1px solid #fab500',
+  color: '#fab500',
 };
 
 const option = {
@@ -196,8 +202,26 @@ const btnAddCart = {
   },
 };
 
+const boxRatings = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0 5px',
+  borderLeft: '1px solid #999999',
+  paddingLeft: '3px',
+};
+
+const boxSold = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0 5px',
+  borderLeft: '1px solid #999999',
+  paddingLeft: '3px',
+};
+
 export default {
   boxContainerImg,
+  boxSold,
+  boxRatings,
   quantityRating,
   boxWrapperImg,
   boxWrapBrand,

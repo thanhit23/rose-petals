@@ -4,14 +4,16 @@ import { FormattedMessage } from 'react-intl';
 import { useSearchParams } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import { QueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
+import BreadCrumb from 'src/components/BreadCrumb';
 import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
 import ProductBriefing from 'src/components/ProductBriefing';
 import { ProductReviewType } from 'src/components/ProductReview/types';
 import RelatedProducts from 'src/components/RelatedProducts';
 import { useGetProductDetail } from 'src/queries/product';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import messages from './messages';
 import { createComment, deleteComment, getComments, getRelatedProducts, updateComment } from './services';
@@ -19,6 +21,7 @@ import { createComment, deleteComment, getComments, getRelatedProducts, updateCo
 export const DescriptionContext = createContext('');
 
 const queryClient = new QueryClient();
+
 function ProductDetail() {
   const [listProductReview, setListProductReview] = useState<ProductReviewType[]>([]);
   const [totalPage, setTotalPage] = useState<number>(1);
@@ -28,7 +31,13 @@ function ProductDetail() {
   const [searchParams] = useSearchParams();
   const productId = searchParams.get('id') as string;
   const { data } = useGetProductDetail(productId);
-
+  const dataBreadCrumbs = [
+    {
+      label: data?.category.name,
+      path: PATH_PUBLIC.product.search(`${data?.slug}?categoryId=${data?.category._id} `),
+    },
+    { label: data?.name, path: '' },
+  ];
   const { data: listRelatedProducts = [] } = useQuery({
     queryKey: ['RelatedProducts', data?.category?._id],
     queryFn: () => getRelatedProducts(data?.category?._id as string),
@@ -75,8 +84,8 @@ function ProductDetail() {
     },
   });
 
-  const handleCreateComment = (data: object) => {
-    commentCreate.mutate(data);
+  const handleCreateComment = async (data: object) => {
+    await commentCreate.mutateAsync(data);
   };
 
   const handleUpdateComment = (data: object) => {
@@ -85,6 +94,7 @@ function ProductDetail() {
 
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
+      <BreadCrumb data={dataBreadCrumbs} />
       <ProductBriefing product={data} />
       <DescriptionContext.Provider value={data?.description || ''}>
         <DetailReviewTabbedPane
