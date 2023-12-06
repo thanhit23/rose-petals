@@ -27,8 +27,28 @@ export default defineMessages({
     id: `${scope}.total`,
     defaultMessage: 'Total:',
   },
-  paidCard: {
-    id: `${scope}.total`,
-    defaultMessage: 'Paid by Credit/Debit Card:',
+  paymentMethod: {
+    id: `${scope}.paymentMethod`,
+    defaultMessage: 'Payment method:',
+  },
+  btnCancelOrder: {
+    id: `${scope}.btnCancelOrder`,
+    defaultMessage: 'Cancel Order',
+  },
+  cancelOrderSuccess: {
+    id: `${scope}.cancelOrderSuccess`,
+    defaultMessage: 'Cancel order successfully',
+  },
+  cancelOrderFailed: {
+    id: `${scope}.cancelOrderFailed`,
+    defaultMessage: 'Cancel order failed',
+  },
+  cancelThisOrder: {
+    id: `${scope}.cancelThisOrder`,
+    defaultMessage: 'Cancel this order',
+  },
+  unPaidMessage: {
+    id: `${scope}.unPaidMessage`,
+    defaultMessage: 'You have not paid for this order, please order again above!',
   },
 });

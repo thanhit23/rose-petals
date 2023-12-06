@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
@@ -15,15 +15,17 @@ import Typography from '@mui/material/Typography';
 import _ from 'lodash';
 import { compose } from 'redux';
 
-import { State } from 'src/common/types';
+import { PostOrderDetailType, PostOrderType, State } from 'src/common/types';
 import MuiTextField from 'src/components/TextField';
-import { ProductCart } from 'src/containers/Cart/types';
+import { ProductList } from 'src/containers/Cart/types';
+import useCalculateTotalPrice from 'src/hooks/useCalculateTotalPrice';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import AutoCompleteAddress from '../AutocompleteAddress';
 import ErrorMessage from '../ErrorMessage';
 import messages from './messages';
 import styles from './styles';
-import { Props } from './types';
+import { City, District, Props, Ward } from './types';
 import { validationSchema } from './validationSchema';
 
 function CheckoutAddressForm({
@@ -35,8 +37,10 @@ function CheckoutAddressForm({
   onCreateOrder,
   onCreateOrderDetail,
 }: Props) {
-  const [districtError, setDistrictError] = useState({ message: '' });
+  const navigate = useNavigate();
+  const totalPrice = useCalculateTotalPrice(productList);
   const [wardError, setWardError] = useState({ message: '' });
+  const [districtError, setDistrictError] = useState({ message: '' });
 
   const {
     register,
@@ -59,16 +63,27 @@ function CheckoutAddressForm({
 
   const { fullName, phoneNumber, city } = errors;
 
-  const totalPrice = useMemo(() => {
-    const result = productList.reduce(
-      (total: number, productCart: ProductCart) => total + productCart.product.price * productCart.quantity,
-      0,
-    );
+  const formatAddress = (city: City, district: District, ward: Ward): string =>
+    `${city.name}, ${district.name}${ward.name ? `, ${ward.name}` : ''}`;
 
-    return result;
-  }, [productList]);
+  const createOrderDetailData = (productList: ProductList, orderId: string): PostOrderDetailType => ({
+    products: productList.map(product => ({
+      product: product.product._id,
+      quantity: product.quantity,
+      price: product.product.price,
+    })),
+    order: orderId,
+    shipingFee: 0,
+    discountPercent: 0,
+  });
 
-  const onSubmit = ({ fullName, phoneNumber, addressDetail, city, district, ward }: any) => {
+  const onSuccessOrderDetail = (response: { data: { status: boolean } }, data: { id: string }): void => {
+    if (response.data.status) {
+      navigate(PATH_AUTH.payment.id(data.id));
+    }
+  };
+
+  const onSubmit = ({ fullName, phoneNumber, addressDetail, city, district, ward }: any): void => {
     if (!district?.name) {
       setDistrictError({ message: (<FormattedMessage {...messages.districtErrorMessage} />) as unknown as string });
       return;
@@ -79,28 +94,25 @@ function CheckoutAddressForm({
       }
     }
 
-    const formData = {
+    const address: string = formatAddress(city, district, ward);
+
+    const orderFormData: PostOrderType = {
       fullName,
-      phoneNumber,
-      address: `${city.name}, ${district.name}${ward.name ? `, ${ward.name}` : ''}`,
+      phoneNumber: phoneNumber.toString(),
+      address,
       customerNote: addressDetail,
       amount: totalPrice,
       status: 1,
-      quantity: productList.length,
+      quantity: _.size(productList),
     };
 
-    onCreateOrder.mutate(formData, {
+    onCreateOrder.mutate(orderFormData, {
       onSuccess: ({ data: { data, status } }) => {
         if (status) {
-          onCreateOrderDetail.mutate({
-            products: productList.map(product => ({
-              product: product.product._id,
-              quantity: product.quantity,
-              price: product.product.price,
-            })),
-            order: data.id,
-            shipingFee: 0,
-            discountPercent: 0,
+          const orderDetailData = createOrderDetailData(productList, data.id);
+
+          onCreateOrderDetail.mutate(orderDetailData, {
+            onSuccess: response => onSuccessOrderDetail(response, data),
           });
         }
       },

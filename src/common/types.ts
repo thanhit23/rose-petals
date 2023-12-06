@@ -98,3 +98,30 @@ export type PostOrderDetailType = {
   discountPercent?: number;
   shipingFee?: number;
 };
+
+export type OrderType = {
+  _id: string;
+  user: {
+    name: string;
+    _id: string;
+  };
+  phoneNumber: number;
+  fullName: string;
+  customerNote: string;
+  methodPayment: string;
+  address: string;
+  amount: number;
+  quantity: number;
+  status: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateOrderType = {
+  id: string;
+  address: string;
+  amount: number;
+  quantity: number;
+  status: number;
+  methodPayment: number;
+};

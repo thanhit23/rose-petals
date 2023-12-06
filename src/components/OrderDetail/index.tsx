@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import DoneIcon from '@mui/icons-material/Done';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -12,14 +11,13 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import SvgIcon from '@mui/material/SvgIcon';
 import Typography from '@mui/material/Typography';
-import { UseMutationResult } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
 import { format } from 'date-fns';
-import { compose } from 'redux';
+import _ from 'lodash';
 
-import { PostOrderDetailType, PostOrderType, State } from 'src/common/types';
-import { AuthType } from 'src/containers/Authenticated/types';
-import { OrderDetailProduct, OrderDetailType } from 'src/containers/Order/types';
+import { PostOrderDetailType, PostOrderType } from 'src/common/types';
+import { OrderDetailProduct } from 'src/containers/Order/types';
+import { formatDate } from 'src/helpers';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import HeaderHoldUser from '../HeaderHoldUser';
 import { DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
@@ -29,25 +27,18 @@ import ProductItem from './ProductItem';
 import { container, delivery, shipping } from './icons';
 import messages from './messages';
 import styles from './styles';
+import { Props } from './types';
 
-type Props = {
-  auth: AuthType;
-  orderDetail: OrderDetailType;
-  onCreateOrder: UseMutationResult<AxiosResponse<any, any>, unknown, PostOrderType, unknown>;
-  onReviewProduct: UseMutationResult<AxiosResponse<any, any>, unknown, object, unknown>;
-  onCreateOrderDetail: UseMutationResult<AxiosResponse<any, any>, unknown, PostOrderDetailType, unknown>;
-};
-
-const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCreateOrder, onCreateOrderDetail }) => {
-  const [modalConfirmOrder, setModalConfirmOrder] = useState(false);
+const OrderDetail: React.FC<Props> = ({
+  orderDetail,
+  onReviewProduct,
+  onCreateOrder,
+  onCreateOrderDetail,
+  onCancelOrder,
+}) => {
+  const navigate = useNavigate();
   const orderId = useParams().id as string;
-
-  const formatDate = (date: string) => {
-    if (!date) return;
-
-    const formattedDate = format(new Date(date), 'MMM d, yyyy');
-    return formattedDate;
-  };
+  const [modalConfirmOrder, setModalConfirmOrder] = useState(false);
 
   const renderDeliveryDate = (orderDate: string) => {
     if (!orderDate) return;
@@ -61,7 +52,7 @@ const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCr
     return formattedDate;
   };
 
-  const renderStatus = (status: number) => {
+  const checkStatus = (status: number) => {
     if (status === 1) {
       return ORDERED;
     } else if (status === 2) {
@@ -79,36 +70,46 @@ const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCr
     </Box>
   );
 
+  const createOrderDetailData = (productList: any, orderId: string): PostOrderDetailType => ({
+    products: productList?.map((product: any) => ({
+      product: product.product._id,
+      quantity: product.quantity,
+      price: product.price,
+    })),
+    order: orderId,
+    shipingFee: 0,
+    discountPercent: 0,
+  });
+
+  const onSuccessOrderDetail = (response: { data: { status: boolean } }, data: { id: string }): void => {
+    if (response.data.status) {
+      navigate(PATH_AUTH.payment.id(data.id));
+    } else {
+      toast.error(<FormattedMessage {...messages.orderAgainFailed} />);
+    }
+  };
+
   const handleOrderAgain = () => {
-    const formData = {
-      fullName: auth.name,
-      phoneNumber: auth.phoneNumber.toString(),
+    const orderFormData: PostOrderType = {
+      fullName: orderDetail.fullName,
+      phoneNumber: orderDetail.phoneNumber.toString(),
       address: orderDetail.address,
-      customerNote: orderDetail.customNote,
+      customerNote: orderDetail.customerNote,
       amount: orderDetail.totalPrice,
       status: 1,
-      quantity: orderDetail.products.length,
+      quantity: _.size(orderDetail.products),
     };
 
-    onCreateOrder.mutate(formData, {
-      onSuccess: ({ data: { data, status, message } }) => {
+    onCreateOrder.mutate(orderFormData, {
+      onSuccess: ({ data: { data, status } }) => {
         if (status) {
-          onCreateOrderDetail.mutate({
-            products: orderDetail.products?.map(product => ({
-              product: product.product._id,
-              quantity: product.quantity,
-              price: product.price,
-            })),
-            order: data.id,
-            shipingFee: 0,
-            discountPercent: 0,
+          const orderDetailData = createOrderDetailData(orderDetail.products, data.id);
+
+          onCreateOrderDetail.mutate(orderDetailData, {
+            onSuccess: response => onSuccessOrderDetail(response, data),
           });
         } else {
-          toast.error(
-            <>
-              <FormattedMessage {...messages.orderAgainFailed} />: {message}
-            </>,
-          );
+          toast.error(<FormattedMessage {...messages.orderAgainFailed} />);
         }
       },
     });
@@ -121,7 +122,9 @@ const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCr
           icon={<ShoppingBagIcon fontSize="medium" />}
           title={<FormattedMessage {...messages.title} />}
           button={
-            renderStatus(orderDetail.status) === DELIVERED ? <FormattedMessage {...messages.orderAgain} /> : undefined
+            checkStatus(orderDetail.status) === DELIVERED || !orderDetail.methodPayment ? (
+              <FormattedMessage {...messages.orderAgain} />
+            ) : undefined
           }
           loadingButton={onCreateOrder.isLoading || onCreateOrderDetail.isLoading}
           onClickButton={() => setModalConfirmOrder(true)}
@@ -139,47 +142,47 @@ const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCr
             <Box
               sx={{
                 ...styles.bridge,
-                backgroundColor: renderStatus(orderDetail.status) === DELIVERING ? '#D23F57' : '#E3E9EF',
+                backgroundColor: checkStatus(orderDetail.status) === DELIVERING ? '#D23F57' : '#E3E9EF',
               }}
             />
             <Box position="relative">
               <Avatar
                 sx={{
                   ...styles.wrapperIcon,
-                  backgroundColor: renderStatus(orderDetail.status) === DELIVERING ? '#D23F57' : '#E3E9EF',
-                  color: renderStatus(orderDetail.status) === DELIVERING ? '#E3E9EF' : '#D23F57',
+                  backgroundColor: checkStatus(orderDetail.status) === DELIVERING ? '#D23F57' : '#E3E9EF',
+                  color: checkStatus(orderDetail.status) === DELIVERING ? '#E3E9EF' : '#D23F57',
                 }}
               >
                 <SvgIcon viewBox="0 0 36 36" fontSize="medium">
                   {shipping}
                 </SvgIcon>
               </Avatar>
-              {renderStatus(orderDetail.status) === DELIVERING && <TickSuccess />}
+              {checkStatus(orderDetail.status) === DELIVERING && <TickSuccess />}
             </Box>
             <Box
               sx={{
                 ...styles.bridge,
-                backgroundColor: renderStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
+                backgroundColor: checkStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
               }}
             />
             <Box position="relative">
               <Avatar
                 sx={{
                   ...styles.wrapperIcon,
-                  backgroundColor: renderStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
-                  color: renderStatus(orderDetail.status) === DELIVERED ? '#E3E9EF' : '#D23F57',
+                  backgroundColor: checkStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
+                  color: checkStatus(orderDetail.status) === DELIVERED ? '#E3E9EF' : '#D23F57',
                 }}
               >
                 <SvgIcon viewBox="0 0 32 32" fontSize="medium">
                   {delivery}
                 </SvgIcon>
               </Avatar>
-              {renderStatus(orderDetail.status) === DELIVERED && <TickSuccess />}
+              {checkStatus(orderDetail.status) === DELIVERED && <TickSuccess />}
             </Box>
           </Box>
           <Box sx={styles.boxTimeShipping}>
             <Typography sx={styles.TypographyTimeShipping}>
-              {renderStatus(orderDetail.status) === DELIVERED ? (
+              {checkStatus(orderDetail.status) === DELIVERED ? (
                 <FormattedMessage {...messages.delivered} />
               ) : (
                 <>
@@ -208,7 +211,7 @@ const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCr
               <Typography sx={styles.boxTitleItem}>
                 <FormattedMessage {...messages.deliveringStatus} />
               </Typography>
-              <Typography sx={styles.boxTitleItemContent}>{renderStatus(orderDetail.status)}</Typography>
+              <Typography sx={styles.boxTitleItemContent}>{checkStatus(orderDetail.status)}</Typography>
             </Box>
           </Paper>
           <Box sx={styles.containerProduct}>
@@ -218,11 +221,11 @@ const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCr
           </Box>
         </Paper>
         <Grid container spacing={{ xs: 3 }}>
-          <OrderSummaryDetails orderDetail={orderDetail} />
+          <OrderSummaryDetails orderDetail={orderDetail} onCancelOrder={onCancelOrder} />
         </Grid>
       </Grid>
       <ModalConfirm
-        content="Order again this product"
+        content={<FormattedMessage {...messages.reOrderThisOrder} />}
         openModal={modalConfirmOrder}
         handleCloseModal={() => setModalConfirmOrder(false)}
         onConfirm={() => handleOrderAgain()}
@@ -231,10 +234,4 @@ const OrderDetail: React.FC<Props> = ({ auth, orderDetail, onReviewProduct, onCr
   );
 };
 
-const mapStateToProps = ({ global: { auth } }: State) => ({
-  auth,
-});
-
-const withConnect = connect(mapStateToProps, null);
-
-export default compose(withConnect)(OrderDetail);
+export default OrderDetail;

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -13,7 +12,6 @@ import { FilterCheckout, ListData } from 'src/components/CheckoutAddressForm/typ
 import BreadBarCartPage from 'src/components/FormSteps';
 import PricingDetail from 'src/components/PricingDetail';
 import { useCreateOrder, useCreateOrderDetail } from 'src/queries/order';
-import { PATH_AUTH } from 'src/routes/paths';
 
 import { ProductList } from '../Cart/types';
 import { getAddress } from './services';
@@ -30,7 +28,6 @@ const formatResponse = (result: Partial<ResponseAddressFormat>[], key: KeyAddres
   }));
 
 const Checkout: React.FC<Props> = ({ productList }) => {
-  const navigate = useNavigate();
   const [filterCheckout, setFilterCheckout] = useState<FilterCheckout>({
     province: '',
     district: null,
@@ -63,13 +60,7 @@ const Checkout: React.FC<Props> = ({ productList }) => {
     ward: dataWard,
   };
 
-  const createOrderDetail = useCreateOrderDetail({
-    onSuccess: ({ data: { status } }) => {
-      if (status) {
-        navigate(PATH_AUTH.payment);
-      }
-    },
-  });
+  const createOrderDetail = useCreateOrderDetail();
 
   const createOrder = useCreateOrder();
 

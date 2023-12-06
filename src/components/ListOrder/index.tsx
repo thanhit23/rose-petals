@@ -1,9 +1,11 @@
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import _ from 'lodash';
 
 import ItemOrder from '../ItemOrder';
 import { ItemOrderTypes } from '../ItemOrder/types';
@@ -16,7 +18,7 @@ type Props = {
 
 function ListOrder({ listOrder }: Props) {
   return (
-    <>
+    <React.Fragment>
       <Box sx={styles.containerTitle}>
         <Box sx={styles.wrapperTitle}>
           <Box sx={styles.boxTitle}>
@@ -28,8 +30,8 @@ function ListOrder({ listOrder }: Props) {
         </Box>
       </Box>
       <Paper elevation={0} sx={styles.paperHeaderList}>
-        {listOrder?.length > 0 && (
-          <>
+        {_.size(listOrder) > 0 && (
+          <React.Fragment>
             <Box component="h5" sx={styles.headerItem}>
               <FormattedMessage {...messages.order} />
             </Box>
@@ -42,7 +44,7 @@ function ListOrder({ listOrder }: Props) {
             <Box component="h5" sx={styles.headerItem}>
               <FormattedMessage {...messages.total} />
             </Box>
-          </>
+          </React.Fragment>
         )}
         <Box
           component="h5"
@@ -52,12 +54,12 @@ function ListOrder({ listOrder }: Props) {
           }}
         />
       </Paper>
-      {listOrder?.length > 0 ? (
+      {_.size(listOrder) > 0 ? (
         listOrder?.map((itemOrder: ItemOrderTypes) => <ItemOrder itemOrder={itemOrder} key={itemOrder._id} />)
       ) : (
         <Avatar src="/noorder.jpg" sx={styles.noOrder} />
       )}
-    </>
+    </React.Fragment>
   );
 }
 

@@ -66,7 +66,9 @@ const priceSummary = {
   whiteSpace: 'normal',
 };
 
-const paidCard = {
+const paymentMethod = {
+  display: 'flex',
+  flexDirection: 'column',
   fontFamily: styles.fontFamilyDefault,
   fontSize: '14px',
   letterSpacing: 'inherit',
@@ -79,15 +81,41 @@ const divider = {
   marginBottom: '8px',
 };
 
+const boxImgPaidCard = {
+  border: '1px solid #D23F57',
+  borderRadius: '6px',
+  marginTop: '8px',
+  objectFit: 'cover',
+  width: '40px',
+  height: '40px',
+};
+
+const btnCancelOrder = {
+  fontFamily: styles.fontFamilyDefault,
+  width: '100%',
+  minWidth: '0px',
+  minHeight: '0px',
+  fontWeight: '600',
+  textTransform: 'capitalize',
+  boxShadow: '0px 0px 28px rgba(3, 0, 71, 0.01)',
+  letterSpacing: 'inherit',
+  '&:hover': {
+    backgroundColor: '#E3364E',
+    boxShadow: '0px 0px 28px rgba(3, 0, 71, 0.01)',
+  },
+};
+
 export default {
   boxTotalSummary,
+  btnCancelOrder,
   boxAddressTitle,
+  boxImgPaidCard,
   titleSummary,
   priceSummary,
   paperSummary,
   paperAddress,
   boxAddress,
   boxTitle,
-  paidCard,
+  paymentMethod,
   divider,
 };
