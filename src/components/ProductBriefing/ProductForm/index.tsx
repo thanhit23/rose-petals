@@ -64,6 +64,8 @@ const ProductForm: React.FC<Props> = ({ product }) => {
       onSuccess: ({ data: { status } }: TData) => {
         if (status) {
           toast.success(<FormattedMessage {...messages.addToCartMessage} />);
+        } else {
+          toast.error(<FormattedMessage {...messages.addToCartMessageError} />);
         }
       },
     });
