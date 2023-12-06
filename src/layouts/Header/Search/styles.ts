@@ -9,6 +9,7 @@ const outlineInput = {
   paddingRight: 0,
   height: '44px',
   '& > input': {
+    paddingRight: '38px',
     fontSize: '14px',
     color: '#646363',
   },
@@ -57,6 +58,15 @@ const searchTitle = {
   fontSize: '14px',
   fontWeight: '600',
   cursor: 'pointer',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+};
+
+const searchValue = {
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 };
 
 const boxResult = {
@@ -107,6 +117,7 @@ export default {
   loadingIcon,
   closeIcon,
   searchTitle,
+  searchValue,
   boxResult,
   boxWrapper,
   boxImage,

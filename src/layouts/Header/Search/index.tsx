@@ -116,7 +116,11 @@ export default function Search() {
         <Box sx={styles.boxResult} {...attrs}>
           <Box component={'div'} sx={styles.searchTitle} onClick={handleSearch}>
             <StoreIcon fontSize="small" color="error" />
-            <FormattedMessage {...messages.searchFor} />: &quot;{searchValue}&quot;
+            <FormattedMessage {...messages.searchFor} />: &quot;
+            <Box component={'span'} sx={styles.searchValue}>
+              {searchValue}
+            </Box>
+            &quot;
           </Box>
           {searchResult?.map(product => (
             <Box
