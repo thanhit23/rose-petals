@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { QueryClient } from '@tanstack/react-query';
 
+import { Product } from 'src/common/types';
 import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
 import ProductBriefing from 'src/components/ProductBriefing';
 import { ProductReviewType } from 'src/components/ProductReview/types';
@@ -33,7 +34,7 @@ function ProductDetail() {
     queryKey: ['RelatedProducts', data?.category?._id],
     queryFn: () => getRelatedProducts(data?.category?._id as string),
     enabled: !!data?.category?._id,
-    select: ({ data: { data } }) => data,
+    select: ({ data: { data } }) => (data as Product[]).filter(product => product._id !== productId),
   });
   const { isFetching } = useQuery({
     queryKey: ['getProductReview', page],
