@@ -65,7 +65,7 @@ const ProductForm: React.FC<Props> = ({ product }) => {
         if (status) {
           toast.success(<FormattedMessage {...messages.addToCartMessage} />);
         } else {
-          toast.error(<FormattedMessage {...messages.addToCartMessageError} />);
+          toast.error(<FormattedMessage {...messages.addToCartErrorMessage} />);
         }
       },
     });
@@ -102,7 +102,7 @@ const ProductForm: React.FC<Props> = ({ product }) => {
           <Rating name="read-only" value={Number(product?.rating)} readOnly sx={styles.rating} />
         </Box>
         <Box component="h6" sx={styles.quantityRating}>
-          (50)
+          (51)
         </Box>
       </Box>
       {product?.size && product?.size.length !== 0 && (

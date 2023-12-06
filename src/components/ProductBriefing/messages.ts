@@ -11,8 +11,8 @@ export default defineMessages({
     id: `${scope}.addToCartMessage`,
     defaultMessage: 'Add to cart successfully',
   },
-  addToCartMessageError: {
-    id: `${scope}.addToCartMessage`,
+  addToCartErrorMessage: {
+    id: `${scope}.addToCartErrorMessage`,
     defaultMessage: 'Add to cart failed',
   },
 });
