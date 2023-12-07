@@ -139,6 +139,7 @@ const ProductForm: React.FC<Props> = ({ product }) => {
         variant="contained"
         sx={styles.btnAddCart}
         onClick={handleSubmit}
+        disabled={product?.quantity === product?.sold}
       >
         <FormattedMessage {...messages.btnAddCart} />
       </LoadingButton>
