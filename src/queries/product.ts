@@ -14,3 +14,15 @@ export const useGetProductDetail = <T = Product>(params: string, options: UseQue
     },
     ...options,
   });
+
+export const useGetProduct = <T = Product>(params: any, options: UseQueryOptions<Product, unknown, T> = {}) =>
+  useQuery({
+    queryKey: ['getProductDetail', params],
+    staleTime: 1000 * 60,
+    queryFn: async () => {
+      const { data } = await getProductDetail(params);
+
+      return data.data;
+    },
+    ...options,
+  });

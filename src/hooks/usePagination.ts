@@ -18,11 +18,12 @@ function usePagination(listFilterProduct: Product[], itemsPerPage: number) {
   }
   function jump(page: number) {
     const pageNumber = Math.max(1, page);
-    setCurrentPage(currentPage => Math.min(pageNumber, maxPage));
+    setCurrentPage(() => Math.min(pageNumber, maxPage));
   }
   function map(callback: (item: Product) => JSX.Element) {
     return currentData().map(callback);
   }
+
   return { next, prev, jump, currentData, currentPage, maxPage, map };
 }
 

@@ -33,7 +33,7 @@ const initialState: InitialState = {
 
 const sizes = [{ label: 'M' }, { label: 'L' }, { label: 'XL' }];
 
-const colors = [{ label: 'Blue' }, { label: 'Red' }, { label: 'Green' }];
+// const colors = [{ label: 'Blue' }, { label: 'Red' }, { label: 'Green' }];
 
 const ProductForm: React.FC<Props> = ({ product }) => {
   const {

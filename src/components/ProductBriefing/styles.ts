@@ -90,6 +90,7 @@ const boxRated = {
   display: 'flex',
   WebkitBoxAlign: 'center',
   alignItems: 'center',
+  marginBottom: '16px',
 };
 
 const wrapRating = {

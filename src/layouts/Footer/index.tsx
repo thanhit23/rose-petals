@@ -1,7 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
-import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
@@ -10,7 +9,6 @@ import SvgIcon from '@mui/material/SvgIcon';
 import styled from 'styled-components';
 
 import logo from 'src/resources/images/logo.png';
-import { PATH_AUTH } from 'src/routes/paths';
 
 import icons from './icons';
 import messages from './messages';
