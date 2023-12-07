@@ -1,7 +1,7 @@
 import { UseMutationOptions, UseQueryOptions, useMutation, useQuery } from '@tanstack/react-query';
 
-import { createOrder, createOrderDetail, getListOrder } from 'src/api/order';
-import { PostOrderDetailType, PostOrderType } from 'src/common/types';
+import { createOrder, createOrderDetail, getListOrder, updateOrder } from 'src/api/order';
+import { PostOrderDetailType, PostOrderType, UpdateOrderType } from 'src/common/types';
 
 export const useGetListOrder = <T = any>(params?: number, options: UseQueryOptions<any, unknown, T> = {}) =>
   useQuery({
@@ -26,5 +26,11 @@ export const useCreateOrder = (options: UseMutationOptions<any, unknown, PostOrd
 export const useCreateOrderDetail = (options: UseMutationOptions<any, unknown, PostOrderDetailType> = {}) =>
   useMutation({
     mutationFn: variables => createOrderDetail(variables),
+    ...options,
+  });
+
+export const useUpdateOrder = (options: UseMutationOptions<any, unknown, UpdateOrderType> = {}) =>
+  useMutation({
+    mutationFn: variables => updateOrder(variables),
     ...options,
   });

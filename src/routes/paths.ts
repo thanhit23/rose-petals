@@ -3,12 +3,15 @@ export const PATH_AUTH = {
   register: '/auth/register',
   forgotPassword: '/auth/forgot-password',
   profile: '/profile',
-  payment: '/payment',
   checkout: '/checkout',
   cart: '/cart',
   order: {
     index: '/order',
     id: (id: string) => `/order/${id}`,
+  },
+  payment: {
+    index: '/payment',
+    id: (id: string) => `/payment?id=${id}`,
   },
 };
 

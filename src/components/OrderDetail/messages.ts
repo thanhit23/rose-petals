@@ -73,7 +73,7 @@ export default defineMessages({
   },
   orderAgainFailed: {
     id: `${scope}.orderAgainFailed`,
-    defaultMessage: 'Order again failed!',
+    defaultMessage: 'Order again failed',
   },
   yourRating: {
     id: `${scope}.yourRating`,
@@ -82,5 +82,9 @@ export default defineMessages({
   yourReview: {
     id: `${scope}.yourReview`,
     defaultMessage: 'Your Review',
+  },
+  reOrderThisOrder: {
+    id: `${scope}.reOrderThisOrder`,
+    defaultMessage: 'Reorder this order',
   },
 });

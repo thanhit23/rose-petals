@@ -1,5 +1,6 @@
-import * as React from 'react';
+import { useState } from 'react';
 
+import { Box, CircularProgress } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import _ from 'lodash';
@@ -10,20 +11,26 @@ import SideBarUser from 'src/components/SideBarUser';
 import { useGetListOrder } from 'src/queries/order';
 
 function Order() {
-  const [currentPage, setCurrentPage] = React.useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleChangePage = (page: number) => {
     setCurrentPage(page);
   };
 
-  const { data } = useGetListOrder(currentPage);
+  const { data, isLoading } = useGetListOrder(currentPage);
 
   return (
     <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
       <Grid container spacing={{ xs: 3 }}>
         <SideBarUser />
         <Grid item xs={12} lg={9}>
-          <ListOrder listOrder={data?.data} />
+          {isLoading ? (
+            <Box style={{ display: 'flex', height: '100%' }}>
+              <CircularProgress style={{ margin: 'auto' }} />
+            </Box>
+          ) : (
+            <ListOrder listOrder={data?.data} />
+          )}
           {_.size(data?.data) > 0 && (
             <Pagination count={data?.meta?.totalPages} page={data?.meta?.page} onChange={handleChangePage} />
           )}

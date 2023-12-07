@@ -6,9 +6,8 @@ import Chip from '@mui/material/Chip';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { format } from 'date-fns';
 
-import { formatPrice } from 'src/helpers';
+import { formatDate, formatPrice } from 'src/helpers';
 import { PATH_AUTH } from 'src/routes/paths';
 
 import { DELIVERED, DELIVERING, ORDERED } from './orderStatus';
@@ -20,8 +19,6 @@ type Props = {
 };
 
 function ItemOrder({ itemOrder }: Props) {
-  const formattedDate = format(new Date(itemOrder.createdAt), 'MMM d, yyyy');
-
   const renderStatus = (status: number) => {
     if (status === 1) {
       return ORDERED;
@@ -41,7 +38,7 @@ function ItemOrder({ itemOrder }: Props) {
         <Box sx={styles.boxChipItem}>
           <Chip label={renderStatus(itemOrder.status)} sx={styles.chipStatus} />
         </Box>
-        <Typography sx={styles.orderItem}>{formattedDate}</Typography>
+        <Typography sx={styles.orderItem}>{formatDate(itemOrder.createdAt)}</Typography>
         <Typography sx={styles.orderItem}>{formatPrice.format(itemOrder.amount)}</Typography>
         <Typography>
           <IconButton aria-label="east">

@@ -20,6 +20,9 @@ export interface OrderDetailType {
   createdAt: string;
   updatedAt: string;
   address: string;
-  customNote: string;
+  customerNote: string;
   status: number;
+  methodPayment: string;
+  phoneNumber: string;
+  fullName: string;
 }

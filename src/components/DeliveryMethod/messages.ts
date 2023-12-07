@@ -19,21 +19,41 @@ export default defineMessages({
     id: `${scope}.nameOnCard`,
     defaultMessage: 'Name On Card',
   },
-  btnSubmit: {
-    id: `${scope}.button.submit`,
-    defaultMessage: 'Submit',
+  btnContinue: {
+    id: `${scope}.button.continue`,
+    defaultMessage: 'Continue',
+  },
+  eWalletVNPay: {
+    id: `${scope}.eWalletVNPay`,
+    defaultMessage: 'Continue with e-Wallet VNPay',
   },
   paypalEmail: {
     id: `${scope}.paypalEmail`,
     defaultMessage: 'Paypal Email',
   },
-  payWithCreditCard: {
-    id: `${scope}.payWithCreditCard`,
-    defaultMessage: 'Pay with credit card',
+  payWithVNPay: {
+    id: `${scope}.payWithVNPay`,
+    defaultMessage: 'Pay with VNPay',
   },
   payWithPaypal: {
     id: `${scope}.payWithPaypal`,
     defaultMessage: 'Pay with Paypal',
+  },
+  paymentSuccess: {
+    id: `${scope}.paymentSuccess`,
+    defaultMessage: 'Payment success',
+  },
+  paymentFailed: {
+    id: `${scope}.paymentFailed`,
+    defaultMessage: 'Payment failed',
+  },
+  orderSuccess: {
+    id: `${scope}.orderSuccess`,
+    defaultMessage: 'Order success',
+  },
+  orderFailed: {
+    id: `${scope}.orderFailed`,
+    defaultMessage: 'Order failed',
   },
   cashOnDelivery: {
     id: `${scope}.cashOnDelivery`,
@@ -46,5 +66,9 @@ export default defineMessages({
   btnReview: {
     id: `${scope}.btnReview`,
     defaultMessage: 'Review',
+  },
+  paymentOnDelivery: {
+    id: `${scope}.paymentOnDelivery`,
+    defaultMessage: 'Payment on delivery',
   },
 });
