@@ -13,20 +13,26 @@ import QuickView from 'src/components/QuickView';
 import { formatPrice } from 'src/helpers';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
+import Loading from './Loading';
 import styles from './styles';
 
 type Props = {
   productRelate: Product;
+  isLoading?: boolean;
 };
 
-const ProductItem: React.FC<Props> = ({ productRelate }) => {
+const ProductItem: React.FC<Props> = ({ productRelate, isLoading }) => {
   const [modalRelatedProduct, setModalRelatedProduct] = useState(false);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleOpenModal = () => setModalRelatedProduct(true);
   const handleCloseModal = () => setModalRelatedProduct(false);
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} key={productRelate._id}>
+    <Grid item xs={12} sm={6} md={4} lg={3}>
       <Paper sx={styles.paperProduct}>
         <Box sx={styles.boxImage}>
           <Box sx={styles.boxIcon} className="box--icon">
@@ -39,7 +45,7 @@ const ProductItem: React.FC<Props> = ({ productRelate }) => {
             <Box component="img" src={productRelate.thumbnail} alt={productRelate.name} sx={styles.imageProduct} />
           </Link>
         </Box>
-        <Box padding="1rem">
+        <Box padding="1rem" width="100%">
           <Box display="flex">
             <Box sx={styles.informationProduct}>
               <Link to={PATH_PUBLIC.product.slug(productRelate?.slug, productRelate?._id)}>

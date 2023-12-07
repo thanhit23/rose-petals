@@ -4,8 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { useSearchParams } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
 
 import { Product } from 'src/common/types';
 import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
@@ -17,9 +16,13 @@ import { useGetProductDetail } from 'src/queries/product';
 import messages from './messages';
 import { createComment, deleteComment, getComments, getRelatedProducts, updateComment } from './services';
 
-export const DescriptionContext = createContext('');
+export const DescriptionContext = createContext({
+  description: '',
+  isLoading: false,
+});
 
 const queryClient = new QueryClient();
+
 function ProductDetail() {
   const [listProductReview, setListProductReview] = useState<ProductReviewType[]>([]);
   const [totalPage, setTotalPage] = useState<number>(1);
@@ -28,15 +31,16 @@ function ProductDetail() {
 
   const [searchParams] = useSearchParams();
   const productId = searchParams.get('id') as string;
-  const { data } = useGetProductDetail(productId);
+  const { data, isLoading } = useGetProductDetail(productId);
 
-  const { data: listRelatedProducts = [] } = useQuery({
+  const { data: listRelatedProducts = [], isLoading: isRelatedProductsLoading = false } = useQuery({
     queryKey: ['RelatedProducts', data?.category?._id],
     queryFn: () => getRelatedProducts(data?.category?._id as string),
     enabled: !!data?.category?._id,
     select: ({ data: { data } }) => (data as Product[]).filter(product => product._id !== productId),
   });
-  const { isFetching } = useQuery({
+
+  const productReview = useQuery({
     queryKey: ['getProductReview', page],
     queryFn: () => getComments(productId, page),
     onSuccess: ({ data: { data, meta } }) => {
@@ -44,6 +48,7 @@ function ProductDetail() {
       setTotalPage(meta?.totalPages);
     },
   });
+
   const commentCreate = useMutation({
     mutationFn: (data: object) => createComment(data),
     onSuccess: async () => {
@@ -54,6 +59,7 @@ function ProductDetail() {
       toast.success(<FormattedMessage {...messages.createMessage} />);
     },
   });
+
   const commentUpdate = useMutation({
     mutationFn: (data: object) => updateComment(data, idComment),
     onSuccess: async () => {
@@ -86,8 +92,14 @@ function ProductDetail() {
 
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
-      <ProductBriefing product={data} />
-      <DescriptionContext.Provider value={data?.description || ''}>
+      <ProductBriefing product={data} isLoading={isLoading} />
+
+      <DescriptionContext.Provider
+        value={{
+          description: data?.description || '',
+          isLoading,
+        }}
+      >
         <DetailReviewTabbedPane
           listProductReview={listProductReview}
           onCreateComment={handleCreateComment}
@@ -95,13 +107,14 @@ function ProductDetail() {
           totalPage={totalPage}
           page={page}
           setPage={setPage}
-          isFetching={isFetching}
+          isFetching={productReview.isFetching}
           idComment={idComment}
           setIdComment={setIdComment}
           onDeleteComment={commentDelete.mutate}
         />
       </DescriptionContext.Provider>
-      <RelatedProducts listRelatedProduct={listRelatedProducts} />
+
+      <RelatedProducts listRelatedProduct={listRelatedProducts} isRelatedProductsLoading={isRelatedProductsLoading} />
     </Container>
   );
 }
