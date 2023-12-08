@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import 'react-slideshow-image/dist/styles.css';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,11 +22,12 @@ import styles from './styles';
 import { Props } from './types';
 
 const ReviewProductQuickView: React.FC<Props> = ({ product, openModal, handleCloseModal, onReviewProduct }) => {
+  const t = useIntl();
   const [rating, setRating] = useState<Nullable<number>>(0);
   const handleClose = () => handleCloseModal();
 
   const reviewSchema = Yup.object().shape({
-    content: Yup.string().required('Please write something...'),
+    content: Yup.string().required(t.formatMessage({ ...messages.pleaseWriteSomething })),
   });
 
   const {
