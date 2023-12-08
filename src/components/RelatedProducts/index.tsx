@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 
 import { Product } from 'src/common/types';
 
+import Loading from './Loading';
 import ProductItem from './ProductItem';
 import messages from './messages';
 import styles from './styles';
@@ -21,11 +22,15 @@ const RelatedProducts: React.FC<Props> = ({ listRelatedProduct, isRelatedProduct
       <FormattedMessage {...messages.title} />
     </Box>
     <Grid container spacing={{ xs: 3 }}>
-      <React.Fragment>
-        {listRelatedProduct.map(productRelate => (
-          <ProductItem key={productRelate._id} productRelate={productRelate} isLoading={isRelatedProductsLoading} />
-        ))}
-      </React.Fragment>
+      {isRelatedProductsLoading ? (
+        <Loading />
+      ) : (
+        <React.Fragment>
+          {listRelatedProduct.map(productRelate => (
+            <ProductItem key={productRelate._id} productRelate={productRelate} />
+          ))}
+        </React.Fragment>
+      )}
     </Grid>
   </Box>
 );

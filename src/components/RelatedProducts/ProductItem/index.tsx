@@ -13,20 +13,14 @@ import QuickView from 'src/components/QuickView';
 import { formatPrice } from 'src/helpers';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
-import Loading from './Loading';
 import styles from './styles';
 
 type Props = {
   productRelate: Product;
-  isLoading?: boolean;
 };
 
-const ProductItem: React.FC<Props> = ({ productRelate, isLoading }) => {
+const ProductItem: React.FC<Props> = ({ productRelate }) => {
   const [modalRelatedProduct, setModalRelatedProduct] = useState(false);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   const handleOpenModal = () => setModalRelatedProduct(true);
   const handleCloseModal = () => setModalRelatedProduct(false);
