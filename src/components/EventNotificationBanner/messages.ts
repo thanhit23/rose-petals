@@ -8,7 +8,7 @@ export default defineMessages({
     defaultMessage: 'Extra ',
   },
   saleOff: {
-    id: `${scope}.saleOff`,
+    id: `${scope}.sale Off`,
     defaultMessage: '30% Off',
   },
   online: {
@@ -21,7 +21,7 @@ export default defineMessages({
   },
   shipping: {
     id: `${scope}.shipping`,
-    defaultMessage: 'Free shipping on orders over $99',
+    defaultMessage: 'Free shipping on orders over 99.000 vnd',
   },
   btnShop: {
     id: `${scope}.btnShop`,
