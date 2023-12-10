@@ -72,8 +72,7 @@ export type ListCategory = {
 export type AddToCartProduct = {
   productId: string;
   quantity: number;
-  size: string;
-  color: string;
+  size: string[];
 };
 
 export type UpdateQuantityProduct = {
