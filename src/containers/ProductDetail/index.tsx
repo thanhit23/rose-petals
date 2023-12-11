@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { useSearchParams } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
-import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { Product } from 'src/common/types';
 import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
@@ -21,16 +21,18 @@ export const DescriptionContext = createContext({
   isLoading: false,
 });
 
-const queryClient = new QueryClient();
-
 function ProductDetail() {
+  const queryClient = useQueryClient();
+
   const [listProductReview, setListProductReview] = useState<ProductReviewType[]>([]);
   const [totalPage, setTotalPage] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const [idComment, setIdComment] = useState<string>('');
 
   const [searchParams] = useSearchParams();
+
   const productId = searchParams.get('id') as string;
+
   const { data, isLoading } = useGetProductDetail(productId);
 
   const { data: listRelatedProducts = [], isLoading: isRelatedProductsLoading = false } = useQuery({
@@ -51,34 +53,37 @@ function ProductDetail() {
 
   const commentCreate = useMutation({
     mutationFn: (data: object) => createComment(data),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['getProductReview', page],
-        exact: true,
-      });
-      toast.success(<FormattedMessage {...messages.createMessage} />);
+    onSuccess: ({ data: { status } }) => {
+      if (status) {
+        void queryClient.invalidateQueries({
+          queryKey: ['getProductReview', page],
+        });
+        toast.success(<FormattedMessage {...messages.createMessage} />);
+      }
     },
   });
 
   const commentUpdate = useMutation({
     mutationFn: (data: object) => updateComment(data, idComment),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['getProductReview', page],
-        exact: true,
-      });
-      toast.success(<FormattedMessage {...messages.updateMessage} />);
+    onSuccess: ({ data: { status } }) => {
+      if (status) {
+        void queryClient.invalidateQueries({
+          queryKey: ['getProductReview', page],
+        });
+        toast.success(<FormattedMessage {...messages.updateMessage} />);
+      }
     },
   });
 
   const commentDelete = useMutation({
     mutationFn: (variables: string) => deleteComment(variables),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['getProductReview', page],
-        exact: true,
-      });
-      toast.success(<FormattedMessage {...messages.deleteMessage} />);
+    onSuccess: ({ data: { status } }) => {
+      if (status) {
+        void queryClient.invalidateQueries({
+          queryKey: ['getProductReview', page],
+        });
+        toast.success(<FormattedMessage {...messages.deleteMessage} />);
+      }
     },
   });
 

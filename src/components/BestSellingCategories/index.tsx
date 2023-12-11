@@ -31,8 +31,8 @@ function BestSellingCategories() {
       srcImg:
         'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fsmartwatch-2.png&w=3840&q=75',
       category: {
-        id: '6500793555ee920008ef5f2f',
-        slug: 'djien-thoai-and-phu-kien',
+        id: '6500796455ee920008ef5f37',
+        slug: 'thiet-bi-djien-tu',
       },
     },
     {

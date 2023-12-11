@@ -21,14 +21,14 @@ const SortBar: React.FC<Props> = ({ changeView, viewList, numberProduct }) => {
 
   const [searchParams] = useSearchParams();
 
-  const categoryName = searchParams.get('category');
+  const categoryName = searchParams.get('categoryName');
 
   return (
     <Paper sx={styles.paperSortBar}>
       <Box>
         <Box component="h5" sx={styles.boxKeywordSearch}>
           <FormattedMessage {...messages[categoryName ? 'categories' : 'searchingFor']} />
-          {categoryName ? ` "${categoryName}"` : ` “${slug}”`}
+          {categoryName ? ` "${decodeURIComponent(categoryName)}"` : ` “${slug}”`}
         </Box>
         <Box component="p" sx={styles.boxQuantityResult}>
           {numberProduct} <FormattedMessage {...messages.resultsFound} />
