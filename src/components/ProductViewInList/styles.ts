@@ -12,14 +12,6 @@ const paper = {
   marginBottom: '1.25rem',
 };
 
-const btnFavorite = {
-  position: 'absolute',
-  top: '15px',
-  right: '15px',
-  fontSize: '1.125rem',
-  padding: '5px',
-};
-
 const wrapImg = {
   '& > img': {
     display: 'block',
@@ -73,8 +65,8 @@ const productDescription = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   display: '-webkit-box',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: 2,
+  webkitBoxOrient: 'vertical',
+  webkitLineClamp: 2,
   color: 'rgb(125, 135, 156)',
 };
 
@@ -98,7 +90,6 @@ export default {
   productPrice,
   productTitle,
   wrapContent,
-  btnFavorite,
   productDescription,
   wrapImg,
   paper,

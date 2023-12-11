@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -29,6 +29,7 @@ import styles from './styles';
 import { loginValidationSchema } from './validationSchema';
 
 function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
+  const t = useIntl();
   const navigator = useNavigate();
 
   const [isPassword, setIsPassword] = useState<boolean>(true);
@@ -51,7 +52,7 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
     formState: { errors },
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
-    resolver: yupResolver(loginValidationSchema),
+    resolver: yupResolver(loginValidationSchema(t)),
   });
 
   const { email, password, root } = errors;

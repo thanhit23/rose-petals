@@ -10,6 +10,7 @@ import Rating from '@mui/material/Rating';
 
 import { Product } from 'src/common/types';
 import formatterPrice from 'src/helpers/formatPrice';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import QuickView from '../QuickView';
 import styles from './styles';
@@ -34,14 +35,14 @@ const ProductItem: React.FC<Props> = ({ product }: Props) => {
             </IconButton>
             <QuickView product={product} openModal={modalProductDetail} handleCloseModal={handleCloseModal} />
           </Box>
-          <Link to="/">
+          <Link to={PATH_PUBLIC.product.slug(product?.slug, product?._id)}>
             <Box component="img" width="100%" src={product.thumbnail} />
           </Link>
         </Box>
         <Box p="1rem">
           <Box display="flex">
             <Box sx={styles.wrapContentProduct}>
-              <Link to="/">
+              <Link to={PATH_PUBLIC.product.slug(product?.slug, product?._id)}>
                 <Box className="title" component="h3" sx={styles.boxTitle}>
                   {product.name}
                 </Box>

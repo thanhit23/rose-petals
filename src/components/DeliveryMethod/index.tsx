@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+import { PayPalButton } from 'react-paypal-button-v2';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
+import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -9,73 +12,140 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Gird from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Radio from '@mui/material/Radio';
+import _ from 'lodash';
 
-import TextField from '../TextField';
+import vnpay from 'src/resources/images/vnpay.png';
+import { PATH_AUTH } from 'src/routes/paths';
+
+import ModalConfirm from '../ModalConfirm';
+import addPaypalScript from './addPaypalScript';
 import messages from './messages';
 import styles from './styles';
+import { Props } from './types';
 
-function DeliveryMethod() {
+const DeliveryMethod: React.FC<Props> = ({ orderDetail, onPayWithVNPay, onUpdateOrder }) => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const orderId = searchParams.get('id') as string;
+
+  const [isCashOnDelivery, setIsCashOnDelivery] = useState(false);
   const [selectedValue, setSelectedValue] = useState(1);
+  const [sdkReady, setSdkReady] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(+event.target.value);
   };
 
-  const renderFormCreditCard = () => {
+  const renderAddress = (address: string, customerNote: string) =>
+    customerNote ? `${address}, ${customerNote}` : address;
+
+  const handlePayWithVNPay = () => {
+    onPayWithVNPay.mutate({
+      address: renderAddress(orderDetail.address, orderDetail.customerNote),
+      phoneNumber: orderDetail.phoneNumber,
+      orderId: orderId,
+      amount: orderDetail.totalPrice,
+    });
+  };
+
+  const renderFormVNPay = () => {
     if (selectedValue === 1) {
       return (
         <form>
           <Box marginBottom="24px">
-            <Gird container spacing={{ xs: 3 }}>
-              <Gird item xs={12} sm={6}>
-                <TextField label={<FormattedMessage {...messages.cardNumber} />} sx={styles.textField} />
-              </Gird>
-              <Gird item xs={12} sm={6}>
-                <TextField label={<FormattedMessage {...messages.expDate} />} sx={styles.textField} />
-              </Gird>
-              <Gird item xs={12} sm={6}>
-                <TextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
-              </Gird>
-              <Gird item xs={12} sm={6}>
-                <TextField label={<FormattedMessage {...messages.nameOnCard} />} sx={styles.textField} />
-              </Gird>
+            <Gird container sx={styles.boxPayWithVNPay}>
+              <img width="80" height="80" src={vnpay} alt="VNPay" />
+              <Box component={'h3'} sx={styles.eWalletVNPay}>
+                <FormattedMessage {...messages.eWalletVNPay} />
+              </Box>
             </Gird>
           </Box>
-          <Button variant="outlined" sx={styles.btnSubmit}>
-            <FormattedMessage {...messages.btnSubmit} />
-          </Button>
+          <LoadingButton
+            loading={onPayWithVNPay.isLoading}
+            variant="outlined"
+            sx={styles.btnSubmit}
+            onClick={handlePayWithVNPay}
+          >
+            <FormattedMessage {...messages.btnContinue} />
+          </LoadingButton>
           <Divider sx={styles.divider} />
         </form>
       );
     }
   };
 
+  const onPaymentPaypalSuccess = () => {
+    toast.success(<FormattedMessage {...messages.paymentSuccess} />);
+    onUpdateOrder.mutate({
+      id: orderId,
+      address: orderDetail.address,
+      amount: orderDetail.totalPrice,
+      quantity: _.size(orderDetail.products),
+      status: orderDetail.status,
+      methodPayment: 3,
+    });
+    navigate(PATH_AUTH.order.id(orderId));
+  };
+
+  const onPaymentPaypalError = () => {
+    toast.error(<FormattedMessage {...messages.paymentFailed} />);
+  };
+
+  const vndToUsdPrice = (price: number) => (price / 23000).toFixed(2);
+
   const renderFormPaypal = () => {
     if (selectedValue === 2) {
       return (
-        <>
-          <form>
-            <Box sx={styles.boxPayWithPaypal}>
-              <Box sx={styles.boxTextFieldPaypalEmail}>
-                <TextField label={<FormattedMessage {...messages.paypalEmail} />} sx={styles.textField} />
-              </Box>
-              <Button variant="outlined" sx={{ ...styles.btnSubmit, marginBottom: 0 }}>
-                <FormattedMessage {...messages.btnSubmit} />
-              </Button>
-            </Box>
-          </form>
-          <Divider sx={styles.divider} />
-        </>
+        <React.Fragment>
+          {sdkReady && (
+            <PayPalButton
+              amount={vndToUsdPrice(orderDetail.totalPrice)}
+              onSuccess={onPaymentPaypalSuccess}
+              onError={onPaymentPaypalError}
+            />
+          )}
+        </React.Fragment>
       );
     }
   };
 
+  useEffect(() => {
+    if (!window.paypal) {
+      addPaypalScript(setSdkReady);
+    } else {
+      setSdkReady(true);
+    }
+  }, []);
+
+  const handleCashOnDelivery = () => {
+    onUpdateOrder.mutate(
+      {
+        id: orderId,
+        address: orderDetail.address,
+        amount: orderDetail.totalPrice,
+        quantity: _.size(orderDetail.products),
+        status: orderDetail.status,
+        methodPayment: 1,
+      },
+      {
+        onSuccess: ({ data: { status } }) => {
+          if (status) {
+            toast.success(<FormattedMessage {...messages.orderSuccess} />);
+            navigate(PATH_AUTH.order.id(orderId));
+          } else {
+            toast.error(<FormattedMessage {...messages.orderFailed} />);
+          }
+        },
+      },
+    );
+  };
+
   return (
-    <>
+    <React.Fragment>
       <Paper sx={styles.paperPayCreditCard}>
         <FormControlLabel
           sx={styles.formControlLabel}
-          label={<FormattedMessage {...messages.payWithCreditCard} />}
+          label={<FormattedMessage {...messages.payWithVNPay} />}
           control={
             <Radio
               value={1}
@@ -88,7 +158,7 @@ function DeliveryMethod() {
           }
         />
         <Divider sx={styles.divider} />
-        {renderFormCreditCard()}
+        {renderFormVNPay()}
         <FormControlLabel
           sx={styles.formControlLabel}
           label={<FormattedMessage {...messages.payWithPaypal} />}
@@ -129,15 +199,25 @@ function DeliveryMethod() {
           </Link>
         </Gird>
         <Gird item xs={12} sm={6}>
-          <Link to="/order">
-            <Button variant="contained" sx={styles.btnReview}>
-              <FormattedMessage {...messages.btnReview} />
-            </Button>
-          </Link>
+          <LoadingButton
+            loading={onUpdateOrder.isLoading}
+            disabled={!(selectedValue === 3)}
+            variant="contained"
+            sx={styles.btnReview}
+            onClick={() => setIsCashOnDelivery(true)}
+          >
+            <FormattedMessage {...messages.btnReview} />
+          </LoadingButton>
         </Gird>
       </Gird>
-    </>
+      <ModalConfirm
+        content={<FormattedMessage {...messages.paymentOnDelivery} />}
+        openModal={isCashOnDelivery}
+        handleCloseModal={() => setIsCashOnDelivery(false)}
+        onConfirm={() => handleCashOnDelivery()}
+      />
+    </React.Fragment>
   );
-}
+};
 
 export default DeliveryMethod;

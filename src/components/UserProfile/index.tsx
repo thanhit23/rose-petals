@@ -11,8 +11,7 @@ import Typography from '@mui/material/Typography';
 import _ from 'lodash';
 import { compose } from 'redux';
 
-import { State } from 'src/common/types';
-import { useGetListOrder } from 'src/queries/order';
+import { OrderType, State } from 'src/common/types';
 
 import { AuthType } from '../../containers/Authenticated/types';
 import HeaderHoldUser from '../HeaderHoldUser';
@@ -22,12 +21,10 @@ import styles from './styles';
 
 type Props = {
   auth: AuthType;
+  listOrder: OrderType[];
 };
 
-const UserProfile: React.FC<Props> = ({ auth }) => {
-  const { data } = useGetListOrder();
-  const listOrder = data?.data;
-
+const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
   const checkStatus = (status: number) => {
     if (status === 1) {
       return ORDERED;
@@ -49,13 +46,20 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
   };
 
   const renderAwaitingShipment = () => {
-    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkStatus(order.status) === ORDERED);
+    const listOrderAwaitingShipment = listOrder?.filter(
+      (order: OrderType) => checkStatus(order.status) === ORDERED && !!order.methodPayment,
+    );
     return _.size(listOrderAwaitingShipment);
   };
 
   const renderAwaitingDelivery = () => {
-    const listOrderAwaitingShipment = listOrder?.filter((order: any) => checkStatus(order.status) === DELIVERING);
-    return _.size(listOrderAwaitingShipment);
+    const listOrderAwaitingDelivery = listOrder?.filter((order: OrderType) => checkStatus(order.status) === DELIVERING);
+    return _.size(listOrderAwaitingDelivery);
+  };
+
+  const renderAwaitingPayments = () => {
+    const listOrderAwaitingPayments = listOrder?.filter((order: OrderType) => !order.methodPayment);
+    return _.size(listOrderAwaitingPayments);
   };
 
   return (
@@ -90,20 +94,10 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    {data?.meta?.totalResults || 0}
+                    {_.size(listOrder)}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.allOrders} />
-                  </Box>
-                </Paper>
-              </Grid>
-              <Grid item xs={6} sm={6} lg={3}>
-                <Paper sx={styles.paperStats}>
-                  <Box component="h3" sx={styles.paperStatsNumber}>
-                    02
-                  </Box>
-                  <Box component="small" sx={styles.paperStatsTitle}>
-                    <FormattedMessage {...messages.awaitingPayments} />
                   </Box>
                 </Paper>
               </Grid>
@@ -124,6 +118,16 @@ const UserProfile: React.FC<Props> = ({ auth }) => {
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.awaitingDelivery} />
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item xs={6} sm={6} lg={3}>
+                <Paper sx={styles.paperStats}>
+                  <Box component="h3" sx={styles.paperStatsNumber}>
+                    {renderAwaitingPayments()}
+                  </Box>
+                  <Box component="small" sx={styles.paperStatsTitle}>
+                    <FormattedMessage {...messages.awaitingPayments} />
                   </Box>
                 </Paper>
               </Grid>

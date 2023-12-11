@@ -51,6 +51,7 @@ export type Product = {
   createdAt?: string;
   deletedAt?: string;
   updatedAt?: string;
+  quantity?: number;
 };
 
 export type Brand = {
@@ -71,8 +72,7 @@ export type ListCategory = {
 export type AddToCartProduct = {
   productId: string;
   quantity: number;
-  size: string;
-  color: string;
+  size: string[];
 };
 
 export type UpdateQuantityProduct = {
@@ -99,4 +99,31 @@ export type PostOrderDetailType = {
   order: string;
   discountPercent?: number;
   shipingFee?: number;
+};
+
+export type OrderType = {
+  _id: string;
+  user: {
+    name: string;
+    _id: string;
+  };
+  phoneNumber: number;
+  fullName: string;
+  customerNote: string;
+  methodPayment: string;
+  address: string;
+  amount: number;
+  quantity: number;
+  status: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateOrderType = {
+  id: string;
+  address: string;
+  amount: number;
+  quantity: number;
+  status: number;
+  methodPayment: number;
 };

@@ -20,11 +20,11 @@ export default defineMessages({
     defaultMessage: 'Reset',
   },
   labelPassword: {
-    id: `${scope}.password`,
+    id: `${scope}.labelPassword`,
     defaultMessage: 'New Password',
   },
   labelConfirmPassword: {
-    id: `${scope}.confirmPassword`,
+    id: `${scope}.labelConfirmPassword`,
     defaultMessage: 'Confirm Password',
   },
   resetSuccess: {
@@ -32,7 +32,31 @@ export default defineMessages({
     defaultMessage: 'Reset password successfully',
   },
   resetFailed: {
-    id: `${scope}.resetSuccess`,
+    id: `${scope}.resetFailed`,
     defaultMessage: 'Reset password failed!',
+  },
+  newPasswordRequired: {
+    id: `${scope}.newPasswordRequired`,
+    defaultMessage: 'New Password is required',
+  },
+  passwordMinLength: {
+    id: `${scope}.passwordMinLength`,
+    defaultMessage: 'Password must be at least 8 characters',
+  },
+  passwordMaxLength: {
+    id: `${scope}.passwordMaxLength`,
+    defaultMessage: 'Please enter up to 16 characters',
+  },
+  passwordMatches: {
+    id: `${scope}.passwordMatches`,
+    defaultMessage: 'Password must contain at least one letter and one number',
+  },
+  confirmPasswordRequired: {
+    id: `${scope}.confirmPasswordRequired`,
+    defaultMessage: 'Confirm Password is required',
+  },
+  confirmPasswordMustMatchPw: {
+    id: `${scope}.confirmPasswordMustMatchPw`,
+    defaultMessage: 'Confirm Password must match password',
   },
 });

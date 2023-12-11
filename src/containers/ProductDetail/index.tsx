@@ -4,9 +4,9 @@ import { FormattedMessage } from 'react-intl';
 import { useSearchParams } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
-import { QueryClient } from '@tanstack/react-query';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+import { Product } from 'src/common/types';
 import BreadCrumb from 'src/components/BreadCrumb';
 import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
 import ProductBriefing from 'src/components/ProductBriefing';
@@ -18,69 +18,85 @@ import { PATH_PUBLIC } from 'src/routes/paths';
 import messages from './messages';
 import { createComment, deleteComment, getComments, getRelatedProducts, updateComment } from './services';
 
-export const DescriptionContext = createContext('');
-
-const queryClient = new QueryClient();
+export const DescriptionContext = createContext({
+  description: '',
+  isLoading: false,
+});
 
 function ProductDetail() {
+  const queryClient = useQueryClient();
+
   const [listProductReview, setListProductReview] = useState<ProductReviewType[]>([]);
   const [totalPage, setTotalPage] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const [idComment, setIdComment] = useState<string>('');
 
   const [searchParams] = useSearchParams();
+
   const productId = searchParams.get('id') as string;
-  const { data } = useGetProductDetail(productId);
+  const { data, isLoading } = useGetProductDetail(productId);
+
   const dataBreadCrumbs = [
     {
       label: data?.category.name,
-      path: PATH_PUBLIC.product.search(`${data?.slug}?categoryId=${data?.category._id} `),
+      path: PATH_PUBLIC.product.search(
+        `${data?.slug}?categoryId=${data?.category._id}&categoryName=${encodeURIComponent(
+          data?.category.name as string,
+        )}`,
+      ),
     },
-    { label: data?.name, path: '' },
+    { label: data?.name, path: PATH_PUBLIC.product.slug(data?.slug as string, data?._id) },
   ];
-  const { data: listRelatedProducts = [] } = useQuery({
+
+  const relatedProducts = useQuery({
     queryKey: ['RelatedProducts', data?.category?._id],
     queryFn: () => getRelatedProducts(data?.category?._id as string),
     enabled: !!data?.category?._id,
-    select: ({ data: { data } }) => data,
+    select: ({ data: { data } }) => (data as Product[]).filter(product => product._id !== productId),
   });
-  const { isFetching } = useQuery({
+
+  const productReview = useQuery({
     queryKey: ['getProductReview', page],
     queryFn: () => getComments(productId, page),
     onSuccess: ({ data: { data, meta } }) => {
-      setListProductReview(data);
       setTotalPage(meta?.totalPages);
+      setListProductReview(data);
     },
   });
+
   const commentCreate = useMutation({
     mutationFn: (data: object) => createComment(data),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['getProductReview', page],
-        exact: true,
-      });
-      toast.success(<FormattedMessage {...messages.createMessage} />);
+    onSuccess: ({ data: { status } }) => {
+      if (status) {
+        void queryClient.invalidateQueries({
+          queryKey: ['getProductReview', page],
+        });
+        toast.success(<FormattedMessage {...messages.createMessage} />);
+      }
     },
   });
+
   const commentUpdate = useMutation({
     mutationFn: (data: object) => updateComment(data, idComment),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['getProductReview', page],
-        exact: true,
-      });
-      toast.success(<FormattedMessage {...messages.updateMessage} />);
+    onSuccess: ({ data: { status } }) => {
+      if (status) {
+        void queryClient.invalidateQueries({
+          queryKey: ['getProductReview', page],
+        });
+        toast.success(<FormattedMessage {...messages.updateMessage} />);
+      }
     },
   });
 
   const commentDelete = useMutation({
     mutationFn: (variables: string) => deleteComment(variables),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['getProductReview', page],
-        exact: true,
-      });
-      toast.success(<FormattedMessage {...messages.deleteMessage} />);
+    onSuccess: ({ data: { status } }) => {
+      if (status) {
+        void queryClient.invalidateQueries({
+          queryKey: ['getProductReview', page],
+        });
+        toast.success(<FormattedMessage {...messages.deleteMessage} />);
+      }
     },
   });
 
@@ -95,8 +111,14 @@ function ProductDetail() {
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
       <BreadCrumb data={dataBreadCrumbs} />
-      <ProductBriefing product={data} />
-      <DescriptionContext.Provider value={data?.description || ''}>
+      <ProductBriefing product={data} isLoading={isLoading} />
+
+      <DescriptionContext.Provider
+        value={{
+          description: data?.description || '',
+          isLoading,
+        }}
+      >
         <DetailReviewTabbedPane
           listProductReview={listProductReview}
           onCreateComment={handleCreateComment}
@@ -104,13 +126,17 @@ function ProductDetail() {
           totalPage={totalPage}
           page={page}
           setPage={setPage}
-          isFetching={isFetching}
+          isFetching={productReview.isFetching}
           idComment={idComment}
           setIdComment={setIdComment}
           onDeleteComment={commentDelete.mutate}
         />
       </DescriptionContext.Provider>
-      <RelatedProducts listRelatedProduct={listRelatedProducts} />
+
+      <RelatedProducts
+        listRelatedProduct={relatedProducts.data || []}
+        isRelatedProductsLoading={relatedProducts.isLoading}
+      />
     </Container>
   );
 }

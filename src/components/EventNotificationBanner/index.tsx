@@ -14,6 +14,7 @@ function EventNotificationBanner() {
         <Box component="span" sx={styles.boxSaleOff}>
           <FormattedMessage {...messages.saleOff} />
         </Box>
+        &nbsp;
         <FormattedMessage {...messages.online} />
       </Box>
       <Box component="h1" sx={styles.boxTitle}>

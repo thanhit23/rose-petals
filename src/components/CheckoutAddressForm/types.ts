@@ -20,6 +20,18 @@ export type FilterCheckout = {
   ward: Nullable<string>;
 };
 
+export interface City {
+  name: string;
+}
+
+export interface District {
+  name: string;
+}
+
+export interface Ward {
+  name: string;
+}
+
 export interface Props {
   auth: AuthType;
   filterCheckout: FilterCheckout;

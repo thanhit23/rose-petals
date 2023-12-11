@@ -6,22 +6,15 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { UseMutationResult } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
 import _ from 'lodash';
 
-import { OrderDetailProduct } from 'src/containers/Order/types';
 import { formatPrice } from 'src/helpers';
 import { PATH_PUBLIC } from 'src/routes/paths';
 
 import ReviewProductQuickView from '../ReviewProductQuickView';
 import messages from '../messages';
 import styles from './styles';
-
-type Props = {
-  product: OrderDetailProduct;
-  onReviewProduct: UseMutationResult<AxiosResponse<any, any>, unknown, object, unknown>;
-};
+import { Props } from './types';
 
 const ProductItem: React.FC<Props> = ({ product, onReviewProduct }) => {
   const [openModalReview, setOpenModalReview] = useState(false);

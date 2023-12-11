@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,6 +23,7 @@ import { FormResetPassword } from './types';
 import { resetPasswordSchema } from './validationSchema';
 
 function ResetPassword() {
+  const t = useIntl();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isPassword, setIsPassword] = useState(true);
@@ -34,7 +35,7 @@ function ResetPassword() {
     handleSubmit,
   } = useForm({
     mode: 'onChange',
-    resolver: yupResolver(resetPasswordSchema),
+    resolver: yupResolver(resetPasswordSchema(t)),
     defaultValues: {
       password: '',
       confirmPassword: '',

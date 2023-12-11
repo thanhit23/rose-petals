@@ -1,9 +1,16 @@
+import { IntlShape } from 'react-intl';
+
 import * as Yup from 'yup';
 
-export const editProfileValidationSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  email: Yup.string().required('Email is required').email(),
-  phoneNumber: Yup.string().required('Phone number is required'),
-  location: Yup.string().required('Location is required'),
-  gender: Yup.number().required('Gender is required'),
-});
+import messages from './messages';
+
+export const editProfileValidationSchema = (t: IntlShape) =>
+  Yup.object().shape({
+    name: Yup.string().required(t.formatMessage({ ...messages.nameRequired })),
+    email: Yup.string()
+      .required(t.formatMessage({ ...messages.emailRequired }))
+      .email(t.formatMessage({ ...messages.emailMustBeValid })),
+    phoneNumber: Yup.string().required(t.formatMessage({ ...messages.phoneNumberRequired })),
+    location: Yup.string().required(t.formatMessage({ ...messages.locationRequired })),
+    gender: Yup.number().required(t.formatMessage({ ...messages.genderRequired })),
+  });

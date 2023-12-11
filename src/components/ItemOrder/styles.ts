@@ -1,7 +1,6 @@
 const paperItem = {
   display: 'flex',
   borderRadius: '10px',
-  cursor: 'pointer',
   marginTop: '1rem',
   marginBottom: '1rem',
   padding: '6px 18px',
@@ -52,8 +51,30 @@ const orderItem = {
   flex: '1 1 0',
 };
 
+const boxActionIcon = {
+  position: 'absolute',
+  right: '60px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+};
+
+const loadingIcon = {
+  opacity: '.5',
+  animation: 'spinner .6s linear infinite',
+  '@keyframes spinner': {
+    from: {
+      transform: 'rotate(0)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
+};
+
 export default {
   boxChipItem,
+  boxActionIcon,
+  loadingIcon,
   chipStatus,
   orderItem,
   paperItem,

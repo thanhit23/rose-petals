@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import 'react-slideshow-image/dist/styles.css';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,30 +12,22 @@ import { Box, FormControl, OutlinedInput, Rating } from '@mui/material';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
-import { UseMutationResult } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
 import * as Yup from 'yup';
 
 import { Nullable } from 'src/common/types';
 import ErrorMessage from 'src/components/ErrorMessage';
-import { OrderDetailProduct } from 'src/containers/Order/types';
 
 import messages from '../messages';
 import styles from './styles';
-
-type Props = {
-  product: OrderDetailProduct;
-  openModal: boolean;
-  handleCloseModal: () => void;
-  onReviewProduct: UseMutationResult<AxiosResponse<any, any>, unknown, object, unknown>;
-};
+import { Props } from './types';
 
 const ReviewProductQuickView: React.FC<Props> = ({ product, openModal, handleCloseModal, onReviewProduct }) => {
+  const t = useIntl();
   const [rating, setRating] = useState<Nullable<number>>(0);
   const handleClose = () => handleCloseModal();
 
   const reviewSchema = Yup.object().shape({
-    content: Yup.string().required('Please write something'),
+    content: Yup.string().required(t.formatMessage({ ...messages.pleaseWriteSomething })),
   });
 
   const {
@@ -73,18 +65,14 @@ const ReviewProductQuickView: React.FC<Props> = ({ product, openModal, handleClo
     onReviewProduct.mutate(
       { product: product.product._id, rating, ...data },
       {
-        onSuccess: ({ data: { status, message } }) => {
+        onSuccess: ({ data: { status } }) => {
           if (status) {
             toast.success(<FormattedMessage {...messages.createCommentMessage} />);
             handleClose();
             setRating(0);
             reset();
           } else {
-            toast.error(
-              <>
-                <FormattedMessage {...messages.reviewProductFailed} />: {message}
-              </>,
-            );
+            toast.error(<FormattedMessage {...messages.reviewProductFailed} />);
           }
         },
       },
@@ -140,7 +128,7 @@ const ReviewProductQuickView: React.FC<Props> = ({ product, openModal, handleClo
                     multiline
                     rows={6}
                     size="small"
-                    placeholder="Please write something..."
+                    placeholder={t.formatMessage({ ...messages.pleaseWriteSomething })}
                   />
                   <ErrorMessage name={content} />
                 </FormControl>

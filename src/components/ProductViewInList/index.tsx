@@ -1,22 +1,21 @@
 import { Link } from 'react-router-dom';
 
-import { FavoriteBorder } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 import Skeleton from '@mui/material/Skeleton';
 
 import { Product } from 'src/common/types';
 import formatterPrice from 'src/helpers/formatPrice';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import styles from './styles';
 
 type Props = {
   showListFilterProduct: {
-    prev: () => void;
     next: () => void;
+    prev: () => void;
     jump: (page: number) => void;
     currentData: () => Product[];
     currentPage: number;
@@ -34,7 +33,7 @@ function ProductViewInList({ showListFilterProduct, isFetching }: Props) {
           <Paper key={item._id} sx={styles.paper}>
             <Grid container spacing={{ xs: 1 }}>
               <Grid item xs={12} sm={3}>
-                <Link to="/">
+                <Link to={PATH_PUBLIC.product.slug(item?.slug, item?._id)}>
                   <Box sx={styles.wrapImg}>
                     <img src={item.thumbnail} alt="" width="100%" />
                   </Box>
@@ -42,7 +41,7 @@ function ProductViewInList({ showListFilterProduct, isFetching }: Props) {
               </Grid>
               <Grid item xs={12} sm={9}>
                 <Box sx={styles.wrapContent}>
-                  <Link to="/">
+                  <Link to={PATH_PUBLIC.product.slug(item?.slug, item?._id)}>
                     <Box sx={styles.productTitle} component="h5">
                       {item.name}
                     </Box>
@@ -66,11 +65,6 @@ function ProductViewInList({ showListFilterProduct, isFetching }: Props) {
             for (let i = 0; i < 3; i++) {
               skeletons.push(
                 <Paper sx={styles.paper}>
-                  <Box>
-                    <IconButton sx={styles.btnFavorite}>
-                      <FavoriteBorder fontSize="small" />
-                    </IconButton>
-                  </Box>
                   <Grid container spacing={{ xs: 1 }}>
                     <Grid item xs={12} sx={{ marginTop: '192px' }} sm={3}>
                       <Box sx={styles.productTitle} component="h5">
