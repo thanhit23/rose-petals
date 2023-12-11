@@ -5,7 +5,9 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
+
+import noOrder from 'src/resources/images/noOrder.jpg';
 
 import ItemOrder from '../ItemOrder';
 import { ItemOrderTypes } from '../ItemOrder/types';
@@ -30,7 +32,7 @@ function ListOrder({ listOrder }: Props) {
         </Box>
       </Box>
       <Paper elevation={0} sx={styles.paperHeaderList}>
-        {_.size(listOrder) > 0 && (
+        {!isEmpty(listOrder) && (
           <React.Fragment>
             <Box component="h5" sx={styles.headerItem}>
               <FormattedMessage {...messages.order} />
@@ -54,10 +56,10 @@ function ListOrder({ listOrder }: Props) {
           }}
         />
       </Paper>
-      {_.size(listOrder) > 0 ? (
-        listOrder?.map((itemOrder: ItemOrderTypes) => <ItemOrder itemOrder={itemOrder} key={itemOrder._id} />)
+      {isEmpty(listOrder) ? (
+        <Avatar src={noOrder} alt="No order" sx={styles.noOrder} />
       ) : (
-        <Avatar src="/noorder.jpg" sx={styles.noOrder} />
+        listOrder?.map((itemOrder: ItemOrderTypes) => <ItemOrder key={itemOrder._id} itemOrder={itemOrder} />)
       )}
     </React.Fragment>
   );

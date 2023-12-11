@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
@@ -20,7 +21,7 @@ import { formatDate } from 'src/helpers';
 import { PATH_AUTH } from 'src/routes/paths';
 
 import HeaderHoldUser from '../HeaderHoldUser';
-import { DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
+import { CANCELLED, DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
 import ModalConfirm from '../ModalConfirm';
 import OrderSummaryDetails from '../OrderSummaryDetails';
 import ProductItem from './ProductItem';
@@ -31,10 +32,10 @@ import { Props } from './types';
 
 const OrderDetail: React.FC<Props> = ({
   orderDetail,
+  onUpdateOrder,
   onReviewProduct,
   onCreateOrder,
   onCreateOrderDetail,
-  onCancelOrder,
 }) => {
   const navigate = useNavigate();
   const orderId = useParams().id as string;
@@ -53,7 +54,9 @@ const OrderDetail: React.FC<Props> = ({
   };
 
   const checkStatus = (status: number) => {
-    if (status === 1) {
+    if (status === 0) {
+      return CANCELLED;
+    } else if (status === 1) {
       return ORDERED;
     } else if (status === 2) {
       return DELIVERING;
@@ -122,7 +125,9 @@ const OrderDetail: React.FC<Props> = ({
           icon={<ShoppingBagIcon fontSize="medium" />}
           title={<FormattedMessage {...messages.title} />}
           button={
-            checkStatus(orderDetail.status) === DELIVERED || !orderDetail.methodPayment ? (
+            checkStatus(orderDetail.status) === DELIVERED ||
+            checkStatus(orderDetail.status) === CANCELLED ||
+            !orderDetail.methodPayment ? (
               <FormattedMessage {...messages.orderAgain} />
             ) : undefined
           }
@@ -142,22 +147,33 @@ const OrderDetail: React.FC<Props> = ({
             <Box
               sx={{
                 ...styles.bridge,
-                backgroundColor: checkStatus(orderDetail.status) === DELIVERING ? '#D23F57' : '#E3E9EF',
+                backgroundColor:
+                  checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
+                    ? '#D23F57'
+                    : '#E3E9EF',
               }}
             />
             <Box position="relative">
               <Avatar
                 sx={{
                   ...styles.wrapperIcon,
-                  backgroundColor: checkStatus(orderDetail.status) === DELIVERING ? '#D23F57' : '#E3E9EF',
-                  color: checkStatus(orderDetail.status) === DELIVERING ? '#E3E9EF' : '#D23F57',
+                  backgroundColor:
+                    checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
+                      ? '#D23F57'
+                      : '#E3E9EF',
+                  color:
+                    checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
+                      ? '#E3E9EF'
+                      : '#D23F57',
                 }}
               >
                 <SvgIcon viewBox="0 0 36 36" fontSize="medium">
                   {shipping}
                 </SvgIcon>
               </Avatar>
-              {checkStatus(orderDetail.status) === DELIVERING && <TickSuccess />}
+              {(checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED) && (
+                <TickSuccess />
+              )}
             </Box>
             <Box
               sx={{
@@ -185,10 +201,16 @@ const OrderDetail: React.FC<Props> = ({
               {checkStatus(orderDetail.status) === DELIVERED ? (
                 <FormattedMessage {...messages.delivered} />
               ) : (
-                <>
-                  <FormattedMessage {...messages.estimatedDeliveryDate} />
-                  <b> {renderDeliveryDate(orderDetail.createdAt)}</b>
-                </>
+                <React.Fragment>
+                  {checkStatus(orderDetail.status) === CANCELLED ? (
+                    <FormattedMessage {...messages.cancelled} />
+                  ) : (
+                    <React.Fragment>
+                      <FormattedMessage {...messages.estimatedDeliveryDate} />
+                      <b> {renderDeliveryDate(orderDetail.createdAt)}</b>
+                    </React.Fragment>
+                  )}
+                </React.Fragment>
               )}
             </Typography>
           </Box>
@@ -221,7 +243,7 @@ const OrderDetail: React.FC<Props> = ({
           </Box>
         </Paper>
         <Grid container spacing={{ xs: 3 }}>
-          <OrderSummaryDetails orderDetail={orderDetail} onCancelOrder={onCancelOrder} />
+          <OrderSummaryDetails orderDetail={orderDetail} onUpdateOrder={onUpdateOrder} />
         </Grid>
       </Grid>
       <ModalConfirm
