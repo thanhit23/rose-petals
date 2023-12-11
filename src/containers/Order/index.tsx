@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { Box, CircularProgress } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { size } from 'lodash';
@@ -24,13 +23,7 @@ function Order() {
       <Grid container spacing={{ xs: 3 }}>
         <SideBarUser />
         <Grid item xs={12} lg={9}>
-          {isLoading ? (
-            <Box style={{ display: 'flex', height: '100%' }}>
-              <CircularProgress style={{ margin: 'auto' }} />
-            </Box>
-          ) : (
-            <ListOrder listOrder={data?.data} />
-          )}
+          <ListOrder listOrder={data?.data} isLoading={isLoading} />
           {size(data?.data) > 0 && (
             <Pagination count={data?.meta?.totalPages} page={data?.meta?.page} onChange={handleChangePage} />
           )}

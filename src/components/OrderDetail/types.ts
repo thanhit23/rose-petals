@@ -10,4 +10,5 @@ export type Props = {
   onCreateOrder: UseMutationResult<AxiosResponse<any, any>, unknown, PostOrderType, unknown>;
   onReviewProduct: UseMutationResult<AxiosResponse<any, any>, unknown, object, unknown>;
   onCreateOrderDetail: UseMutationResult<AxiosResponse<any, any>, unknown, PostOrderDetailType, unknown>;
+  isGetOrderDetailLoading: boolean;
 };

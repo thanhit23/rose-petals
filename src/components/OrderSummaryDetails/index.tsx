@@ -125,7 +125,7 @@ const OrderSummaryDetails: React.FC<Props> = ({ orderDetail, onUpdateOrder }) =>
             </Box>
           </Box>
           <Typography sx={styles.paymentMethod}>
-            {!!orderDetail.methodPayment && (
+            {!!+orderDetail.methodPayment && (
               <React.Fragment>
                 <FormattedMessage {...messages.paymentMethod} />
                 <Box
@@ -136,7 +136,7 @@ const OrderSummaryDetails: React.FC<Props> = ({ orderDetail, onUpdateOrder }) =>
                 />
               </React.Fragment>
             )}
-            {!orderDetail.methodPayment && (
+            {!+orderDetail.methodPayment && (
               <Box component={'p'} style={{ color: '#f44336' }}>
                 <FormattedMessage {...messages.unPaidMessage} />
               </Box>

@@ -11,14 +11,16 @@ import noOrder from 'src/resources/images/noOrder.jpg';
 
 import ItemOrder from '../ItemOrder';
 import { ItemOrderTypes } from '../ItemOrder/types';
+import Loading from './Loading';
 import messages from './messages';
 import styles from './styles';
 
 type Props = {
   listOrder: ItemOrderTypes[];
+  isLoading: boolean;
 };
 
-function ListOrder({ listOrder }: Props) {
+function ListOrder({ listOrder, isLoading }: Props) {
   return (
     <React.Fragment>
       <Box sx={styles.containerTitle}>
@@ -32,22 +34,18 @@ function ListOrder({ listOrder }: Props) {
         </Box>
       </Box>
       <Paper elevation={0} sx={styles.paperHeaderList}>
-        {!isEmpty(listOrder) && (
-          <React.Fragment>
-            <Box component="h5" sx={styles.headerItem}>
-              <FormattedMessage {...messages.order} />
-            </Box>
-            <Box component="h5" sx={styles.headerItem}>
-              <FormattedMessage {...messages.status} />
-            </Box>
-            <Box component="h5" sx={styles.headerItem}>
-              <FormattedMessage {...messages.datePurchased} />
-            </Box>
-            <Box component="h5" sx={styles.headerItem}>
-              <FormattedMessage {...messages.total} />
-            </Box>
-          </React.Fragment>
-        )}
+        <Box component="h5" sx={styles.headerItem}>
+          <FormattedMessage {...messages.order} />
+        </Box>
+        <Box component="h5" sx={styles.headerItem}>
+          <FormattedMessage {...messages.status} />
+        </Box>
+        <Box component="h5" sx={styles.headerItem}>
+          <FormattedMessage {...messages.datePurchased} />
+        </Box>
+        <Box component="h5" sx={styles.headerItem}>
+          <FormattedMessage {...messages.total} />
+        </Box>
         <Box
           component="h5"
           sx={{
@@ -56,10 +54,12 @@ function ListOrder({ listOrder }: Props) {
           }}
         />
       </Paper>
-      {isEmpty(listOrder) ? (
-        <Avatar src={noOrder} alt="No order" sx={styles.noOrder} />
-      ) : (
+      {isLoading ? (
+        <Loading />
+      ) : !isEmpty(listOrder) ? (
         listOrder?.map((itemOrder: ItemOrderTypes) => <ItemOrder key={itemOrder._id} itemOrder={itemOrder} />)
+      ) : (
+        <Avatar src={noOrder} alt="No order" sx={styles.noOrder} />
       )}
     </React.Fragment>
   );

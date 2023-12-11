@@ -3,7 +3,6 @@ import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-import { CircularProgress } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -74,17 +73,14 @@ function OrderDetail() {
     <Container maxWidth="lg" sx={{ margin: '2rem auto' }}>
       <Grid container spacing={{ xs: 3 }}>
         <SideBarUser />
-        {isLoading ? (
-          <CircularProgress style={{ margin: 'auto' }} />
-        ) : (
-          <OrderDetailComponent
-            orderDetail={orderDetail}
-            onUpdateOrder={updateOrder}
-            onCreateOrder={createOrder}
-            onReviewProduct={reviewProduct}
-            onCreateOrderDetail={createOrderDetail}
-          />
-        )}
+        <OrderDetailComponent
+          orderDetail={orderDetail}
+          onCreateOrder={createOrder}
+          onUpdateOrder={updateOrder}
+          onReviewProduct={reviewProduct}
+          onCreateOrderDetail={createOrderDetail}
+          isGetOrderDetailLoading={isLoading}
+        />
       </Grid>
     </Container>
   );

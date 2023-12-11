@@ -24,6 +24,7 @@ import HeaderHoldUser from '../HeaderHoldUser';
 import { CANCELLED, DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
 import ModalConfirm from '../ModalConfirm';
 import OrderSummaryDetails from '../OrderSummaryDetails';
+import Loading from './Loading';
 import ProductItem from './ProductItem';
 import { container, delivery, shipping } from './icons';
 import messages from './messages';
@@ -36,6 +37,7 @@ const OrderDetail: React.FC<Props> = ({
   onReviewProduct,
   onCreateOrder,
   onCreateOrderDetail,
+  isGetOrderDetailLoading,
 }) => {
   const navigate = useNavigate();
   const orderId = useParams().id as string;
@@ -127,124 +129,129 @@ const OrderDetail: React.FC<Props> = ({
           button={
             checkStatus(orderDetail.status) === DELIVERED ||
             checkStatus(orderDetail.status) === CANCELLED ||
-            !orderDetail.methodPayment ? (
+            !+orderDetail.methodPayment ? (
               <FormattedMessage {...messages.orderAgain} />
             ) : undefined
           }
           loadingButton={onCreateOrder.isLoading || onCreateOrderDetail.isLoading}
           onClickButton={() => setModalConfirmOrder(true)}
         />
-        <Paper elevation={1} sx={styles.paperFormStep}>
-          <Box sx={styles.boxFormStep}>
-            <Box position="relative">
-              <Avatar sx={styles.wrapperIcon}>
-                <SvgIcon viewBox="0 0 32 32" fontSize="medium">
-                  {container}
-                </SvgIcon>
-              </Avatar>
-              <TickSuccess />
-            </Box>
-            <Box
-              sx={{
-                ...styles.bridge,
-                backgroundColor:
-                  checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
-                    ? '#D23F57'
-                    : '#E3E9EF',
-              }}
-            />
-            <Box position="relative">
-              <Avatar
-                sx={{
-                  ...styles.wrapperIcon,
-                  backgroundColor:
-                    checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
-                      ? '#D23F57'
-                      : '#E3E9EF',
-                  color:
-                    checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
-                      ? '#E3E9EF'
-                      : '#D23F57',
-                }}
-              >
-                <SvgIcon viewBox="0 0 36 36" fontSize="medium">
-                  {shipping}
-                </SvgIcon>
-              </Avatar>
-              {(checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED) && (
-                <TickSuccess />
-              )}
-            </Box>
-            <Box
-              sx={{
-                ...styles.bridge,
-                backgroundColor: checkStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
-              }}
-            />
-            <Box position="relative">
-              <Avatar
-                sx={{
-                  ...styles.wrapperIcon,
-                  backgroundColor: checkStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
-                  color: checkStatus(orderDetail.status) === DELIVERED ? '#E3E9EF' : '#D23F57',
-                }}
-              >
-                <SvgIcon viewBox="0 0 32 32" fontSize="medium">
-                  {delivery}
-                </SvgIcon>
-              </Avatar>
-              {checkStatus(orderDetail.status) === DELIVERED && <TickSuccess />}
-            </Box>
-          </Box>
-          <Box sx={styles.boxTimeShipping}>
-            <Typography sx={styles.TypographyTimeShipping}>
-              {checkStatus(orderDetail.status) === DELIVERED ? (
-                <FormattedMessage {...messages.delivered} />
-              ) : (
-                <React.Fragment>
-                  {checkStatus(orderDetail.status) === CANCELLED ? (
-                    <FormattedMessage {...messages.cancelled} />
+        {isGetOrderDetailLoading ? (
+          <Loading />
+        ) : (
+          <React.Fragment>
+            <Paper elevation={1} sx={styles.paperFormStep}>
+              <Box sx={styles.boxFormStep}>
+                <Box position="relative">
+                  <Avatar sx={styles.wrapperIcon}>
+                    <SvgIcon viewBox="0 0 32 32" fontSize="medium">
+                      {container}
+                    </SvgIcon>
+                  </Avatar>
+                  <TickSuccess />
+                </Box>
+                <Box
+                  sx={{
+                    ...styles.bridge,
+                    backgroundColor:
+                      checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
+                        ? '#D23F57'
+                        : '#E3E9EF',
+                  }}
+                />
+                <Box position="relative">
+                  <Avatar
+                    sx={{
+                      ...styles.wrapperIcon,
+                      backgroundColor:
+                        checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
+                          ? '#D23F57'
+                          : '#E3E9EF',
+                      color:
+                        checkStatus(orderDetail.status) === DELIVERING || checkStatus(orderDetail.status) === DELIVERED
+                          ? '#E3E9EF'
+                          : '#D23F57',
+                    }}
+                  >
+                    <SvgIcon viewBox="0 0 36 36" fontSize="medium">
+                      {shipping}
+                    </SvgIcon>
+                  </Avatar>
+                  {(checkStatus(orderDetail.status) === DELIVERING ||
+                    checkStatus(orderDetail.status) === DELIVERED) && <TickSuccess />}
+                </Box>
+                <Box
+                  sx={{
+                    ...styles.bridge,
+                    backgroundColor: checkStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
+                  }}
+                />
+                <Box position="relative">
+                  <Avatar
+                    sx={{
+                      ...styles.wrapperIcon,
+                      backgroundColor: checkStatus(orderDetail.status) === DELIVERED ? '#D23F57' : '#E3E9EF',
+                      color: checkStatus(orderDetail.status) === DELIVERED ? '#E3E9EF' : '#D23F57',
+                    }}
+                  >
+                    <SvgIcon viewBox="0 0 32 32" fontSize="medium">
+                      {delivery}
+                    </SvgIcon>
+                  </Avatar>
+                  {checkStatus(orderDetail.status) === DELIVERED && <TickSuccess />}
+                </Box>
+              </Box>
+              <Box sx={styles.boxTimeShipping}>
+                <Typography sx={styles.TypographyTimeShipping}>
+                  {checkStatus(orderDetail.status) === DELIVERED ? (
+                    <FormattedMessage {...messages.delivered} />
                   ) : (
                     <React.Fragment>
-                      <FormattedMessage {...messages.estimatedDeliveryDate} />
-                      <b> {renderDeliveryDate(orderDetail.createdAt)}</b>
+                      {checkStatus(orderDetail.status) === CANCELLED ? (
+                        <FormattedMessage {...messages.cancelled} />
+                      ) : (
+                        <React.Fragment>
+                          <FormattedMessage {...messages.estimatedDeliveryDate} />
+                          <b> {renderDeliveryDate(orderDetail.createdAt)}</b>
+                        </React.Fragment>
+                      )}
                     </React.Fragment>
                   )}
-                </React.Fragment>
-              )}
-            </Typography>
-          </Box>
-        </Paper>
-        <Paper sx={styles.paperList}>
-          <Paper sx={styles.paperHeader}>
-            <Box sx={styles.boxTitleHeader}>
-              <Typography sx={styles.boxTitleItem}>
-                <FormattedMessage {...messages.orderID} />
-              </Typography>
-              <Typography sx={styles.boxTitleItemContent}>{orderId}</Typography>
-            </Box>
-            <Box sx={styles.boxTitleHeader}>
-              <Typography sx={styles.boxTitleItem}>
-                <FormattedMessage {...messages.placedOn} />
-              </Typography>
-              <Typography sx={styles.boxTitleItemContent}>{formatDate(orderDetail.createdAt)}</Typography>
-            </Box>
-            <Box sx={styles.boxTitleHeader}>
-              <Typography sx={styles.boxTitleItem}>
-                <FormattedMessage {...messages.deliveringStatus} />
-              </Typography>
-              <Typography sx={styles.boxTitleItemContent}>{checkStatus(orderDetail.status)}</Typography>
-            </Box>
-          </Paper>
-          <Box sx={styles.containerProduct}>
-            {orderDetail.products?.map((product: OrderDetailProduct) => (
-              <ProductItem key={product._id} product={product} onReviewProduct={onReviewProduct} />
-            ))}
-          </Box>
-        </Paper>
-        <Grid container spacing={{ xs: 3 }}>
-          <OrderSummaryDetails orderDetail={orderDetail} onUpdateOrder={onUpdateOrder} />
-        </Grid>
+                </Typography>
+              </Box>
+            </Paper>
+            <Paper sx={styles.paperList}>
+              <Paper sx={styles.paperHeader}>
+                <Box sx={styles.boxTitleHeader}>
+                  <Typography sx={styles.boxTitleItem}>
+                    <FormattedMessage {...messages.orderID} />
+                  </Typography>
+                  <Typography sx={styles.boxTitleItemContent}>{orderId}</Typography>
+                </Box>
+                <Box sx={styles.boxTitleHeader}>
+                  <Typography sx={styles.boxTitleItem}>
+                    <FormattedMessage {...messages.placedOn} />
+                  </Typography>
+                  <Typography sx={styles.boxTitleItemContent}>{formatDate(orderDetail.createdAt)}</Typography>
+                </Box>
+                <Box sx={styles.boxTitleHeader}>
+                  <Typography sx={styles.boxTitleItem}>
+                    <FormattedMessage {...messages.deliveringStatus} />
+                  </Typography>
+                  <Typography sx={styles.boxTitleItemContent}>{checkStatus(orderDetail.status)}</Typography>
+                </Box>
+              </Paper>
+              <Box sx={styles.containerProduct}>
+                {orderDetail.products?.map((product: OrderDetailProduct) => (
+                  <ProductItem key={product._id} product={product} onReviewProduct={onReviewProduct} />
+                ))}
+              </Box>
+            </Paper>
+            <Grid container spacing={{ xs: 3 }}>
+              <OrderSummaryDetails orderDetail={orderDetail} onUpdateOrder={onUpdateOrder} />
+            </Grid>
+          </React.Fragment>
+        )}
       </Grid>
       <ModalConfirm
         content={<FormattedMessage {...messages.reOrderThisOrder} />}
