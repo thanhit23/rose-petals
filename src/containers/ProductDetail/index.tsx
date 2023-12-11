@@ -7,11 +7,13 @@ import Container from '@mui/material/Container';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { Product } from 'src/common/types';
+import BreadCrumb from 'src/components/BreadCrumb';
 import DetailReviewTabbedPane from 'src/components/DetailReviewTabbedPane';
 import ProductBriefing from 'src/components/ProductBriefing';
 import { ProductReviewType } from 'src/components/ProductReview/types';
 import RelatedProducts from 'src/components/RelatedProducts';
 import { useGetProductDetail } from 'src/queries/product';
+import { PATH_PUBLIC } from 'src/routes/paths';
 
 import messages from './messages';
 import { createComment, deleteComment, getComments, getRelatedProducts, updateComment } from './services';
@@ -32,10 +34,15 @@ function ProductDetail() {
   const [searchParams] = useSearchParams();
 
   const productId = searchParams.get('id') as string;
-
   const { data, isLoading } = useGetProductDetail(productId);
-
-  const { data: listRelatedProducts = [], isLoading: isRelatedProductsLoading = false } = useQuery({
+  const dataBreadCrumbs = [
+    {
+      label: data?.category.name,
+      path: PATH_PUBLIC.product.search(`${data?.slug}?categoryId=${data?.category._id} `),
+    },
+    { label: data?.name, path: '' },
+  ];
+  const relatedProducts = useQuery({
     queryKey: ['RelatedProducts', data?.category?._id],
     queryFn: () => getRelatedProducts(data?.category?._id as string),
     enabled: !!data?.category?._id,
@@ -87,8 +94,8 @@ function ProductDetail() {
     },
   });
 
-  const handleCreateComment = (data: object) => {
-    commentCreate.mutate(data);
+  const handleCreateComment = async (data: object) => {
+    await commentCreate.mutateAsync(data);
   };
 
   const handleUpdateComment = (data: object) => {
@@ -97,6 +104,7 @@ function ProductDetail() {
 
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
+      <BreadCrumb data={dataBreadCrumbs} />
       <ProductBriefing product={data} isLoading={isLoading} />
 
       <DescriptionContext.Provider
@@ -119,7 +127,10 @@ function ProductDetail() {
         />
       </DescriptionContext.Provider>
 
-      <RelatedProducts listRelatedProduct={listRelatedProducts} isRelatedProductsLoading={isRelatedProductsLoading} />
+      <RelatedProducts
+        listRelatedProduct={relatedProducts.data || []}
+        isRelatedProductsLoading={relatedProducts.isLoading}
+      />
     </Container>
   );
 }

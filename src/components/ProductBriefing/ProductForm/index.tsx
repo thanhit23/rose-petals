@@ -31,10 +31,6 @@ const initialState: InitialState = {
   colors: '',
 };
 
-const sizes = [{ label: 'M' }, { label: 'L' }, { label: 'XL' }];
-
-// const colors = [{ label: 'Blue' }, { label: 'Red' }, { label: 'Green' }];
-
 const ProductForm: React.FC<Props> = ({ product }) => {
   const {
     global: { auth },
@@ -95,12 +91,23 @@ const ProductForm: React.FC<Props> = ({ product }) => {
         </Box>
       </Box>
       <Box sx={styles.boxRated}>
-        <Box lineHeight={1}>Rated:</Box>
         <Box sx={styles.wrapRating}>
+          <Box component="h6" sx={styles.quantityRating}>
+            {product?.rating?.toFixed(1)}
+          </Box>
           <Rating name="read-only" value={Number(product?.rating)} readOnly sx={styles.rating} />
         </Box>
-        <Box component="h6" sx={styles.quantityRating}>
-          (50)
+        <Box sx={styles.boxRatings}>
+          <Box sx={{ borderBottom: '1px solid #333', fontWeight: 'bold', fontSize: '16px', paddingLeft: '3px' }}>
+            {product?.totalComment}
+          </Box>
+          <Box sx={{ color: '#666666' }}>Ratings</Box>
+        </Box>
+        <Box sx={styles.boxSold}>
+          <Box sx={{ borderBottom: '1px solid #333', fontWeight: 'bold', fontSize: '16px', paddingLeft: '3px' }}>
+            {product?.sold}
+          </Box>
+          <Box sx={{ color: '#666666' }}>Sold</Box>
         </Box>
       </Box>
       {product?.size && product?.size.length !== 0 && (
@@ -109,17 +116,17 @@ const ProductForm: React.FC<Props> = ({ product }) => {
             Size
           </Box>
           <Box>
-            {sizes.map(({ label }, index) => (
+            {product.size.map((item, index) => (
               <Chip
-                label={label}
+                label={item}
                 key={index}
-                onClick={() => setColorType(prev => ({ ...prev, sizes: label }))}
+                onClick={() => setColorType(prev => ({ ...prev, sizes: item }))}
                 sx={{
                   ...styles.typeItem,
-                  backgroundColor: handleChangeColor(colorType.sizes === label),
-                  color: handleChangeColor(colorType.sizes === label, '#fff', '#000000de'),
+                  backgroundColor: handleChangeColor(colorType.sizes === item),
+                  color: handleChangeColor(colorType.sizes === item, '#fff', '#000000de'),
                   '&:hover': {
-                    backgroundColor: () => (colorType.sizes === label ? '#E3364E' : '#0000001f'),
+                    backgroundColor: () => (colorType.sizes === item ? '#E3364E' : '#0000001f'),
                   },
                 }}
               />
@@ -139,7 +146,6 @@ const ProductForm: React.FC<Props> = ({ product }) => {
         variant="contained"
         sx={styles.btnAddCart}
         onClick={handleSubmit}
-        disabled={product?.quantity === product?.sold}
       >
         <FormattedMessage {...messages.btnAddCart} />
       </LoadingButton>

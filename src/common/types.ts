@@ -46,11 +46,12 @@ export type Product = {
   review?: number;
   thumbnail?: string;
   rating?: number;
+  sold?: number;
+  totalComment?: number;
   createdAt?: string;
   deletedAt?: string;
   updatedAt?: string;
   quantity?: number;
-  sold?: number;
 };
 
 export type Brand = {

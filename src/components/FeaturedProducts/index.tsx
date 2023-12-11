@@ -21,7 +21,7 @@ const FeaturedProducts: React.FC<Props> = ({ listFeatureProduct }) => (
       <FormattedMessage {...messages.title} />
     </Box>
     <Box>
-      {listFeatureProduct.length > 0 && (
+      {listFeatureProduct?.length > 0 && (
         <SlideProduct slidesToShow={5}>
           {listFeatureProduct.map(product => (
             <ProductItem key={product._id} product={product} widthHeightImg="227px" />
