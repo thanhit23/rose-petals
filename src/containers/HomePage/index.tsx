@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import { useQuery } from '@tanstack/react-query';
 
 import BestSellingCategories from 'src/components/BestSellingCategories';
-import BestSellingProducts from 'src/components/BestSellingProducts';
 import Event from 'src/components/Event';
 import EventNotificationBanner from 'src/components/EventNotificationBanner';
 import FeaturedProducts from 'src/components/FeaturedProducts';
@@ -12,14 +11,8 @@ import MultipleOptionProduct from 'src/components/MultipleOptionProduct';
 import Service from 'src/components/Service';
 import SlideShow from 'src/components/Slide';
 
-import {
-  getBestSellingProducts,
-  getBrands,
-  getFeaturedProducts,
-  getLinkCategories,
-  getNewTopProduct,
-  getWeekTopProduct,
-} from './httpClients';
+import BestSelling from './components/BestSelling';
+import { getBrands, getFeaturedProducts, getNewTopProduct, getWeekTopProduct } from './httpClients';
 
 function Home() {
   const { data: listBrand = [] } = useQuery({
@@ -49,18 +42,12 @@ function Home() {
     select: ({ data: { data } }) => data,
   });
 
-  const { data: bestSellingProduct = [] } = useQuery({
-    queryKey: ['bestSellingProducts'],
-    queryFn: () => getBestSellingProducts(),
-    select: ({ data: { data } }) => data,
-  });
-
   return (
     <Box bgcolor="#fff">
       <SlideShow />
       <Service />
       <BestSellingCategories />
-      <BestSellingProducts products={bestSellingProduct} />
+      <BestSelling />
       <Event />
       <FeaturedProducts listFeatureProduct={listFeatureProduct} />
       <EventNotificationBanner />

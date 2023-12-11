@@ -39,4 +39,12 @@ export default defineMessages({
     id: `${scope}.btnProceedToPayment`,
     defaultMessage: 'Proceed to Payment',
   },
+  districtErrorMessage: {
+    id: `${scope}.districtErrorMessage`,
+    defaultMessage: 'District is required',
+  },
+  wardErrorMessage: {
+    id: `${scope}.wardErrorMessage`,
+    defaultMessage: 'Ward is required',
+  },
 });

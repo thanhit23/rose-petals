@@ -89,14 +89,27 @@ const btnReview = {
   },
 };
 
+const eWalletVNPay = {
+  fontWeight: 600,
+  fontSize: '14px',
+};
+
+const boxPayWithVNPay = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+};
+
 export default {
   boxTextFieldPaypalEmail,
   paperPayCreditCard,
   formControlLabel,
   boxPayWithPaypal,
   btnBackCheckout,
+  boxPayWithVNPay,
   btnReview,
   textField,
+  eWalletVNPay,
   btnSubmit,
   divider,
 };

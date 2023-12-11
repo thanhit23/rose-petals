@@ -42,8 +42,8 @@ const boxTitle = {
   textTransform: 'none',
   overflow: 'hidden',
   display: '-webkit-box',
-  '-webkit-box-orient': 'vertical',
-  '-webkit-line-clamp': '2',
+  webkitBoxOrient: 'vertical',
+  webkitLineClamp: 2,
 };
 
 const boxPrice = {

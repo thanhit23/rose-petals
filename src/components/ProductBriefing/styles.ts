@@ -66,8 +66,8 @@ const boxTitle = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   display: '-webkit-box',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: 2,
+  webkitBoxOrient: 'vertical',
+  webkitLineClamp: 2,
 };
 
 const boxWrapBrand = {

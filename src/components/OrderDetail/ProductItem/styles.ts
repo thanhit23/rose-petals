@@ -32,8 +32,8 @@ const nameProduct = {
   whiteSpace: 'normal',
   overflow: 'hidden',
   display: '-webkit-box',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: 2,
+  webkitBoxOrient: 'vertical',
+  webkitLineClamp: 2,
 };
 
 const priceProduct = {

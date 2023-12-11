@@ -54,8 +54,8 @@ function ProductSearch() {
 
   useEffect(() => {
     handleProductSearch(1);
-    setNumberProduct(listFilterProduct.length);
-    if (listFilterProduct.length > 0) {
+    setNumberProduct(listFilterProduct?.length);
+    if (listFilterProduct?.length > 0) {
       setIsShow(true);
     } else {
       setIsShow(false);
@@ -87,7 +87,7 @@ function ProductSearch() {
                   <Grid item xs={12} sm={6} lg={4} key={i}>
                     <Paper>
                       <Box height={412}>
-                        <Skeleton variant="rectangular" width={290} height={290} />
+                        <Skeleton variant="rectangular" height={290} />
                         <Skeleton sx={{ mt: 1.6, mx: 1.5, py: 0.3 }} width="90%" />
                         <Skeleton sx={{ mt: 0.3, mx: 1.5, py: 0.3 }} width="35%" />
                         <Skeleton sx={{ mt: 0.3, mx: 1.5, py: 0.3 }} width="20%" />
