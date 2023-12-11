@@ -54,8 +54,8 @@ function ProductSearch() {
 
   useEffect(() => {
     handleProductSearch(1);
-    setNumberProduct(listFilterProduct.length);
-    if (listFilterProduct.length > 0) {
+    setNumberProduct(listFilterProduct?.length);
+    if (listFilterProduct?.length > 0) {
       setIsShow(true);
     } else {
       setIsShow(false);

@@ -92,7 +92,9 @@ function DropDown({
                     <Box sx={{ fontSize: '14px', ...sx }} key={key} onClick={handleClose}>
                       <Box
                         component={Link}
-                        to={`${PATH_PUBLIC.product.search(slug)}?categoryId=${id}`}
+                        to={`${PATH_PUBLIC.product.search(slug)}?categoryId=${id}&categoryName=${encodeURIComponent(
+                          name as string,
+                        )}`}
                         sx={styles.linkMenuItem}
                       >
                         <Box component="span" sx={styles.boxItem}>
