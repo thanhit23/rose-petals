@@ -40,10 +40,12 @@ const boxTitle = {
   marginTop: 0,
   fontSize: '16px',
   textTransform: 'none',
+  lineHeight: 1.5,
+  maxHeight: '48px',
   overflow: 'hidden',
   display: '-webkit-box',
-  webkitBoxOrient: 'vertical',
-  webkitLineClamp: 2,
+  '-webkit-line-clamp': '2',
+  '-webkit-box-orient': 'vertical',
 };
 
 const boxPrice = {
