@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -33,6 +33,8 @@ type Props = {
 };
 
 const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
+  const t = useIntl();
+
   const {
     register,
     formState: { errors },
@@ -40,7 +42,7 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
     handleSubmit,
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
-    resolver: yupResolver(editProfileValidationSchema),
+    resolver: yupResolver(editProfileValidationSchema(t)),
     defaultValues: {
       name: auth.name,
       email: auth.email,

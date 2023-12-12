@@ -51,4 +51,60 @@ export default defineMessages({
     id: `${scope}.label.verifyCodeErrorMessage`,
     defaultMessage: 'Please verify code',
   },
+  nameRequired: {
+    id: `${scope}.label.nameRequired`,
+    defaultMessage: 'Name is required',
+  },
+  nameMaxLength: {
+    id: `${scope}.label.nameMaxLength`,
+    defaultMessage: 'Please enter up to 25 characters',
+  },
+  emailRequired: {
+    id: `${scope}.label.emailRequired`,
+    defaultMessage: 'Email is required',
+  },
+  emailMustBeValid: {
+    id: `${scope}.label.emailMustBeValid`,
+    defaultMessage: 'Email must be a valid email',
+  },
+  verifyCodeRequired: {
+    id: `${scope}.label.verifyCodeRequired`,
+    defaultMessage: 'Verifying Code is required',
+  },
+  verifyCodeMustBeNumber: {
+    id: `${scope}.label.verifyCodeMustBeNumber`,
+    defaultMessage: 'Verifying Code must be a number',
+  },
+  verifyCodePositive: {
+    id: `${scope}.label.verifyCodePositive`,
+    defaultMessage: 'Please enter a positive number',
+  },
+  verifyCodeInteger: {
+    id: `${scope}.label.verifyCodeInteger`,
+    defaultMessage: 'Please enter an integer',
+  },
+  verifyCodeMaxLength: {
+    id: `${scope}.label.verifyCodeMaxLength`,
+    defaultMessage: 'Verifying Code must have 6 digits',
+  },
+  passwordRequired: {
+    id: `${scope}.label.passwordRequired`,
+    defaultMessage: 'Password is required',
+  },
+  passwordMinLength: {
+    id: `${scope}.label.passwordMinLength`,
+    defaultMessage: 'Password must be at least 8 characters',
+  },
+  passwordMaxLength: {
+    id: `${scope}.label.passwordMaxLength`,
+    defaultMessage: 'Please enter up to 16 characters',
+  },
+  confirmPasswordRequired: {
+    id: `${scope}.label.confirmPasswordRequired`,
+    defaultMessage: 'Confirm Password is required',
+  },
+  confirmPasswordMustMatch: {
+    id: `${scope}.label.confirmPasswordMustMatch`,
+    defaultMessage: 'Confirm Password must match password',
+  },
 });

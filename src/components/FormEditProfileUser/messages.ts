@@ -30,4 +30,28 @@ export default defineMessages({
     id: `${scope}.btnSave`,
     defaultMessage: 'Save Changes',
   },
+  nameRequired: {
+    id: `${scope}.nameRequired`,
+    defaultMessage: 'Name is required',
+  },
+  emailRequired: {
+    id: `${scope}.emailRequired`,
+    defaultMessage: 'Email is required',
+  },
+  emailMustBeValid: {
+    id: `${scope}.emailMustBeValid`,
+    defaultMessage: 'Email must be a valid email',
+  },
+  phoneNumberRequired: {
+    id: `${scope}.phoneNumberRequired`,
+    defaultMessage: 'Phone number is required',
+  },
+  locationRequired: {
+    id: `${scope}.locationRequired`,
+    defaultMessage: 'Location is required',
+  },
+  genderRequired: {
+    id: `${scope}.genderRequired`,
+    defaultMessage: 'Gender is required',
+  },
 });

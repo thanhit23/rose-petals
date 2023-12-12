@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,8 +19,12 @@ import styles from './styles';
 import { FormForgotPassword } from './types';
 
 function ForgotPassword() {
+  const t = useIntl();
+
   const schema = Yup.object().shape({
-    email: Yup.string().required().email(),
+    email: Yup.string()
+      .required(t.formatMessage({ ...messages.emailRequired }))
+      .email(t.formatMessage({ ...messages.emailMustBeValid })),
   });
 
   const {

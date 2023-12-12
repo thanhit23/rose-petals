@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -27,6 +27,7 @@ import { UserSubmitForm, VerifyCode } from './types';
 import { registerFormValidationSchema } from './validationSchema';
 
 function RegisterForm() {
+  const t = useIntl();
   const [isPassword, setIsPassword] = useState(true);
   const [isConfirmPassword, setIsConfirmPassword] = useState(true);
   const [verifyEmailData, setVerifyEmailData] = useState({ token: '', status: false });
@@ -43,7 +44,7 @@ function RegisterForm() {
     formState: { errors },
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
-    resolver: yupResolver(registerFormValidationSchema),
+    resolver: yupResolver(registerFormValidationSchema(t)),
   });
 
   const registerUser = useMutation({

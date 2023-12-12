@@ -1,12 +1,17 @@
+import { IntlShape } from 'react-intl';
+
 import * as Yup from 'yup';
 
-export const resetPasswordSchema = Yup.object().shape({
-  password: Yup.string()
-    .required('New Password is required')
-    .min(8, 'Password must be at least 8 characters')
-    .max(16, 'Please enter up to 16 characters')
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)/, 'Password must contain at least one letter and one number'),
-  confirmPassword: Yup.string()
-    .required('Confirm Password is required')
-    .oneOf([Yup.ref('password')], 'Confirm Password must match password'),
-});
+import messages from './messages';
+
+export const resetPasswordSchema = (t: IntlShape) =>
+  Yup.object().shape({
+    password: Yup.string()
+      .required(t.formatMessage({ ...messages.newPasswordRequired }))
+      .min(8, t.formatMessage({ ...messages.passwordMinLength }))
+      .max(16, t.formatMessage({ ...messages.passwordMaxLength }))
+      .matches(/^(?=.*[A-Za-z])(?=.*\d)/, t.formatMessage({ ...messages.passwordMatches })),
+    confirmPassword: Yup.string()
+      .required(t.formatMessage({ ...messages.confirmPasswordRequired }))
+      .oneOf([Yup.ref('password')], t.formatMessage({ ...messages.confirmPasswordMustMatchPw })),
+  });

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -37,6 +37,7 @@ function CheckoutAddressForm({
   onCreateOrder,
   onCreateOrderDetail,
 }: Props) {
+  const t = useIntl();
   const navigate = useNavigate();
   const totalPrice = useCalculateTotalPrice(productList);
   const [wardError, setWardError] = useState({ message: '' });
@@ -50,7 +51,7 @@ function CheckoutAddressForm({
     setValue,
   } = useForm({
     mode: 'onChange',
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(validationSchema(t)),
     defaultValues: {
       fullName: auth.name,
       phoneNumber: auth.phoneNumber,

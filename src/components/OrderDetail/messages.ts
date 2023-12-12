@@ -91,4 +91,8 @@ export default defineMessages({
     id: `${scope}.reOrderThisOrder`,
     defaultMessage: 'Reorder this order',
   },
+  pleaseWriteSomething: {
+    id: `${scope}.pleaseWriteSomething`,
+    defaultMessage: 'Please write something...',
+  },
 });

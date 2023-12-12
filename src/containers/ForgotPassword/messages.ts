@@ -27,4 +27,12 @@ export default defineMessages({
     id: `${scope}.sendEmailSuccess`,
     defaultMessage: 'Please check your email',
   },
+  emailRequired: {
+    id: `${scope}.emailRequired`,
+    defaultMessage: 'Email is required',
+  },
+  emailMustBeValid: {
+    id: `${scope}.emailMustBeValid`,
+    defaultMessage: 'Email must be a valid email',
+  },
 });
