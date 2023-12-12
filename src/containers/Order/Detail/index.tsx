@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import _ from 'lodash';
 
-import { cancelOrder, getOrderDetail } from 'src/api/order';
+import { getOrderDetail } from 'src/api/order';
 import OrderDetailComponent from 'src/components/OrderDetail';
 import SideBarUser from 'src/components/SideBarUser';
 import { createComment } from 'src/containers/ProductDetail/services';
@@ -36,10 +36,6 @@ function OrderDetail() {
 
   const reviewProduct = useMutation({
     mutationFn: (data: object) => createComment(data),
-  });
-
-  const cancelOrderMutation = useMutation({
-    mutationFn: (id: string) => cancelOrder(id),
   });
 
   const createOrder = useCreateOrder();
@@ -83,10 +79,10 @@ function OrderDetail() {
         ) : (
           <OrderDetailComponent
             orderDetail={orderDetail}
+            onUpdateOrder={updateOrder}
             onCreateOrder={createOrder}
             onReviewProduct={reviewProduct}
             onCreateOrderDetail={createOrderDetail}
-            onCancelOrder={cancelOrderMutation}
           />
         )}
       </Grid>

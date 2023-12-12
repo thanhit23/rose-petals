@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import _ from 'lodash';
+import { size } from 'lodash';
 
 import ListOrder from 'src/components/ListOrder';
 import Pagination from 'src/components/Pagination';
@@ -31,7 +31,7 @@ function Order() {
           ) : (
             <ListOrder listOrder={data?.data} />
           )}
-          {_.size(data?.data) > 0 && (
+          {size(data?.data) > 0 && (
             <Pagination count={data?.meta?.totalPages} page={data?.meta?.page} onChange={handleChangePage} />
           )}
         </Grid>

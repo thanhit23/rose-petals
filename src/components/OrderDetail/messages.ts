@@ -35,6 +35,10 @@ export default defineMessages({
     id: `${scope}.delivered`,
     defaultMessage: 'DELIVERED',
   },
+  cancelled: {
+    id: `${scope}.cancelled`,
+    defaultMessage: 'CANCELLED',
+  },
   placedOn: {
     id: `${scope}.placedOn`,
     defaultMessage: 'Placed on:',

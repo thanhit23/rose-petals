@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
@@ -9,22 +9,20 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { useQueryClient } from '@tanstack/react-query';
+import { size } from 'lodash';
 
 import { formatPrice } from 'src/helpers';
 import cashOnDelivery from 'src/resources/images/cashOnDelivery.png';
 import paypal from 'src/resources/images/paypal.png';
 import vnpay from 'src/resources/images/vnpay.png';
-import { PATH_AUTH } from 'src/routes/paths';
 
-import { DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
+import { CANCELLED, DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
 import ModalConfirm from '../ModalConfirm';
 import messages from './messages';
 import styles from './styles';
 import { Props } from './types';
 
-const OrderSummaryDetails: React.FC<Props> = ({ orderDetail, onCancelOrder }) => {
-  const navigate = useNavigate();
+const OrderSummaryDetails: React.FC<Props> = ({ orderDetail, onUpdateOrder }) => {
   const orderId = useParams().id as string;
   const [modalConfirmCancelOrder, setModalConfirmCancelOrder] = useState(false);
 
@@ -32,27 +30,32 @@ const OrderSummaryDetails: React.FC<Props> = ({ orderDetail, onCancelOrder }) =>
   const renderAddress = (address: string, customerNote: string) =>
     customerNote ? `${address}, ${customerNote}` : address;
 
-  const queryClient = useQueryClient();
-
   const handleCancelOrder = () => {
-    onCancelOrder.mutate(orderId, {
-      onSuccess: async ({ data: { status } }) => {
-        if (status) {
-          await queryClient.invalidateQueries({
-            queryKey: ['getListOrder'],
-          });
-
-          toast.success(<FormattedMessage {...messages.cancelOrderSuccess} />);
-          navigate(PATH_AUTH.order.index);
-        } else {
-          toast.error(<FormattedMessage {...messages.cancelOrderFailed} />);
-        }
+    onUpdateOrder.mutate(
+      {
+        id: orderId,
+        address: orderDetail.address,
+        amount: orderDetail.totalPrice,
+        quantity: size(orderDetail.products),
+        status: 0,
+        methodPayment: +orderDetail.methodPayment,
       },
-    });
+      {
+        onSuccess: async ({ data: { status } }) => {
+          if (status) {
+            toast.success(<FormattedMessage {...messages.cancelOrderSuccess} />);
+          } else {
+            toast.error(<FormattedMessage {...messages.cancelOrderFailed} />);
+          }
+        },
+      },
+    );
   };
 
   const checkStatus = (status: number) => {
-    if (status === 1) {
+    if (status === 0) {
+      return CANCELLED;
+    } else if (status === 1) {
       return ORDERED;
     } else if (status === 2) {
       return DELIVERING;
@@ -141,7 +144,7 @@ const OrderSummaryDetails: React.FC<Props> = ({ orderDetail, onCancelOrder }) =>
           </Typography>
           <LoadingButton
             disabled={!(checkStatus(orderDetail.status) === ORDERED)}
-            loading={onCancelOrder.isLoading}
+            loading={onUpdateOrder.isLoading}
             type="submit"
             variant="contained"
             sx={styles.btnCancelOrder}
