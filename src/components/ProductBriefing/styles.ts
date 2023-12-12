@@ -90,12 +90,11 @@ const boxRated = {
   display: 'flex',
   WebkitBoxAlign: 'center',
   alignItems: 'center',
-  gap: '0 5px',
-  margin: '5px 0',
+  gap: '0 8px',
+  margin: '6px 0 20px',
 };
 
 const wrapRating = {
-  marginLeft: '8px',
   lineHeight: '1',
   display: 'flex',
   alignItems: 'center',
@@ -145,7 +144,6 @@ const optionItem = {
 };
 
 const boxType = {
-  marginBottom: '8px',
   marginTop: '0px',
   fontSize: '14px',
   fontWeight: '600',
@@ -167,8 +165,7 @@ const typeItem = {
 };
 
 const wrapPrice = {
-  paddingTop: '8px',
-  marginBottom: '24px',
+  marginBottom: '16px',
 };
 
 const boxPrice = {
@@ -183,6 +180,7 @@ const boxPrice = {
 };
 
 const btnAddCart = {
+  marginTop: '20px',
   backgroundColor: 'rgb(210, 63, 87)',
   boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
   minWidth: '0px',
@@ -205,22 +203,68 @@ const btnAddCart = {
 const boxRatings = {
   display: 'flex',
   alignItems: 'center',
-  gap: '0 5px',
+  gap: '0 6px',
   borderLeft: '1px solid #999999',
   paddingLeft: '3px',
+};
+
+const boxQuantity = {
+  margin: 0,
 };
 
 const boxSold = {
   display: 'flex',
   alignItems: 'center',
-  gap: '0 5px',
+  gap: '0 6px',
   borderLeft: '1px solid #999999',
   paddingLeft: '3px',
+};
+
+const wrapQuantity = {
+  display: 'flex',
+  alignItems: 'center',
+};
+
+const boxShowError = {
+  marginTop: '10px',
+  color: '#ff424f',
+  marginLeft: '100px',
+  fontSize: '15px',
+};
+
+const boxChooseSize = {
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '20px',
+};
+
+const boxSizeQuantity = {
+  padding: '20px',
+  marginLeft: '-20px',
+};
+
+const boxShowErrorSoldOut = {
+  marginTop: '10px',
+  color: '#ff424f',
+  fontSize: '15px',
+};
+
+const ratingAndSold = {
+  borderBottom: '1px solid #333',
+  fontWeight: 'bold',
+  fontSize: '16px',
+  paddingLeft: '3px',
+};
+
+const ratingAndSoldLabel = {
+  color: '#666666',
 };
 
 export default {
   boxContainerImg,
   boxSold,
+  ratingAndSoldLabel,
+  ratingAndSold,
   boxRatings,
   quantityRating,
   boxWrapperImg,
@@ -228,6 +272,12 @@ export default {
   boxImgItem,
   wrapRating,
   optionItem,
+  boxShowError,
+  boxSizeQuantity,
+  boxShowErrorSoldOut,
+  wrapQuantity,
+  boxChooseSize,
+  boxQuantity,
   wrapBrandRating,
   btnAddCart,
   wrapPrice,

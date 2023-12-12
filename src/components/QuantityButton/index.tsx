@@ -9,9 +9,10 @@ import styles from './styles';
 type Props = {
   quantity: number;
   setQuantity: (num: number) => void;
+  sx?: object;
 };
 
-const QuantityButton: React.FC<Props> = ({ quantity, setQuantity }) => {
+const QuantityButton: React.FC<Props> = ({ quantity, setQuantity, sx = {} }) => {
   const handleIncrease = () => {
     if (quantity === 10) return;
     setQuantity(quantity + 1);
@@ -23,7 +24,7 @@ const QuantityButton: React.FC<Props> = ({ quantity, setQuantity }) => {
   };
 
   return (
-    <Box sx={styles.boxQuantity}>
+    <Box sx={{ ...styles.boxQuantity, ...sx }}>
       <ButtonBase sx={styles.boxIncreaseReduce} onClick={handleReduce}>
         <RemoveIcon />
       </ButtonBase>
