@@ -22,7 +22,7 @@ import { getFilterProducts } from './services';
 
 function ProductSearch() {
   const [viewList, setViewList] = useState(false);
-  const [price, setPrice] = useState({ price_min: 0, price_max: 0 });
+  const [price, setPrice] = useState({ price_min: '0', price_max: '500000' });
   const [rating, setRating] = useState({ rating_min: 0, rating_max: 0 });
   const [brand, setBrand] = useState<string | null>(null);
   const [numberProduct, setNumberProduct] = useState(0);
@@ -108,7 +108,13 @@ function ProductSearch() {
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
       <SortBar numberProduct={numberProduct} changeView={handleChangeView} viewList={viewList} />
       <Grid container spacing={{ xs: 3 }}>
-        <FilterPanel setPrice={setPrice} setRating={setRating} setBrand={setBrand} listBrand={listBrand} />
+        <FilterPanel
+          price={price}
+          setPrice={setPrice}
+          setRating={setRating}
+          setBrand={setBrand}
+          listBrand={listBrand}
+        />
         <Grid item xs={12} md={9}>
           {isShowDebounce == true ? (
             renderProduct()

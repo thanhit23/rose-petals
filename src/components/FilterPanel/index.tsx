@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { NumericFormat } from 'react-number-format';
 
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
@@ -25,10 +26,11 @@ type PropsFilter = {
     createdAt: string;
     updatedAt: string;
   }[];
-  setPrice?: React.Dispatch<
+  price: { price_min: string; price_max: string };
+  setPrice: React.Dispatch<
     React.SetStateAction<{
-      price_min: number;
-      price_max: number;
+      price_min: string;
+      price_max: string;
     }>
   >;
   setRating?: React.Dispatch<
@@ -40,18 +42,11 @@ type PropsFilter = {
   setBrand?: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {}, setBrand = () => {} }: PropsFilter) {
+function FilterPanel({ listBrand, setRating = () => {}, price, setPrice, setBrand = () => {} }: PropsFilter) {
   const [arrayRating, setArrayRating] = useState<number[]>([]);
   const [arrayBrand, setArrayBrand] = useState<string[]>([]);
   const min = _.min(arrayRating) || 0;
   const max = _.max(arrayRating) || 0;
-
-  const handlePriceChange = (e: { target: { name: any; value: any } }) => {
-    setPrice(prev => ({
-      ...prev,
-      [e.target.name]: Number(e.target.value),
-    }));
-  };
 
   const handleBrandChange = (brandId: string) => {
     setArrayBrand(prev => {
@@ -73,6 +68,15 @@ function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {}, set
         return [...prev, numberRating];
       }
     });
+  };
+
+  const removeExtraCharacters = (price: string) => price.replace(/,|đ/g, '');
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(prev => ({
+      ...prev,
+      [e.target.name]: removeExtraCharacters(e.target.value),
+    }));
   };
 
   useEffect(() => {
@@ -113,26 +117,30 @@ function FilterPanel({ listBrand, setPrice = () => {}, setRating = () => {}, set
           <FormattedMessage {...messages.priceRange} />
         </Box>
         <Box sx={styles.boxQuantityPriceRange}>
-          <TextField
+          <NumericFormat
             name="price_min"
-            id="outlined-basic"
-            defaultValue={0}
-            onChange={handlePriceChange}
-            variant="outlined"
+            value={price.price_min}
+            customInput={TextField}
+            thousandSeparator
+            allowNegative={false}
+            decimalScale={3}
+            suffix={'đ'}
             size="small"
-            sx={{ fontSize: '14px' }}
+            onChange={handlePriceChange}
           />
           <Box component="h5" sx={styles.boxBridge}>
             -
           </Box>
-          <TextField
+          <NumericFormat
             name="price_max"
-            id="outlined-basic"
-            defaultValue={0}
-            onChange={handlePriceChange}
-            variant="outlined"
+            value={price.price_max}
+            customInput={TextField}
+            thousandSeparator
+            allowNegative={false}
+            decimalScale={3}
+            suffix={'đ'}
             size="small"
-            sx={{ fontSize: '14px' }}
+            onChange={handlePriceChange}
           />
         </Box>
         <Divider sx={styles.dividerTwo} />
