@@ -128,7 +128,7 @@ const ReviewProductQuickView: React.FC<Props> = ({ product, openModal, handleClo
                     multiline
                     rows={6}
                     size="small"
-                    placeholder="Please write something..."
+                    placeholder={t.formatMessage({ ...messages.pleaseWriteSomething })}
                   />
                   <ErrorMessage name={content} />
                 </FormControl>
