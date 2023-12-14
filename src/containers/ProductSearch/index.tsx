@@ -15,7 +15,6 @@ import styles from 'src/components/ProductItem/styles';
 import ProductViewInList from 'src/components/ProductViewInList';
 import SortBar from 'src/components/SortBar';
 import useDebounce from 'src/hooks/useDebounce';
-import usePagination from 'src/hooks/usePagination';
 
 import { getBrands } from '../HomePage/httpClients';
 import { getFilterProducts } from './services';
@@ -24,13 +23,13 @@ function ProductSearch() {
   const [viewList, setViewList] = useState(false);
   const [price, setPrice] = useState({ price_min: '0', price_max: '500000' });
   const [rating, setRating] = useState({ rating_min: 0, rating_max: 0 });
+  const [page, setPage] = useState<number>(1);
   const [brand, setBrand] = useState<string | null>(null);
-  const [numberProduct, setNumberProduct] = useState(0);
-  const [isShow, setIsShow] = useState(true);
+  const [isShowEmpty, setIsShowEmpty] = useState(false);
   const priceDebounce = useDebounce(price, 700);
   const ratingDebounce = useDebounce(rating, 700);
   const brandDebounce = useDebounce(brand, 700);
-  const isShowDebounce = useDebounce(isShow, 700);
+  const isShowEmptyDebounce = useDebounce(isShowEmpty, 700);
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get('categoryId');
 
@@ -41,43 +40,44 @@ function ProductSearch() {
     select: ({ data: { data } }) => data,
   });
 
-  const { data: listFilterProduct = [], isFetching } = useQuery({
-    queryKey: ['getFilterProducts', priceDebounce, ratingDebounce, brandDebounce, categoryId],
-    queryFn: () => getFilterProducts({ ...price, ...rating, brand: brand ?? null, category: categoryId ?? null }),
+  const { data: listFilterProduct = {}, isFetching } = useQuery({
+    queryKey: ['getFilterProducts', priceDebounce, ratingDebounce, brandDebounce, categoryId, page],
+    queryFn: () => getFilterProducts({ ...price, ...rating, brand: brand ?? null, category: categoryId ?? null, page }),
     retry: 0,
-    select: ({ data: { data } }) => data,
+    select: ({ data }) => data,
   });
 
   const handleProductSearch = (p: number) => {
-    showListFilterProduct.jump(p);
+    setPage(p);
   };
 
   useEffect(() => {
-    handleProductSearch(1);
-    setNumberProduct(listFilterProduct?.length);
-    if (listFilterProduct?.length > 0) {
-      setIsShow(true);
-    } else {
-      setIsShow(false);
+    setPage(1);
+  }, [categoryId, priceDebounce, ratingDebounce, brandDebounce]);
+
+  useEffect(() => {
+    if (listFilterProduct.meta) {
+      if (listFilterProduct.meta.totalResults != 0) {
+        setIsShowEmpty(false);
+      } else {
+        setIsShowEmpty(true);
+      }
     }
   }, [listFilterProduct]);
 
   const handleChangeView = (isView: boolean) => setViewList(isView);
-  const PER_PAGE = 9;
-  const count = Math.ceil(numberProduct / PER_PAGE);
-  const showListFilterProduct = usePagination(listFilterProduct, PER_PAGE);
   const renderProduct = () => {
     if (viewList) {
       return (
         <Box>
-          <ProductViewInList showListFilterProduct={showListFilterProduct} isFetching={isFetching} />
+          <ProductViewInList showListFilterProduct={listFilterProduct.data} isFetching={isFetching} />
         </Box>
       );
     }
     return (
       <Grid container spacing={{ xs: 3 }}>
         {!isFetching ? (
-          showListFilterProduct.map((item: Product) => <ProductItem product={item} key={item.name} />)
+          listFilterProduct.data.map((item: Product) => <ProductItem product={item} key={item.name} />)
         ) : (
           <>
             {(() => {
@@ -87,7 +87,7 @@ function ProductSearch() {
                   <Grid item xs={12} sm={6} lg={4} key={i}>
                     <Paper>
                       <Box height={412}>
-                        <Skeleton variant="rectangular" height={290} />
+                        <Skeleton variant="rectangular" width={290} height={290} />
                         <Skeleton sx={{ mt: 1.6, mx: 1.5, py: 0.3 }} width="90%" />
                         <Skeleton sx={{ mt: 0.3, mx: 1.5, py: 0.3 }} width="35%" />
                         <Skeleton sx={{ mt: 0.3, mx: 1.5, py: 0.3 }} width="20%" />
@@ -106,7 +106,11 @@ function ProductSearch() {
 
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
-      <SortBar numberProduct={numberProduct} changeView={handleChangeView} viewList={viewList} />
+      <SortBar
+        numberProduct={listFilterProduct.meta ? listFilterProduct.meta.totalResults : 0}
+        changeView={handleChangeView}
+        viewList={viewList}
+      />
       <Grid container spacing={{ xs: 3 }}>
         <FilterPanel
           price={price}
@@ -116,7 +120,7 @@ function ProductSearch() {
           listBrand={listBrand}
         />
         <Grid item xs={12} md={9}>
-          {isShowDebounce == true ? (
+          {!isShowEmptyDebounce ? (
             renderProduct()
           ) : (
             <Box display="flex" justifyContent="center" sx={{ marginTop: '30px' }}>
@@ -128,8 +132,17 @@ function ProductSearch() {
             </Box>
           )}
           <Box sx={styles.boxQuantityPaginationProduct}>
-            <Box component="span">Showing {numberProduct} of 0 Products</Box>
-            {numberProduct > 9 && <Pagination page={1} count={count} onChange={handleProductSearch} />}
+            <Box component="span">
+              Showing {listFilterProduct.data ? listFilterProduct.data.length : 0} of{' '}
+              {listFilterProduct.meta ? listFilterProduct.meta.totalResults : 0} Products
+            </Box>
+            {listFilterProduct.meta && listFilterProduct.meta.totalPages > 1 && (
+              <Pagination
+                count={listFilterProduct.meta ? listFilterProduct.meta.totalPages : 0}
+                page={page}
+                onChange={handleProductSearch}
+              />
+            )}
           </Box>
         </Grid>
       </Grid>

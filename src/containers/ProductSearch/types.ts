@@ -5,4 +5,5 @@ export interface FilterProducts {
   rating_max?: number;
   brand?: string | null;
   category?: string | null;
+  page: number;
 }

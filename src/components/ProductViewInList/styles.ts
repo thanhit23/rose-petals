@@ -12,14 +12,6 @@ const paper = {
   marginBottom: '1.25rem',
 };
 
-const btnFavorite = {
-  position: 'absolute',
-  top: '15px',
-  right: '15px',
-  fontSize: '1.125rem',
-  padding: '5px',
-};
-
 const wrapImg = {
   '& > img': {
     display: 'block',
@@ -98,7 +90,6 @@ export default {
   productPrice,
   productTitle,
   wrapContent,
-  btnFavorite,
   productDescription,
   wrapImg,
   paper,

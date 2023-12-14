@@ -83,8 +83,8 @@ function FilterPanel({ listBrand, setRating = () => {}, price, setPrice, setBran
     if (arrayRating.length == 1) {
       setRating(prev => ({
         ...prev,
-        rating_min: min,
-        rating_max: 0,
+        rating_min: 0,
+        rating_max: max,
       }));
     } else if (arrayRating.length > 1) {
       setRating(prev => ({

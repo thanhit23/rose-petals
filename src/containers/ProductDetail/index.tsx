@@ -59,8 +59,8 @@ function ProductDetail() {
     queryKey: ['getProductReview', page],
     queryFn: () => getComments(productId, page),
     onSuccess: ({ data: { data, meta } }) => {
-      setListProductReview(data);
       setTotalPage(meta?.totalPages);
+      setListProductReview(data);
     },
   });
 
