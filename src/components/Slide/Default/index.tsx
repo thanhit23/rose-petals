@@ -14,7 +14,7 @@ function Default({ srcImg }: DefaultTypes) {
             Fashionable Collection
           </Box>
           <Box component="p" sx={styles.boxComponentP}>
-            Get Free Shipping on all orders over $99.00
+            Get Free Shipping on all orders over 99.000đ
           </Box>
           <Box href="#" component="a">
             <Button variant="contained" sx={styles.btnShopNow}>
