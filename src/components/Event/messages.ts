@@ -9,7 +9,7 @@ export default defineMessages({
   },
   forMensTime: {
     id: `${scope}.forMens.time`,
-    defaultMessage: 'Starting At $29',
+    defaultMessage: 'Starting At 29.000 vnd',
   },
   blackFridayUpTo: {
     id: `${scope}.blackFriday.upTo`,
