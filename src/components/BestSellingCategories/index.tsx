@@ -14,7 +14,7 @@ function BestSellingCategories() {
       title: <FormattedMessage {...messages.menFashion} />,
       srcImg: 'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Ft-shirt4.png&w=3840&q=75',
       category: {
-        id: '6500793555ee920008ef5f2f',
+        id: '6500791355ee920008ef5f27',
         slug: 'thoi-trang-nam',
       },
     },
