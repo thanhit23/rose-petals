@@ -35,13 +35,19 @@ function ProductDetail() {
 
   const productId = searchParams.get('id') as string;
   const { data, isLoading } = useGetProductDetail(productId);
+
   const dataBreadCrumbs = [
     {
       label: data?.category.name,
-      path: PATH_PUBLIC.product.search(`${data?.slug}?categoryId=${data?.category._id} `),
+      path: PATH_PUBLIC.product.search(
+        `${data?.slug}?categoryId=${data?.category._id}&categoryName=${encodeURIComponent(
+          data?.category.name as string,
+        )}`,
+      ),
     },
-    { label: data?.name, path: '' },
+    { label: data?.name, path: PATH_PUBLIC.product.slug(data?.slug as string, data?._id) },
   ];
+
   const relatedProducts = useQuery({
     queryKey: ['RelatedProducts', data?.category?._id],
     queryFn: () => getRelatedProducts(data?.category?._id as string),
