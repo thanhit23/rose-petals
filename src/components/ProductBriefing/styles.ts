@@ -260,9 +260,25 @@ const ratingAndSoldLabel = {
   color: '#666666',
 };
 
+const dialog = {
+  '& div > div': {
+    borderRadius: '8px',
+    maxWidth: '500px',
+  },
+};
+
+const paperLogin = {
+  boxSizing: 'border-box',
+  overflow: 'hidden',
+  borderRadius: '8px',
+  padding: '2rem 3rem',
+};
+
 export default {
   boxContainerImg,
   boxSold,
+  paperLogin,
+  dialog,
   ratingAndSoldLabel,
   ratingAndSold,
   boxRatings,
