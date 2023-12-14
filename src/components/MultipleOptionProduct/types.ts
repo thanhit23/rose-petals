@@ -1,13 +1,6 @@
-type ProductMultipleOptions = {
-  _id: string;
-  slug: string;
-  price: number;
-  star: number;
-  name: string;
-  thumbnail: string;
-};
+import { Product } from 'src/common/types';
 
 export interface Props {
-  productBestTheWeek: ProductMultipleOptions[];
-  productLatest: ProductMultipleOptions[];
+  productBestTheWeek: Product[];
+  productLatest: Product[];
 }
