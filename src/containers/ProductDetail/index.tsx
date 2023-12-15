@@ -45,7 +45,7 @@ function ProductDetail() {
         )}`,
       ),
     },
-    { label: data?.name, path: PATH_PUBLIC.product.slug(data?.slug as string, data?._id) },
+    { label: data?.name, path: PATH_PUBLIC.product.slug(data?.slug as string, data?._id as string) },
   ];
 
   const relatedProducts = useQuery({

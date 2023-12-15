@@ -88,13 +88,11 @@ function DropDown({
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <Box>
-                  {menuItem.map(({ name, slug, id, sx }, key: number) => (
+                  {menuItem.map(({ name, id, sx }, key: number) => (
                     <Box sx={{ fontSize: '14px', ...sx }} key={key} onClick={handleClose}>
                       <Box
                         component={Link}
-                        to={`${PATH_PUBLIC.product.search(slug)}?categoryId=${id}&categoryName=${encodeURIComponent(
-                          name as string,
-                        )}`}
+                        to={PATH_PUBLIC.product.category(id as string, name as string)}
                         sx={styles.linkMenuItem}
                       >
                         <Box component="span" sx={styles.boxItem}>
