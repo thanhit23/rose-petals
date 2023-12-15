@@ -20,8 +20,8 @@ const imgPayment = {
   transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   boxShadow: 'rgba(3, 0, 71, 0.09) 0px 1px 3px',
   overflow: 'hidden',
-  width: '42px',
-  height: '28px',
+  width: '52px',
+  height: '38px',
   marginRight: '10px',
   borderRadius: '2px',
 };
@@ -67,8 +67,18 @@ const orderItem = {
   flex: '1 1 0',
 };
 
+const paymentImage = {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  border: '1px solid red',
+  borderRadius: '4px',
+  padding: '4px',
+};
+
 export default {
   codeItemTitle,
+  paymentImage,
   imgPayment,
   orderItem,
   paperItem,

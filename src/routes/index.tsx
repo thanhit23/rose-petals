@@ -102,14 +102,6 @@ const routers: RouteObject[] = [
             index: true,
             lazy: () => import('src/containers/PaymentMethod'),
           },
-          {
-            path: ':id',
-            lazy: () => import('src/containers/PaymentMethod/Edit'),
-          },
-          {
-            path: 'add',
-            lazy: () => import('src/containers/PaymentMethod/Add'),
-          },
         ],
       },
     ],
