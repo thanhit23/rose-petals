@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import { Apps, ViewList } from '@mui/icons-material';
 import Box from '@mui/material/Box';
@@ -17,18 +17,18 @@ type Props = {
 };
 
 const SortBar: React.FC<Props> = ({ changeView, viewList, numberProduct }) => {
-  const { slug = '' } = useParams();
-
   const [searchParams] = useSearchParams();
-
   const categoryName = searchParams.get('categoryName');
+  const searchValue = searchParams.get('q');
 
   return (
     <Paper sx={styles.paperSortBar}>
       <Box>
         <Box component="h5" sx={styles.boxKeywordSearch}>
           <FormattedMessage {...messages[categoryName ? 'categories' : 'searchingFor']} />
-          {categoryName ? ` "${decodeURIComponent(categoryName)}"` : ` “${slug}”`}
+          <Box component={'span'}>
+            &nbsp;&quot;{categoryName ? decodeURIComponent(categoryName) : searchValue}&quot;
+          </Box>
         </Box>
         <Box component="p" sx={styles.boxQuantityResult}>
           {numberProduct} <FormattedMessage {...messages.resultsFound} />
