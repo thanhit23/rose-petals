@@ -47,7 +47,13 @@ const ProductItem: React.FC<Props> = ({ productRelate }) => {
                   {productRelate.name}
                 </Box>
               </Link>
-              <Rating name="read-only" value={Number(productRelate.rating)} readOnly sx={{ fontSize: '1.25rem' }} />
+              <Rating
+                name="read-only"
+                precision={0.1}
+                value={Number(productRelate.rating)}
+                readOnly
+                sx={{ fontSize: '1.25rem' }}
+              />
               <Box sx={styles.priceProduct}>
                 <Box fontWeight={600} color="#D23F57">
                   {formatPrice.format(productRelate.price)}

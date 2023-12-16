@@ -46,7 +46,7 @@ function ProductViewInList({ showListFilterProduct, isFetching }: Props) {
                       {item.name}
                     </Box>
                   </Link>
-                  <Rating name="read-only" value={item.rating} readOnly size="medium" />
+                  <Rating name="read-only" precision={0.1} value={item.rating} readOnly size="medium" />
                   <Box sx={styles.wrapProductPrice}>
                     <Box component="h5" sx={styles.productPrice}>
                       {formatterPrice.format(item.price)}
