@@ -112,7 +112,7 @@ const ProductForm: React.FC<Props> = ({ product }) => {
             <Box component="h6" sx={styles.quantityRating}>
               {product?.rating?.toFixed(1)}
             </Box>
-            <Rating name="read-only" value={Number(product?.rating)} readOnly sx={styles.rating} />
+            <Rating name="read-only" precision={0.1} value={Number(product?.rating)} readOnly sx={styles.rating} />
           </Box>
           <Box sx={styles.boxRatings}>
             <Box sx={styles.ratingAndSold}>{product?.totalComment || 0}</Box>
