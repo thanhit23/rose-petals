@@ -14,8 +14,7 @@ import DropDown from 'src/components/DropDown';
 import { logout } from 'src/containers/Authenticated/actions';
 import { Auth } from 'src/containers/Authenticated/types';
 import LoginForm from 'src/containers/Login/LoginForm';
-import female from 'src/resources/images/female.png';
-import male from 'src/resources/images/male.png';
+import { integrationPathImage } from 'src/helpers';
 import store from 'src/store';
 
 import styles from './styles';
@@ -71,7 +70,7 @@ const UserButton: React.FC<Props> = ({ auth }) => {
       },
     ];
 
-    return <DropDown avatar={auth?.gender === 1 ? male : female} btnSx={styles.buttonPerson} menuItem={menuItem} />;
+    return <DropDown avatar={integrationPathImage(auth.avatar)} btnSx={styles.buttonPerson} menuItem={menuItem} />;
   };
 
   return (

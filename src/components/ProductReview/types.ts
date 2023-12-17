@@ -7,6 +7,7 @@ export interface ReviewSubmitForm {
 interface User {
   _id: string;
   name: string;
+  avatar: string;
 }
 interface Product {
   _id: string;

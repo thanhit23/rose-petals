@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Avatar, Box, IconButton, Rating } from '@mui/material';
 
-import { covertDate } from 'src/helpers';
+import { covertDate, integrationPathImage } from 'src/helpers';
 
 import FormComment from '../FormComment';
 import ModalDelete from '../ModalDelete';
@@ -34,6 +34,7 @@ const initialState = {
   user: {
     _id: '',
     name: '',
+    avatar: '',
   },
 };
 
@@ -60,12 +61,13 @@ function CommentItem({ data, onDeleteComment, idComment, setIdComment, onUpdateC
     setOpenForm(false);
     onUpdateComment(data);
   };
+
   return (
     <Box sx={{ margin: '10px 0', borderBottom: '1px solid #e8e8e8' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={styles.wrapReview}>
           <Box sx={styles.wrapInformationUser}>
-            <Avatar src="https://bazar-react.vercel.app/assets/images/faces/7.png" sx={styles.avatar} />
+            <Avatar src={integrationPathImage(data.user.avatar)} sx={styles.avatar} />
             <Box marginLeft="16px">
               <Box component="h5" sx={styles.nameUser}>
                 {data.user.name}

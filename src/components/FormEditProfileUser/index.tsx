@@ -1,39 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
 import PersonIcon from '@mui/icons-material/Person';
+import { LoadingButton } from '@mui/lab';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import { compose } from 'redux';
 
 import { State } from 'src/common/types';
-import { AuthType } from 'src/containers/Authenticated/types';
+import { TData } from 'src/containers/Profile/Edit/types';
+import { integrationPathImage } from 'src/helpers';
 import { PATH_AUTH } from 'src/routes/paths';
 
 import ErrorMessage from '../ErrorMessage';
 import HeaderHoldUser from '../HeaderHoldUser';
+import ImageCropper from '../ImageCropper';
 import MuiTextField from '../TextField';
 import messages from './messages';
 import styles from './styles';
-import { UserSubmitForm } from './types';
+import { Props, UserSubmitForm } from './types';
 import { editProfileValidationSchema } from './validationSchema';
 
-type Props = {
-  auth: AuthType;
-  onSubmitForm: (data: UserSubmitForm) => void;
-};
-
-const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
+const FormEditProfileUser: React.FC<Props> = ({ auth, onUpdateProfileUser, onUploadAvatar, onUpdateAvatarUser }) => {
   const t = useIntl();
+  const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+  const handleClose = () => setOpenModal(false);
 
   const {
     register,
@@ -46,13 +48,29 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
     defaultValues: {
       name: auth.name,
       email: auth.email,
-      phoneNumber: auth.phoneNumber,
+      phoneNumber: String(auth.phoneNumber),
       location: auth.location,
       gender: auth.gender,
     },
   });
 
   const { email, name, phoneNumber, location, gender } = errors;
+
+  const onSubmitForm = (data: UserSubmitForm) => {
+    onUpdateProfileUser.mutate(
+      { ...data, phoneNumber: String(data.phoneNumber) },
+      {
+        onSuccess: ({ data: { status } }: TData) => {
+          if (status) {
+            toast.success(<FormattedMessage {...messages.updateProfileSuccess} />);
+            navigate(PATH_AUTH.profile);
+          } else {
+            toast.error(<FormattedMessage {...messages.updateProfileFailed} />);
+          }
+        },
+      },
+    );
+  };
 
   return (
     <Grid item xs={12} lg={9}>
@@ -64,12 +82,22 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
       />
       <Paper sx={styles.paperAvatar}>
         <Box sx={styles.boxWrapAvatar}>
-          <Avatar sx={styles.avatar} src="https://bazar-react.vercel.app/assets/images/faces/ralph.png" />
+          <Avatar sx={styles.avatar} src={integrationPathImage(auth.avatar)} alt={auth.name} />
           <Box sx={styles.boxUpload}>
-            <IconButton color="primary" aria-label="upload picture" component="label">
-              <input hidden accept="image/*" type="file" />
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              onClick={() => setOpenModal(true)}
+            >
               <CameraEnhanceIcon sx={styles.iconCameraEnhance} />
             </IconButton>
+            <ImageCropper
+              openModal={openModal}
+              handleCloseModal={handleClose}
+              onUploadAvatar={onUploadAvatar}
+              onUpdateAvatarUser={onUpdateAvatarUser}
+            />
           </Box>
         </Box>
         <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -128,9 +156,9 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onSubmitForm }) => {
               </Grid>
             </Grid>
           </Box>
-          <Button variant="contained" type="submit" sx={styles.btnSave}>
+          <LoadingButton loading={onUpdateProfileUser.isLoading} variant="contained" type="submit" sx={styles.btnSave}>
             <FormattedMessage {...messages.btnSave} />
-          </Button>
+          </LoadingButton>
         </form>
       </Paper>
     </Grid>

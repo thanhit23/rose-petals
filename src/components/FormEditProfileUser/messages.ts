@@ -30,9 +30,25 @@ export default defineMessages({
     id: `${scope}.btnSave`,
     defaultMessage: 'Save Changes',
   },
+  updateProfileSuccess: {
+    id: `${scope}.updateProfileSuccess`,
+    defaultMessage: 'Update profile success',
+  },
+  updateProfileFailed: {
+    id: `${scope}.updateProfileFailed`,
+    defaultMessage: 'Update profile failed',
+  },
   nameRequired: {
     id: `${scope}.nameRequired`,
     defaultMessage: 'Name is required',
+  },
+  nameMaxLength: {
+    id: `${scope}.nameMaxLength`,
+    defaultMessage: 'Full name must be at most 25 characters',
+  },
+  nameNotSpecialCharacters: {
+    id: `${scope}.nameNotSpecialCharacters`,
+    defaultMessage: 'Full name must not contain special characters',
   },
   emailRequired: {
     id: `${scope}.emailRequired`,
@@ -45,6 +61,22 @@ export default defineMessages({
   phoneNumberRequired: {
     id: `${scope}.phoneNumberRequired`,
     defaultMessage: 'Phone number is required',
+  },
+  phoneNumberPositive: {
+    id: `${scope}.phoneNumberPositive`,
+    defaultMessage: 'Phone number must be a positive number',
+  },
+  phoneNumberMustBeANumber: {
+    id: `${scope}.phoneNumberMustBeANumber`,
+    defaultMessage: 'Phone number must be a number',
+  },
+  phoneNumberInteger: {
+    id: `${scope}.phoneNumberInteger`,
+    defaultMessage: 'Phone number must be an integer',
+  },
+  phoneNumberMaxLength: {
+    id: `${scope}.phoneNumberMaxLength`,
+    defaultMessage: 'Phone number must be at most 10 digits',
   },
   locationRequired: {
     id: `${scope}.locationRequired`,

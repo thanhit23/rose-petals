@@ -12,6 +12,7 @@ import _ from 'lodash';
 import { compose } from 'redux';
 
 import { OrderType, State } from 'src/common/types';
+import { integrationPathImage } from 'src/helpers';
 
 import { AuthType } from '../../containers/Authenticated/types';
 import HeaderHoldUser from '../HeaderHoldUser';
@@ -74,7 +75,7 @@ const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
         <Grid container spacing={{ xs: 3 }}>
           <Grid item xs={12} md={6}>
             <Paper sx={styles.paperInfoUser}>
-              <Avatar src="https://bazar-react.vercel.app/assets/images/faces/ralph.png" sx={styles.avatar} />
+              <Avatar src={integrationPathImage(auth.avatar)} alt={auth.name} sx={styles.avatar} />
               <Box sx={styles.boxInfoUser}>
                 <Box className="wrap-info">
                   <Box>
