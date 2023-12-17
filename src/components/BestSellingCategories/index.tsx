@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -9,37 +9,43 @@ import messages from './messages';
 import styles from './styles';
 
 function BestSellingCategories() {
+  const t = useIntl();
+
   const categories = [
     {
-      title: <FormattedMessage {...messages.menFashion} />,
+      title: t.formatMessage({ ...messages.menFashion }),
       srcImg: 'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Ft-shirt4.png&w=3840&q=75',
       category: {
+        name: 'Thời Trang Nam',
         id: '6500791355ee920008ef5f27',
         slug: 'thoi-trang-nam',
       },
     },
     {
-      title: <FormattedMessage {...messages.womenFashion} />,
+      title: t.formatMessage({ ...messages.womenFashion }),
       srcImg: 'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Ft-shirt5.png&w=3840&q=75',
       category: {
+        name: 'Thời Trang Nữ',
         id: '6500792255ee920008ef5f2b',
         slug: 'thoi-trang-nu',
       },
     },
     {
-      title: <FormattedMessage {...messages.gadgets} />,
+      title: t.formatMessage({ ...messages.gadgets }),
       srcImg:
         'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fsmartwatch-2.png&w=3840&q=75',
       category: {
+        name: 'Thiết Bị Điện Tử',
         id: '6500796455ee920008ef5f37',
         slug: 'thiet-bi-djien-tu',
       },
     },
     {
-      title: <FormattedMessage {...messages.cosmetics} />,
+      title: t.formatMessage({ ...messages.cosmetics }),
       srcImg:
         'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcasmatics.jpg&w=3840&q=75',
       category: {
+        name: 'Sắc Đẹp',
         id: '6500797455ee920008ef5f3b',
         slug: 'sac-djep',
       },
@@ -57,9 +63,9 @@ function BestSellingCategories() {
             srcImg={categories.srcImg}
             title={categories.title}
             categories={{
-              name: '',
-              slug: `${categories.category.slug}`,
-              id: `${categories.category.id}`,
+              name: categories.category.name,
+              slug: categories.category.slug,
+              id: categories.category.id,
             }}
           />
         ))}

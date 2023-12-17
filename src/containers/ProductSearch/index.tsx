@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Paper, Skeleton } from '@mui/material';
@@ -20,18 +20,22 @@ import { getBrands } from '../HomePage/httpClients';
 import { getFilterProducts } from './services';
 
 function ProductSearch() {
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get('categoryId');
+  const searchValue = searchParams.get('q');
+  const isBestSelling = searchParams.get('best_selling');
+
   const [viewList, setViewList] = useState(false);
   const [price, setPrice] = useState({ price_min: '0', price_max: '500000' });
   const [rating, setRating] = useState({ rating_min: 0, rating_max: 0 });
   const [page, setPage] = useState<number>(1);
   const [brand, setBrand] = useState<string | null>(null);
   const [isShowEmpty, setIsShowEmpty] = useState(false);
+
   const priceDebounce = useDebounce(price, 700);
   const ratingDebounce = useDebounce(rating, 700);
   const brandDebounce = useDebounce(brand, 700);
   const isShowEmptyDebounce = useDebounce(isShowEmpty, 700);
-  const [searchParams] = useSearchParams();
-  const categoryId = searchParams.get('categoryId');
 
   const { data: listBrand = [] } = useQuery({
     queryKey: ['getBrands'],
@@ -41,8 +45,26 @@ function ProductSearch() {
   });
 
   const { data: listFilterProduct = {}, isFetching } = useQuery({
-    queryKey: ['getFilterProducts', priceDebounce, ratingDebounce, brandDebounce, categoryId, page],
-    queryFn: () => getFilterProducts({ ...price, ...rating, brand: brand ?? null, category: categoryId ?? null, page }),
+    queryKey: [
+      'getFilterProducts',
+      priceDebounce,
+      ratingDebounce,
+      brandDebounce,
+      categoryId,
+      page,
+      searchValue,
+      isBestSelling,
+    ],
+    queryFn: () =>
+      getFilterProducts({
+        page,
+        ...price,
+        ...rating,
+        brand: brand,
+        name: searchValue,
+        category: categoryId,
+        best_selling: Boolean(isBestSelling),
+      }),
     retry: 0,
     select: ({ data }) => data,
   });
@@ -53,7 +75,7 @@ function ProductSearch() {
 
   useEffect(() => {
     setPage(1);
-  }, [categoryId, priceDebounce, ratingDebounce, brandDebounce]);
+  }, [categoryId, searchValue, isBestSelling, priceDebounce, ratingDebounce, brandDebounce]);
 
   useEffect(() => {
     if (listFilterProduct.meta) {

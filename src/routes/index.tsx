@@ -57,7 +57,7 @@ const routers: RouteObject[] = [
         path: 'product',
         children: [
           {
-            path: 'search/:slug',
+            path: 'search',
             lazy: () => import('src/containers/ProductSearch'),
           },
           {

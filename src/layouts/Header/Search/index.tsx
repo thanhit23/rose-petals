@@ -62,7 +62,7 @@ export default function Search() {
 
     inputElement.blur();
     handleHideResult();
-    navigate(PATH_PUBLIC.product.search(searchValue));
+    navigate(PATH_PUBLIC.product.search(searchValue, categoryId));
   };
 
   const handleClickItem = (slug: string, productId: string) => {
@@ -74,7 +74,7 @@ export default function Search() {
     if (debouncedValue === '') return;
 
     handleHideResult();
-    navigate(PATH_PUBLIC.product.search(searchValue));
+    navigate(PATH_PUBLIC.product.search(searchValue, categoryId));
   };
 
   const handleChange = (e: React.PointerEvent<HTMLInputElement>) => {
