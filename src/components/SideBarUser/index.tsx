@@ -42,7 +42,7 @@ const SideBarUser: React.FC = () => {
       path: '/payment-methods',
       icon: <CreditCardIcon fontSize="small" />,
       title: <FormattedMessage {...messages.paymentMethods} />,
-      quantity: 1,
+      quantity: 3,
     },
   ];
 
