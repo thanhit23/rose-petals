@@ -65,7 +65,7 @@ function DropDown({
         type="button"
         sx={btnSx}
       >
-        {avatar && <Avatar src={avatar} sx={{ width: '24px', height: '24px' }} />}
+        {avatar && <Avatar src={avatar} sx={{ width: '44px', height: '44px' }} />}
         {buttonIconFirst}
         {buttonText}
         {buttonIcon && <KeyboardArrowDownOutlined sx={{ ...buttonIconSx }} fontSize="small" />}
