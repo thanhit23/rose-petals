@@ -38,7 +38,7 @@ const ProductItem: React.FC<Props> = ({ item }) => (
       <Box component="p" sx={styles.boxPrice}>
         {formatPrice.format(item?.price || 0)}
       </Box>
-      <Rating name="read-only" readOnly value={item?.rating} sx={styles.rating} />
+      <Rating name="read-only" readOnly precision={0.1} value={item?.rating} sx={styles.rating} />
     </Box>
   </Box>
 );

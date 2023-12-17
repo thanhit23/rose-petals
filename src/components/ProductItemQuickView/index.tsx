@@ -66,7 +66,7 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
             {formatPrice.format(product?.price)}
           </Box>
           <Box sx={styles.boxWrapperRatingReview}>
-            <Rating name="read-only" value={product?.rating} readOnly sx={styles.rating} />
+            <Rating name="read-only" precision={0.1} value={product?.rating} readOnly sx={styles.rating} />
             <Box component="small" sx={styles.review}>
               ({product?.totalComment} <FormattedMessage {...messages.review} />)
             </Box>
