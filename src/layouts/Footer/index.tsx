@@ -45,7 +45,7 @@ function Footer() {
                   <FormattedMessage {...messages.description} />
                 </Box>
                 <Box sx={styles.boxDownload}>
-                  <Link to="/" target="_blank">
+                  <Link to="#" target="_blank">
                     <Box sx={styles.boxDownloadCHPlay}>
                       <SvgIcon viewBox="0 0 24 24">{icons.chPlayIcon}</SvgIcon>
                       <Box>
@@ -58,7 +58,7 @@ function Footer() {
                       </Box>
                     </Box>
                   </Link>
-                  <Link to="/" target="_blank">
+                  <Link to="#" target="_blank">
                     <Box sx={styles.boxDownloadAppStore}>
                       <SvgIcon viewBox="0 0 24 24">{icons.appStoreIcon}</SvgIcon>
                       <Box>
@@ -78,19 +78,19 @@ function Footer() {
                   <FormattedMessage {...messages.aboutUs} />
                 </Box>
                 <div>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.careers} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.ourStores} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.ourCares} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.termsConditions} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.privacyPolicy} />
                   </LinkStyles>
                 </div>
@@ -100,19 +100,19 @@ function Footer() {
                   <FormattedMessage {...messages.customerCare} />
                 </Box>
                 <div>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.helpCenter} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.howToBuy} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.trackYourOrder} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.corporate} />
                   </LinkStyles>
-                  <LinkStyles to="/login">
+                  <LinkStyles to="#">
                     <FormattedMessage {...messages.returnsRefunds} />
                   </LinkStyles>
                 </div>
@@ -131,35 +131,35 @@ function Footer() {
                   <FormattedMessage {...messages.phone} />
                 </Box>
                 <Box sx={styles.boxSocialNetwork}>
-                  <Link to="/" target="_blank" rel="noreferrer noopenner">
+                  <Link to="#" target="_blank" rel="Social Network">
                     <ButtonBase sx={styles.btnSocialNetwork}>
                       <SvgIcon fontSize="inherit" viewBox="0 0 8 14">
                         {icons.facebookIcon}
                       </SvgIcon>
                     </ButtonBase>
                   </Link>
-                  <Link to="/" target="_blank" rel="noreferrer noopenner">
+                  <Link to="#" target="_blank" rel="Social Network">
                     <ButtonBase sx={styles.btnSocialNetwork}>
                       <SvgIcon fontSize="inherit" viewBox="0 0 10 14">
                         {icons.twitterIcon}
                       </SvgIcon>
                     </ButtonBase>
                   </Link>
-                  <Link to="/" target="_blank" rel="noreferrer noopenner">
+                  <Link to="#" target="_blank" rel="Social Network">
                     <ButtonBase sx={styles.btnSocialNetwork}>
                       <SvgIcon fontSize="inherit" viewBox="0 0 15 11">
                         {icons.youtubeIcon}
                       </SvgIcon>
                     </ButtonBase>
                   </Link>
-                  <Link to="/" target="_blank" rel="noreferrer noopenner">
+                  <Link to="#" target="_blank" rel="Social Network">
                     <ButtonBase sx={styles.btnSocialNetwork}>
                       <SvgIcon fontSize="inherit" viewBox="0 0 14 14">
                         {icons.googleIcon}
                       </SvgIcon>
                     </ButtonBase>
                   </Link>
-                  <Link to="/" target="_blank" rel="noreferrer noopenner">
+                  <Link to="#" target="_blank" rel="Social Network">
                     <ButtonBase sx={styles.btnSocialNetwork}>
                       <SvgIcon fontSize="inherit" viewBox="0 0 14 14">
                         {icons.instagramIcon}

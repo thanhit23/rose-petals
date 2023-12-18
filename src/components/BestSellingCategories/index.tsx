@@ -14,7 +14,7 @@ function BestSellingCategories() {
   const categories = [
     {
       title: t.formatMessage({ ...messages.menFashion }),
-      srcImg: 'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Ft-shirt4.png&w=3840&q=75',
+      srcImg: 'https://fashinza.com/textile/wp-content/uploads/2023/02/Turtle-Necks-683x1024.jpg',
       category: {
         name: 'Thời Trang Nam',
         id: '6500791355ee920008ef5f27',
@@ -23,7 +23,8 @@ function BestSellingCategories() {
     },
     {
       title: t.formatMessage({ ...messages.womenFashion }),
-      srcImg: 'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Ft-shirt5.png&w=3840&q=75',
+      srcImg:
+        'https://img.freepik.com/free-photo/fashionable-pale-brunette-long-green-dress-black-jacket-sunglasses-standing-street-during-daytime-against-wall-light-city-building_197531-24468.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1702771200&semt=ais',
       category: {
         name: 'Thời Trang Nữ',
         id: '6500792255ee920008ef5f2b',
@@ -31,23 +32,23 @@ function BestSellingCategories() {
       },
     },
     {
-      title: t.formatMessage({ ...messages.gadgets }),
+      title: t.formatMessage({ ...messages.walletBag }),
       srcImg:
-        'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fsmartwatch-2.png&w=3840&q=75',
+        'https://authentic-shoes.com/wp-content/uploads/2023/05/marmont_8efa64633ced4d1ebf9c0087e13c40a1_2048x2048.jpg',
       category: {
-        name: 'Thiết Bị Điện Tử',
-        id: '6500796455ee920008ef5f37',
-        slug: 'thiet-bi-djien-tu',
+        name: 'Túi Ví',
+        id: '657fa9feb2afcf0008d338c3',
+        slug: 'tui-vi',
       },
     },
     {
-      title: t.formatMessage({ ...messages.cosmetics }),
+      title: t.formatMessage({ ...messages.footwear }),
       srcImg:
-        'https://bazar-react.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcasmatics.jpg&w=3840&q=75',
+        'https://dynamic.zacdn.com/XnZ6N4gtKWz0v9N_lBlDLwdNssI=/filters:quality(70):format(webp)/https://static-sg.zacdn.com/p/twenty-eight-shoes-8938-9795313-4.jpg',
       category: {
-        name: 'Sắc Đẹp',
-        id: '6500797455ee920008ef5f3b',
-        slug: 'sac-djep',
+        name: 'Giày Dép',
+        id: '657fa9e9b2afcf0008d338bc',
+        slug: 'giay-dep',
       },
     },
   ];
