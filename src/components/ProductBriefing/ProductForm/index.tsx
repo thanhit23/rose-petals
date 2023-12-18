@@ -167,6 +167,9 @@ const ProductForm: React.FC<Props> = ({ product }) => {
               <FormattedMessage {...messages.quantity} />
             </Box>
             <QuantityButton sx={styles.boxQuantity} quantity={quantity} setQuantity={setQuantity} />
+            <Box component="span" color="#757575" paddingLeft="20px">
+              {product?.quantity || 0} <FormattedMessage {...messages.quantityProductMessage} />
+            </Box>
           </Box>
           {isErrorChooseSize && (
             <Box component={'p'} style={styles.boxShowError}>
@@ -175,15 +178,17 @@ const ProductForm: React.FC<Props> = ({ product }) => {
           )}
         </Box>
 
-        <LoadingButton
-          disabled={product?.quantity === product?.sold}
-          loading={addProductToCart.isLoading}
-          variant="contained"
-          sx={styles.btnAddCart}
-          onClick={handleSubmit}
-        >
-          <FormattedMessage {...messages.btnAddCart} />
-        </LoadingButton>
+        <Box sx={styles.boxItemInAddCart}>
+          <LoadingButton
+            disabled={product?.quantity === product?.sold}
+            loading={addProductToCart.isLoading}
+            variant="contained"
+            sx={styles.btnAddCart}
+            onClick={handleSubmit}
+          >
+            <FormattedMessage {...messages.btnAddCart} />
+          </LoadingButton>
+        </Box>
 
         {product?.quantity === product?.sold && (
           <Box component={'p'} style={styles.boxShowErrorSoldOut}>

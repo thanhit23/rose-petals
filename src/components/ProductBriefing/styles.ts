@@ -180,7 +180,6 @@ const boxPrice = {
 };
 
 const btnAddCart = {
-  marginTop: '20px',
   backgroundColor: 'rgb(210, 63, 87)',
   boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
   minWidth: '0px',
@@ -198,6 +197,12 @@ const btnAddCart = {
     backgroundColor: 'rgb(227, 54, 78)',
     boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
   },
+};
+
+const boxItemInAddCart = {
+  marginTop: '20px',
+  display: 'flex',
+  alignItems: 'end',
 };
 
 const boxRatings = {
@@ -296,6 +301,7 @@ export default {
   boxQuantity,
   wrapBrandRating,
   btnAddCart,
+  boxItemInAddCart,
   wrapPrice,
   typeItem,
   boxTitle,
