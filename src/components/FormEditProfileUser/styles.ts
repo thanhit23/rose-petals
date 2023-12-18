@@ -18,6 +18,14 @@ const boxWrapAvatar = {
 const avatar = {
   height: '64px',
   width: '64px',
+  cursor: 'pointer',
+  transitionProperty: 'filter',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
+
+  '&:hover': {
+    filter: 'brightness(80%)',
+  },
 };
 
 const boxUpload = {
@@ -44,9 +52,38 @@ const btnSave = {
   },
 };
 
+const avatarDropdown = {
+  backgroundColor: '#fff',
+  boxShadow: '0px 1px 4px 0px rgba(0,0,0,0.14)',
+  borderRadius: '6px',
+  overflow: 'hidden',
+};
+
+const avatarDropdownItem = {
+  display: 'flex',
+  alignItems: 'center',
+  padding: '10px',
+  gap: '10px',
+  cursor: 'pointer',
+  transitionProperty: 'background-color',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  transitionDuration: '150ms',
+
+  '&:hover': {
+    backgroundColor: '#919eab14',
+  },
+
+  '& > svg': {
+    opacity: '.8',
+    marginTop: '-3px',
+  },
+};
+
 export default {
   iconCameraEnhance,
   boxWrapAvatar,
+  avatarDropdown,
+  avatarDropdownItem,
   paperAvatar,
   boxUpload,
   btnSave,

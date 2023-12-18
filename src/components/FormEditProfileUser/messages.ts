@@ -30,6 +30,14 @@ export default defineMessages({
     id: `${scope}.btnSave`,
     defaultMessage: 'Save Changes',
   },
+  seeProfilePicture: {
+    id: `${scope}.seeProfilePicture`,
+    defaultMessage: 'See profile picture',
+  },
+  chooseProfilePicture: {
+    id: `${scope}.chooseProfilePicture`,
+    defaultMessage: 'Choose profile picture',
+  },
   updateProfileSuccess: {
     id: `${scope}.updateProfileSuccess`,
     defaultMessage: 'Update profile success',

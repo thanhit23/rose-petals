@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import CameraEnhanceIcon from '@mui/icons-material/CameraEnhance';
 import PersonIcon from '@mui/icons-material/Person';
+import PortraitOutlinedIcon from '@mui/icons-material/PortraitOutlined';
+import WallpaperOutlinedIcon from '@mui/icons-material/WallpaperOutlined';
 import { LoadingButton } from '@mui/lab';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
@@ -15,6 +17,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
+import Tippy from '@tippyjs/react/headless';
 import { compose } from 'redux';
 
 import { State } from 'src/common/types';
@@ -25,6 +28,7 @@ import { PATH_AUTH } from 'src/routes/paths';
 import ErrorMessage from '../ErrorMessage';
 import HeaderHoldUser from '../HeaderHoldUser';
 import ImageCropper from '../ImageCropper';
+import ModalSeeImage from '../ModalSeeImage';
 import MuiTextField from '../TextField';
 import messages from './messages';
 import styles from './styles';
@@ -35,6 +39,7 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onUpdateProfileUser, onUpl
   const t = useIntl();
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const [seeProfile, setSeeProfile] = useState(false);
   const handleClose = () => setOpenModal(false);
 
   const {
@@ -82,7 +87,31 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onUpdateProfileUser, onUpl
       />
       <Paper sx={styles.paperAvatar}>
         <Box sx={styles.boxWrapAvatar}>
-          <Avatar sx={styles.avatar} src={integrationPathImage(auth.avatar)} alt={auth.name} />
+          <Tippy
+            interactive
+            trigger="click"
+            placement="bottom-start"
+            zIndex={999}
+            render={attrs => (
+              <Box component={'ul'} sx={styles.avatarDropdown} tabIndex={-1} {...attrs}>
+                <Box component={'li'} sx={styles.avatarDropdownItem} onClick={() => setSeeProfile(true)}>
+                  <PortraitOutlinedIcon />
+                  <FormattedMessage {...messages.seeProfilePicture} />
+                </Box>
+                <Box component={'li'} sx={styles.avatarDropdownItem} onClick={() => setOpenModal(true)}>
+                  <WallpaperOutlinedIcon />
+                  <FormattedMessage {...messages.chooseProfilePicture} />
+                </Box>
+              </Box>
+            )}
+          >
+            <Avatar sx={styles.avatar} src={integrationPathImage(auth.avatar)} alt={auth.name} />
+          </Tippy>
+          <ModalSeeImage
+            openModal={seeProfile}
+            handleCloseModal={() => setSeeProfile(false)}
+            image={integrationPathImage(auth.avatar)}
+          />
           <Box sx={styles.boxUpload}>
             <IconButton
               color="primary"
