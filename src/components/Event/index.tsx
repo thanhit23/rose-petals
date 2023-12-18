@@ -7,6 +7,8 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 
+import { PATH_PUBLIC } from 'src/routes/paths';
+
 import messages from './messages';
 import styles from './styles';
 
@@ -30,7 +32,7 @@ function Event() {
                 <FormattedMessage {...messages.forMensTime} />
               </Box>
               <Divider sx={styles.divider} />
-              <Link to="#">
+              <Link to={PATH_PUBLIC.product.category('6500791355ee920008ef5f27', 'Thời Trang Nam')}>
                 <Box component="span" sx={styles.linkShop}>
                   <FormattedMessage {...messages.btnShopNow} />
                 </Box>
@@ -58,7 +60,10 @@ function Event() {
                   <FormattedMessage {...messages.blackFridaySale} />
                 </Box>
               </Box>
-              <Link to="#" style={styles.linkShopBlackFriday}>
+              <Link
+                to={PATH_PUBLIC.product.category('657faa0bb2afcf0008d338ca', 'Balo')}
+                style={styles.linkShopBlackFriday}
+              >
                 <Button variant="outlined" sx={styles.btnShopBlackFriday}>
                   <FormattedMessage {...messages.btnShopNow} />
                 </Button>
@@ -82,7 +87,7 @@ function Event() {
                 <FormattedMessage {...messages.forWomenSale} />
               </Box>
               <Divider sx={styles.divider} />
-              <Link to="#">
+              <Link to={PATH_PUBLIC.product.category('6500792255ee920008ef5f2b', 'Thời Trang Nữ')}>
                 <Box component="span" sx={styles.linkShop}>
                   <FormattedMessage {...messages.btnShopNow} />
                 </Box>
