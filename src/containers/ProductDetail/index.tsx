@@ -77,7 +77,7 @@ function ProductDetail() {
   });
 
   const commentUpdate = useMutation({
-    mutationFn: (data: object) => updateComment(data, idComment),
+    mutationFn: (data: object) => updateComment(data, idComment, productId),
     onSuccess: ({ data: { status } }) => {
       if (status) {
         void queryClient.invalidateQueries({
@@ -89,7 +89,7 @@ function ProductDetail() {
   });
 
   const commentDelete = useMutation({
-    mutationFn: (variables: string) => deleteComment(variables),
+    mutationFn: (commentId: string) => deleteComment(commentId, productId),
     onSuccess: ({ data: { status } }) => {
       if (status) {
         void queryClient.invalidateQueries({
