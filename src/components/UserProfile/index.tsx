@@ -8,34 +8,23 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import _ from 'lodash';
 import { compose } from 'redux';
 
-import { OrderType, State } from 'src/common/types';
+import { State } from 'src/common/types';
+import { AnalyticsResponse } from 'src/containers/Profile/types';
 import { integrationPathImage } from 'src/helpers';
 
 import { AuthType } from '../../containers/Authenticated/types';
 import HeaderHoldUser from '../HeaderHoldUser';
-import { DELIVERED, DELIVERING, ORDERED } from '../ItemOrder/orderStatus';
 import messages from './messages';
 import styles from './styles';
 
 type Props = {
   auth: AuthType;
-  listOrder: OrderType[];
+  analytics: AnalyticsResponse;
 };
 
-const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
-  const checkStatus = (status: number) => {
-    if (status === 1) {
-      return ORDERED;
-    } else if (status === 2) {
-      return DELIVERING;
-    } else if (status === 3) {
-      return DELIVERED;
-    }
-  };
-
+const UserProfile: React.FC<Props> = ({ auth, analytics }) => {
   const checkGender = (gender: number) => {
     if (gender === 1) {
       return 'Female';
@@ -44,23 +33,6 @@ const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
     } else {
       return '';
     }
-  };
-
-  const renderAwaitingShipment = () => {
-    const listOrderAwaitingShipment = listOrder?.filter(
-      (order: OrderType) => checkStatus(order.status) === ORDERED && !!order.methodPayment,
-    );
-    return _.size(listOrderAwaitingShipment);
-  };
-
-  const renderAwaitingDelivery = () => {
-    const listOrderAwaitingDelivery = listOrder?.filter((order: OrderType) => checkStatus(order.status) === DELIVERING);
-    return _.size(listOrderAwaitingDelivery);
-  };
-
-  const renderAwaitingPayments = () => {
-    const listOrderAwaitingPayments = listOrder?.filter((order: OrderType) => !order.methodPayment);
-    return _.size(listOrderAwaitingPayments);
   };
 
   return (
@@ -95,7 +67,7 @@ const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    {_.size(listOrder)}
+                    {analytics.totalOrder || 0}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.allOrders} />
@@ -105,7 +77,7 @@ const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    {renderAwaitingShipment()}
+                    {analytics.awaitingShipment || 0}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.awaitingShipment} />
@@ -115,7 +87,7 @@ const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    {renderAwaitingDelivery()}
+                    {analytics.awaitingDelivery || 0}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.awaitingDelivery} />
@@ -125,7 +97,7 @@ const UserProfile: React.FC<Props> = ({ auth, listOrder }) => {
               <Grid item xs={6} sm={6} lg={3}>
                 <Paper sx={styles.paperStats}>
                   <Box component="h3" sx={styles.paperStatsNumber}>
-                    {renderAwaitingPayments()}
+                    {analytics.awaitingPayments || 0}
                   </Box>
                   <Box component="small" sx={styles.paperStatsTitle}>
                     <FormattedMessage {...messages.awaitingPayments} />
