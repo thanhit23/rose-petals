@@ -58,11 +58,12 @@ function ProductSearch() {
     queryFn: () =>
       getFilterProducts({
         page,
-        ...price,
         ...rating,
         brand: brand,
         name: searchValue,
         category: categoryId,
+        price_max: price.price_max || '0',
+        price_min: price.price_min || '0',
         best_selling: Boolean(isBestSelling),
       }),
     retry: 0,
@@ -99,7 +100,7 @@ function ProductSearch() {
     return (
       <Grid container spacing={{ xs: 3 }}>
         {!isFetching ? (
-          listFilterProduct.data.map((item: Product) => <ProductItem product={item} key={item.name} />)
+          listFilterProduct.data?.map((item: Product) => <ProductItem product={item} key={item.name} />)
         ) : (
           <>
             {(() => {
@@ -141,7 +142,7 @@ function ProductSearch() {
           setBrand={setBrand}
           listBrand={listBrand}
         />
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12} md={9} display="flex" flexDirection="column" justifyContent="space-between">
           {!isShowEmptyDebounce ? (
             renderProduct()
           ) : (

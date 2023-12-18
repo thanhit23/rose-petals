@@ -156,7 +156,7 @@ function FilterPanel({ listBrand, setRating = () => {}, price, setPrice, setBran
             label={<Box sx={styles.labelFormControl}>{item.name}</Box>}
           />
         ))}
-
+        <br />
         <Box component="h6" sx={styles.boxPriceRange}>
           <FormattedMessage {...messages.ratings} />
         </Box>
