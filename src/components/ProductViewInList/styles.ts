@@ -65,8 +65,8 @@ const productDescription = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   display: '-webkit-box',
-  webkitBoxOrient: 'vertical',
-  webkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 2,
   color: 'rgb(125, 135, 156)',
 };
 
