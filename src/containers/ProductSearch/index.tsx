@@ -144,7 +144,7 @@ function ProductSearch() {
           setBrand={setBrand}
           listBrand={listBrand}
         />
-        <Grid item xs={12} md={9} display="flex" flexDirection="column" justifyContent="space-between">
+        <Grid item xs={12} lg={9} display="flex" flexDirection="column" justifyContent="space-between">
           {!isShowEmptyDebounce ? (
             renderProduct()
           ) : (

@@ -23,7 +23,12 @@ const boxWrapperItem = {
 };
 
 const boxComponentImg = {
-  width: '100%',
+  width: {
+    xs: '100%',
+    sm: '100%',
+    md: '100%',
+    lg: '100%',
+  },
   height: '100%',
   transition: 'all 0.3s',
   objectFit: 'cover',
@@ -57,7 +62,7 @@ const boxCategory = {
   whiteSpace: 'normal',
 };
 const boxProductNameBox = {
-  width: '220px',
+  maxWidth: '220px',
   textTransform: 'none',
   whiteSpace: 'nowrap',
   overflow: 'hidden',

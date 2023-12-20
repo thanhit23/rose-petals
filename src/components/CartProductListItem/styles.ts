@@ -1,4 +1,5 @@
 const paper = {
+  flex: 1,
   color: 'rgb(43, 52, 69)',
   transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   display: 'flex',
@@ -6,7 +7,6 @@ const paper = {
   alignItems: 'center',
   position: 'relative',
   borderRadius: '10px',
-  marginBottom: '1.5rem',
   boxShadow: 'rgba(43, 52, 69, 0.1) 0px 4px 16px',
 };
 
@@ -25,7 +25,12 @@ const informationProduct = {
 };
 
 const inforNameProduct = {
-  width: '570px',
+  width: {
+    xs: '150px',
+    sm: '320px',
+    md: '400px',
+    lg: '550px',
+  },
   textTransform: 'none',
   whiteSpace: 'nowrap',
   overflow: 'hidden',

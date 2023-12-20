@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Radio from '@mui/material/Radio';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 import _ from 'lodash';
@@ -44,19 +45,13 @@ type PropsFilter = {
 
 function FilterPanel({ listBrand, setRating = () => {}, price, setPrice, setBrand = () => {} }: PropsFilter) {
   const [arrayRating, setArrayRating] = useState<number[]>([]);
-  const [arrayBrand, setArrayBrand] = useState<string[]>([]);
+  const [arrayBrand, setArrayBrand] = useState<string>('');
   const min = _.min(arrayRating) || 0;
   const max = _.max(arrayRating) || 0;
 
   const handleBrandChange = (brandId: string) => {
-    setArrayBrand(prev => {
-      const isChecked = prev.includes(brandId);
-      if (isChecked) {
-        return prev.filter(item => item !== brandId) as string[];
-      } else {
-        return [...prev, brandId];
-      }
-    });
+    setArrayBrand(brandId);
+    setBrand(brandId || null);
   };
 
   const handleRatingChange = (numberRating: number) => {
@@ -101,17 +96,8 @@ function FilterPanel({ listBrand, setRating = () => {}, price, setPrice, setBran
     }
   }, [arrayRating]);
 
-  useEffect(() => {
-    const lengthArrayBrand = arrayBrand.length - 1;
-    if (arrayBrand.length > 0) {
-      setBrand(arrayBrand[lengthArrayBrand]);
-    } else {
-      setBrand(null);
-    }
-  }, [arrayBrand]);
-
   return (
-    <Grid item md={3}>
+    <Grid item xs={12} lg={3}>
       <Paper sx={styles.wrapPaper}>
         <Box component="h6" sx={styles.boxPriceRange}>
           <FormattedMessage {...messages.priceRange} />
@@ -149,10 +135,11 @@ function FilterPanel({ listBrand, setRating = () => {}, price, setPrice, setBran
         </Box>
         {listBrand.map(item => (
           <FormControlLabel
+            checked={item._id === arrayBrand}
             key={item.name}
             sx={styles.flex}
             onChange={() => handleBrandChange(item._id)}
-            control={<Checkbox color="default" size="small" />}
+            control={<Radio color="default" size="small" />}
             label={<Box sx={styles.labelFormControl}>{item.name}</Box>}
           />
         ))}

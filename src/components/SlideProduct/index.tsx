@@ -19,9 +19,16 @@ function SlideProduct({ children, autoplay = false, slidesToShow = 4, arrows = t
         autoplay={autoplay}
         responsive={[
           {
-            breakpoint: 800,
+            breakpoint: 1024,
             settings: {
               slidesToShow: slidesToShow,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 425,
+            settings: {
+              slidesToShow: 3,
               slidesToScroll: 1,
             },
           },
