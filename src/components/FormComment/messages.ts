@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Component.FormComment';
+export const scope = 'Components.FormComment';
 export default defineMessages({
   yourRating: {
     id: `${scope}.yourRating`,

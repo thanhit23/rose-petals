@@ -27,6 +27,10 @@ export default defineMessages({
     id: `${scope}.total`,
     defaultMessage: 'Total:',
   },
+  paidCard: {
+    id: `${scope}.paidByCreditCard`,
+    defaultMessage: 'Paid by Credit/Debit Card:',
+  },
   paymentMethod: {
     id: `${scope}.paymentMethod`,
     defaultMessage: 'Payment method:',

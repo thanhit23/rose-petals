@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ import LoginForm from 'src/containers/Login/LoginForm';
 import { integrationPathImage } from 'src/helpers';
 import store from 'src/store';
 
+import messages from './messages';
 import styles from './styles';
 
 type Props = Auth;
@@ -63,9 +65,9 @@ const UserButton: React.FC<Props> = ({ auth }) => {
       );
     }
     const menuItem = [
-      { title: 'Profile', path: '/profile', sx: { p: 0, '> a': { p: '6px 16px' } } },
+      { title: <FormattedMessage {...messages.profile} />, path: '/profile', sx: { p: 0, '> a': { p: '6px 16px' } } },
       {
-        title: 'Logout',
+        title: <FormattedMessage {...messages.logout} />,
         onClick: handleLogout,
       },
     ];

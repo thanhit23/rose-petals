@@ -177,7 +177,6 @@ const ProductForm: React.FC<Props> = ({ product }) => {
             </Box>
           )}
         </Box>
-
         <Box sx={styles.boxItemInAddCart}>
           <LoadingButton
             disabled={product?.quantity === product?.sold}

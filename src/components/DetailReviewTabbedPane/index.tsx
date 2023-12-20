@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
@@ -7,6 +8,7 @@ import Description from '../ProductDescription';
 import Review from '../ProductReview';
 import { ProductReviewType } from '../ProductReview/types';
 import TabPanel from '../TabPanelProduct';
+import messages from './messages';
 import styles from './styles';
 
 type Props = {
@@ -51,8 +53,8 @@ const DetailReviewTabbedPane: React.FC<Props> = ({
         indicatorColor="primary"
         sx={styles.tab}
       >
-        <Tab label="Description" sx={styles.tabItem} {...a11yProps(0)} />
-        <Tab label="Review" sx={styles.tabItem} {...a11yProps(1)} />
+        <Tab label={<FormattedMessage {...messages.description} />} sx={styles.tabItem} {...a11yProps(0)} />
+        <Tab label={<FormattedMessage {...messages.reviews} />} sx={styles.tabItem} {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Description />

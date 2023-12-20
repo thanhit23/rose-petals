@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -47,7 +47,7 @@ const TopBar: React.FC<Props> = ({ locale }) => {
         <Box sx={styles.boxChip}>
           <Chip sx={styles.chipHot} label="HOT" />
           <Box component="span" sx={styles.boxExpress}>
-            Free Express Shipping
+            <FormattedMessage {...messages.shipping} />
           </Box>
         </Box>
         <Box sx={{ display: 'flex' }}>

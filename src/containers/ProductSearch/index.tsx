@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useSearchParams } from 'react-router-dom';
 
 import { Paper, Skeleton } from '@mui/material';
@@ -17,6 +18,7 @@ import SortBar from 'src/components/SortBar';
 import useDebounce from 'src/hooks/useDebounce';
 
 import { getBrands } from '../HomePage/httpClients';
+import messages from './messages';
 import { getFilterProducts } from './services';
 
 function ProductSearch() {
@@ -156,8 +158,9 @@ function ProductSearch() {
           )}
           <Box sx={styles.boxQuantityPaginationProduct}>
             <Box component="span">
-              Showing {listFilterProduct.data ? listFilterProduct.data.length : 0} of{' '}
-              {listFilterProduct.meta ? listFilterProduct.meta.totalResults : 0} Products
+              <FormattedMessage {...messages.showing} /> {listFilterProduct.data ? listFilterProduct.data.length : 0}{' '}
+              <FormattedMessage {...messages.of} /> {listFilterProduct.meta ? listFilterProduct.meta.totalResults : 0}{' '}
+              Products
             </Box>
             {listFilterProduct.meta && listFilterProduct.meta.totalPages > 1 && (
               <Pagination

@@ -27,9 +27,9 @@ type Props = {
 const UserProfile: React.FC<Props> = ({ auth, analytics }) => {
   const checkGender = (gender: number) => {
     if (gender === 1) {
-      return 'Female';
+      return <FormattedMessage {...messages.female} />;
     } else if (gender === 2) {
-      return 'Male';
+      return <FormattedMessage {...messages.male} />;
     } else {
       return '';
     }

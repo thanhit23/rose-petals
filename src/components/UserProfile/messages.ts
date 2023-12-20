@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-export const scope = 'Component.UserProfile';
+export const scope = 'Components.UserProfile';
 
 export default defineMessages({
   title: {
@@ -46,5 +46,13 @@ export default defineMessages({
   gender: {
     id: `${scope}.gender`,
     defaultMessage: 'Gender',
+  },
+  female: {
+    id: `${scope}.female`,
+    defaultMessage: 'Female',
+  },
+  male: {
+    id: `${scope}.male`,
+    defaultMessage: 'Male',
   },
 });

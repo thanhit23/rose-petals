@@ -172,13 +172,13 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onUpdateProfileUser, onUpl
                     checked={+watch('gender') === 1}
                     value={1}
                     control={<Radio {...register('gender')} />}
-                    label="Female"
+                    label={<FormattedMessage {...messages.female} />}
                   />
                   <FormControlLabel
                     checked={+watch('gender') === 2}
                     value={2}
                     control={<Radio {...register('gender')} />}
-                    label="Male"
+                    label={<FormattedMessage {...messages.male} />}
                   />
                 </RadioGroup>
                 <ErrorMessage name={gender} />

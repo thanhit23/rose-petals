@@ -15,4 +15,21 @@ export default defineMessages({
     id: `${scope}.deleteThisOrder`,
     defaultMessage: 'Delete this order',
   },
+  statusCancelled: {
+    id: `${scope}.statusCancelled`,
+    defaultMessage: 'CANCELLED',
+  },
+  statusOrdered: {
+    id: `${scope}.statusOrdered`,
+    defaultMessage: 'ORDERED',
+  },
+  statusDelivering: {
+    id: `${scope}.statusDelivering`,
+    defaultMessage: 'DELIVERING',
+  },
+
+  statusDelivered: {
+    id: `${scope}.statusDelivered`,
+    defaultMessage: 'DELIVERED',
+  },
 });
