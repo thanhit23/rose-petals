@@ -1,5 +1,3 @@
-import { styles } from '../common';
-
 const containerTitle = {
   display: 'flex',
   marginTop: '-16px',
@@ -60,6 +58,17 @@ const headerItemLast = {
   margin: 0,
 };
 
+const noOrder = {
+  display: 'block',
+  margin: '0 auto',
+  width: '260px',
+  height: '260px',
+  '& > img': {
+    opacity: '.8',
+    objectFit: 'cover',
+  },
+};
+
 export default {
   paperHeaderList,
   headerItemLast,
@@ -68,4 +77,5 @@ export default {
   headerItem,
   boxTitle,
   title,
+  noOrder,
 };

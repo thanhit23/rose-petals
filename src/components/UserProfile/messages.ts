@@ -47,4 +47,12 @@ export default defineMessages({
     id: `${scope}.gender`,
     defaultMessage: 'Gender',
   },
+  female: {
+    id: `${scope}.female`,
+    defaultMessage: 'Female',
+  },
+  male: {
+    id: `${scope}.male`,
+    defaultMessage: 'Male',
+  },
 });

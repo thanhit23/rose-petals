@@ -11,6 +11,10 @@ export default defineMessages({
     id: `${scope}.yourRating`,
     defaultMessage: 'Your Rating',
   },
+  noComment: {
+    id: `${scope}.noComment`,
+    defaultMessage: 'No comment',
+  },
   yourReview: {
     id: `${scope}.yourReview`,
     defaultMessage: 'Your Review',

@@ -3,12 +3,12 @@ import { defineMessages } from 'react-intl';
 export const scope = 'Layouts.Header.Search';
 
 export default defineMessages({
-  searchFor: {
-    id: `${scope}.searchFor`,
+  keyword: {
+    id: `${scope}.keyword`,
     defaultMessage: 'Keyword',
   },
-  placeholderSearch: {
-    id: `${scope}.placeholderSearch`,
+  searchingFor: {
+    id: `${scope}.searchingFor`,
     defaultMessage: 'Searching for...',
   },
 });

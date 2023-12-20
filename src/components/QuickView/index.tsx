@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import Modal from '@mui/material/Modal';
 
 import { Product } from 'src/common/types';
+import { integrationPathImage } from 'src/helpers';
 
 import ProductForm from '../ProductBriefing/ProductForm';
 import styles from './styles';
@@ -20,8 +21,10 @@ type Props = {
   handleCloseModal: () => void;
 };
 
-const QuickView: React.FC<Props> = ({ product, openModal, handleCloseModal }) => {
+const QuickView: React.FC<Props> = ({ product, openModal, handleCloseModal }: Props) => {
   const handleClose = () => handleCloseModal();
+
+  const { images } = product;
   return (
     <div>
       <Modal
@@ -47,26 +50,13 @@ const QuickView: React.FC<Props> = ({ product, openModal, handleCloseModal }) =>
                     </Button>
                   }
                 >
-                  <Box className="each-slide-effect">
-                    <Box margin="auto" width="calc(100% - 1.5rem)">
-                      <Box
-                        sx={styles.boxImage}
-                        component="img"
-                        alt="asd"
-                        src="https://bazar-react.vercel.app/assets/images/products/Fashion/Clothes/1.SilverHighNeckSweater.png"
-                      />
+                  {images?.map((item, index) => (
+                    <Box key={index} className="each-slide-effect">
+                      <Box margin="auto" width="calc(100% - 1.5rem)">
+                        <Box sx={styles.boxImage} component="img" alt="ảnh" src={integrationPathImage(item)} />
+                      </Box>
                     </Box>
-                  </Box>
-                  <Box className="each-slide-effect">
-                    <Box margin="auto" width="calc(100% - 1.5rem)">
-                      <Box
-                        sx={styles.boxImage}
-                        component="img"
-                        alt="asd"
-                        src="https://bazar-react.vercel.app/assets/images/products/Fashion/Clothes/1.SilverHighNeckSweater.png"
-                      />
-                    </Box>
-                  </Box>
+                  ))}
                 </Slide>
               </Grid>
               <Grid item xs={6}>

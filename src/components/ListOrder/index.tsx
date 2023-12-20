@@ -1,17 +1,28 @@
-import * as React from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { isEmpty } from 'lodash';
+
+import noOrder from 'src/resources/images/noOrder.jpg';
 
 import ItemOrder from '../ItemOrder';
+import { ItemOrderTypes } from '../ItemOrder/types';
+import Loading from './Loading';
 import messages from './messages';
 import styles from './styles';
 
-function ListOrder() {
+type Props = {
+  listOrder: ItemOrderTypes[];
+  isLoading: boolean;
+};
+
+function ListOrder({ listOrder, isLoading }: Props) {
   return (
-    <>
+    <React.Fragment>
       <Box sx={styles.containerTitle}>
         <Box sx={styles.wrapperTitle}>
           <Box sx={styles.boxTitle}>
@@ -43,12 +54,14 @@ function ListOrder() {
           }}
         />
       </Paper>
-      <ItemOrder />
-      <ItemOrder />
-      <ItemOrder />
-      <ItemOrder />
-      <ItemOrder />
-    </>
+      {isLoading ? (
+        <Loading />
+      ) : !isEmpty(listOrder) ? (
+        listOrder?.map((itemOrder: ItemOrderTypes) => <ItemOrder key={itemOrder._id} itemOrder={itemOrder} />)
+      ) : (
+        <Avatar src={noOrder} alt="No order" sx={styles.noOrder} />
+      )}
+    </React.Fragment>
   );
 }
 

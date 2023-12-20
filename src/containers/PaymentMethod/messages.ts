@@ -7,8 +7,8 @@ export default defineMessages({
     id: `${scope}.paymentMethods`,
     defaultMessage: 'Payment Methods',
   },
-  btnAddNew: {
-    id: `${scope}.button.addNewPayment`,
-    defaultMessage: 'Add New Payment Method',
+  cashOnDelivery: {
+    id: `${scope}.cashOnDelivery`,
+    defaultMessage: 'Cash On Delivery',
   },
 });

@@ -1,6 +1,6 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+import ScrollToTop from 'src/components/ScrollToTop';
 import useResponsive from 'src/hooks/useResponsive';
 
 import Footer from '../Footer';
@@ -14,6 +14,7 @@ export default function LayoutMain() {
 
   return (
     <>
+      <ScrollToTop />
       <TopBar />
       <Header />
       <div className="section-after-sticky" style={{ position: 'relative' }}>

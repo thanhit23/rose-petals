@@ -15,25 +15,21 @@ export default defineMessages({
     id: `${scope}.phoneNumber`,
     defaultMessage: 'Phone Number',
   },
-  zipCode: {
-    id: `${scope}.zipCode`,
-    defaultMessage: 'Zip Code',
+  city: {
+    id: `${scope}.city`,
+    defaultMessage: 'City',
   },
-  address1: {
-    id: `${scope}.address1`,
-    defaultMessage: 'Address 1',
+  district: {
+    id: `${scope}.district`,
+    defaultMessage: 'District',
   },
-  emailAddress: {
-    id: `${scope}.emailAddress`,
-    defaultMessage: 'Email Address',
+  ward: {
+    id: `${scope}.ward`,
+    defaultMessage: 'Ward',
   },
-  company: {
-    id: `${scope}.company`,
-    defaultMessage: 'Company',
-  },
-  address2: {
-    id: `${scope}.address2`,
-    defaultMessage: 'Address 2',
+  addressDetail: {
+    id: `${scope}.addressDetail`,
+    defaultMessage: 'Additional Note',
   },
   btnBackToCart: {
     id: `${scope}.btnBackToCart`,
@@ -42,5 +38,49 @@ export default defineMessages({
   btnProceedToPayment: {
     id: `${scope}.btnProceedToPayment`,
     defaultMessage: 'Proceed to Payment',
+  },
+  districtErrorMessage: {
+    id: `${scope}.districtErrorMessage`,
+    defaultMessage: 'District is required',
+  },
+  wardErrorMessage: {
+    id: `${scope}.wardErrorMessage`,
+    defaultMessage: 'Ward is required',
+  },
+  nameRequired: {
+    id: `${scope}.nameRequired`,
+    defaultMessage: 'Name is required',
+  },
+  nameMaxLength: {
+    id: `${scope}.nameMaxLength`,
+    defaultMessage: 'Full name must be at most 25 characters',
+  },
+  nameNotSpecialCharacters: {
+    id: `${scope}.nameNotSpecialCharacters`,
+    defaultMessage: 'Full name must not contain special characters',
+  },
+  phoneNumberRequired: {
+    id: `${scope}.phoneNumberRequired`,
+    defaultMessage: 'Phone number is required',
+  },
+  phoneNumberPositive: {
+    id: `${scope}.phoneNumberPositive`,
+    defaultMessage: 'Phone number must be a positive number',
+  },
+  phoneNumberMustBeANumber: {
+    id: `${scope}.phoneNumberMustBeANumber`,
+    defaultMessage: 'Phone number must be a number',
+  },
+  phoneNumberInteger: {
+    id: `${scope}.phoneNumberInteger`,
+    defaultMessage: 'Phone number must be an integer',
+  },
+  phoneNumberMaxLength: {
+    id: `${scope}.phoneNumberMaxLength`,
+    defaultMessage: 'Phone number must be at most 10 digits',
+  },
+  cityRequired: {
+    id: `${scope}.cityRequired`,
+    defaultMessage: 'City is required',
   },
 });

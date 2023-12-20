@@ -49,40 +49,6 @@ const btnQuickView = {
   transition: 'all 0.3s',
 };
 
-const btnAddCart = {
-  top: '10px',
-  right: '-40px',
-  position: 'absolute',
-  transition: 'right 0.3s .1s',
-  padding: '8px',
-  borderRadius: '50%',
-  '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
-  },
-};
-
-const btnFavorite = {
-  top: '45px',
-  right: '-40px',
-  position: 'absolute',
-  transition: 'right 0.3s .2s',
-  padding: '8px',
-  borderRadius: '50%',
-  '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
-  },
-};
-
-const icon = {
-  fontSize: '1.25rem',
-  color: 'rgba(0, 0, 0, 0.26)',
-};
-
-const iconFavorite = {
-  fontSize: '1.25rem',
-  color: '#d23f57',
-};
-
 const boxCategory = {
   fontSize: ' 12px',
   lineHeight: 1.5,
@@ -148,12 +114,8 @@ export default {
   boxProductName,
   boxWrapperItem,
   btnQuickView,
-  iconFavorite,
   boxCategory,
-  btnFavorite,
-  btnAddCart,
   boxPrice,
   rating,
   review,
-  icon,
 };

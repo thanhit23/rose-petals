@@ -6,8 +6,12 @@ export default defineMessages({
   description: {
     id: `${scope}.description`,
     defaultMessage:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et, in gravida. Sit diam duis\n' +
-      '                mauris nulla cursus. Erat et lectus vel ut sollicitudin elit at amet.',
+      'Rose Pestals is the leading e-commerce platform in Southeast Asia.\n' +
+      '                Launched in 2023, the Rose Pestals commerce platform is built to provide users with an easy, safe and fast experience when shopping online. through a strong payment and operational support system.',
+  },
+  nameShop: {
+    id: `${scope}.nameShop`,
+    defaultMessage: 'Rose Pestals',
   },
   getItOn: {
     id: `${scope}.getItOn`,
@@ -79,14 +83,14 @@ export default defineMessages({
   },
   address: {
     id: `${scope}.address`,
-    defaultMessage: '70 Washington Square South, New York, NY 10012, United States',
+    defaultMessage: '137 Nguyen Thi Thap street, Lien Chieu, Da Nang',
   },
   email: {
     id: `${scope}.email`,
-    defaultMessage: 'Email: uilib.help@gmail.com',
+    defaultMessage: 'Email: rosepetals@gmail.com',
   },
   phone: {
     id: `${scope}.phone`,
-    defaultMessage: 'Phone: +1 1123 456 780',
+    defaultMessage: 'Phone: +84 9052534765',
   },
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 
 import styles from './styles';
 
@@ -11,9 +11,18 @@ type Props = {
   title: JSX.Element;
   button?: JSX.Element;
   path?: string;
+  loadingButton?: boolean;
+  onClickButton?: () => void;
 };
 
-const HeaderHoldUser: React.FC<Props> = ({ icon, title, button, path = '#' }) => (
+const HeaderHoldUser: React.FC<Props> = ({
+  icon,
+  title,
+  button,
+  path = '#',
+  loadingButton = false,
+  onClickButton = () => {},
+}) => (
   <Box sx={styles.containerTitle}>
     <Box sx={styles.wrapperTitle}>
       <Box sx={styles.boxTitle}>
@@ -23,10 +32,10 @@ const HeaderHoldUser: React.FC<Props> = ({ icon, title, button, path = '#' }) =>
         </Box>
       </Box>
       {button && (
-        <Link to={path}>
-          <Button variant="contained" sx={styles.btnOrderAgain}>
+        <Link to={path} onClick={onClickButton}>
+          <LoadingButton loading={loadingButton} variant="contained" sx={styles.btnOrderAgain}>
             {button}
-          </Button>
+          </LoadingButton>
         </Link>
       )}
     </Box>

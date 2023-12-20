@@ -2,7 +2,6 @@ const buttonPerson = {
   borderRadius: '50%',
   minWidth: 'auto',
   color: '#0000008a',
-  padding: '10px',
   backgroundColor: '#F3F5F9',
   '&:hover': {
     backgroundColor: '#0000000a',

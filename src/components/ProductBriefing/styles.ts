@@ -66,8 +66,8 @@ const boxTitle = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   display: '-webkit-box',
-  WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: 2,
+  webkitBoxOrient: 'vertical',
+  webkitLineClamp: 2,
 };
 
 const boxWrapBrand = {
@@ -90,12 +90,15 @@ const boxRated = {
   display: 'flex',
   WebkitBoxAlign: 'center',
   alignItems: 'center',
+  gap: '0 8px',
+  margin: '6px 0 20px',
 };
 
 const wrapRating = {
-  marginLeft: '8px',
-  marginRight: '8px',
   lineHeight: '1',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0 3px',
 };
 
 const wrapBrandRating = {
@@ -104,16 +107,18 @@ const wrapBrandRating = {
   marginBottom: { md: '8px' },
 };
 
-const rating = { fontSize: '1.25rem' };
+const rating = { fontSize: '1.2rem' };
 
 const quantityRating = {
   marginBottom: '0px',
   marginTop: '0px',
-  fontSize: '14px',
+  fontSize: '16px',
   fontWeight: '600',
   lineHeight: '1.5',
   textTransform: 'none',
   whiteSpace: 'normal',
+  borderBottom: '1px solid #fab500',
+  color: '#fab500',
 };
 
 const option = {
@@ -139,7 +144,6 @@ const optionItem = {
 };
 
 const boxType = {
-  marginBottom: '8px',
   marginTop: '0px',
   fontSize: '14px',
   fontWeight: '600',
@@ -161,8 +165,7 @@ const typeItem = {
 };
 
 const wrapPrice = {
-  paddingTop: '8px',
-  marginBottom: '24px',
+  marginBottom: '16px',
 };
 
 const boxPrice = {
@@ -196,16 +199,109 @@ const btnAddCart = {
   },
 };
 
+const boxItemInAddCart = {
+  marginTop: '20px',
+  display: 'flex',
+  alignItems: 'end',
+};
+
+const boxRatings = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0 6px',
+  borderLeft: '1px solid #999999',
+  paddingLeft: '3px',
+};
+
+const boxQuantity = {
+  margin: 0,
+};
+
+const boxSold = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0 6px',
+  borderLeft: '1px solid #999999',
+  paddingLeft: '3px',
+};
+
+const wrapQuantity = {
+  display: 'flex',
+  alignItems: 'center',
+};
+
+const boxShowError = {
+  marginTop: '10px',
+  color: '#ff424f',
+  marginLeft: '100px',
+  fontSize: '15px',
+};
+
+const boxChooseSize = {
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '20px',
+};
+
+const boxSizeQuantity = {
+  padding: '20px',
+  marginLeft: '-20px',
+};
+
+const boxShowErrorSoldOut = {
+  marginTop: '10px',
+  color: '#ff424f',
+  fontSize: '15px',
+};
+
+const ratingAndSold = {
+  borderBottom: '1px solid #333',
+  fontWeight: 'bold',
+  fontSize: '16px',
+  paddingLeft: '3px',
+};
+
+const ratingAndSoldLabel = {
+  color: '#666666',
+};
+
+const dialog = {
+  '& div > div': {
+    borderRadius: '8px',
+    maxWidth: '500px',
+  },
+};
+
+const paperLogin = {
+  boxSizing: 'border-box',
+  overflow: 'hidden',
+  borderRadius: '8px',
+  padding: '2rem 3rem',
+};
+
 export default {
   boxContainerImg,
+  boxSold,
+  paperLogin,
+  dialog,
+  ratingAndSoldLabel,
+  ratingAndSold,
+  boxRatings,
   quantityRating,
   boxWrapperImg,
   boxWrapBrand,
   boxImgItem,
   wrapRating,
   optionItem,
+  boxShowError,
+  boxSizeQuantity,
+  boxShowErrorSoldOut,
+  wrapQuantity,
+  boxChooseSize,
+  boxQuantity,
   wrapBrandRating,
   btnAddCart,
+  boxItemInAddCart,
   wrapPrice,
   typeItem,
   boxTitle,

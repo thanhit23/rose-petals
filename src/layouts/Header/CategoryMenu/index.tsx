@@ -27,16 +27,19 @@ const CategoryMenu: React.FC<Props> = ({ categoryList, onChangeCategoryId }) => 
       sx: { width: '200px' },
     },
     ...categoryList.map(item => ({
-      title: item.name,
       id: item.id,
+      title: item.name,
       sx: { width: '200px' },
     })),
   ];
 
   const handleClickMenuItem = (e: Event | React.SyntheticEvent) => {
     const input = e.target as HTMLElement;
-    !isEmpty(input.innerText) && setButtonText(input.innerText);
-    onChangeCategoryId(input.id);
+
+    if (!isEmpty(input.innerText)) {
+      setButtonText(input.innerText);
+      onChangeCategoryId(input.id);
+    }
   };
 
   return (

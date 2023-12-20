@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Rating from '@mui/material/Rating';
@@ -23,7 +20,6 @@ type Props = {
 };
 
 const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null }) => {
-  const [loved, setLoved] = useState(false);
   const [ModalProductDetail, setModalProductDetail] = useState(false);
 
   const openModalProduct = () => setModalProductDetail(true);
@@ -50,12 +46,6 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
               </Box>
             </Box>
           </Link>
-          <ButtonBase className="product-actions" sx={styles.btnAddCart}>
-            <AddShoppingCartIcon sx={styles.icon} />
-          </ButtonBase>
-          <ButtonBase className="product-actions" sx={styles.btnFavorite} onClick={() => setLoved(!loved)}>
-            {!loved ? <FavoriteBorderIcon sx={styles.icon} /> : <FavoriteIcon sx={styles.iconFavorite} />}
-          </ButtonBase>
           <ButtonBase className="product-view-action" sx={styles.btnQuickView} onClick={openModalProduct}>
             <FormattedMessage {...messages.btnQuickView} />
           </ButtonBase>
@@ -76,9 +66,9 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
             {formatPrice.format(product?.price)}
           </Box>
           <Box sx={styles.boxWrapperRatingReview}>
-            <Rating name="read-only" value={product?.star} readOnly sx={styles.rating} />
+            <Rating name="read-only" precision={0.1} value={product?.rating} readOnly sx={styles.rating} />
             <Box component="small" sx={styles.review}>
-              ({product?.review} <FormattedMessage {...messages.review} />)
+              ({product?.totalComment} <FormattedMessage {...messages.review} />)
             </Box>
           </Box>
         </Box>

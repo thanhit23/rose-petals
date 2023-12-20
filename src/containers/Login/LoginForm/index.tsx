@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -12,8 +12,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -22,6 +20,7 @@ import { Dispatch, bindActionCreators, compose } from 'redux';
 import ErrorMessage from 'src/components/ErrorMessage';
 import TextField from 'src/components/TextField';
 import { useClientLogin } from 'src/queries/auth';
+import { PATH_AUTH } from 'src/routes/paths';
 
 import { loginSuccess as loginSuccessAction } from '../actions';
 import { Props, UserSubmitForm } from '../types';
@@ -30,6 +29,7 @@ import styles from './styles';
 import { loginValidationSchema } from './validationSchema';
 
 function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
+  const t = useIntl();
   const navigator = useNavigate();
 
   const [isPassword, setIsPassword] = useState<boolean>(true);
@@ -52,7 +52,7 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
     formState: { errors },
   } = useForm<UserSubmitForm>({
     mode: 'onChange',
-    resolver: yupResolver(loginValidationSchema),
+    resolver: yupResolver(loginValidationSchema(t)),
   });
 
   const { email, password, root } = errors;
@@ -117,15 +117,6 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
             </Box>
             <ErrorMessage name={password} />
           </Grid>
-
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label={<FormattedMessage {...messages.rememberMe} />}
-              sx={styles.formControlLabel}
-            />
-          </Grid>
-
           <Grid item xs={12}>
             <LoadingButton
               fullWidth
@@ -145,7 +136,7 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
               <Box color="#2b3445">
                 <FormattedMessage {...messages.notAccount} />
               </Box>
-              <Link to="/register" style={styles.linkSingUp}>
+              <Link to={PATH_AUTH.register} style={styles.linkSingUp}>
                 <FormattedMessage {...messages.signUp} />
               </Link>
             </Box>
@@ -154,7 +145,7 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
           <Grid item xs={12}>
             <Box sx={styles.boxForGotPassword}>
               <FormattedMessage {...messages.forgotPassword} />
-              <Link to="/reset-password" style={styles.linkRegister}>
+              <Link to={PATH_AUTH.forgotPassword} style={styles.linkRegister}>
                 <FormattedMessage {...messages.resetIt} />
               </Link>
             </Box>

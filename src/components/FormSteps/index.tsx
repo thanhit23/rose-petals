@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -15,13 +15,14 @@ type Props = {
 
 const FormSteps: React.FC<Props> = ({ activeIndexPage }) => {
   const handleActive = (index: number) => (index <= activeIndexPage ? styles.active : styles.unActive);
+  const { pathname } = useLocation();
 
   return (
     <Box marginBottom="20px">
       <Grid container spacing={{ xs: 3 }}>
         <Grid item xs={12}>
           <Box sx={styles.boxBreadBar}>
-            <Link to="/cart">
+            <Box>
               <Chip
                 label={<FormattedMessage {...messages.cart} />}
                 sx={{
@@ -29,7 +30,7 @@ const FormSteps: React.FC<Props> = ({ activeIndexPage }) => {
                   ...styles.chipItem,
                 }}
               />
-            </Link>
+            </Box>
             <Box
               className="bridge"
               sx={{
@@ -37,30 +38,32 @@ const FormSteps: React.FC<Props> = ({ activeIndexPage }) => {
                 ...handleActive(2),
               }}
             />
-            <Link to="/checkout">
+            <Box>
               <Chip
+                disabled={pathname === '/cart'}
                 label={<FormattedMessage {...messages.detail} />}
                 sx={{
                   ...handleActive(2),
                   ...styles.chipItem,
                 }}
               />
-            </Link>
+            </Box>
             <Box
               sx={{
                 ...styles.bridge,
                 ...handleActive(3),
               }}
             />
-            <Link to="/payment">
+            <Box>
               <Chip
+                disabled={pathname === '/cart' || pathname === '/checkout'}
                 label={<FormattedMessage {...messages.payment} />}
                 sx={{
                   ...handleActive(3),
                   ...styles.chipItem,
                 }}
               />
-            </Link>
+            </Box>
             <Box
               sx={{
                 ...styles.bridge,

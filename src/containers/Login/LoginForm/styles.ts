@@ -1,11 +1,9 @@
-const formControlLabel = { display: 'flex' };
-
 const btnSubmit = {
   backgroundColor: 'error.main_btn',
   color: '#fff',
   boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
   '&:hover': {
-    backgroundColor: '#e3364e',
+    backgroundColor: '#C4CDD5',
     boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
   },
 };
@@ -70,7 +68,7 @@ const boxAvatar = {
   alignItems: 'center',
 };
 
-const avatar = { m: 1 };
+const avatar = { m: 1, backgroundColor: '#9c27b0' };
 
 const typography = {
   marginBottom: '32px',
@@ -87,7 +85,6 @@ export default {
   iconBtnShowPassword,
   boxForGotPassword,
   visibilityOffIcon,
-  formControlLabel,
   boxFooterLogin,
   visibilityIcon,
   linkRegister,

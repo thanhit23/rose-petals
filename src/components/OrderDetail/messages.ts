@@ -31,13 +31,21 @@ export default defineMessages({
     id: `${scope}.orderID`,
     defaultMessage: 'Order ID:',
   },
+  delivered: {
+    id: `${scope}.delivered`,
+    defaultMessage: 'DELIVERED',
+  },
+  cancelled: {
+    id: `${scope}.cancelled`,
+    defaultMessage: 'CANCELLED',
+  },
   placedOn: {
     id: `${scope}.placedOn`,
     defaultMessage: 'Placed on:',
   },
-  deliveredOn: {
-    id: `${scope}.deliveredOn`,
-    defaultMessage: 'Delivered on:',
+  deliveringStatus: {
+    id: `${scope}.deliveringStatus`,
+    defaultMessage: 'Delivering status:',
   },
   productProperties: {
     id: `${scope}.productProperties`,
@@ -46,5 +54,45 @@ export default defineMessages({
   btnWriteReview: {
     id: `${scope}.btnWriteReview`,
     defaultMessage: 'Write a Review',
+  },
+  boxReviewTitle: {
+    id: `${scope}.boxReviewTitle`,
+    defaultMessage: 'Review this product',
+  },
+  btnCancelReview: {
+    id: `${scope}.btnCancelReview`,
+    defaultMessage: 'Cancel',
+  },
+  btnReview: {
+    id: `${scope}.btnReview`,
+    defaultMessage: 'Review',
+  },
+  createCommentMessage: {
+    id: `${scope}.createCommentMessage`,
+    defaultMessage: 'Review this product successfully',
+  },
+  reviewProductFailed: {
+    id: `${scope}.reviewProductFailed`,
+    defaultMessage: 'Review this product failed',
+  },
+  orderAgainFailed: {
+    id: `${scope}.orderAgainFailed`,
+    defaultMessage: 'Order again failed',
+  },
+  yourRating: {
+    id: `${scope}.yourRating`,
+    defaultMessage: 'Your Rating',
+  },
+  yourReview: {
+    id: `${scope}.yourReview`,
+    defaultMessage: 'Your Review',
+  },
+  reOrderThisOrder: {
+    id: `${scope}.reOrderThisOrder`,
+    defaultMessage: 'Reorder this order',
+  },
+  pleaseWriteSomething: {
+    id: `${scope}.pleaseWriteSomething`,
+    defaultMessage: 'Please write something...',
   },
 });

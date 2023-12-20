@@ -1,162 +1,77 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Rating from '@mui/material/Rating';
-import TextField from '@mui/material/TextField';
+import { compose } from 'redux';
 
-import { Nullable } from 'src/common/types';
+import { State } from 'src/common/types';
+import Pagination from 'src/components/Pagination';
+import SkeletonAnimation from 'src/components/Skeleton';
 
-import ErrorMessage from '../ErrorMessage';
+import CommentItem from '../CommentItem';
+import FormComment from '../FormComment';
 import messages from './messages';
 import styles from './styles';
-import { ReviewSubmitForm, ReviewTypes } from './types';
+import { ProductReviewType, ReviewTypes } from './types';
 
-function ProductReview({ onSubmit }: ReviewTypes) {
-  const [value, setValue] = React.useState<Nullable<number>>(0);
+function ProductReview({
+  listProductReview,
+  onCreateComment,
+  onUpdateComment,
+  totalPage,
+  setPage,
+  page,
+  isFetching,
+  auth,
+  onDeleteComment,
+  idComment,
+  setIdComment,
+}: ReviewTypes) {
+  const idUser = auth?.id;
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ReviewSubmitForm>({
-    mode: 'onChange',
-  });
-
-  const handleSubmitForm = (data: object) => {
-    onSubmit(data);
+  const handleOnChange = (value: number) => {
+    setPage(value);
   };
-
-  const { review } = errors;
 
   return (
     <Box>
-      <Box sx={styles.wrapReview}>
-        <Box sx={styles.wrapInformationUser}>
-          <Avatar src="https://bazar-react.vercel.app/assets/images/faces/7.png" sx={styles.avatar} />
-          <Box marginLeft="16px">
-            <Box component="h5" sx={styles.nameUser}>
-              Jannie Schumm
-            </Box>
-            <Box display="flex" alignItems="center">
-              <Rating value={4} readOnly={true} sx={{ fontSize: '1.25rem' }} />
-              <Box component="h6" sx={styles.averageRating}>
-                4.7
-              </Box>
-              <Box component="span" sx={styles.ratingTime}>
-                2.2 years ago
-              </Box>
-            </Box>
+      {isFetching ? (
+        <SkeletonAnimation />
+      ) : listProductReview.length !== 0 ? (
+        <Box>
+          {listProductReview.map((item: ProductReviewType) => (
+            <CommentItem
+              key={item._id}
+              data={item}
+              setIdComment={setIdComment}
+              onDeleteComment={onDeleteComment}
+              idComment={idComment}
+              onUpdateComment={onUpdateComment}
+              idUser={idUser}
+            />
+          ))}
+          <Pagination count={totalPage} page={page} onChange={handleOnChange} />
+        </Box>
+      ) : (
+        <Box sx={{ textAlign: 'center', fontWeight: '500', color: '#637182' }}>
+          <FormattedMessage {...messages.noComment} />
+        </Box>
+      )}
+      {idUser && (
+        <Box>
+          <Box component="h2" sx={styles.titleReviewProduct}>
+            <FormattedMessage {...messages.writeAReview} />
           </Box>
+          <FormComment onSubmit={onCreateComment} />
         </Box>
-        <Box component="p" sx={styles.comment}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida
-          egestas ac account.
-        </Box>
-      </Box>
-      <Box sx={styles.wrapReview}>
-        <Box sx={styles.wrapInformationUser}>
-          <Avatar src="https://bazar-react.vercel.app/assets/images/faces/7.png" sx={styles.avatar} />
-          <Box marginLeft="16px">
-            <Box component="h5" sx={styles.nameUser}>
-              Jannie Schumm
-            </Box>
-            <Box display="flex" alignItems="center">
-              <Rating value={4} readOnly={true} sx={{ fontSize: '1.25rem' }} />
-              <Box component="h6" sx={styles.averageRating}>
-                4.7
-              </Box>
-              <Box component="span" sx={styles.ratingTime}>
-                2.2 years ago
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        <Box component="p" sx={styles.comment}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida
-          egestas ac account.
-        </Box>
-      </Box>
-      <Box sx={styles.wrapReview}>
-        <Box sx={styles.wrapInformationUser}>
-          <Avatar src="https://bazar-react.vercel.app/assets/images/faces/7.png" sx={styles.avatar} />
-          <Box marginLeft="16px">
-            <Box component="h5" sx={styles.nameUser}>
-              Jannie Schumm
-            </Box>
-            <Box display="flex" alignItems="center">
-              <Rating value={4} readOnly={true} sx={{ fontSize: '1.25rem' }} />
-              <Box component="h6" sx={styles.averageRating}>
-                4.7
-              </Box>
-              <Box component="span" sx={styles.ratingTime}>
-                2.2 years ago
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-        <Box component="p" sx={styles.comment}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida
-          egestas ac account.
-        </Box>
-      </Box>
-      <Box component="h2" sx={styles.titleReviewProduct}>
-        <FormattedMessage {...messages.writeAReview} />
-      </Box>
-      <form onSubmit={handleSubmit(data => handleSubmitForm(data))}>
-        <Box marginBottom="20px">
-          <Box sx={styles.wrapRating}>
-            <Box component="h5" sx={styles.boxYourRating}>
-              <FormattedMessage {...messages.yourRating} />
-            </Box>
-            <Box component="h5" sx={styles.boxRequired}>
-              *
-            </Box>
-          </Box>
-          <Rating
-            name="simple-controlled"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
-        </Box>
-        <Box marginBottom="20px">
-          <Box sx={styles.wrapRating}>
-            <Box component="h5" sx={styles.boxYourReview}>
-              <FormattedMessage {...messages.yourReview} />
-            </Box>
-            <Box component="h5" sx={styles.boxRequired}>
-              *
-            </Box>
-          </Box>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            multiline
-            rows={8}
-            id="review"
-            autoFocus
-            sx={{
-              mt: 0,
-              '& div > fieldset': {
-                borderColor: () => review && '#e94560',
-              },
-            }}
-            {...register('review')}
-          />
-          <ErrorMessage name={review} />
-        </Box>
-        <Button variant="contained" type="submit">
-          <FormattedMessage {...messages.btnSubmit} />
-        </Button>
-      </form>
+      )}
     </Box>
   );
 }
+const mapStateToProps = ({ global: { auth } }: State) => ({
+  auth,
+});
 
-export default ProductReview;
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect)(ProductReview);

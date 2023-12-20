@@ -1,6 +1,7 @@
 export type MenuItem = {
   name?: string;
   slug: string;
+  id?: string;
   sx?: object;
   onClick?: () => void;
   component?: JSX.Element;

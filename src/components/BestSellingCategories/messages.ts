@@ -15,12 +15,12 @@ export default defineMessages({
     id: `${scope}.womenFashion`,
     defaultMessage: "Women's Fashion",
   },
-  gadgets: {
-    id: `${scope}.gadgets`,
-    defaultMessage: 'Gadgets',
+  footwear: {
+    id: `${scope}.footwear`,
+    defaultMessage: 'Footwear',
   },
-  cosmetics: {
-    id: `${scope}.cosmetics`,
-    defaultMessage: 'Cosmetics',
+  walletBag: {
+    id: `${scope}.walletBag`,
+    defaultMessage: 'Wallet Gag',
   },
 });

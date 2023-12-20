@@ -7,6 +7,10 @@ export default defineMessages({
     id: `${scope}.item.title`,
     defaultMessage: 'item',
   },
+  itemTitleEmpty: {
+    id: `${scope}.item.titleEmpty`,
+    defaultMessage: 'Empty',
+  },
   btnCheckoutNow: {
     id: `${scope}.button.checkoutNow`,
     defaultMessage: 'Checkout Now',
@@ -14,5 +18,9 @@ export default defineMessages({
   btnViewCart: {
     id: `${scope}.button.viewCart`,
     defaultMessage: 'View Cart',
+  },
+  errorMessage: {
+    id: `${scope}.button.errorMessage`,
+    defaultMessage: 'Please add product to cart',
   },
 });

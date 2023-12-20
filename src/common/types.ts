@@ -1,4 +1,3 @@
-import { ImageProduct } from 'src/components/ProductBriefing/types';
 import { ProductCart } from 'src/components/SideBarCart/types';
 import { AuthType } from 'src/containers/Authenticated/types';
 
@@ -37,18 +36,22 @@ export type Product = {
     name: string;
   };
   category: {
-    id: string;
+    _id: string;
     name: string;
   };
   description?: string;
-  images?: ImageProduct[];
+  images?: string[];
+  size?: string[];
   star?: number;
   review?: number;
   thumbnail?: string;
-  rating?: string;
+  rating?: number;
+  sold?: number;
+  totalComment?: number;
   createdAt?: string;
   deletedAt?: string;
   updatedAt?: string;
+  quantity?: number;
 };
 
 export type Brand = {
@@ -64,4 +67,63 @@ export type ListCategory = {
   name: string;
   slug: string;
   id: string;
+};
+
+export type AddToCartProduct = {
+  productId: string;
+  quantity: number;
+  size: string[];
+};
+
+export type UpdateQuantityProduct = {
+  id: string;
+  quantity: string;
+};
+
+export type PostOrderType = {
+  fullName: string;
+  phoneNumber: string;
+  address: string;
+  customerNote?: string;
+  status: number;
+  amount: number;
+  quantity: number;
+};
+
+export type PostOrderDetailType = {
+  products: {
+    product: string;
+    quantity: number;
+    price: number;
+  }[];
+  order: string;
+  discountPercent?: number;
+  shipingFee?: number;
+};
+
+export type OrderType = {
+  _id: string;
+  user: {
+    name: string;
+    _id: string;
+  };
+  phoneNumber: number;
+  fullName: string;
+  customerNote: string;
+  methodPayment: string;
+  address: string;
+  amount: number;
+  quantity: number;
+  status: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateOrderType = {
+  id: string;
+  address: string;
+  amount: number;
+  quantity: number;
+  status: number;
+  methodPayment: number;
 };

@@ -29,6 +29,7 @@ export interface AuthType {
   phoneNumber: number;
   role: string;
   social: string;
+  avatar: string;
 }
 
 export type Auth = {

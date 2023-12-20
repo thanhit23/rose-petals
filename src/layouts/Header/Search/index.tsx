@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,6 +22,7 @@ import styles from './styles';
 import { Product, SubmitForm } from './types';
 
 export default function Search() {
+  const t = useIntl();
   const inputRef = useRef();
   const navigate = useNavigate();
 
@@ -61,7 +62,7 @@ export default function Search() {
 
     inputElement.blur();
     handleHideResult();
-    navigate(PATH_PUBLIC.product.search(searchValue));
+    navigate(PATH_PUBLIC.product.search(searchValue, categoryId));
   };
 
   const handleClickItem = (slug: string, productId: string) => {
@@ -73,7 +74,7 @@ export default function Search() {
     if (debouncedValue === '') return;
 
     handleHideResult();
-    navigate(PATH_PUBLIC.product.search(searchValue));
+    navigate(PATH_PUBLIC.product.search(searchValue, categoryId));
   };
 
   const handleChange = (e: React.PointerEvent<HTMLInputElement>) => {
@@ -116,7 +117,11 @@ export default function Search() {
         <Box sx={styles.boxResult} {...attrs}>
           <Box component={'div'} sx={styles.searchTitle} onClick={handleSearch}>
             <StoreIcon fontSize="small" color="error" />
-            <FormattedMessage {...messages.searchFor} />: &quot;{searchValue}&quot;
+            <FormattedMessage {...messages.keyword} />: &quot;
+            <Box component={'span'} sx={styles.searchValue}>
+              {searchValue}
+            </Box>
+            &quot;
           </Box>
           {searchResult?.map(product => (
             <Box
@@ -152,7 +157,7 @@ export default function Search() {
             onFocus={() => setShowResult(true)}
             value={searchValue}
             size="small"
-            placeholder="Searching for..."
+            placeholder={t.formatMessage({ ...messages.searchingFor })}
             startAdornment={<SearchIcon sx={styles.outlineInputSearchIcon} />}
             endAdornment={<CategoryMenu onChangeCategoryId={setCategoryId} />}
           />

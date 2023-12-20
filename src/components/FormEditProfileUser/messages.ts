@@ -10,9 +10,9 @@ export default defineMessages({
     id: `${scope}.backToProfile`,
     defaultMessage: 'Back To Profile',
   },
-  labelFirstName: {
-    id: `${scope}.labelFirstName`,
-    defaultMessage: 'First Name',
+  labelName: {
+    id: `${scope}.labelName`,
+    defaultMessage: 'Name',
   },
   labelEmail: {
     id: `${scope}.labelEmail`,
@@ -37,5 +37,69 @@ export default defineMessages({
   female: {
     id: `${scope}.female`,
     defaultMessage: 'Female',
+  },
+  seeProfilePicture: {
+    id: `${scope}.seeProfilePicture`,
+    defaultMessage: 'See profile picture',
+  },
+  chooseProfilePicture: {
+    id: `${scope}.chooseProfilePicture`,
+    defaultMessage: 'Choose profile picture',
+  },
+  updateProfileSuccess: {
+    id: `${scope}.updateProfileSuccess`,
+    defaultMessage: 'Update profile success',
+  },
+  updateProfileFailed: {
+    id: `${scope}.updateProfileFailed`,
+    defaultMessage: 'Update profile failed',
+  },
+  nameRequired: {
+    id: `${scope}.nameRequired`,
+    defaultMessage: 'Name is required',
+  },
+  nameMaxLength: {
+    id: `${scope}.nameMaxLength`,
+    defaultMessage: 'Full name must be at most 25 characters',
+  },
+  nameNotSpecialCharacters: {
+    id: `${scope}.nameNotSpecialCharacters`,
+    defaultMessage: 'Full name must not contain special characters',
+  },
+  emailRequired: {
+    id: `${scope}.emailRequired`,
+    defaultMessage: 'Email is required',
+  },
+  emailMustBeValid: {
+    id: `${scope}.emailMustBeValid`,
+    defaultMessage: 'Email must be a valid email',
+  },
+  phoneNumberRequired: {
+    id: `${scope}.phoneNumberRequired`,
+    defaultMessage: 'Phone number is required',
+  },
+  phoneNumberPositive: {
+    id: `${scope}.phoneNumberPositive`,
+    defaultMessage: 'Phone number must be a positive number',
+  },
+  phoneNumberMustBeANumber: {
+    id: `${scope}.phoneNumberMustBeANumber`,
+    defaultMessage: 'Phone number must be a number',
+  },
+  phoneNumberInteger: {
+    id: `${scope}.phoneNumberInteger`,
+    defaultMessage: 'Phone number must be an integer',
+  },
+  phoneNumberMaxLength: {
+    id: `${scope}.phoneNumberMaxLength`,
+    defaultMessage: 'Phone number must be at most 10 digits',
+  },
+  locationRequired: {
+    id: `${scope}.locationRequired`,
+    defaultMessage: 'Location is required',
+  },
+  genderRequired: {
+    id: `${scope}.genderRequired`,
+    defaultMessage: 'Gender is required',
   },
 });

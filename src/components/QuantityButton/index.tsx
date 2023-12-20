@@ -1,10 +1,18 @@
+import React from 'react';
+
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Box, ButtonBase } from '@mui/material';
 
 import styles from './styles';
 
-function QuantityButton({ quantity, setQuantity }: { quantity: number; setQuantity: any }) {
+type Props = {
+  quantity: number;
+  setQuantity: (num: number) => void;
+  sx?: object;
+};
+
+const QuantityButton: React.FC<Props> = ({ quantity, setQuantity, sx = {} }) => {
   const handleIncrease = () => {
     if (quantity === 10) return;
     setQuantity(quantity + 1);
@@ -14,8 +22,9 @@ function QuantityButton({ quantity, setQuantity }: { quantity: number; setQuanti
     if (quantity === 1) return;
     setQuantity(quantity - 1);
   };
+
   return (
-    <Box sx={styles.boxQuantity}>
+    <Box sx={{ ...styles.boxQuantity, ...sx }}>
       <ButtonBase sx={styles.boxIncreaseReduce} onClick={handleReduce}>
         <RemoveIcon />
       </ButtonBase>
@@ -27,6 +36,6 @@ function QuantityButton({ quantity, setQuantity }: { quantity: number; setQuanti
       </ButtonBase>
     </Box>
   );
-}
+};
 
 export default QuantityButton;

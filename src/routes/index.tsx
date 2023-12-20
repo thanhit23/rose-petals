@@ -2,12 +2,14 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import NotFound from 'src/components/NotFound';
 import Authenticated from 'src/containers/Authenticated';
+import LayoutAuth from 'src/layouts/Auth';
 import GeneralLayout from 'src/layouts/Main';
 
 const routers: RouteObject[] = [
   {
     path: '/auth',
     errorElement: <NotFound />,
+    element: <LayoutAuth />,
     children: [
       {
         path: 'login',
@@ -16,6 +18,14 @@ const routers: RouteObject[] = [
       {
         path: 'register',
         lazy: () => import('src/containers/Register'),
+      },
+      {
+        path: 'forgot-password',
+        lazy: () => import('src/containers/ForgotPassword'),
+      },
+      {
+        path: 'reset-password',
+        lazy: () => import('src/containers/ResetPassword'),
       },
     ],
   },
@@ -31,23 +41,23 @@ const routers: RouteObject[] = [
       {
         path: 'cart',
         element: <Authenticated />,
-        lazy: () => import('src/containers/Cart'),
+        children: [{ index: true, lazy: () => import('src/containers/Cart') }],
       },
       {
         path: 'checkout',
         element: <Authenticated />,
-        lazy: () => import('src/containers/Checkout'),
+        children: [{ index: true, lazy: () => import('src/containers/Checkout') }],
       },
       {
         path: 'payment',
         element: <Authenticated />,
-        lazy: () => import('src/containers/Payment'),
+        children: [{ index: true, lazy: () => import('src/containers/Payment') }],
       },
       {
         path: 'product',
         children: [
           {
-            path: 'search/:slug',
+            path: 'search',
             lazy: () => import('src/containers/ProductSearch'),
           },
           {
@@ -85,24 +95,6 @@ const routers: RouteObject[] = [
         ],
       },
       {
-        path: 'address',
-        element: <Authenticated />,
-        children: [
-          {
-            index: true,
-            lazy: () => import('src/containers/Address'),
-          },
-          {
-            path: 'add',
-            lazy: () => import('src/containers/Address/Add'),
-          },
-          {
-            path: ':id',
-            lazy: () => import('src/containers/Address/Edit'),
-          },
-        ],
-      },
-      {
         path: 'payment-methods',
         element: <Authenticated />,
         children: [
@@ -110,20 +102,7 @@ const routers: RouteObject[] = [
             index: true,
             lazy: () => import('src/containers/PaymentMethod'),
           },
-          {
-            path: ':id',
-            lazy: () => import('src/containers/PaymentMethod/Edit'),
-          },
-          {
-            path: 'add',
-            lazy: () => import('src/containers/PaymentMethod/Add'),
-          },
         ],
-      },
-      {
-        path: 'wish-list',
-        element: <Authenticated />,
-        lazy: () => import('src/containers/WishList'),
       },
     ],
   },

@@ -17,6 +17,45 @@ const paper = {
   padding: '2rem 3rem',
 };
 
+const formControl = {
+  display: 'flex',
+  gap: '8px',
+};
+
+const btnSend = {
+  width: '100px !important',
+  margin: '0px !important',
+  padding: '0px',
+  fontWeight: 500,
+  mt: 3,
+  mb: 2,
+  color: '#fff',
+  backgroundColor: '#d23f57',
+  boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#e3364e',
+    boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
+  },
+};
+
+const btnConfirm = {
+  width: '100px !important',
+  margin: '0px !important',
+  fontWeight: 500,
+  padding: '0px',
+  mt: 3,
+  mb: 2,
+  color: '#fff',
+  backgroundColor: '#d23f57',
+  boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
+  '&:hover': {
+    color: '#fff',
+    backgroundColor: '#e3364e',
+    boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
+  },
+};
+
 const btnSubmit = {
   mt: 3,
   mb: 2,
@@ -60,6 +99,9 @@ export default {
   visibilityIcon,
   errorMessage,
   boxRegister,
+  formControl,
   btnSubmit,
+  btnSend,
+  btnConfirm,
   paper,
 };

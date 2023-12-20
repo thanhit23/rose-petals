@@ -52,6 +52,18 @@ const paperCart = {
   borderRadius: 'inherit',
 };
 
+const boxTitleCart = {
+  display: 'flex',
+  flexDirection: 'column',
+};
+
+const boxImgEmptyCart = {
+  display: 'flex',
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
 const boxTitlePaper = {
   display: 'flex',
   webkitBoxPack: 'justify',
@@ -64,6 +76,7 @@ const boxTitlePaper = {
 };
 
 const closeBtnBase = {
+  zIndex: '10',
   padding: '8px',
   borderRadius: '50%',
   overflow: 'visible',
@@ -109,4 +122,6 @@ export default {
   paperCart,
   btnCart,
   badge,
+  boxTitleCart,
+  boxImgEmptyCart,
 };

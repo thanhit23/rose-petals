@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,16 +11,19 @@ import { IconButton, Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import { useQueryClient } from '@tanstack/react-query';
 import { compose } from 'redux';
 
 import { ListCategory, State } from 'src/common/types';
 import SideBarCart from 'src/components/SideBarCart';
 import useResponsive from 'src/hooks/useResponsive';
+import { useDeleteProductCart } from 'src/queries/cart';
 import logo from 'src/resources/images/logo.png';
 
 import DropDown from '../NavBar/Dropdown';
 import Search from './Search';
 import UserButton from './UserButton';
+import messages from './messages';
 import styles from './styles';
 
 type Props = {
@@ -46,13 +51,23 @@ const Header: React.FC<Props> = ({ categoryList }) => {
       newScrollPosition <= scrollPosition && setShowHeader(true);
       scrollPosition < newScrollPosition && setShowHeader(false);
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true });
   }, []);
 
   const handleOpenFormSearch = () => setOpenSearch(true);
 
   const handleCloseFormSearch = () => setOpenSearch(false);
+
+  const queryClient = useQueryClient();
+
+  const deleteProduct = useDeleteProductCart({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['getProductCartList'],
+      });
+      toast.success(<FormattedMessage {...messages.deleteMessage} />);
+    },
+  });
 
   return (
     <>
@@ -91,7 +106,7 @@ const Header: React.FC<Props> = ({ categoryList }) => {
                   </Button>
                 )}
                 <UserButton />
-                <SideBarCart />
+                <SideBarCart onDeleteProduct={deleteProduct.mutate} />
               </Box>
             </Container>
           </Box>

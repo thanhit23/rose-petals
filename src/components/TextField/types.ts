@@ -1,7 +1,8 @@
-export interface MuiTextFieldType {
+import { TextFieldProps } from '@mui/material/TextField';
+
+export type MuiTextFieldType = {
   sx?: object;
   type?: string;
   message?: object;
   validate?: object;
-  label: JSX.Element;
-}
+} & TextFieldProps;
