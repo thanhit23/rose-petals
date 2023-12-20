@@ -1,4 +1,6 @@
 const buttonPerson = {
+  width: '44px',
+  height: '44px',
   borderRadius: '50%',
   minWidth: 'auto',
   color: '#0000008a',

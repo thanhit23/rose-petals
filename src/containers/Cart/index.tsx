@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { CheckBox } from '@mui/icons-material';
 import { Avatar, Box, Button } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -40,7 +41,10 @@ const Cart: React.FC<Props> = ({ productList }) => {
         <Grid item xs={12} md={8}>
           {productList.length > 0 ? (
             productList.map(data => (
-              <CartProductListItem key={data._id} productCart={data} onDeleteProduct={deleteProduct.mutate} />
+              <Box key={data._id} display="flex" alignItems="center" gap="15px" marginBottom="1.5rem">
+                <CheckBox />
+                <CartProductListItem productCart={data} onDeleteProduct={deleteProduct.mutate} />
+              </Box>
             ))
           ) : (
             <Box className="title-cart-empty">

@@ -25,6 +25,23 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
   const openModalProduct = () => setModalProductDetail(true);
   const handleCloseModal = () => setModalProductDetail(false);
 
+  const styleImage = () => {
+    if (widthHeightImg) {
+      return {
+        ...styles.boxComponentImg,
+        width: {
+          xs: '100%',
+          sm: '100%',
+          md: '100%',
+          lg: widthHeightImg,
+        },
+        height: widthHeightImg,
+      };
+    }
+
+    return styles.boxComponentImg;
+  };
+
   return (
     <Box position="unset">
       <Box width="calc(100% - 1.125rem)" margin="auto">
@@ -32,17 +49,7 @@ const ProductItemQuickView: React.FC<Props> = ({ product, widthHeightImg = null 
           <Link to={PATH_PUBLIC.product.slug(product?.slug, product?._id)}>
             <Box sx={widthHeightImg ? { ...styles.boxComponentImg, height: widthHeightImg } : styles.boxComponentImg}>
               <Box>
-                <Box
-                  className="img-product"
-                  component="img"
-                  sx={
-                    widthHeightImg
-                      ? { ...styles.boxComponentImg, width: widthHeightImg, height: widthHeightImg }
-                      : styles.boxComponentImg
-                  }
-                  alt=""
-                  src={product?.thumbnail}
-                />
+                <Box className="img-product" component="img" sx={styleImage()} alt="" src={product?.thumbnail} />
               </Box>
             </Box>
           </Link>
