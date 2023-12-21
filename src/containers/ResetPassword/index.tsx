@@ -46,12 +46,12 @@ function ResetPassword() {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: (data: FormResetPassword) => resetPassword(data),
-    onSuccess: ({ data: { status } }) => {
+    onSuccess: ({ data: { status, message } }) => {
       if (status) {
         navigate(PATH_AUTH.login);
         toast.success(<FormattedMessage {...messages.resetSuccess} />);
       } else {
-        toast.error(<FormattedMessage {...messages.resetFailed} />);
+        toast.error(message);
       }
     },
   });

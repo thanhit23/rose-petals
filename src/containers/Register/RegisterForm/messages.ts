@@ -15,6 +15,14 @@ export default defineMessages({
     id: `${scope}.btnSignUp`,
     defaultMessage: 'Submit',
   },
+  registerSuccess: {
+    id: `${scope}.registerSuccess`,
+    defaultMessage: 'Register successfully',
+  },
+  passwordInvalid: {
+    id: `${scope}.passwordInvalid`,
+    defaultMessage: 'Password must contain at least 1 letter and 1 number',
+  },
   labelEmail: {
     id: `${scope}.label.email`,
     defaultMessage: 'Email Address',

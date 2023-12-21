@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -39,6 +40,7 @@ function LoginForm({ onLoginSuccess, onCloseDialog }: Props) {
       if (status) {
         onLoginSuccess(data);
         onCloseDialog instanceof Function ? onCloseDialog() : navigator('/');
+        toast.success(<FormattedMessage {...messages.loginSuccess} />);
       } else {
         setError('root.afterSubmit', { message });
       }

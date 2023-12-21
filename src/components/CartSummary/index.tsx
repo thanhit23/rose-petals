@@ -1,5 +1,5 @@
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -15,7 +15,14 @@ import messages from './messages';
 import styles from './styles';
 
 const CartSummary: React.FC<Props> = ({ productList }) => {
+  const navigate = useNavigate();
   const totalPrice = useCalculateTotalPrice(productList);
+
+  const handleRedirectToCheckout = () => {
+    if (!isEmpty(productList)) {
+      navigate(PATH_AUTH.checkout);
+    }
+  };
 
   return (
     <Paper sx={styles.paperBilling}>
@@ -27,11 +34,15 @@ const CartSummary: React.FC<Props> = ({ productList }) => {
           {formatPrice.format(totalPrice)}
         </Box>
       </Box>
-      <Link to={PATH_AUTH.checkout}>
-        <Button fullWidth variant="contained" sx={styles.btnCheckoutNow} disabled={isEmpty(productList)}>
-          <FormattedMessage {...messages.btnCheckoutNow} />
-        </Button>
-      </Link>
+      <Button
+        fullWidth
+        variant="contained"
+        sx={styles.btnCheckoutNow}
+        disabled={isEmpty(productList)}
+        onClick={handleRedirectToCheckout}
+      >
+        <FormattedMessage {...messages.btnCheckoutNow} />
+      </Button>
     </Paper>
   );
 };
