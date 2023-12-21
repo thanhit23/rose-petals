@@ -1,20 +1,3 @@
-const btnCheckoutNow = {
-  fontSize: '0.875rem',
-  color: 'rgb(255, 255, 255)',
-  backgroundColor: 'rgb(210, 63, 87)',
-  width: '100%',
-  minWidth: '0px',
-  minHeight: '0px',
-  textTransform: 'capitalize',
-  height: '40px',
-  margin: '0px 0px 0.75rem',
-  boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
-  '&:hover': {
-    backgroundColor: 'rgb(227, 54, 78)',
-    boxShadow: 'rgb(3 0 71 / 1%) 0px 0px 28px',
-  },
-};
-
 const btnOutlined = {
   fontSize: '0.875rem',
   border: '1px solid rgba(210, 63, 87, 0.5)',
@@ -114,7 +97,6 @@ const badge = {
 
 export default {
   wrapperTitleCart,
-  btnCheckoutNow,
   boxTitlePaper,
   closeBtnBase,
   itemListCart,

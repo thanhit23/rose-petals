@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
 import { compose } from 'redux';
 
 import { PostOrderDetailType, PostOrderType, State } from 'src/common/types';
@@ -228,6 +228,7 @@ function CheckoutAddressForm({
             type="submit"
             variant="contained"
             sx={styles.btnProceedToPayment}
+            disabled={isEmpty(productList)}
             loading={onCreateOrder.isLoading || onCreateOrderDetail.isLoading}
           >
             <FormattedMessage {...messages.btnProceedToPayment} />
