@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -14,9 +14,10 @@ import { State } from 'src/common/types';
 import DeliveryMethod from 'src/components/DeliveryMethod';
 import FormSteps from 'src/components/FormSteps';
 import PaymentSummary from 'src/components/PaymentSummary';
+import useLocalStorage from 'src/hooks/useLocalStorage';
 import { useUpdateOrder } from 'src/queries/order';
 
-import { ProductList } from '../Cart/types';
+import { ProductCart, ProductList } from '../Cart/types';
 import messages from './messages';
 import { payWithVNPay } from './services';
 import { PaymentType } from './types';
@@ -28,6 +29,8 @@ type Props = {
 const Payment: React.FC<Props> = ({ productList }) => {
   const [searchParams] = useSearchParams();
   const orderId = searchParams.get('id') as string;
+  const [storedValue] = useLocalStorage<string[]>('productCartId', []);
+  const [productCartList, setProductCartList] = useState<ProductCart[]>([]);
 
   const queryClient = useQueryClient();
 
@@ -62,6 +65,11 @@ const Payment: React.FC<Props> = ({ productList }) => {
     },
   });
 
+  useEffect(() => {
+    const filterProductCart = productList.filter(product => storedValue.includes(product._id));
+    setProductCartList(filterProductCart);
+  }, [productList]);
+
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
       <FormSteps activeIndexPage={3} />
@@ -70,7 +78,7 @@ const Payment: React.FC<Props> = ({ productList }) => {
           <DeliveryMethod onPayWithVNPay={continueWithVNPay} orderDetail={orderDetail} onUpdateOrder={updateOrder} />
         </Gird>
         <Gird item xs={12} md={4} lg={4}>
-          <PaymentSummary productList={productList} />
+          <PaymentSummary productList={productCartList} />
         </Gird>
       </Gird>
     </Container>

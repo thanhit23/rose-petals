@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import Container from '@mui/material/Container';
@@ -11,9 +11,10 @@ import CheckoutAddressForm from 'src/components/CheckoutAddressForm';
 import { FilterCheckout, ListData } from 'src/components/CheckoutAddressForm/types';
 import BreadBarCartPage from 'src/components/FormSteps';
 import PricingDetail from 'src/components/PricingDetail';
+import useLocalStorage from 'src/hooks/useLocalStorage';
 import { useCreateOrder, useCreateOrderDetail } from 'src/queries/order';
 
-import { ProductList } from '../Cart/types';
+import { ProductCart, ProductList } from '../Cart/types';
 import { getAddress } from './services';
 import { KeyAddress, ResponseAddressFormat } from './types';
 
@@ -28,6 +29,8 @@ const formatResponse = (result: Partial<ResponseAddressFormat>[], key: KeyAddres
   }));
 
 const Checkout: React.FC<Props> = ({ productList }) => {
+  const [storedValue] = useLocalStorage<string[]>('productCartId', []);
+  const [productCartList, setProductCartList] = useState<ProductCart[]>([]);
   const [filterCheckout, setFilterCheckout] = useState<FilterCheckout>({
     province: '',
     district: null,
@@ -64,6 +67,11 @@ const Checkout: React.FC<Props> = ({ productList }) => {
 
   const createOrder = useCreateOrder();
 
+  useEffect(() => {
+    const filterProductCart = productList.filter(product => storedValue.includes(product._id));
+    setProductCartList(filterProductCart);
+  }, [productList]);
+
   return (
     <Container maxWidth="lg" sx={{ margin: '32px auto' }}>
       <BreadBarCartPage activeIndexPage={2} />
@@ -71,7 +79,7 @@ const Checkout: React.FC<Props> = ({ productList }) => {
         <Grid item xs={12} md={8} lg={8}>
           <CheckoutAddressForm
             listData={listData}
-            productList={productList}
+            productList={productCartList}
             filterCheckout={filterCheckout}
             onFilterCheckout={setFilterCheckout}
             onCreateOrder={createOrder}
@@ -79,7 +87,7 @@ const Checkout: React.FC<Props> = ({ productList }) => {
           />
         </Grid>
         <Grid item xs={12} md={4} lg={4} sx={{ transition: 'all 250ms' }}>
-          <PricingDetail productList={productList} />
+          <PricingDetail productList={productCartList} />
         </Grid>
       </Grid>
     </Container>
