@@ -88,6 +88,8 @@ const ProductForm: React.FC<Props> = ({ product }) => {
     });
   };
 
+  const renderQuantityAvailable = (quantity: number, sold: number) => quantity - sold || 0;
+
   return (
     <React.Fragment>
       <Grid item xs={12} md={6} sx={{ maxWidth: { sm: '100%' } }}>
@@ -168,7 +170,8 @@ const ProductForm: React.FC<Props> = ({ product }) => {
             </Box>
             <QuantityButton sx={styles.boxQuantity} quantity={quantity} setQuantity={setQuantity} />
             <Box component="span" color="#757575" paddingLeft="20px">
-              {product?.quantity || 0} <FormattedMessage {...messages.quantityProductMessage} />
+              {renderQuantityAvailable(product?.quantity as number, product?.sold as number)}{' '}
+              <FormattedMessage {...messages.quantityProductMessage} />
             </Box>
           </Box>
           {isErrorChooseSize && (
