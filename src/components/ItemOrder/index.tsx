@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FormattedMessage } from 'react-intl';
@@ -75,7 +76,8 @@ const ItemOrder: React.FC<Props> = ({ itemOrder }) => {
           </Box>
           <Typography sx={styles.orderItem}>{formatDate(itemOrder.createdAt)}</Typography>
           <Typography sx={styles.orderItem}>{formatPrice.format(itemOrder.amount)}</Typography>
-          {renderStatus(itemOrder.status) === CANCELLED && !isLoading && (
+          {(renderStatus(itemOrder.status) === CANCELLED && !isLoading) ||
+          (renderStatus(itemOrder.status) === DELIVERED && !isLoading) ? (
             <Typography sx={styles.boxActionIcon}>
               <Box onClick={() => setModalDeleteOrder(true)}>
                 <IconButton aria-label="east">
@@ -83,7 +85,7 @@ const ItemOrder: React.FC<Props> = ({ itemOrder }) => {
                 </IconButton>
               </Box>
             </Typography>
-          )}
+          ) : null}
           {isLoading && (
             <Typography sx={styles.boxActionIcon}>
               <Box>

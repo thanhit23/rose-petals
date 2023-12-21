@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
@@ -53,6 +54,7 @@ function RegisterForm() {
       clearErrors('root.afterSubmit');
       if (status) {
         navigate(PATH_AUTH.login);
+        toast.success(<FormattedMessage {...messages.registerSuccess} />);
       } else {
         setError('root.afterSubmit', { message });
       }

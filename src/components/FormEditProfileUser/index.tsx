@@ -53,7 +53,7 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onUpdateProfileUser, onUpl
     defaultValues: {
       name: auth.name,
       email: auth.email,
-      phoneNumber: String(auth.phoneNumber),
+      phoneNumber: String(auth.phoneNumber || ''),
       location: auth.location,
       gender: auth.gender,
     },
@@ -94,10 +94,12 @@ const FormEditProfileUser: React.FC<Props> = ({ auth, onUpdateProfileUser, onUpl
             zIndex={999}
             render={attrs => (
               <Box component={'ul'} sx={styles.avatarDropdown} tabIndex={-1} {...attrs}>
-                <Box component={'li'} sx={styles.avatarDropdownItem} onClick={() => setSeeProfile(true)}>
-                  <PortraitOutlinedIcon />
-                  <FormattedMessage {...messages.seeProfilePicture} />
-                </Box>
+                {auth.avatar && (
+                  <Box component={'li'} sx={styles.avatarDropdownItem} onClick={() => setSeeProfile(true)}>
+                    <PortraitOutlinedIcon />
+                    <FormattedMessage {...messages.seeProfilePicture} />
+                  </Box>
+                )}
                 <Box component={'li'} sx={styles.avatarDropdownItem} onClick={() => setOpenModal(true)}>
                   <WallpaperOutlinedIcon />
                   <FormattedMessage {...messages.chooseProfilePicture} />

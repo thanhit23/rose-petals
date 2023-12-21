@@ -6,12 +6,12 @@ export default defineMessages({
   description: {
     id: `${scope}.description`,
     defaultMessage:
-      'Rose Pestals is the leading e-commerce platform in Southeast Asia.\n' +
-      '                Launched in 2023, the Rose Pestals commerce platform is built to provide users with an easy, safe and fast experience when shopping online. through a strong payment and operational support system.',
+      'Rose Petals is the leading e-commerce platform in Southeast Asia.\n' +
+      'Launched in 2023, the Rose Pestals commerce platform is built to provide users with an easy, safe and fast experience when shopping online. through a strong payment and operational support system.',
   },
   nameShop: {
     id: `${scope}.nameShop`,
-    defaultMessage: 'Rose Pestals',
+    defaultMessage: 'Rose Petals',
   },
   getItOn: {
     id: `${scope}.getItOn`,

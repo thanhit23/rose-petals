@@ -27,6 +27,14 @@ export default defineMessages({
     id: `${scope}.notAccount`,
     defaultMessage: "Don't have an account?",
   },
+  loginSuccess: {
+    id: `${scope}.loginSuccess`,
+    defaultMessage: 'Login successfully',
+  },
+  passwordInvalid: {
+    id: `${scope}.passwordInvalid`,
+    defaultMessage: 'Password must contain at least 1 letter and 1 number',
+  },
   signUp: {
     id: `${scope}.signUp`,
     defaultMessage: 'Sign Up',

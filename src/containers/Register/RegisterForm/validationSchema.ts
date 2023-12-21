@@ -27,7 +27,8 @@ export const registerFormValidationSchema = (t: IntlShape) =>
     password: Yup.string()
       .required(t.formatMessage({ ...messages.passwordRequired }))
       .min(8, t.formatMessage({ ...messages.passwordMinLength }))
-      .max(16, t.formatMessage({ ...messages.passwordMaxLength })),
+      .max(16, t.formatMessage({ ...messages.passwordMaxLength }))
+      .matches(/^(?=.*[a-zA-Z])(?=.*\d)/, t.formatMessage({ ...messages.passwordInvalid })),
     confirmPassword: Yup.string()
       .required(t.formatMessage({ ...messages.confirmPasswordRequired }))
       .oneOf([Yup.ref('password')], t.formatMessage({ ...messages.confirmPasswordMustMatch })),
